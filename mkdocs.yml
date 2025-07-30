@@ -1,0 +1,104 @@
+site_name: 끄적끄적
+site_description: 끄적끄적
+site_url: https://blog.nvim.me
+repo_url: https://github.com/kmj8843/blog
+edit_uri: edit/main/docs/
+repo_name: GitHub
+
+theme:
+  name: material
+  custom_dir: overrides
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - content.tooltips
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.action.view
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  favicon: assets/images/favicon.png
+  logo: assets/images/logo.png
+  icon:
+    logo: logo
+  font:
+    text: Inter
+    code: Fira Code
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - md_in_html
+  - toc:
+      permalink: true
+  - footnotes
+
+plugins:
+  - search
+  - blog:
+      archive_date_format: yyyy
+  - tags
+
+nav:
+  - Home: index.md
+  - Frameworks:
+      - React Native:
+          - frameworks/react-native/index.md
+          - Components:
+              - Deep Link: frameworks/react-native/components/deep-link.md
+          - Tips:
+              - Log 확인: frameworks/react-native/tips/log.md
+          - Troubleshoot:
+              - BuildConfig 에러 해결 방법: frameworks/react-native/troubleshoot/buildconfig.md
+          - Receipes:
+              - Kotlin Bridge: frameworks/react-native/receipes/bridge.md
+  - Blog:
+      - blog/index.md
