@@ -50,7 +50,7 @@ npm install -g expo-cli
 
 ## troubleshooting
 
-[build-config](./troubleshooting/buildconfig.md)
+[build-config](./troubleshoot/buildconfig.md)
 
 ### dark mode
 
@@ -63,11 +63,11 @@ adb shell "cmd uimode night yes"
 > app.json 의 .expo.userInterfaceStyle 을 `dark` 또는 `light` 로 설정 가능 (기본: `automatic`)
 
 ```js
-import { useColorScheme, Appearance } from "react-native";
+import { useColorScheme, Appearance } from 'react-native';
 
 const scheme = useColorScheme(); // 'dark' | 'light' | undefined
 // or
-Appearance.setColorScheme("dark"); // 'dark' | 'light' (iOS 13+)
+Appearance.setColorScheme('dark'); // 'dark' | 'light' (iOS 13+)
 Appearance.getColorScheme(); // 'dark' | 'light' | undefined
 Appearance.addChangeListener(({ colorScheme }) => {
   // colorScheme: 'dark' | 'light'
@@ -78,14 +78,14 @@ Appearance.removeChangeListener(listener);
 ### share
 
 ```js
-import { Share } from "react-native";
+import { Share } from 'react-native';
 
 const handleShare = async () => {
   try {
     const result = await Share.share({
-      message: "Hello, world!",
-      url: "${.expo.scheme}://example.com", // for ios
-      title: "Share this", // for android
+      message: 'Hello, world!',
+      url: '${.expo.scheme}://example.com', // for ios
+      title: 'Share this', // for android
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
@@ -109,7 +109,7 @@ npx expo install expo-sharing
 ```
 
 ```js
-import * as Sharing from "expo-sharing";
+import * as Sharing from 'expo-sharing';
 ```
 
 [expo 참고 링크](https://docs.expo.dev/versions/latest/sdk/sharing/)
@@ -126,7 +126,7 @@ expo 에서 다른 앱으로의 공유는 지원하지만 다른 앱에서 expo 
 ### status bar
 
 ```js
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from 'expo-status-bar';
 ```
 
 expo 를 사용중이라면 `expo-status-bar` 를 사용하는게 좋음
@@ -137,7 +137,7 @@ expo 를 사용중이라면 `expo-status-bar` 를 사용하는게 좋음
 > 앱 로딩 시 보여지는 화면
 
 ```js
-import { SplashScreen } from "expo-splash-screen";
+import { SplashScreen } from 'expo-splash-screen';
 SplashScreen.preventAutoHideAsync(); // 앱 로딩 시 splash screen 숨김 방지
 SplashScreen.hideAsync(); // 앱 로딩 완료 후 splash screen 숨김
 SplashScreen.showAsync(); // splash screen 강제로 보여줌
@@ -145,11 +145,11 @@ SplashScreen.getVisibilityAsync(); // splash screen이 보이는지 여부
 ```
 
 ```js
-import * as SplashScreen from "expo-splash-screen";
+import * as SplashScreen from 'expo-splash-screen';
 
 // 앱 로딩 시 splash screen 숨김 방지
 SplashScreen.preventAutoHideAsync().catch((error) => {
-  console.warn("Error preventing splash screen auto-hide:", error);
+  console.warn('Error preventing splash screen auto-hide:', error);
 });
 
 // 앱 로딩 완료 후 splash screen 숨김
@@ -169,15 +169,15 @@ npx expo install expo-asset
 ```
 
 ```js
-import { Asset } from "expo-asset";
+import { Asset } from 'expo-asset';
 
-Asset.fromUri("https://example.com/image.png")
+Asset.fromUri('https://example.com/image.png')
   .downloadAsync()
   .then(() => {
     // 이미지 다운로드 완료 후 실행
   });
 
-await Asset.loadAsync(require("./assets/image.png"));
+await Asset.loadAsync(require('./assets/image.png'));
 ```
 
 [expo 참고 링크](https://docs.expo.dev/versions/latest/sdk/asset/)
@@ -189,7 +189,7 @@ npx expo install expo-constants
 ```
 
 ```js
-import Constants from "expo-constants";
+import Constants from 'expo-constants';
 ```
 
 [expo 참고 링크](https://docs.expo.dev/versions/latest/sdk/constants/)
@@ -202,10 +202,10 @@ npx expo install expo-web-browser
 ```
 
 ```js
-import * as WebBrowser from "expo-web-browser";
-WebBrowser.openBrowserAsync("https://example.com", {
-  toolbarColor: "#6200ee",
-  controlsColor: "#ffffff",
+import * as WebBrowser from 'expo-web-browser';
+WebBrowser.openBrowserAsync('https://example.com', {
+  toolbarColor: '#6200ee',
+  controlsColor: '#ffffff',
   showTitle: true,
   enableBarCollapsing: true,
 });
@@ -220,17 +220,17 @@ npx expo install react-native-webview
 ```
 
 ```js
-import { WebView } from "react-native-webview";
+import { WebView } from 'react-native-webview';
 <WebView
-  source={{ uri: "https://example.com" }}
+  source={{ uri: 'https://example.com' }}
   style={{ flex: 1 }}
-  onLoadStart={() => console.log("Loading started")}
-  onLoadEnd={() => console.log("Loading finished")}
-  onError={(error) => console.error("WebView error:", error.nativeEvent)}
-  onHttpError={(error) => console.error("HTTP error:", error.nativeEvent)}
+  onLoadStart={() => console.log('Loading started')}
+  onLoadEnd={() => console.log('Loading finished')}
+  onError={(error) => console.error('WebView error:', error.nativeEvent)}
+  onHttpError={(error) => console.error('HTTP error:', error.nativeEvent)}
   onMessage={(event) => {
     const data = event.nativeEvent.data;
-    console.log("Message from WebView:", data);
+    console.log('Message from WebView:', data);
   }}
 />;
 ```
@@ -244,7 +244,7 @@ import { WebView } from "react-native-webview";
 - 스크롤 시 화면에 보이는 아이템만 렌더링하여 성능 최적화
 
 ```js
-import { FlatList } from "react-native";
+import { FlatList } from 'react-native';
 
 <FlatList
   data={data} // 데이터 배열
@@ -267,7 +267,7 @@ import { FlatList } from "react-native";
 - 메모리 사용량 높음
 
 ```js
-import { ScrollView } from "react-native";
+import { ScrollView } from 'react-native';
 <ScrollView
   contentContainerStyle={{ padding: 16 }} // 내부 컨텐츠 스타일
   horizontal={false} // 수평 스크롤 여부
@@ -275,7 +275,7 @@ import { ScrollView } from "react-native";
   showsHorizontalScrollIndicator={false} // 수평 스크롤바 표시 여부
   onScroll={(event) => {
     const { contentOffset, layoutMeasurement } = event.nativeEvent;
-    console.log("Scroll position:", contentOffset.y);
+    console.log('Scroll position:', contentOffset.y);
   }} // 스크롤 이벤트 핸들러
 />;
 ```
@@ -293,7 +293,7 @@ npx expo install @shopify/flash-list
 ```
 
 ```js
-import { FlashList } from "@shopify/flash-list";
+import { FlashList } from '@shopify/flash-list';
 <FlashList
   data={data} // 데이터 배열
   renderItem={({ item }) => <ItemComponent item={item} />} // 각 아이템을 렌더링하는 함수
@@ -314,7 +314,7 @@ npx expo install expo-haptics
 ```
 
 ```js
-import * as Haptics from "expo-haptics";
+import * as Haptics from 'expo-haptics';
 
 Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success); // 성공 알림
 Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); // 오류 알림
@@ -334,15 +334,15 @@ npm i react-native-toast-message
 ```
 
 ```js
-import Toast from "react-native-toast-message";
+import Toast from 'react-native-toast-message';
 
 <Toast config={toastConfig} />;
 
 Toast.show({
-  type: "success", // "success", "error", "info"
-  text1: "Hello",
-  text2: "This is a toast message",
-  position: "top", // "top", "bottom", "center"
+  type: 'success', // "success", "error", "info"
+  text1: 'Hello',
+  text2: 'This is a toast message',
+  position: 'top', // "top", "bottom", "center"
   visibilityTime: 4000, // ms
 });
 ```
@@ -356,21 +356,21 @@ npx expo install expo-notifications
 ```
 
 ```js
-import * as Notifications from "expo-notifications";
+import * as Notifications from 'expo-notifications';
 
 // 알림 권한 요청
 const requestNotificationPermissions = async () => {
   const { status } = await Notifications.requestPermissionsAsync();
-  if (status !== "granted") {
+  if (status !== 'granted') {
     // Notifications.requestPermissionsAsync();
-    alert("알림 권한이 필요합니다.");
+    alert('알림 권한이 필요합니다.');
   }
 };
 
 // 알림 토큰 가져오기
 const getNotificationToken = async () => {
   const token = await Notifications.getExpoPushTokenAsync();
-  console.log("알림 토큰:", token.data);
+  console.log('알림 토큰:', token.data);
 };
 
 // 알림 수신 핸들러 설정
@@ -384,21 +384,21 @@ Notifications.setNotificationHandler({
 
 // 알림 수신 이벤트 리스너
 Notifications.addNotificationReceivedListener((notification) => {
-  console.log("알림 수신:", notification);
+  console.log('알림 수신:', notification);
 });
 
 // 알림 클릭 이벤트 리스너
 Notifications.addNotificationResponseReceivedListener((response) => {
-  console.log("알림 클릭:", response.notification);
+  console.log('알림 클릭:', response.notification);
 });
 
 // 알림 보내기
 const sendNotification = async (token) => {
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "알림 제목",
-      body: "알림 내용",
-      data: { extraData: "추가 데이터" },
+      title: '알림 제목',
+      body: '알림 내용',
+      data: { extraData: '추가 데이터' },
     },
     trigger: { seconds: 1 }, // 1초 후에 알림
   });
@@ -407,13 +407,13 @@ const sendNotification = async (token) => {
 // 앱이 백그라운드나 종료 상태일 때 알림 클릭 시 동작
 Notifications.setNotificationResponseReceivedListener((response) => {
   const data = response.notification.request.content.data;
-  console.log("알림 클릭 시 데이터:", data);
+  console.log('알림 클릭 시 데이터:', data);
 });
 
 // 앱이 포그라운드 상태일 때 알림 클릭 시 동작
 Notifications.setNotificationReceivedListener((notification) => {
   const data = notification.request.content.data;
-  console.log("알림 수신 시 데이터:", data);
+  console.log('알림 수신 시 데이터:', data);
 });
 ```
 
@@ -425,7 +425,7 @@ Notifications.setNotificationReceivedListener((notification) => {
 ### require type
 
 ```js
-require("..."); // 이거의 type 은 number 임
+require('...'); // 이거의 type 은 number 임
 ```
 
 ```js

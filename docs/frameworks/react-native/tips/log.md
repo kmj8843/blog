@@ -1,3 +1,14 @@
+---
+title: '실행 중인 앱의 로그 확인하기'
+date: 2025-07-29
+categories: 'React Native'
+tags:
+  - android
+  - ios
+  - log
+summary: 실행 중인 앱의 로그를 확인하는 방법을 안내합니다. Android와 iOS에서 각각의 방법을 설명합니다.
+---
+
 # Mobile 에서 구동 중인 앱의 로그를 확인하는 방법
 
 ## Android
@@ -51,6 +62,7 @@ adb TAG_NAME1:W TAG_NAME2:I *:S
 
 ### 앱 패키지 이름으로 필터링
 
+<!-- prettier-ignore-->
 === "PID 활용"
     ```bash
     adb logcat --pid=$(adb shell pidof com.yourapp.package)

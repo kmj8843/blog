@@ -1,3 +1,15 @@
+---
+title: '📢 블로그 첫 글 - MkDocs 시작하기3'
+date: 2025-08-20
+categories:
+  - Blog
+tags:
+  - mkdocs
+  - material
+  - 시작하기
+summary: MkDocs Material 테마를 기반으로 블로그를 구성하는 첫 단계를 안내합니다.
+---
+
 # BuildConfig 에러
 
 `npx expo prebuild` bareworkflow 로 전환 후, `Unresolved reference: BuildConfig` 또는 `Unresolved reference: PackageList` 에러가 발생할 경우 아래와 같이 조치가 필요합니다.

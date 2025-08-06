@@ -1,0 +1,153 @@
+<!-- prettier-ignore-->
+{% extends "main.html" %}
+
+{% block tabs %}
+{{ super() }}
+
+<style>
+  .md-header {
+    position: initial;
+  }
+  .md-main__inner {
+    margin: 0;
+  }
+  .md-content {
+    display: none;
+  }
+  @media screen and (min-width: 60em) {
+    .md-sidebar--secondary {
+      display: none;
+    }
+  }
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
+    }
+  }
+</style>
+<section class="mdx-container">
+  <div class="md-grid md-typeset">
+    <div class="mdx-hero">
+      <div class="mdx-hero__image">
+        <img
+          src="assets/images/main.svg"
+          alt=""
+          width="1659"
+          height="1200"
+          draggable="false"
+        />
+      </div>
+      <div class="mdx-hero__content">
+        <h1>{{ config.site_name }} 개발일지</h1>
+        <p>{{ config.site_description }}</p>
+        <a
+          href="{{ page.next_page.url | url }}"
+          title="{{ page.next_page.title | e }}"
+          class="md-button md-button--primary"
+        >
+          둘러보기
+        </a>
+      </div>
+    </div>
+
+    <!-- prettier-ignore-->
+    {% macro collect_all_pages(nav_items, collected_pages) %}
+      {% for item in nav_items %}
+        {% if item.url and item.url != '/' and item.url != '' and item.__class__.__name__ == 'Page'%}
+          {% if item.meta is defined and item.meta.date is defined %}
+            {% set page_with_date = {'item': item, 'date': item.meta.date} %}
+            {% set _ = collected_pages.append(page_with_date) %}
+          {% endif %}
+        {% endif %}
+        {% if item.children %}
+          {{ collect_all_pages(item.children, collected_pages) }}
+        {% endif %}
+      {% endfor %}
+    {% endmacro %}
+
+    <!-- 최신글 -->
+    <div class="section-container">
+      <h2 class="section-title">최근 게시글</h2>
+      <div class="recent-posts">
+        <!-- prettier-ignore-->
+        {% set all_pages = [] %}
+        {{ collect_all_pages(nav, all_pages) }}
+        {% set sorted_pages = all_pages | sort(attribute='date', reverse=true) %}
+
+        {% for page in sorted_pages[:3] %}
+        <div class="post">
+          <!-- prettier-ignore-->
+          {% if page.item.meta.categories %}
+          <div class="categories-container">
+            <!-- prettier-ignore-->
+            {% set categories = page.item.meta.categories %}
+              {% if categories is sequence and categories is not string %}
+                {% for cat in categories %}
+            <span class="category-badge">{{ cat }}</span>
+            <!-- prettier-ignore-->
+            {% endfor %}
+                {% else %}
+            <span class="category-badge">{{ categories }}</span>
+            <!-- prettier-ignore-->
+            {% endif %}
+          </div>
+          {% endif %}
+          <a href="{{ page.item.url | url }}" class="title"
+            >{{ page.item.title }}</a
+          >
+          <p class="summary">{{ page.item.meta.summary }}</p>
+          <p class="date">{{ page.item.meta.date }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Frameworks -->
+    <div class="section-container">
+      <h2 class="section-title">Frameworks</h2>
+      <div class="frameworks">
+        <div class="item">
+          <img src="assets/images/icon/springboot.svg" class="icon" />
+          <p class="text">Spring Boot</p>
+        </div>
+        <div class="item">
+          <img src="assets/images/icon/react.svg" class="icon" />
+          <p class="text">React</p>
+        </div>
+        <div class="item">
+          <img src="assets/images/icon/expo.svg" class="icon" />
+          <p class="text">React Native</p>
+        </div>
+        <div class="item">
+          <img src="assets/images/icon/nginx.svg" class="icon" />
+          <p class="text">Nginx</p>
+        </div>
+        <div class="item">
+          <img src="assets/images/icon/apache.svg" class="icon" />
+          <p class="text">Apache</p>
+        </div>
+        <div class="item">
+          <img src="assets/images/icon/neovim.svg" class="icon" />
+          <p class="text">Neovim</p>
+        </div>
+        <div class="item">
+          <img src="assets/images/icon/arch.svg" class="icon" />
+          <p class="text">Linux</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Me -->
+    <!-- <div class="section-container about-me">
+      <h2 class="section-title">About Me</h2>
+      <p>
+        백엔드 개발자 {{ config.site_name }} 입니다. 공부한 내용 까먹지 않으려고
+        노력중입니다..
+      </p>
+    </div> -->
+  </div>
+</section>
+<!-- prettier-ignore-->
+{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}{% endblock%}

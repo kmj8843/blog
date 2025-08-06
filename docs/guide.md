@@ -1,32 +1,97 @@
 ---
-title: "📢 블로그 첫 글 - MkDocs 시작하기"
-date: 2025-07-14
-categories:
-  - Blog
-tags:
-  - mkdocs
-  - material
-  - 시작하기
-summary: MkDocs Material 테마를 기반으로 블로그를 구성하는 첫 단계를 안내합니다.
+title: 'Mkdocs 사용방법'
 ---
 
-# 블로그 시작을 환영합니다 🎉
+# Mkdocs Material
 
-이 블로그는 `MkDocs`와 `Material for MkDocs` 테마를 사용해서 만들어졌습니다.
+이 블로그는 `MkDocs`[^1]와 `Material for MkDocs`[^2] 테마를 사용해서 만들어졌습니다.
 
-## ✨ 이 글에서 다루는 내용
+[^1]: [MkDocs](https://www.mkdocs.org/)
 
-- MkDocs 설치 방법
-- Material 테마 적용
-- 블로그 플러그인 설정
+[^2]: [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 
-## 🚀 MkDocs 설치
+## 시작하기
+
+MkDocs 는 Python 기반의 정적 사이트 생성기로, Markdown 파일을 HTML로 변환하여 블로그나 문서 사이트를 쉽게 만들 수 있습니다.
+Python 을 활용하기 위해서 선택적으로 가상 환경을 설정할 수 있습니다.
 
 ```bash
-pip install mkdocs mkdocs-material
+# 개발 환경을 위한 가상 환경 생성
+# 가상환경 생성은 선택 사항
+# python -m venv venv
+
+# Mkdocs Material 설치
+# pip install mkdocs mkdocs-material
+
+# 가상 환경 활성화
+source venv/bin/activate
+
+# 필요한 패키지 설치
+pip install -r requirements.txt
+
+# Mkdocs 실행
+mkdocs serve
 ```
 
----
+## Formatter
+
+결과를 출력하기 위해 `<div class="result" markdown>` 태그를 사용할 경우 `<div>` 와 `</div>` 사이에 공백을 두어야 prettier 가 제대로 동작합니다:
+
+<!-- prettier-ignore-->
+````html
+<div class="result" markdown>
+<!-- 공백 -->
+```py title="bubble_sort.py" linenums="1" hl_lines="2 3"
+def bubble_sort(items): # (1)
+    for i in range(len(items)):
+        for j in range(len(items) - 1 - i):
+            if items[j] > items[j + 1]:
+                items[j], items[j + 1] = items[j + 1], items[j]
+
+```
+
+1. I'm a code annotation! I can contain `code`, **formatted text**,
+   images, ... basically anything that can be written in Markdown.
+<!-- 공백 -->
+</div>
+````
+
+또한, auto format 을 원하지 않는 경우 `<!-- prettier-ignore-->` 를 사용하여 다음 라인의 format 을 무시할 수 있습니다.
+
+## Code Block
+
+Code Block[^3] 은 MkDocs Material 테마에서 코드 블록을 표시하는 방법입니다. 다양한 프로그래밍 언어를 지원하며, 코드 하이라이팅과 라인 번호, 강조 표시 등을 제공합니다.
+
+[^3]: [MkDocs Material - Code Block](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/?h=code+block)
+
+````markdown title="Code block with title"
+```py title="bubble_sort.py" linenums="1" hl_lines="2 3"
+def bubble_sort(items): # (1)
+    for i in range(len(items)):
+        for j in range(len(items) - 1 - i):
+            if items[j] > items[j + 1]:
+                items[j], items[j + 1] = items[j + 1], items[j]
+
+1.  :man_raising_hand: I'm a code annotation! I can contain `code`, **formatted
+    text**, images, ... basically anything that can be written in Markdown.
+```
+````
+
+<div class="result" markdown>
+
+```py title="bubble_sort.py" linenums="1" hl_lines="2 3"
+def bubble_sort(items): # (1)
+    for i in range(len(items)):
+        for j in range(len(items) - 1 - i):
+            if items[j] > items[j + 1]:
+                items[j], items[j + 1] = items[j + 1], items[j]
+
+```
+
+1. I'm a code annotation! I can contain `code`, **formatted text**,
+   images, ... basically anything that can be written in Markdown.
+
+</div>
 
 ## ✅ 설명
 
@@ -82,7 +147,7 @@ docs/
 [test]
 [test]: ../index.md#asd
 
-이미지 삽입 예시  
+이미지 삽입 예시
 ![Image title](https://dummyimage.com/600x400/eee/aaa)
 
 ---
@@ -160,3 +225,13 @@ theme:
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+## Reference
+
+- [SVG (icon)](https://www.svgrepo.com/)
+- [SVG (image)](https://undraw.co/)
+- [Animation SVG](https://storyset.com/)
+
+```
+
+```

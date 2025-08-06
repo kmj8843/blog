@@ -1,5 +1,8 @@
 site_name: 끄적끄적
-site_description: 끄적끄적
+site_description: >-
+  개발 관련 블로그입니다. WAS, Web Server, Network 등 다양한 주제를
+  다룹니다.
+site_author: rlalsa8843
 site_url: https://blog.nvim.me
 repo_url: https://github.com/kmj8843/blog
 edit_uri: edit/main/docs/
@@ -23,26 +26,22 @@ theme:
     - content.action.view
     - content.tabs.link
   palette:
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/link
-        name: Switch to light mode
-    - media: "(prefers-color-scheme: light)"
+    - media: '(prefers-color-scheme: light)'
       scheme: default
       primary: indigo
       accent: indigo
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
+    - media: '(prefers-color-scheme: dark)'
       scheme: slate
       primary: black
       accent: indigo
       toggle:
         icon: material/toggle-switch-off
-        name: Switch to system preference
+        name: Switch to light mode
   favicon: assets/images/favicon.png
-  logo: assets/images/logo.png
+  logo: assets/images/logo.svg
   icon:
     logo: logo
   font:
