@@ -1,9 +1,8 @@
 ---
-template: home.html
-title: Material for MkDocs
-social:
-  cards_layout_options:
-    title: Documentation that simply works
+title: Home
+comments: false
+hide:
+  - footer
 ---
 
-Welcome to Material for MkDocs.
+# Home

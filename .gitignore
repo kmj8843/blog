@@ -1,67 +1,140 @@
-# Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+# ============================================================================
+# Zensical / MkDocs build output
+# ============================================================================
+site/
+.cache/
 
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to
-# deal in the Software without restriction, including without limitation the
-# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-# sell copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
+# ============================================================================
+# Python
+# ============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
 
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-# IN THE SOFTWARE.
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env
 
-# -----------------------------------------------------------------------------
-# Node, TypeScript, Python
-# -----------------------------------------------------------------------------
+# ============================================================================
+# Tooling
+# ============================================================================
 
-# Dependencies
-node_modules
-__pycache__
-venv
-.venv
+# mise local config (mise.toml은 커밋, 사용자별 로컬 설정만 무시)
+.mise.local.toml
 
-# Build files
-build
-site
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Distribution files
-dist
-mkdocs_material.egg-info
+# pytest / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
 
-# Caches and logs
-*.cpuprofile
-*.log
-*.tsbuildinfo
-.cache
-.eslintcache
-__pycache__
+# mypy / ruff / type checkers
+.mypy_cache/
+.ruff_cache/
+.pytype/
 
-# Examples
-example
-example.zip
+# ============================================================================
+# OS files
+# ============================================================================
 
-# -----------------------------------------------------------------------------
-# General
-# -----------------------------------------------------------------------------
-
-# Never ignore .gitkeep files
-!**/.gitkeep
-
-# macOS internals
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
 
-# Temporary files
-TODO
-tmp
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
 
-# IDEs & Editors
-.idea
+# Linux
 *~
+.fuse_hidden*
+.Trash-*
+
+# ============================================================================
+# Editors / IDEs
+# ============================================================================
+
+# VSCode (개인 설정만 무시, 공유 설정은 커밋하고 싶으면 별도 관리)
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains (IntelliJ, PyCharm 등)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
+*.swp
+*.swo
+*.swn
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Zed
+.zed/
+
+# ============================================================================
+# Secrets / 환경 변수
+# ============================================================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets.toml
+
+# ============================================================================
+# Logs / 임시 파일
+# ============================================================================
+*.log
+logs/
+*.tmp
+*.temp
+*.bak
+*.orig
