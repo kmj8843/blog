@@ -170,3 +170,9 @@ $$
 [Hover me][example]
 
   [example]: https://example.com "I'm a tooltip!"
+
+## Frontmatter
+
+* created/updated 날짜: `yyyy-MM-dd`
+* created/updated 시간: `yyyy-MM-ddTHH:mm:ss`
+* created/updated 시간+TZ: `yyyy-MM-ddTHH:mm:ss+ZZ:ZZ`

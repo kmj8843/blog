@@ -11,18 +11,18 @@
 # The site_name is shown in the page header and the browser window title
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_name
-site_name = "Documentation"
+site_name = "Aha Notes"
 
 # The site_description is included in the HTML head and should contain a
 # meaningful description of the site content for use by search engines.
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_description
-site_description = "A new project generated from the default template project."
+site_description = "어려운 기술 개념을 일상의 비유로 풀어내는 블로그. \"아~ 그래서 그렇구나!\" 하는 순간을 모아둔 곳이에요."
 
 # The site_author attribute. This is used in the HTML head element.
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_author
-site_author = "<your name here>"
+site_author = "김민재"
 
 # The site_url is the canonical URL for your site. When building online
 # documentation you should set this.
@@ -34,7 +34,7 @@ site_url = "https://blog.nvim.me"
 #
 # Read more: https://zensical.org/docs/setup/basics/#copyright
 copyright = """
-Copyright &copy; 2026 The authors
+Copyright &copy; 2026 Aha Notes
 """
 
 # Zensical supports both implicit navigation and explicitly defined navigation.
@@ -347,3 +347,11 @@ combine_header_slug = true
 [project.markdown_extensions.pymdownx.tasklist]
 custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
+
+# Macros: enables Jinja2 templating in Markdown pages.
+# Used by docs/index.md to auto-generate the "최신 글" section
+# from frontmatter + git history. See macros.py at project root.
+[project.markdown_extensions.zensical.extensions.macros]
+module_name = "macros"
+on_error_fail = true
+render_by_default = false

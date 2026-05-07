@@ -6,6 +6,8 @@ tags:
   - Network
   - IP
   - Routing
+created: 2026-05-07
+updated: 2026-05-07
 ---
 
 # IP 주소와 라우팅 - 패킷은 어떻게 길을 찾을까?

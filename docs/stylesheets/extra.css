@@ -114,8 +114,3 @@ kbd,
 	font-feature-settings: "liga", "calt";
 	font-variant-ligatures: contextual;
 }
-
-.md-typeset pre > code,
-.md-typeset .highlight code {
-	line-height: 1;
-}
