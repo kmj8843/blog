@@ -47,15 +47,19 @@ def _resolve_created(fm: dict[str, Any]) -> datetime:
     return datetime.min
 
 
-def _collect_posts() -> list[dict[str, Any]]:
+def _post_sort_key(post: dict[str, Any]) -> tuple[datetime, str]:
+    return post["created"], post["filename"]
+
+
+def _collect_posts(base_dir: Path = DOCS_DIR) -> list[dict[str, Any]]:
     posts: list[dict[str, Any]] = []
-    for md_path in DOCS_DIR.glob("*/**/*.md"):
+    for md_path in base_dir.glob("*/**/*.md"):
         if not md_path.is_file():
             continue
         fm = _parse_frontmatter(md_path)
         if not fm or "title" not in fm:
             continue
-        rel = md_path.relative_to(DOCS_DIR)
+        rel = md_path.relative_to(base_dir)
         url = rel.as_posix()
         category = rel.parts[0]
         posts.append(
@@ -70,11 +74,45 @@ def _collect_posts() -> list[dict[str, Any]]:
                 "filename": md_path.name,
             }
         )
-    posts.sort(key=lambda p: (p["created"], p["filename"]), reverse=True)
+    posts.sort(key=_post_sort_key, reverse=True)
     return posts
+
+
+def _category_posts(posts: list[dict[str, Any]], category: str) -> list[dict[str, Any]]:
+    return [
+        post
+        for post in posts
+        if post["category"] == category and post["filename"] != "index.md"
+    ]
+
+
+def _first_post_in_category(posts: list[dict[str, Any]], category: str) -> dict[str, Any]:
+    category_posts = _category_posts(posts, category)
+    if not category_posts:
+        raise ValueError(f"No eligible posts found in category: {category}")
+    return min(category_posts, key=_post_sort_key)
+
+
+def _latest_post_in_category(posts: list[dict[str, Any]], category: str) -> dict[str, Any]:
+    category_posts = _category_posts(posts, category)
+    if not category_posts:
+        raise ValueError(f"No eligible posts found in category: {category}")
+    return max(category_posts, key=_post_sort_key)
 
 
 def define_env(env: Any) -> None:
     @env.macro
-    def latest_posts(n: int = 2) -> list[dict[str, Any]]:
-        return _collect_posts()[:n]
+    def latest_posts(n: int = 2, category: str | None = None) -> list[dict[str, Any]]:
+        posts = _collect_posts()
+        if category is not None:
+            posts = _category_posts(posts, category)
+            posts.sort(key=_post_sort_key, reverse=True)
+        return posts[:n]
+
+    @env.macro
+    def first_post(category: str) -> dict[str, Any]:
+        return _first_post_in_category(_collect_posts(), category)
+
+    @env.macro
+    def latest_post(category: str) -> dict[str, Any]:
+        return _latest_post_in_category(_collect_posts(), category)

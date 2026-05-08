@@ -67,6 +67,25 @@ extra_css = ["stylesheets/extra.css"]
 # Read more: https://zensical.org/docs/customization/#additional-javascript
 #extra_javascript = ["javascripts/extra.js"]
 
+[project.extra.analytics]
+provider = "google"
+property = "G-RY2QE5L933"
+
+# [project.extra.analytics.feedback]
+# title = "이 페이지가 도움이 되었나요?"
+#
+# [[project.extra.analytics.feedback.ratings]]
+# icon = "material/thumb-up-outline"
+# name = "도움이 됐어요"
+# data = 1
+# note = "좋아요. 끝까지 읽어주셔서 고마워요!"
+#
+# [[project.extra.analytics.feedback.ratings]]
+# icon = "material/thumb-down-outline"
+# name = "조금 헷갈렸어요"
+# data = 0
+# note = "괜찮아요. 아래 댓글로 어떤 부분이 헷갈렸는지 남겨주시면 더 쉽게 다듬어볼게요."
+
 # ----------------------------------------------------------------------------
 # Section for configuring theme options
 # ----------------------------------------------------------------------------
