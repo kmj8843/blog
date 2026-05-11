@@ -114,3 +114,109 @@ kbd,
 	font-feature-settings: "liga", "calt";
 	font-variant-ligatures: contextual;
 }
+
+.mermaid {
+  position: relative;
+  cursor: zoom-in;
+}
+
+.mermaid:hover,
+.mermaid:focus-within,
+.mermaid:focus-visible {
+  outline: 0.15rem solid var(--md-accent-fg-color, var(--md-primary-fg-color, #2196f3));
+  outline-offset: 0.25rem;
+}
+
+.mermaid::after {
+  content: "클릭해서 크게 보기";
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--md-default-bg-color, white) 90%, transparent);
+  color: var(--md-default-fg-color, black);
+  border: 1px solid var(--md-default-fg-color--light, #ccc);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 0.1rem 0.35rem rgba(0, 0, 0, 0.12);
+}
+
+.mermaid:hover::after,
+.mermaid:focus-within::after,
+.mermaid:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mermaid.is-zoomed {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: color-mix(in srgb, var(--md-default-bg-color, white) 65%, transparent);
+  backdrop-filter: blur(5px) brightness(0.9);
+  -webkit-backdrop-filter: blur(5px) brightness(0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 2rem;
+  box-sizing: border-box;
+  cursor: zoom-out;
+  overflow: auto;
+  animation: mermaid-zoom-in 0.25s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+@keyframes mermaid-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.mermaid.is-zoomed::after {
+  content: "클릭해서 닫기";
+}
+
+.mermaid.is-zoomed > * {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@media (max-width: 768px) {
+  .mermaid::after {
+    content: "크게 보기";
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.7rem;
+  }
+  .mermaid.is-zoomed::after {
+    content: "닫기";
+  }
+}
+
+@media (hover: none) {
+  .mermaid::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mermaid::after {
+		transition: none;
+	}
+
+	.mermaid.is-zoomed {
+		animation: none;
+	}
+}
