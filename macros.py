@@ -51,6 +51,17 @@ def _post_sort_key(post: dict[str, Any]) -> tuple[datetime, str]:
     return post["created"], post["filename"]
 
 
+def _doc_path_to_site_href(path: str) -> str:
+    if path.endswith(("index.md", "README.md")):
+        name = path.rsplit("/", 1)[-1]
+        return f"/{path.removesuffix(name)}"
+
+    if path.endswith(".md"):
+        return f"/{path.removesuffix('.md')}/"
+
+    return f"/{path}"
+
+
 def _collect_posts(base_dir: Path = DOCS_DIR) -> list[dict[str, Any]]:
     posts: list[dict[str, Any]] = []
     for md_path in base_dir.glob("*/**/*.md"):
@@ -60,7 +71,8 @@ def _collect_posts(base_dir: Path = DOCS_DIR) -> list[dict[str, Any]]:
         if not fm or "title" not in fm:
             continue
         rel = md_path.relative_to(base_dir)
-        url = rel.as_posix()
+        url = f"/{rel.as_posix()}"
+        href = _doc_path_to_site_href(rel.as_posix())
         category = rel.parts[0]
         posts.append(
             {
@@ -69,6 +81,7 @@ def _collect_posts(base_dir: Path = DOCS_DIR) -> list[dict[str, Any]]:
                 "icon": fm.get("icon", "lucide/file-text"),
                 "tags": fm.get("tags", []) or [],
                 "url": url,
+                "href": href,
                 "category": category,
                 "created": _resolve_created(fm),
                 "filename": md_path.name,
@@ -128,9 +141,7 @@ def _render_latest_post_card(post: dict[str, Any]) -> str:
         sections.append(_render_markdown_html(tags))
 
     sections.append(
-        _render_markdown_html(
-            f"[:octicons-arrow-right-24: 읽으러 가기]({post['url']})"
-        )
+        f'<p><a href="{post["href"]}">읽으러 가기</a></p>'
     )
 
     body = "\n".join(sections)

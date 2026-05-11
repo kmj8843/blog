@@ -145,5 +145,5 @@ flowchart LR
 
 그럼, 어디부터 읽어볼까요?
 
-[첫 글부터 읽으러 가기 :material-arrow-right:]({{ first_post("Network").url }}){ .md-button .md-button--primary }
-[가장 최신 글 읽으러 가기 :material-newspaper:]({{ latest_post("Network").url }}){ .md-button }
+<a class="md-button md-button--primary" href="{{ first_post('Network').href }}">첫 글부터 읽으러 가기</a>
+<a class="md-button" href="{{ latest_post('Network').href }}">가장 최신 글 읽으러 가기</a>
