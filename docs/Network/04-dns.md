@@ -173,15 +173,34 @@ TTL은 **Time To Live**의 줄임말이에요. 여기서는 쉽게 말해서 **"
 
 실제로는 DNS도 꽤 많은 정보를 주고받아요. 근데 초반엔 이렇게 단순하게 봐도 충분해요.
 
-```
-┌─────────────────────────────────────────┐
-│ 질문 이름:  example.com                 │
-│ 레코드 종류: A                          │  ← IPv4 주소를 물어봄
-├─────────────────────────────────────────┤
-│ 응답 주소:   93.184.216.34              │
-│ TTL:         300                        │  ← 300초 동안 기억 가능
-└─────────────────────────────────────────┘
-```
+<div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
+    <div style="display: grid; gap: 0.7rem;">
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>질문 이름</strong>
+        <code>example.com</code>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>레코드 종류</strong>
+        <code>A</code>
+        <span style="color: var(--md-default-fg-color--light);">← IPv4 주소를 물어봄</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-accent-fg-color) 7%, var(--md-default-bg-color));">
+    <div style="display: grid; gap: 0.7rem;">
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>응답 주소</strong>
+        <code>93.184.216.34</code>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>TTL</strong>
+        <code>300</code>
+        <span style="color: var(--md-default-fg-color--light);">← 300초 동안 기억 가능</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 여기서 `A` 레코드는 **"이 이름의 IPv4 주소 알려줘"** 라는 뜻이에요. 나중에 IPv6 이야기를 하게 되면 `AAAA` 같은 것도 보게 되겠지만, 지금은 **이름 → 주소** 흐름만 잡으면 충분해요.
 

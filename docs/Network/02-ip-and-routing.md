@@ -184,16 +184,36 @@ flowchart LR
 
 지난 글에서 봤던 패킷의 **헤더(송장)** 부분, 이번엔 좀 더 자세히 들여다봐요.
 
-```
-┌─────────────────────────────────────────┐
-│ 출발지 IP:  192.168.0.10                │  ← 누가 보냈는지
-│ 도착지 IP:  142.250.196.78              │  ← 어디로 갈지
-│ TTL:       64                           │  ← 최대 몇 번 갈아탈 수 있는지
-│ 프로토콜:   TCP                         │  ← 어떤 방식으로 통신할지
-├─────────────────────────────────────────┤
-│ (실제 데이터)                            │
-└─────────────────────────────────────────┘
-```
+<div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
+    <div style="display: grid; gap: 0.7rem;">
+      <div style="display: grid; grid-template-columns: minmax(6.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>출발지 IP</strong>
+        <code>192.168.0.10</code>
+        <span style="color: var(--md-default-fg-color--light);">← 누가 보냈는지</span>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(6.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>도착지 IP</strong>
+        <code>142.250.196.78</code>
+        <span style="color: var(--md-default-fg-color--light);">← 어디로 갈지</span>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(6.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>TTL</strong>
+        <code>64</code>
+        <span style="color: var(--md-default-fg-color--light);">← 최대 몇 번 갈아탈 수 있는지</span>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(6.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>프로토콜</strong>
+        <code>TCP</code>
+        <span style="color: var(--md-default-fg-color--light);">← 어떤 방식으로 통신할지</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-accent-fg-color) 7%, var(--md-default-bg-color));">
+    <strong style="display: block; margin-bottom: 0.35rem;">(실제 데이터)</strong>
+    <span style="color: var(--md-default-fg-color--light);">이 아래부터가 진짜로 보내고 싶은 내용이에요.</span>
+  </div>
+</div>
 
 `TTL` 이라는 게 재밌어요. **Time To Live**, 직역하면 "살아있을 시간" 인데요. 라우터를 한 번 거칠 때마다 1씩 줄어요. 0이 되면 그 패킷은 **버려져요.**
 

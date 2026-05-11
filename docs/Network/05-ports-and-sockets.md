@@ -174,16 +174,30 @@ sequenceDiagram
 
 브라우저가 웹사이트 하나에 접속할 때, 아주 단순하게 보면 이런 모습이에요.
 
-```
-┌───────────────────────────────────────────────┐
-│ 출발지: 192.168.0.10:51515                     │  ← 내 브라우저 쪽
-│ 도착지: 142.250.196.78:443                     │  ← 웹 서버 쪽
-│ 프로토콜: TCP                                  │
-├───────────────────────────────────────────────┤
-│ GET / HTTP/1.1                                 │
-│ Host: example.com                              │
-└───────────────────────────────────────────────┘
-```
+<div style="max-width: 42rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
+    <div style="display: grid; gap: 0.7rem;">
+      <div style="display: grid; grid-template-columns: minmax(6rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>출발지</strong>
+        <code>192.168.0.10:51515</code>
+        <span style="color: var(--md-default-fg-color--light);">← 내 브라우저 쪽</span>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(6rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>도착지</strong>
+        <code>142.250.196.78:443</code>
+        <span style="color: var(--md-default-fg-color--light);">← 웹 서버 쪽</span>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(6rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>프로토콜</strong>
+        <code>TCP</code>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-accent-fg-color) 7%, var(--md-default-bg-color));">
+    <code>GET / HTTP/1.1</code><br>
+    <code>Host: example.com</code>
+  </div>
+</div>
 
 여기서 보면:
 

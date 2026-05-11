@@ -166,32 +166,68 @@ TCP가 꼼꼼한 건 좋은데, 그 꼼꼼함에는 비용이 들어요.
 
 ### TCP는 적을 게 많아요
 
-```
-┌─────────────────────────────────────────┐
-│ 출발지 포트:  51515                     │
-│ 도착지 포트:  443                       │
-│ 순서 번호:    1201                      │  ← 몇 번째 데이터인지
-│ 확인 번호:    1301                      │  ← 어디까지 받았는지
-│ 플래그:       SYN / ACK                 │  ← 연결, 확인 같은 신호
-├─────────────────────────────────────────┤
-│ (실제 데이터)                            │
-└─────────────────────────────────────────┘
-```
+<div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
+    <div style="display: grid; gap: 0.7rem;">
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>출발지 포트</strong>
+        <code>51515</code>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>도착지 포트</strong>
+        <code>443</code>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>순서 번호</strong>
+        <code>1201</code>
+        <span style="color: var(--md-default-fg-color--light);">← 몇 번째 데이터인지</span>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>확인 번호</strong>
+        <code>1301</code>
+        <span style="color: var(--md-default-fg-color--light);">← 어디까지 받았는지</span>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>플래그</strong>
+        <code>SYN / ACK</code>
+        <span style="color: var(--md-default-fg-color--light);">← 연결, 확인 같은 신호</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-accent-fg-color) 7%, var(--md-default-bg-color));">
+    <strong style="display: block; margin-bottom: 0.35rem;">(실제 데이터)</strong>
+  </div>
+</div>
 
 이걸 보면 왜 TCP가 꼼꼼한지 감이 와요. **순서 번호**, **확인 번호**, **연결 신호** 같은 게 다 들어 있거든요.
 
 ### UDP는 훨씬 단순해요
 
-```
-┌─────────────────────────────────────────┐
-│ 출발지 포트:  51515                     │
-│ 도착지 포트:  5004                      │
-│ 길이:         128 bytes                 │
-│ 체크섬:       0x2A91                    │
-├─────────────────────────────────────────┤
-│ (실제 데이터)                            │
-└─────────────────────────────────────────┘
-```
+<div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
+    <div style="display: grid; gap: 0.7rem;">
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>출발지 포트</strong>
+        <code>51515</code>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>도착지 포트</strong>
+        <code>5004</code>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>길이</strong>
+        <code>128 bytes</code>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
+        <strong>체크섬</strong>
+        <code>0x2A91</code>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-accent-fg-color) 7%, var(--md-default-bg-color));">
+    <strong style="display: block; margin-bottom: 0.35rem;">(실제 데이터)</strong>
+  </div>
+</div>
 
 보다시피 UDP는 **"어디서 왔고, 어디로 가고, 길이가 얼마인지"** 정도만 빠르게 적고 지나가요. 훨씬 가볍죠.
 

@@ -142,17 +142,29 @@ sequenceDiagram
 
 여러분이 `google.com`에 접속할 때, 컴퓨터는 대충 이런 패킷을 보내요:
 
-```
-┌─────────────────────────────────────────┐
-│ 출발지 IP:  192.168.0.10                 │  ← 내 컴퓨터       ┐
-│ 도착지 IP:  142.250.196.78               │  ← 구글 서버       ├─ 헤더 (송장)
-│ 순서 번호:  1번 / 총 5개                  │                  ┘
-├─────────────────────────────────────────┤
-│ GET / HTTP/1.1                          │                  ┐
-│ Host: google.com                        │                  ├─ 페이로드 (알맹이)
-│ ... (구글한테 보내는 진짜 메시지)           │                  ┘
-└─────────────────────────────────────────┘
-```
+<div style="max-width: 32rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 94%, var(--md-default-fg-color) 6%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);">
+  <div style="padding: 1rem 1.25rem; text-align: center; font-size: 1.35rem; font-weight: 700; text-decoration: underline; border-bottom: 1px solid var(--md-default-fg-color--lightest);">
+    📦 패킷
+  </div>
+  <div style="padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--md-default-fg-color--lightest); background: color-mix(in srgb, var(--md-primary-fg-color) 10%, var(--md-default-bg-color));">
+    <p style="margin: 0 0 0.75rem 0; font-weight: 700;">📋 헤더 (송장)</p>
+    <p style="margin: 0; line-height: 1.8;">
+      출발지 IP: <code>192.168.0.10</code><br>
+      도착지 IP: <code>142.250.196.78</code><br>
+      순서 번호: <code>1 / 5</code>
+    </p>
+  </div>
+  <div style="padding: 1.1rem 1.25rem; background: color-mix(in srgb, var(--md-accent-fg-color) 8%, var(--md-default-bg-color));">
+    <p style="margin: 0 0 0.75rem 0; font-weight: 700;">📄 페이로드 (알맹이)</p>
+    <p style="margin: 0; line-height: 1.8;">
+      <code>GET / HTTP/1.1</code><br>
+      <code>Host: google.com</code><br>
+      구글한테 보내는 진짜 메시지
+    </p>
+  </div>
+</div>
+
+복잡해 보이지만, 사실은 **위쪽엔 어디로 가야 하는지 적힌 주소표**, 아래쪽엔 **실제로 보내고 싶은 내용**이 들어 있다고 보면 돼요.
 
 !!! note "더 궁금한 분들을 위해"
     실제로는 포트 번호, 프로토콜 종류, 체크섬 같은 더 많은 정보가 들어 있어요. 근데 **"주소 + 알맹이"** 가 핵심이라는 것만 기억해도 충분합니다.
