@@ -54,22 +54,7 @@ render_macros: true
 
 ## 최신 글
 
-<div class="grid cards" markdown>
-
-{% for post in latest_posts(2) %}
-
-- :{{ post.icon | replace('/', '-') }}:{ .lg .middle } **{{ post.title }}**
-
-    ---
-
-    {{ post.description }}
-
-    {% for tag in post.tags %}`{{ tag }}`{% if not loop.last %} · {% endif %}{% endfor %}
-
-    [:octicons-arrow-right-24: 읽으러 가기]({{ post.url }})
-
-{% endfor %}
-</div>
+{{ latest_posts_cards(2) }}
 
 ---
 

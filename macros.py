@@ -100,6 +100,48 @@ def _latest_post_in_category(posts: list[dict[str, Any]], category: str) -> dict
     return max(category_posts, key=_post_sort_key)
 
 
+def _render_tags(tags: list[Any]) -> str:
+    return " · ".join(f"`{tag}`" for tag in tags)
+
+
+def _render_markdown_html(markdown_text: str) -> str:
+    from zensical.markdown.render import render as render_markdown
+
+    return render_markdown(
+        markdown_text,
+        path="__latest_posts_cards__.md",
+        url="",
+    )["content"]
+
+
+def _render_latest_post_card(post: dict[str, Any]) -> str:
+    tags = _render_tags(post.get("tags", []))
+    sections = [
+        _render_markdown_html(
+            f":{post['icon'].replace('/', '-')}:{{ .lg .middle }} **{post['title']}**"
+        ),
+        "<hr />",
+        _render_markdown_html(post["description"]),
+    ]
+
+    if tags:
+        sections.append(_render_markdown_html(tags))
+
+    sections.append(
+        _render_markdown_html(
+            f"[:octicons-arrow-right-24: 읽으러 가기]({post['url']})"
+        )
+    )
+
+    body = "\n".join(sections)
+    return f"<li>\n{body}\n</li>"
+
+
+def _render_latest_posts_cards(posts: list[dict[str, Any]]) -> str:
+    cards = "\n".join(_render_latest_post_card(post) for post in posts)
+    return f'\n<div class="grid cards">\n<ul>\n{cards}\n</ul>\n</div>\n'
+
+
 def define_env(env: Any) -> None:
     @env.macro
     def latest_posts(n: int = 2, category: str | None = None) -> list[dict[str, Any]]:
@@ -108,6 +150,11 @@ def define_env(env: Any) -> None:
             posts = _category_posts(posts, category)
             posts.sort(key=_post_sort_key, reverse=True)
         return posts[:n]
+
+    @env.macro
+    def latest_posts_cards(n: int = 2, category: str | None = None) -> str:
+        posts = latest_posts(n=n, category=category)
+        return _render_latest_posts_cards(posts)
 
     @env.macro
     def first_post(category: str) -> dict[str, Any]:
