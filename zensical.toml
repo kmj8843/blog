@@ -370,3 +370,17 @@ custom_checkbox = true
 module_name = "macros"
 on_error_fail = true
 render_by_default = false
+
+# Instant previews: hovering over a link with `{ data-preview }` shows the
+# target page in an inline popup, so readers can peek at related concepts
+# without leaving the current page.
+#
+# We enable previews for the whole Network series so that any cross-reference
+# between posts (e.g. "as we saw in the packet article") becomes a hoverable
+# preview. We deliberately don't introduce a separate glossary page — the
+# series articles themselves are the glossary, written in our friendly tone.
+#
+# Read more: https://zensical.org/docs/setup/navigation/#instant-previews
+[[project.markdown_extensions.zensical.extensions.preview.configurations]]
+sources.include = ["Network/*.md"]
+targets.include = ["Network/*.md"]

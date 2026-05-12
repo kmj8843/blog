@@ -215,5 +215,5 @@ sequenceDiagram
 
 > *"서로 대화를 시작하기 전에 '준비됐니?'라고 세 번이나 물어본다고?"*
 
-다음 글에서는 TCP가 안전하게 연결을 맺는 마법, **"TCP 3-way handshake"** 이야기를 해볼게요.
+다음 글에서는 TCP가 안전하게 연결을 맺는 마법, [**"TCP 3-way handshake"**](09-tcp-3-way-handshake.md){ data-preview } 이야기를 해볼게요.
 데이터가 흐르기 전, 두 장비가 어떻게 손을 맞잡는지 같이 확인해 봐요.

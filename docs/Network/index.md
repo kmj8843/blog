@@ -60,15 +60,15 @@ flowchart LR
 
 | 순서 | 글 | 이 글에서 답하는 질문 | 상태 |
 |------|----|------------------------|------|
-| 01 | [패킷이 뭐길래?](01-what-is-packet.md) | 인터넷 데이터는 왜 잘게 쪼개서 보낼까요? | 읽기 가능 |
-| 02 | [IP 주소와 라우팅](02-ip-and-routing.md) | 그 작은 패킷은 어떻게 목적지를 찾아갈까요? | 읽기 가능 |
-| 03 | [TCP vs UDP](03-tcp-vs-udp.md) | 도착 확인은 어떻게 하고, 왜 방식이 두 가지일까요? | 읽기 가능 |
-| 04 | [DNS](04-dns.md) | `google.com` 같은 이름은 어떻게 IP 주소로 바뀔까요? | 읽기 가능 |
-| 05 | [포트와 소켓](05-ports-and-sockets.md) | 같은 컴퓨터 안에서 어느 앱으로 가야 하는지는 어떻게 구분할까요? | 읽기 가능 |
-| 06 | [HTTP와 HTTPS](06-http-and-https.md) | 브라우저와 서버는 어떤 규칙으로 대화하고, 왜 HTTPS가 필요할까요? | 읽기 가능 |
-| 07 | [TLS, SSL, 인증서](07-tls-ssl-and-certificates.md) | 브라우저는 어떻게 진짜 서버를 확인하고, 보호된 통로를 준비할까요? | 읽기 가능 |
-| 08 | [OSI 7계층과 TCP/IP 모델](08-osi-and-tcp-ip-layers.md) | 네트워크 전체를 한눈에 보여주는 지도는 어떻게 생겼을까요? | 읽기 가능 |
-| 09 | [TCP 3-way handshake](09-tcp-3-way-handshake.md) | TCP는 왜 연결 전에 세 번이나 주고받으며 준비할까요? | 읽기 가능 |
+| 01 | [패킷이 뭐길래?](01-what-is-packet.md){ data-preview } | 인터넷 데이터는 왜 잘게 쪼개서 보낼까요? | 읽기 가능 |
+| 02 | [IP 주소와 라우팅](02-ip-and-routing.md){ data-preview } | 그 작은 패킷은 어떻게 목적지를 찾아갈까요? | 읽기 가능 |
+| 03 | [TCP vs UDP](03-tcp-vs-udp.md){ data-preview } | 도착 확인은 어떻게 하고, 왜 방식이 두 가지일까요? | 읽기 가능 |
+| 04 | [DNS](04-dns.md){ data-preview } | `google.com` 같은 이름은 어떻게 IP 주소로 바뀔까요? | 읽기 가능 |
+| 05 | [포트와 소켓](05-ports-and-sockets.md){ data-preview } | 같은 컴퓨터 안에서 어느 앱으로 가야 하는지는 어떻게 구분할까요? | 읽기 가능 |
+| 06 | [HTTP와 HTTPS](06-http-and-https.md){ data-preview } | 브라우저와 서버는 어떤 규칙으로 대화하고, 왜 HTTPS가 필요할까요? | 읽기 가능 |
+| 07 | [TLS, SSL, 인증서](07-tls-ssl-and-certificates.md){ data-preview } | 브라우저는 어떻게 진짜 서버를 확인하고, 보호된 통로를 준비할까요? | 읽기 가능 |
+| 08 | [OSI 7계층과 TCP/IP 모델](08-osi-and-tcp-ip-layers.md){ data-preview } | 네트워크 전체를 한눈에 보여주는 지도는 어떻게 생겼을까요? | 읽기 가능 |
+| 09 | [TCP 3-way handshake](09-tcp-3-way-handshake.md){ data-preview } | TCP는 왜 연결 전에 세 번이나 주고받으며 준비할까요? | 읽기 가능 |
 
 표로 보면 단순한데, 실제로는 질문이 하나씩 다음 질문을 부르는 구조예요.
 
