@@ -3,7 +3,7 @@ title: TCP vs UDP - 꼼꼼한 친구와 빠른 친구는 뭐가 다를까요?
 description: 패킷이 도착했는지 어떻게 확인하는지, TCP와 UDP의 차이를 일상 비유로 쉽게 풀어봅니다.
 icon: lucide/git-compare-arrows
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-12
 tags:
   - Network
   - TCP
@@ -80,6 +80,8 @@ flowchart LR
 ### TCP는 먼저 인사부터 해요
 
 TCP는 그냥 던지고 시작하지 않아요. 먼저 상대가 준비됐는지 확인해요.
+
+다만 여기서는 **"TCP는 먼저 확인하고 시작하는 성격이구나"** 정도만 잡고 갈게요. `SYN`, `ACK`, sequence 번호처럼 **그 인사 안에서 실제로 무슨 숫자와 신호가 오가는지**는 뒤의 **TCP 3-way handshake** 글에서 본격적으로 열어볼 거예요.
 
 ```mermaid
 sequenceDiagram
