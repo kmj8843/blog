@@ -20,8 +20,8 @@ render_macros: true
 
 비개발자도 끝까지 따라올 수 있도록, 개발자에겐 *"이렇게 설명할 수도 있구나"* 싶도록.
 
-[둘러보기 :material-arrow-right:](#2){ .md-button .md-button--primary }
-[최신 글 보기 :material-newspaper:](#3){ .md-button }
+[둘러보기 :material-arrow-right:](#_2){ .md-button .md-button--primary }
+[최신 글 보기 :material-newspaper:](#_3){ .md-button }
 
 ---
 
