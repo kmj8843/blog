@@ -14,7 +14,7 @@ updated: 2026-05-12
 
 > 여러분의 카톡 메시지는 보통 **10~20군데를 거쳐서** 친구한테 도착해요.
 
-[지난 글](01-what-is-packet.md){ data-preview }에서 우리는 인터넷 데이터가 **잘게 쪼개진 패킷**으로 오간다는 걸 알게 됐어요. 그리고 마지막에 이런 질문을 남겼죠.
+[패킷이 뭐길래?](01-what-is-packet.md){ data-preview }에서 우리는 인터넷 데이터가 **잘게 쪼개진 패킷**으로 오간다는 걸 알게 됐어요. 그리고 마지막에 이런 질문을 남겼죠.
 
 > *"그 작은 패킷이 어떻게 지구 반대편 서버까지 정확하게 찾아가지?"*
 
@@ -103,7 +103,7 @@ flowchart LR
 
 택배가 우리 아파트까지는 공인 IP로 오고, 그다음 몇 호인지는 공유기가 정리해서 보내주는 거예요. 이걸 **NAT** 라고 부르는데, 이건 다른 글에서 자세히 다룰게요.
 
-지금은 **"집 바깥에서는 공인 IP가 보이고, 집 안에서는 사설 IP가 쓰인다"** 정도만 감으로 잡아두면 충분해요. 나중에 NAT 편에서 공유기가 이 주소표를 실제로 어떻게 바꿔 붙이는지까지 같이 보게 될 거예요.
+지금은 **"집 바깥에서는 공인 IP가 보이고, 집 안에서는 사설 IP가 쓰인다"** 정도만 감으로 잡아두면 충분해요. 나중에 [공인 IP, 사설 IP, 그리고 NAT는 왜 같이 나올까요?](11-public-private-ip-and-nat.md){ data-preview }에서 공유기가 이 주소표를 실제로 어떻게 바꿔 붙이는지까지 같이 보게 될 거예요.
 
 ---
 
@@ -184,7 +184,7 @@ flowchart LR
 
 ## 그럼 진짜 IP 헤더는 어떻게 생겼을까요?
 
-[지난 글](01-what-is-packet.md){ data-preview }에서 봤던 패킷의 **헤더(송장)** 부분, 이번엔 좀 더 자세히 들여다봐요.
+[패킷이 뭐길래?](01-what-is-packet.md){ data-preview }에서 봤던 패킷의 **헤더(송장)** 부분, 이번엔 좀 더 자세히 들여다봐요.
 
 <div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
   <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">

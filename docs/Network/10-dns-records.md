@@ -14,7 +14,7 @@ tags:
 
 > 우리가 `example.com`을 쳤을 때 주소록에서 꺼내오는 정보는, 단순히 숫자 주소 하나가 아닐 수도 있어요.
 
-[지난 글](09-tcp-3-way-handshake.md){ data-preview }에서 우리는 **TCP 3-way handshake**를 통해 실제 연결이 어떻게 시작되는지 깊게 살펴봤어요. 그리고 그보다 훨씬 앞선 [DNS는 어떻게 이름을 IP 주소로 바꿀까요?](04-dns.md){ data-preview } 글에서는 DNS가 "이름을 주소로 바꿔주는 안내 데스크"라는 사실도 배웠죠.
+[TCP 3-way handshake는 왜 세 번이나 주고받을까요?](09-tcp-3-way-handshake.md){ data-preview }에서 우리는 **TCP 3-way handshake**를 통해 실제 연결이 어떻게 시작되는지 깊게 살펴봤어요. 그리고 그보다 훨씬 앞선 [DNS는 어떻게 이름을 IP 주소로 바꿀까요?](04-dns.md){ data-preview } 글에서는 DNS가 "이름을 주소로 바꿔주는 안내 데스크"라는 사실도 배웠죠.
 
 근데요, 안내 데스크에 가서 "이 가게 번호 좀 알려주세요"라고 물었을 때, 직원이 항상 "101호예요"라고만 답하는 건 아니에요.
 
