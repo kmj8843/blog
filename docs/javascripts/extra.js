@@ -30,4 +30,14 @@ if (globalThis.__mermaidZoomInitialized === undefined) {
 			mermaidNode.classList.add("is-zoomed");
 		}
 	});
+
+	document.addEventListener("keydown", function (event) {
+		if (event.key !== "Escape") {
+			return;
+		}
+
+		document.querySelectorAll("div.mermaid.is-zoomed").forEach(function (node) {
+			node.classList.remove("is-zoomed");
+		});
+	});
 }
