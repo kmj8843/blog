@@ -3,7 +3,7 @@ title: TCP vs UDP - 꼼꼼한 친구와 빠른 친구는 뭐가 다를까요?
 description: 패킷이 도착했는지 어떻게 확인하는지, TCP와 UDP의 차이를 일상 비유로 쉽게 풀어봅니다.
 icon: lucide/git-compare-arrows
 created: 2026-05-08
-updated: 2026-05-12
+updated: 2026-05-13
 tags:
   - Network
   - TCP
@@ -77,7 +77,7 @@ flowchart LR
 !!! tip "이것만 기억해도 충분해요"
     **TCP는 정확성이 중요할 때**, **UDP는 속도가 더 중요할 때** 써요.
 
-### TCP는 먼저 인사부터 해요
+### TCP는 먼저 인사부터 해요 { #tcp-intro }
 
 TCP는 그냥 던지고 시작하지 않아요. 먼저 상대가 준비됐는지 확인해요.
 

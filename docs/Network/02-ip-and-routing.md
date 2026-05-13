@@ -7,7 +7,7 @@ tags:
   - IP
   - Routing
 created: 2026-05-07
-updated: 2026-05-12
+updated: 2026-05-13
 ---
 
 # IP 주소와 라우팅 - 패킷은 어떻게 길을 찾을까?
@@ -103,11 +103,11 @@ flowchart LR
 
 택배가 우리 아파트까지는 공인 IP로 오고, 그다음 몇 호인지는 공유기가 정리해서 보내주는 거예요. 이걸 **NAT** 라고 부르는데, 이건 다른 글에서 자세히 다룰게요.
 
-지금은 **"집 바깥에서는 공인 IP가 보이고, 집 안에서는 사설 IP가 쓰인다"** 정도만 감으로 잡아두면 충분해요. 나중에 [공인 IP, 사설 IP, 그리고 NAT는 왜 같이 나올까요?](11-public-private-ip-and-nat.md){ data-preview }에서 공유기가 이 주소표를 실제로 어떻게 바꿔 붙이는지까지 같이 보게 될 거예요.
+지금은 **"집 바깥에서는 공인 IP가 보이고, 집 안에서는 사설 IP가 쓰인다"** 정도만 감으로 잡아두면 충분해요. 나중에 [공인 IP, 사설 IP, 그리고 NAT는 왜 같이 나올까요?](11-public-private-ip-and-nat.md#nat-how-it-works){ data-preview }에서 공유기가 이 주소표를 실제로 어떻게 바꿔 붙이는지까지 같이 보게 될 거예요.
 
 ---
 
-## 라우팅: 패킷의 길 안내
+## 라우팅: 패킷의 길 안내 { #routing-basics }
 
 자, IP 주소가 "어디로 갈지" 라면, **라우팅(Routing)** 은 "어떻게 갈지" 예요.
 
@@ -184,7 +184,7 @@ flowchart LR
 
 ## 그럼 진짜 IP 헤더는 어떻게 생겼을까요?
 
-[패킷이 뭐길래?](01-what-is-packet.md){ data-preview }에서 봤던 패킷의 **헤더(송장)** 부분, 이번엔 좀 더 자세히 들여다봐요.
+[패킷이 뭐길래?](01-what-is-packet.md#packet-structure){ data-preview }에서 봤던 패킷의 **헤더(송장)** 부분, 이번엔 좀 더 자세히 들여다봐요.
 
 <div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
   <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
