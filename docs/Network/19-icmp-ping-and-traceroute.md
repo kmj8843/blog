@@ -388,5 +388,5 @@ sequenceDiagram
 
 > *"길은 맞는데도 왜 어떤 패킷은 너무 커서 중간에서 문제를 만들까요?"*
 
-다음 글에서는 **"MTU, Fragmentation, 그리고 Path MTU"** 이야기를 통해,
+다음 글에서는 **[MTU, Fragmentation, 그리고 Path MTU](20-mtu-fragmentation-and-path-mtu.md){ data-preview }** 이야기를 통해,
 패킷 크기와 경로 사이에 숨어 있는 또 다른 현실을 같이 열어볼게요.

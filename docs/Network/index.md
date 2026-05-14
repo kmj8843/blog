@@ -119,6 +119,7 @@ flowchart LR
 - [17. ARP와 로컬 전달](17-arp-and-local-delivery.md){ data-preview } — 주소는 받았는데, 같은 집 안의 진짜 목적지는 어떻게 찾을까요?
 - [18. 기본 게이트웨이와 첫 번째 도약](18-default-gateway-and-first-hop.md){ data-preview } — 게이트웨이에게 맡긴 패킷은 집을 나서는 순간 어떤 판단을 거칠까요?
 - [19. ICMP, Ping, 그리고 Traceroute](19-icmp-ping-and-traceroute.md){ data-preview } — 패킷이 어디까지 갔는지, 어디서 막혔는지 네트워크는 어떻게 힌트를 줄까요?
+- [20. MTU, Fragmentation, 그리고 Path MTU](20-mtu-fragmentation-and-path-mtu.md){ data-preview } — 길은 맞는데도 왜 어떤 패킷은 너무 커서 중간에서 문제를 만들까요?
 
 여기서부터는 단순히 "이름을 안다" 에서 멈추지 않고,
 이후의 실제 신호와 구조를 읽는 구간까지 이어져요.
@@ -127,10 +128,10 @@ flowchart LR
 
 ## 그럼 다음엔 어디로 이어질까요?
 
-지금 공개된 흐름은 이제 **ICMP, Ping, 그리고 Traceroute** 까지 왔어요.
-이제 그다음부터는, 길은 맞는데도 **패킷 크기 때문에 어디서 문제가 생길 수 있는지** 까지 열어볼게요.
+지금 공개된 흐름은 이제 **MTU, Fragmentation, 그리고 Path MTU** 까지 왔어요.
+이제 그다음부터는, 길도 맞고 크기도 맞춘 뒤에 **중간에 사라진 패킷을 어떻게 다시 책임질지** 까지 열어볼게요.
 
-- **20. MTU, Fragmentation, 그리고 Path MTU** — 길은 맞는데도 왜 어떤 패킷은 너무 커서 중간에서 문제를 만들까요?
+- **21. TCP 재전송과 신뢰성** — 중간에 패킷 하나가 사라지면, 네트워크는 어떻게 그 사실을 알고 다시 보내줄까요?
 
 
 즉, 이제부터는 **개념을 이해했다** 에서 끝나는 게 아니라,
