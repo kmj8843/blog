@@ -293,5 +293,5 @@ sequenceDiagram
 
 > *"그럼 우리 패킷이 길을 잃었는지, 어디쯤까지 갔는지는 어떻게 확인할 수 있을까요?"*
 
-다음 글에서는 **"ICMP, Ping, 그리고 Traceroute"** 이야기를 통해,
+다음 글에서는 **[ICMP, Ping, 그리고 Traceroute](19-icmp-ping-and-traceroute.md){ data-preview }** 이야기를 통해,
 보이지 않는 경로를 우리가 어떻게 두드려 보고, 어디서 응답이 오는지 확인하는지 같이 열어볼게요.
