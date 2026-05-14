@@ -43,7 +43,7 @@ DNS도 거의 똑같아요.
 ```mermaid
 flowchart LR
     A[💻 브라우저<br/><small>example.com 입력</small>] --> B[📚 DNS 조회]
-    B --> C[🔢 IP 주소 확인<br/><small>예: 93.184.216.34</small>]
+    B --> C[🔢 IP 주소 확인<br/><small>예: 172.66.147.243</small>]
     C --> D[🌍 해당 서버로 접속]
 ```
 
@@ -60,7 +60,7 @@ flowchart LR
 | 부분 | 일상 비유에서는 | 실제로는 |
 |------|----------------|----------|
 | 📛 **가게 이름** | "아하 서점" | **도메인 이름** (`example.com`) |
-| ☎️ **전화번호** | 실제로 눌러야 하는 숫자 | **IP 주소** (`93.184.216.34`) |
+| ☎️ **전화번호** | 실제로 눌러야 하는 숫자 | **IP 주소** (`172.66.147.243`) |
 | 📚 **안내 데스크** | 번호를 대신 찾아주는 사람 | **DNS 서버 / 리졸버** |
 | 🗂️ **최근 찾은 메모** | 방금 찾은 번호를 적어둠 | **캐시(Cache)** |
 
@@ -191,7 +191,7 @@ TTL은 **Time To Live**의 줄임말이에요. 여기서는 쉽게 말해서 **"
     <div style="display: grid; gap: 0.7rem;">
       <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
         <strong>응답 주소</strong>
-        <code>93.184.216.34</code>
+        <code>172.66.147.243</code>
       </div>
       <div style="display: grid; grid-template-columns: minmax(7.5rem, auto) 1fr auto; gap: 0.75rem; align-items: start;">
         <strong>TTL</strong>
