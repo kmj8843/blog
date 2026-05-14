@@ -122,6 +122,7 @@ flowchart LR
 - [20. MTU, Fragmentation, 그리고 Path MTU](20-mtu-fragmentation-and-path-mtu.md){ data-preview } — 길은 맞는데도 왜 어떤 패킷은 너무 커서 중간에서 문제를 만들까요?
 - [21. TCP 재전송과 신뢰성](21-tcp-retransmission-and-reliability.md){ data-preview } — 중간에 패킷 하나가 사라지면, 네트워크는 어떻게 그 사실을 알고 다시 보내줄까요?
 - [22. TCP Teardown과 TIME-WAIT](22-tcp-teardown-and-time-wait.md){ data-preview } — 대화가 끝난 뒤에 "이제 그만할게요"라고 인사하는 과정과, 왜 바로 주소를 재사용하지 않고 기다리는 시간이 필요한지 알아봐요.
+- [23. Proxy, Reverse Proxy, 그리고 Load Balancer](23-proxy-reverse-proxy-and-load-balancer.md){ data-preview } — 사용자가 보는 서버와 실제로 일을 하는 서버가 왜 다를 수 있고, 앞단은 요청을 어떻게 대신 받고 나눠 보낼까요?
 
 여기서부터는 단순히 "이름을 안다" 에서 멈추지 않고,
 이후의 실제 신호와 구조를 읽는 구간까지 이어져요.
@@ -130,10 +131,10 @@ flowchart LR
 
 ## 그럼 다음엔 어디로 이어질까요?
 
-지금 공개된 흐름은 이제 **TCP Teardown과 TIME-WAIT** 까지 왔어요.
-이제 그다음부터는, 개별 연결 하나를 넘어 **여러 서버 앞단에서 요청을 어떻게 나누고 대신 받아주는지**까지 시야를 넓혀볼게요.
+지금 공개된 흐름은 이제 **Proxy, Reverse Proxy, 그리고 Load Balancer** 까지 왔어요.
+이제 그다음부터는, 서버 앞단에서 요청을 정리하는 걸 넘어 **사용자 가까운 곳에 콘텐츠를 더 가깝게 두는 방식**까지 시야를 넓혀볼게요.
 
-- **23. Proxy, Reverse Proxy, 그리고 Load Balancer** — 수많은 요청이 몰려올 때 서버 앞단에서 어떻게 교통 정리를 하고 보안을 챙기는지 알아봐요.
+- **24. CDN, Cache, 그리고 Edge Delivery** — 같은 원본 서버만 매번 찾지 않고, 왜 사용자 가까운 곳에 복사본을 두고 더 빠르게 전달하려고 할까요?
 
 즉, 이제부터는 **개념을 이해했다** 에서 끝나는 게 아니라,
 **실제로 보이는 구조를 읽고 해석하는 단계**로 한 걸음 더 들어가게 돼요.
