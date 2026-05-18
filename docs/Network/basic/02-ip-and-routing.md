@@ -7,7 +7,7 @@ tags:
   - IP
   - Routing
 created: 2026-05-07
-updated: 2026-05-13
+updated: 2026-05-18
 ---
 
 # IP 주소와 라우팅 - 패킷은 어떻게 길을 찾을까?
@@ -185,6 +185,8 @@ flowchart LR
 ## 그럼 진짜 IP 헤더는 어떻게 생겼을까요? { #ip-header-card }
 
 [패킷이 뭐길래?](01-what-is-packet.md#packet-structure){ data-preview }에서 봤던 패킷의 **헤더(송장)** 부분, 이번엔 좀 더 자세히 들여다봐요.
+
+근데 말이죠, 여기서는 아직 **출발지 IP / 도착지 IP / TTL / 프로토콜** 카드만 큰 그림으로 보여주는 정도예요. 그 카드 안이 진짜로 몇 비트씩 어떻게 나뉘는지까지 보고 싶다면, [IPv4 헤더 한 줄 한 줄 읽기](../deep-dive/ipv4-header-anatomy.md){ data-preview }에서 32비트 격자 위로 같이 펼쳐볼 수 있어요.
 
 <div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
   <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
