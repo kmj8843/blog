@@ -1,6 +1,6 @@
 ---
 title: 네트워크 심화편은 여기서 시작할게요
-description: 기본편 25편까지 큰 그림을 본 뒤, 패킷 캡처·브라우저 타이밍·캐시 헤더·장애 사례 같은 장면을 더 깊게 파고드는 심화편 입구예요.
+description: 기본편에서 큰 그림을 본 뒤, 패킷 캡처·브라우저 타이밍·캐시 헤더·장애 사례 같은 장면을 더 깊게 파고드는 심화편 입구예요.
 icon: lucide/binoculars
 hide:
   - feedback
@@ -13,7 +13,7 @@ tags:
 
 > 큰 그림을 다 보면 끝일 것 같죠? **사실은 그때부터가 장면을 더 깊게 읽는 시작이에요.**
 
-[기본편 25. End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md){ data-preview }까지 읽고 나면,
+[기본편의 마지막 글인 End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md){ data-preview }까지 읽고 나면,
 이제는 **인터넷이 왜 그렇게 움직이는지** 에 대한 큰 그림이 어느 정도 머릿속에 들어와 있을 거예요.
 
 근데요, 여기서부터는 질문이 조금 달라져요.
@@ -34,28 +34,28 @@ tags:
 
 ```mermaid
 flowchart LR
-    A[기본편 01~25<br/><small>큰 그림 완성</small>] --> B[심화편 입구<br/><small>장면별로 확대</small>]
+    A[기본편<br/><small>큰 그림 완성</small>] --> B[심화편 입구<br/><small>장면별로 확대</small>]
     B --> C[패킷 캡처]
     B --> D[브라우저 타이밍]
     B --> E[캐시 / 헤더 해석]
     B --> F[실전 장애 사례]
 ```
 
-그러니까 여기서는 새로운 번호형 메인 시리즈를 다시 깔기보다,
+그러니까 여기서는 기본편의 큰 흐름을 다시 반복하기보다,
 **"이 장면을 더 정확하게 읽고 싶다"** 는 필요를 따라 들어오면 돼요.
 
 ---
 
 ## 읽기 전에 이것만 먼저 보면 좋아요
 
-심화편은 지금 당장 글 수가 많지 않아도 괜찮아요.
-중요한 건 **기본편에서 만든 감과 지도를 들고 들어오는 것** 이거든요.
+심화편에서 중요한 건 글 수보다,
+**기본편에서 만든 감과 지도를 들고 들어오는 것** 이거든요.
 
 그래서 가능하면 먼저:
 
-1. [기본편 읽기 가이드](../basic/index.md){ data-preview }를 한 번 보고,
-2. 최소한 [25. End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md){ data-preview }까지의 큰 흐름을 머릿속에 두고,
-3. 그다음 필요한 장면을 심화편에서 다시 여는 식으로 들어오면 좋아요.
+- [기본편 읽기 가이드](../basic/index.md){ data-preview }를 한 번 보고,
+- 가능하면 [End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md){ data-preview }까지의 큰 흐름을 머릿속에 두고,
+- 그다음 필요한 장면을 심화편에서 다시 여는 식으로 들어오면 좋아요.
 
 ### 지금 바로 읽을 수 있는 프로토콜 해부 글
 
@@ -67,11 +67,11 @@ flowchart LR
 ## 자, 정리해볼까요?
 
 !!! abstract "심화편은 이런 분에게 맞아요"
-    - 기본편 25편까지 읽고, 이제 **장면 하나를 더 깊게 보고 싶은 분**
+    - 기본편의 큰 흐름을 끝까지 따라온 뒤, 이제 **장면 하나를 더 깊게 보고 싶은 분**
     - 패킷 캡처, 브라우저 타이밍, 캐시 헤더, 장애 사례처럼 **실전 해석 감각**을 더 키우고 싶은 분
     - 큰 그림은 이미 있는데, 그 안쪽 장면이 어떻게 보이는지 더 정확히 읽고 싶은 분
 
-그럼, 심화편으로 들어가기 전에 기본편 마지막 장면부터 다시 보고 싶으세요?
+그럼, 심화편으로 들어가기 전에 기본편의 마지막 흐름부터 다시 보고 싶으세요?
 
-<a class="md-button md-button--primary" href="../basic/25-end-to-end-request-debugging/">25편 다시 보기</a>
-<a class="md-button" href="../basic/">기본편 전체 보기</a>
+<a class="md-button md-button--primary" href="../basic/25-end-to-end-request-debugging/">기본편 마지막 글 다시 보기</a>
+<a class="md-button" href="../basic/">기본편 읽기 가이드 보기</a>
