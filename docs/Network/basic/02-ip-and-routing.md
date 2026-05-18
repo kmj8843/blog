@@ -182,7 +182,7 @@ flowchart LR
 
 ---
 
-## 그럼 진짜 IP 헤더는 어떻게 생겼을까요?
+## 그럼 진짜 IP 헤더는 어떻게 생겼을까요? { #ip-header-card }
 
 [패킷이 뭐길래?](01-what-is-packet.md#packet-structure){ data-preview }에서 봤던 패킷의 **헤더(송장)** 부분, 이번엔 좀 더 자세히 들여다봐요.
 

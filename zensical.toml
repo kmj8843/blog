@@ -184,7 +184,7 @@ features = [
   # Turn on this feature to expand all collapsible sections in the
   # navigation sidebar by default.
   # https://zensical.org/docs/setup/navigation/#navigation-expansion
-  "navigation.expand",
+  # "navigation.expand",
 
   # This feature turns on navigation elements in the footer that allow the
   # user to navigate to a next or previous page.
@@ -382,5 +382,6 @@ render_by_default = false
 #
 # Read more: https://zensical.org/docs/setup/navigation/#instant-previews
 [[project.markdown_extensions.zensical.extensions.preview.configurations]]
-sources.include = ["Network/*.md"]
-targets.include = ["Network/*.md"]
+sources.include = ["**/*.md"]
+sources.exclude = ["index.md", "**/index.md"]
+targets.include = ["**/*.md"]
