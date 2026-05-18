@@ -57,6 +57,11 @@ flowchart LR
 2. 최소한 [25. End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md){ data-preview }까지의 큰 흐름을 머릿속에 두고,
 3. 그다음 필요한 장면을 심화편에서 다시 여는 식으로 들어오면 좋아요.
 
+### 지금 바로 읽을 수 있는 프로토콜 해부 글
+
+- [IPv4 헤더 한 줄 한 줄 읽기](./ipv4-header-anatomy.md){ data-preview } — 기본편에서 카드처럼만 봤던 IP 헤더를 32비트 격자 위에서 펼쳐봐요.
+- [IPv6 헤더는 왜 딱 40바이트일까요?](./ipv6-header-anatomy.md){ data-preview } — 주소는 더 길어졌는데 왜 기본 헤더는 오히려 일정해졌는지 같이 읽어봐요.
+
 ---
 
 ## 자, 정리해볼까요?

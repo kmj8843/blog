@@ -188,6 +188,8 @@ flowchart LR
 
 근데 말이죠, 여기서는 아직 **출발지 IP / 도착지 IP / TTL / 프로토콜** 카드만 큰 그림으로 보여주는 정도예요. 그 카드 안이 진짜로 몇 비트씩 어떻게 나뉘는지까지 보고 싶다면, [IPv4 헤더 한 줄 한 줄 읽기](../deep-dive/ipv4-header-anatomy.md){ data-preview }에서 32비트 격자 위로 같이 펼쳐볼 수 있어요.
 
+그리고 같은 자리에 **IPv6에서는 무엇이 남고 무엇이 바뀌는지**까지 보고 싶다면, [IPv6 헤더는 왜 딱 40바이트일까요?](../deep-dive/ipv6-header-anatomy.md){ data-preview }에서 `TTL` 이 왜 `Hop Limit` 으로 바뀌고, 주소 칸은 왜 그렇게 커졌는지도 이어서 볼 수 있어요.
+
 <div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
   <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
     <div style="display: grid; gap: 0.7rem;">

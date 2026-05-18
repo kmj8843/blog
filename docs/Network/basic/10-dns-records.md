@@ -3,7 +3,7 @@ title: A, AAAA, CNAME... DNS 레코드는 왜 종류가 여러 갈래일까요?
 description: 도메인 이름 뒤에 숨은 A, AAAA, CNAME 레코드의 차이를 비유와 실제 예시로 친근하게 풀어봅니다.
 icon: lucide/file-text
 created: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-18
 tags:
   - Network
   - DNS
@@ -81,6 +81,8 @@ flowchart TD
 - **AAAA 레코드**는 새로운 시대의 IPv6를 위해 따로 만들었어요.
 
 브라우저와 운영체제는 상황에 따라 A와 AAAA를 함께 보거나, 받은 결과를 바탕으로 더 잘 닿는 쪽을 고르기도 해요. 중요한 건 **DNS가 IPv4와 IPv6 주소를 구분해서 알려줄 수 있다**는 점이에요.
+
+여기서는 **"IPv6 주소가 따로 있구나"** 정도만 잡고 가도 충분해요. 근데 그 IPv6 주소가 실제 패킷 헤더 안에서 얼마나 큰 칸을 차지하고, `TTL` 대신 어떤 필드가 들어오는지까지 보고 싶다면 [IPv6 헤더는 왜 딱 40바이트일까요?](../deep-dive/ipv6-header-anatomy.md){ data-preview }에서 바로 이어서 펼쳐볼 수 있어요.
 
 ### 2. 관리하기 편하려고 별명을 써요 (CNAME)
 
