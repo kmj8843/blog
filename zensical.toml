@@ -37,6 +37,49 @@ copyright = """
 Copyright &copy; 2026 Aha Notes
 """
 
+nav = [
+  {"Home" = "index.md"},
+  {"네트워크" = [
+    "Network/index.md",
+    {"기본편" = [
+      "Network/basic/index.md",
+      "Network/basic/01-what-is-packet.md",
+      "Network/basic/02-ip-and-routing.md",
+      "Network/basic/03-tcp-vs-udp.md",
+      "Network/basic/04-dns.md",
+      "Network/basic/05-ports-and-sockets.md",
+      "Network/basic/06-http-and-https.md",
+      "Network/basic/07-tls-ssl-and-certificates.md",
+      "Network/basic/08-osi-and-tcp-ip-layers.md",
+      "Network/basic/09-tcp-3-way-handshake.md",
+      "Network/basic/10-dns-records.md",
+      "Network/basic/11-public-private-ip-and-nat.md",
+      "Network/basic/12-packet-capture.md",
+      "Network/basic/13-router-and-home-network.md",
+      "Network/basic/14-port-forwarding-and-incoming-connections.md",
+      "Network/basic/15-firewall-and-stateful-filtering.md",
+      "Network/basic/16-dhcp.md",
+      "Network/basic/17-arp-and-local-delivery.md",
+      "Network/basic/18-default-gateway-and-first-hop.md",
+      "Network/basic/19-icmp-ping-and-traceroute.md",
+      "Network/basic/20-mtu-fragmentation-and-path-mtu.md",
+      "Network/basic/21-tcp-retransmission-and-reliability.md",
+      "Network/basic/22-tcp-teardown-and-time-wait.md",
+      "Network/basic/23-proxy-reverse-proxy-and-load-balancer.md",
+      "Network/basic/24-cdn-cache-and-edge-delivery.md",
+      "Network/basic/25-end-to-end-request-debugging.md",
+    ]},
+    {"심화편" = [
+      "Network/deep-dive/index.md",
+      "Network/deep-dive/ipv4-header-anatomy.md",
+      "Network/deep-dive/ipv6-header-anatomy.md",
+      "Network/deep-dive/tcp-header-anatomy.md",
+      "Network/deep-dive/udp-header-anatomy.md",
+      "Network/deep-dive/tcp-flags-cheatsheet.md",
+    ]},
+  ]},
+]
+
 # Zensical supports both implicit navigation and explicitly defined navigation.
 # If you decide not to define a navigation here then Zensical will simply
 # derive the navigation structure from the directory structure of your

@@ -163,27 +163,9 @@ RFC 9293 3.1절은 여기서 한 가지 아주 중요한 단서를 붙여요. **
 
 ### Flags — 연결의 분위기를 1비트씩 찍어두는 칸
 
-RFC 9293 기준으로 현재 주로 보는 플래그는 8개예요.
+여기서 중요한 건 **이 자리가 8비트짜리 제어 비트맵**이라는 점이에요. 즉, `Sequence Number` 나 `Window` 처럼 숫자 하나를 담는 칸이 아니라, **연결 시작 / 확인 / 종료 / 리셋 같은 신호를 1비트씩 켜서 표시하는 칸**이죠.
 
-| 플래그 | 축약 표기 | 의미 | 언제 자주 보나 |
-|---|---|---|---|
-| CWR | `W` | 혼잡 윈도우를 줄였다는 ECN 관련 신호 | 일반 웹 디버깅에서는 드묾 |
-| ECE | `E` | ECN 혼잡 신호를 반사 | ECN 환경에서 보임 |
-| URG | `U` | Urgent Pointer가 유효함 | 요즘은 거의 안 봄 |
-| ACK | `.` | Acknowledgment Number가 유효함 | 연결 이후 거의 항상 켜짐 |
-| PSH | `P` | 받는 쪽 애플리케이션으로 빨리 밀어달라는 힌트 | 대화형 트래픽에서 보일 수 있음 |
-| RST | `R` | 연결을 즉시 리셋 | 포트 닫힘, 비정상 종료 |
-| SYN | `S` | sequence 번호 동기화 시작 | 핸드셰이크 첫 단계 |
-| FIN | `F` | 더 보낼 데이터 없음 | 연결 종료 |
-
-기본편에서 계속 봤던 건 사실 이 8개 중에서도 몇 개 안 돼요.
-
-- `SYN` — 연결 시작
-- `ACK` — 번호 확인
-- `FIN` — 연결 종료
-- `RST` — 연결 초기화 / 거절
-
-나머지는 숨은 조연에 가까워요. 그러니까 `Flags [S]`, `Flags [S.]`, `Flags [F.]`, `Flags [R]` 같은 tcpdump 출력은 결국 **이 8비트 칸의 어떤 비트가 켜졌는지**를 보기 좋게 풀어쓴 거예요. 예를 들어 `.` 는 `ACK`, `S` 는 `SYN`, `P` 는 `PSH` 라고 읽으면 되고, 그래서 `Flags [S.]` 는 **SYN + ACK가 같이 켜진 상태**예요.
+이 글에서는 플래그가 **TCP 헤더 4번째 줄 어디에 붙어 있는지**까지만 잡고 갈게요. `SYN`, `ACK`, `FIN`, `RST`, `PSH` 같은 이름이 각각 무슨 분위기로 읽히는지, 그리고 `Flags [S]`, `Flags [S.]`, `Flags [F.]` 같은 축약 표기가 실제 캡처에서 어떻게 보이는지는 심화편 [TCP 플래그는 어떻게 읽어야 할까요?](./tcp-flags-cheatsheet.md#flag-meanings){ data-preview } 에서 따로 자세히 열어볼 수 있어요.
 
 ### Window — "나는 지금 이만큼 더 받을 수 있어요"
 
@@ -305,17 +287,6 @@ MSS, Window Scale, Timestamp 같은 옵션은 연결마다 다를 수 있어요.
 IP 192.168.0.10.51515 > 142.250.196.78.443: Flags [S], seq 305419896, win 64240, options [mss 1460,sackOK,TS val 12345 ecr 0,nop,wscale 7], length 0
 ```
 
-여기서 `Flags [...]` 부분만 따로 보면 이렇게 읽으면 돼요.
-
-| 보이는 값 | 뜻 |
-|---|---|
-| `[S]` | `SYN` |
-| `[S.]` | `SYN + ACK` |
-| `[.]` | `ACK` |
-| `[P.]` | `PSH + ACK` |
-| `[F.]` | `FIN + ACK` |
-| `[R]` | `RST` |
-
 이 한 줄에서 읽어야 할 건 바로 이거예요.
 
 - `.51515 > .443` — 1번째 줄의 Source Port / Destination Port
@@ -363,7 +334,7 @@ IP 192.168.0.10.51515 > 142.250.196.78.443: Flags [S], seq 305419896, win 64240,
 - 이 TCP 헤더가 어떤 IP 헤더 바로 뒤에 얹히는지 다시 보고 싶다면 — [IPv4 헤더 한 줄 한 줄 읽기](./ipv4-header-anatomy.md){ data-preview }
 - `SYN`, `SYN-ACK`, `ACK` 가 이 칸들을 어떻게 채우는지 흐름부터 다시 보고 싶다면 — [TCP 3-way handshake는 왜 세 번이나 주고받을까요?](../basic/09-tcp-3-way-handshake.md#handshake-signals){ data-preview }
 - `Sequence Number` 와 `ACK` 가 재전송에서 어떻게 활약하는지 바로 이어서 보고 싶다면 — [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md){ data-preview }
-- 이 헤더를 실제 캡처 한 줄 위에서 먼저 읽는 감각을 보고 싶다면 — `tcpdump` 첫인상 (예정)
+- 이 헤더가 실제 캡처 화면에서 어떤 식으로 보이기 시작하는지 먼저 보고 싶다면 — [패킷 캡처는 뭘 보는 걸까요?](../basic/12-packet-capture.md){ data-preview }
 
 여기까지 오면 보통 이런 궁금증이 바로 이어져요.
 
