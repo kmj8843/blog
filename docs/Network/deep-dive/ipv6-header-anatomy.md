@@ -3,7 +3,7 @@ title: IPv6 헤더는 왜 딱 40바이트일까요?
 description: 기본편에서 AAAA와 IPv6를 이름 정도로만 봤다면, 이번엔 IPv6 기본 헤더를 32비트 격자 위에서 펼쳐보며 왜 더 길어졌는데 오히려 단순해졌는지 같이 읽어봐요.
 icon: lucide/scan-search
 created: 2026-05-18
-updated: 2026-05-18
+updated: 2026-05-19
 tags:
   - Network
   - IP
@@ -318,10 +318,10 @@ IP6 2001:db8:1::10 > 2606:4700:4700::1111: hlim 64 next-header TCP payload lengt
 
 - 같은 기본 개념이 예전 양식에서는 어떻게 생겼는지 다시 보고 싶다면 — [IPv4 헤더 한 줄 한 줄 읽기](./ipv4-header-anatomy.md){ data-preview }
 - IPv6에서 왜 라우터가 중간 단편화를 안 하는지 흐름부터 다시 잡고 싶다면 — [MTU, Fragmentation, 그리고 Path MTU](../basic/20-mtu-fragmentation-and-path-mtu.md){ data-preview }
-- IP 헤더 바로 위에 얹히는 TCP 헤더가 어떻게 생겼는지 보고 싶다면 — TCP 헤더 해부 (예정)
+- IP 헤더 바로 위에 얹히는 TCP 헤더가 어떻게 생겼는지 보고 싶다면 — [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md){ data-preview }
 
 여기까지 오면, 보통 관심사는 한 층 더 위로 올라가요.
 
 > *"IP 헤더는 알겠는데, 우리가 handshake랑 재전송에서 계속 보던 `SYN`, `ACK`, sequence 번호는 그 위에서 정확히 어디 칸에 들어 있죠?"*
 
-그 관심사는 자연스럽게 **TCP 헤더 해부** 쪽과 이어져요. 지금은 아직 예정 상태지만, 바로 이 글과 맞물리는 관련 주제예요.
+그 관심사는 자연스럽게 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md){ data-preview } 쪽과 이어져요. 바로 이 글과 맞물리는 다음 구조 해부 글이에요.

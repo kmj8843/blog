@@ -3,7 +3,7 @@ title: TCP vs UDP - 꼼꼼한 친구와 빠른 친구는 뭐가 다를까요?
 description: 패킷이 도착했는지 어떻게 확인하는지, TCP와 UDP의 차이를 일상 비유로 쉽게 풀어봅니다.
 icon: lucide/git-compare-arrows
 created: 2026-05-08
-updated: 2026-05-13
+updated: 2026-05-19
 tags:
   - Network
   - TCP
@@ -202,6 +202,8 @@ TCP가 꼼꼼한 건 좋은데, 그 꼼꼼함에는 비용이 들어요.
 </div>
 
 이걸 보면 왜 TCP가 꼼꼼한지 감이 와요. **순서 번호**, **확인 번호**, **연결 신호** 같은 게 다 들어 있거든요.
+
+여기서는 큰 그림만 잡고 넘어갈게요. 만약 *"저 `SYN / ACK`, 순서 번호, 확인 번호가 진짜 TCP 헤더 몇 번째 칸에 들어가는데요?"* 가 궁금해졌다면, 심화편 [TCP 헤더는 왜 이렇게 칸이 많을까요?](../deep-dive/tcp-header-anatomy.md){ data-preview } 에서 **32비트 격자** 위로 실제 위치를 바로 펼쳐볼 수 있어요.
 
 ### UDP는 훨씬 단순해요
 
