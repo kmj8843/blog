@@ -3,7 +3,7 @@ title: TCP 헤더는 왜 이렇게 칸이 많을까요?
 description: 기본편에서 본 포트, sequence 번호, ACK, SYN/ACK 신호가 TCP 헤더의 몇 번째 칸에 들어가는지 32비트 격자 위에서 같이 펼쳐봐요.
 icon: lucide/waypoints
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-20
 tags:
   - Network
   - TCP
@@ -334,10 +334,4 @@ IP 192.168.0.10.51515 > 142.250.196.78.443: Flags [S], seq 305419896, win 64240,
 - 이 TCP 헤더가 어떤 IP 헤더 바로 뒤에 얹히는지 다시 보고 싶다면 — [IPv4 헤더 한 줄 한 줄 읽기](./ipv4-header-anatomy.md){ data-preview }
 - `SYN`, `SYN-ACK`, `ACK` 가 이 칸들을 어떻게 채우는지 흐름부터 다시 보고 싶다면 — [TCP 3-way handshake는 왜 세 번이나 주고받을까요?](../basic/09-tcp-3-way-handshake.md#handshake-signals){ data-preview }
 - `Sequence Number` 와 `ACK` 가 재전송에서 어떻게 활약하는지 바로 이어서 보고 싶다면 — [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md){ data-preview }
-- 이 헤더가 실제 캡처 화면에서 어떤 식으로 보이기 시작하는지 먼저 보고 싶다면 — [패킷 캡처는 뭘 보는 걸까요?](../basic/12-packet-capture.md){ data-preview }
-
-여기까지 오면 보통 이런 궁금증이 바로 이어져요.
-
-> *"좋아요, 이제 헤더 칸은 알겠어요. 그럼 캡처 화면에서 `SYN`, `ACK`, 재전송, 중복 ACK 같은 건 실제로 어떤 줄로 보이죠?"*
-
-그 관심사는 자연스럽게 **패킷 캡처 장면 해석** 쪽으로 이어져요.
+- 이 헤더가 실제 캡처 화면에서 어떤 줄로 보이기 시작하는지 바로 이어서 보고 싶다면 — [tcpdump 한 줄은 어떻게 읽어야 할까요?](./tcpdump-first-look.md){ data-preview }
