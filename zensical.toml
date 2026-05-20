@@ -78,6 +78,7 @@ nav = [
       "Network/deep-dive/ipv6-header-anatomy.md",
       "Network/deep-dive/ethernet-frame-and-vlan.md",
       "Network/deep-dive/tcpdump-first-look.md",
+      "Network/deep-dive/tcp-state-machine.md",
     ]},
     # {"iptime 실습" = [
     #   "Network/iptime/index.md",

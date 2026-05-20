@@ -77,12 +77,14 @@ TCP는 그냥 **"연결할게요"** 한마디만 하는 게 아니라,
 
 여기서 같이 봐야 하는 게 두 숫자예요.
 
-1. **Sequence Number** — 내가 보내는 데이터 흐름의 번호표
-2. **Acknowledgment Number** — 나는 **다음에 이 번호를 기대해요** 라는 뜻
+1. **Sequence Number**, 내가 보내는 데이터 흐름의 번호표
+2. **Acknowledgment Number**, 나는 **다음에 이 번호를 기대해요** 라는 뜻
 
 여기서는 숫자가 **어떻게 움직이는지**에 집중하고 있어요. 만약 *"그 숫자와 `SYN`, `ACK` 플래그가 TCP 헤더의 어느 칸에 찍히는지"* 까지 바로 보고 싶다면, 심화편 [TCP 헤더는 왜 이렇게 칸이 많을까요?](../deep-dive/tcp-header-anatomy.md#header-grid){ data-preview } 로 내려가면 **헤더 전체 그림부터 2·3번째 줄, 플래그 줄**까지 실제 격자 위에서 이어서 볼 수 있어요.
 
-그리고 *"좋아요, 칸 위치는 알겠어요. 근데 tcpdump에서 보이는 `Flags [S]`, `Flags [S.]`, `Flags [.]` 는 장면별로 어떻게 읽죠?"* 가 궁금해졌다면, 심화편 [TCP 플래그는 어떻게 읽어야 할까요?](../deep-dive/tcp-flags-cheatsheet.md#common-combinations){ data-preview } 에서 **자주 보는 조합을 치트시트처럼** 바로 이어서 볼 수 있어요.
+그리고 *"좋아요, 칸 위치는 알겠어요. 근데 내 컴퓨터 안에서 '연결 중'이나 '준비 완료' 같은 상태는 어떻게 관리되나요?"* 가 궁금하다면, 심화편 [TCP 상태 머신: 연결의 탄생부터 소멸까지의 일대기](../deep-dive/tcp-state-machine.md#connection-states){ data-preview } 에서 **연결이 맺어지는 과정의 상태 변화**를 더 자세히 열어볼 수 있어요.
+
+또한 *"tcpdump에서 보이는 `Flags [S]`, `Flags [S.]`, `Flags [.]` 는 장면별로 어떻게 읽죠?"* 가 궁금해졌다면, 심화편 [TCP 플래그는 어떻게 읽어야 할까요?](../deep-dive/tcp-flags-cheatsheet.md#common-combinations){ data-preview } 에서 **자주 보는 조합을 치트시트처럼** 바로 이어서 볼 수 있어요.
 
 이 표현이 중요해요.
 
