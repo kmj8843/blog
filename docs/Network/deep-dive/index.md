@@ -78,6 +78,7 @@ flowchart LR
 
 - [tcpdump 한 줄은 어떻게 읽어야 할까요?](./tcpdump-first-look.md){ data-preview } — 터미널에 길게 찍히는 tcpdump 한 줄을 시간, 인터페이스, 방향, 주소, 플래그, 길이 순서로 차근차근 읽어봐요.
 - [tcpdump에서 TCP handshake는 어떻게 보일까요?](./tcp-handshake-in-capture.md){ data-preview } — `SYN`, `SYN-ACK`, `ACK` 세 줄이 실제 캡처에서는 어떻게 찍히는지, 어디서 끊기면 무엇을 의심해야 하는지 같이 읽어봐요.
+- [ss와 netstat에서 TCP 상태는 어떻게 읽어야 할까요?](./ss-and-netstat-state-reading.md){ data-preview } — `LISTEN`, `ESTABLISHED`, `TIME-WAIT`, `CLOSE-WAIT` 같은 상태 이름이 실제 운영 화면에서는 어떤 장면으로 읽히는지 같이 정리해봐요.
 
 ## 자, 정리해볼까요?
 

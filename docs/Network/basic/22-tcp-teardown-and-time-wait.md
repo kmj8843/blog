@@ -118,6 +118,8 @@ flowchart TD
 
 명령 프롬프트나 터미널에서 `netstat` 명령어를 입력해보면, 지금 내 컴퓨터의 연결 상태를 볼 수 있어요.
 
+여기서는 `ESTABLISHED`, `TIME_WAIT` 정도만 먼저 맛보기로 볼게요. 만약 *"좋아요, 근데 `ss` 나 `netstat` 화면에서 `LISTEN`, `CLOSE-WAIT`, `TIME-WAIT` 같은 상태를 실제로 어떻게 읽죠?"* 가 궁금해졌다면, 심화편 [ss와 netstat에서 TCP 상태는 어떻게 읽어야 할까요?](../deep-dive/ss-and-netstat-state-reading.md#common-states){ data-preview }에서 **상태 목록을 운영 장면처럼 읽는 감각**을 바로 이어서 볼 수 있어요.
+
 ```text
 TCP    192.168.0.5:54321      142.250.196.78:443     ESTABLISHED
 TCP    192.168.0.5:54322      172.217.161.14:443     TIME_WAIT

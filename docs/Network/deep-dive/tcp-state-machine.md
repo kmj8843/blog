@@ -199,7 +199,7 @@ RFC 9293의 설명을 바탕으로 각 상태를 한 표에 모아봤어요.
 
 ```bash
 # 리눅스에서 바로 보기 좋은 예시
-ss -nat
+ss -ant
 ```
 
 그러면 이런 비슷한 줄들이 쏟아져 나올 거예요.
@@ -247,6 +247,7 @@ TIME-WAIT   0      0      192.168.0.10:51516  172.217.211.113:443
 
 - `SYN`, `SYN-ACK`, `ACK` 가 상태를 어떻게 한 칸씩 밀어 움직이는지 다시 큰 그림으로 보고 싶다면 — [TCP 3-way handshake는 왜 세 번이나 주고받을까요?](../basic/09-tcp-3-way-handshake.md#handshake-signals){ data-preview }
 - `FIN`, `CLOSE-WAIT`, `LAST-ACK`, `TIME-WAIT` 흐름을 종료 장면 중심으로 다시 보고 싶다면 — [TCP Teardown과 TIME-WAIT - 대화가 끝난 뒤의 깔끔한 마무리](../basic/22-tcp-teardown-and-time-wait.md){ data-preview }
+- `LISTEN`, `ESTABLISHED`, `CLOSE-WAIT`, `TIME-WAIT` 가 실제 `ss` / `netstat` 화면에서는 어떤 줄로 보이는지 보고 싶다면 — [ss와 netstat에서 TCP 상태는 어떻게 읽어야 할까요?](./ss-and-netstat-state-reading.md#signals-to-read){ data-preview }
 - 이 상태 변화를 일으키는 `SYN`, `ACK`, `FIN`, `RST` 같은 신호를 캡처 표기 중심으로 읽고 싶다면 — [TCP 플래그는 어떻게 읽어야 할까요?](./tcp-flags-cheatsheet.md){ data-preview }
 - 상태 안쪽에서 `seq`, `ack`, `window` 같은 숫자가 실제 TCP 헤더의 어느 칸에 들어가는지 다시 보고 싶다면 — [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#header-grid){ data-preview }
 - 이런 상태 변화가 실제 tcpdump 한 줄에서는 어떤 식으로 찍히는지 바로 이어서 보고 싶다면 — [tcpdump 한 줄은 어떻게 읽어야 할까요?](./tcpdump-first-look.md){ data-preview }
