@@ -70,6 +70,7 @@ flowchart LR
 - [TCP 플래그는 어떻게 읽어야 할까요?](./tcp-flags-cheatsheet.md){ data-preview } — `Flags [S]`, `Flags [S.]`, `Flags [F.]`, `Flags [R]` 같은 짧은 표시를 handshake, 데이터, 종료 장면과 함께 읽어봐요.
 - [TCP 상태 머신: 연결의 탄생부터 소멸까지의 일대기](./tcp-state-machine.md){ data-preview } — TCP가 `SYN`을 보내고 `TIME-WAIT`로 사라지기까지, 엔드포인트 내부에서 어떤 상태를 거치는지 RFC 9293 표준을 바탕으로 촘촘하게 해부해봐요.
 - [TCP 윈도우와 흐름 제어는 왜 같이 읽어야 할까요?](./tcp-window-and-flow-control.md){ data-preview } — 받는 쪽이 **"지금은 이만큼 더 받아도 돼요"** 라고 광고하는 Window 값이 ACK, 버퍼 여유, Window Scale과 함께 어떻게 움직이는지 같이 읽어봐요.
+- [TCP 혼잡 제어는 왜 흐름 제어와 따로 봐야 할까요?](./tcp-congestion-control.md){ data-preview } — 받는 쪽 여유가 아니라 **길이 붐비는지**를 보고 송신자가 `cwnd` 를 어떻게 조절하는지, slow start와 duplicate ACK 감각까지 같이 읽어봐요.
 - [UDP 헤더는 왜 딱 8바이트일까요?](./udp-header-anatomy.md){ data-preview } — TCP보다 훨씬 짧은 UDP 헤더가 포트, 길이, 체크섬 네 칸으로 어떻게 끝나는지 같이 읽어봐요.
 - [이더넷 프레임과 VLAN 태그 해부하기](./ethernet-frame-and-vlan.md){ data-preview } — IP 패킷을 감싸서 로컬 네트워크로 실어 나르는 이더넷 프레임의 구조와, 그 사이에 끼어드는 VLAN 태그의 4바이트를 자세히 들여다봐요.
 

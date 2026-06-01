@@ -3,7 +3,7 @@ title: TCP 윈도우와 흐름 제어는 왜 같이 읽어야 할까요?
 description: 받는 쪽이 얼마나 더 받을 수 있는지 알려주는 Window 값이 ACK, 버퍼 여유, Window Scale과 함께 어떻게 움직이는지 쉽게 풀어봐요.
 icon: lucide/gauge
 created: 2026-05-27
-updated: 2026-05-27
+updated: 2026-06-01
 tags:
   - Network
   - TCP
@@ -23,7 +23,7 @@ tags:
 바로 그 빈칸을 채우는 글이에요. 오늘은 **받는 쪽 버퍼 여유를 광고하는 Window 값**, 그 값이 만들어내는 **흐름 제어**, 그리고 핸드셰이크에서 같이 맞추는 **Window Scale**까지 한 장면으로 묶어볼게요.
 
 !!! note "이 글의 범위"
-    여기서는 **받는 쪽이 광고하는 Window와 흐름 제어**에 집중해요. 패킷 손실 때문에 다시 보내는 재전송은 [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }에서, `SYN` / `ACK` / `Window` 칸이 헤더 어디에 있는지는 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#flags){ data-preview }에서 이미 봤어요. 또, 네트워크가 막혀서 보내는 쪽이 스스로 속도를 줄이는 **혼잡 제어(congestion control)** 전체는 여기서 다 열지 않을 거예요. 실제 송신량은 보통 **상대가 광고한 receive window** 와 **송신자가 따로 계산하는 congestion control 제한**을 함께 받아요. 여기서는 그중에서도 **"상대가 얼마나 더 받을 수 있느냐"** 에만 초점을 맞출게요.
+    여기서는 **받는 쪽이 광고하는 Window와 흐름 제어**에 집중해요. 패킷 손실 때문에 다시 보내는 재전송은 [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }에서, `SYN` / `ACK` / `Window` 칸이 헤더 어디에 있는지는 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#flags){ data-preview }에서 이미 봤어요. 또, 네트워크가 막혀서 보내는 쪽이 스스로 속도를 줄이는 **혼잡 제어(congestion control)** 전체는 [TCP 혼잡 제어는 왜 흐름 제어와 따로 봐야 할까요?](./tcp-congestion-control.md#flow-vs-congestion){ data-preview }에서 따로 열어볼게요. 실제 송신량은 보통 **상대가 광고한 receive window** 와 **송신자가 따로 계산하는 congestion control 제한**을 함께 받아요. 여기서는 그중에서도 **"상대가 얼마나 더 받을 수 있느냐"** 에만 초점을 맞출게요.
 
 ---
 
@@ -259,6 +259,7 @@ Window Scale은 뒤에서 보는 Window 숫자의 해석 규칙이에요.
 ## 이어서 보면 좋은 글
 
 - ACK와 재전송이 왜 중요한지 기본편 흐름으로 다시 보고 싶다면 — [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }
+- 받는 쪽 한도와 길 한도를 나눠서 보고 싶다면 — [TCP 혼잡 제어는 왜 흐름 제어와 따로 봐야 할까요?](./tcp-congestion-control.md#flow-vs-congestion){ data-preview }
 - `Window` 가 TCP 헤더의 정확히 어느 칸에 들어가는지 다시 보고 싶다면 — [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#flags){ data-preview }
 - `wscale` 이 핸드셰이크에서 어떻게 보이는지 먼저 읽고 싶다면 — [tcpdump에서 TCP handshake는 어떻게 보일까요?](./tcp-handshake-in-capture.md#signals-to-read){ data-preview }
 - `Flags`, `ACK`, `win` 이 한 줄 안에서 어떻게 같이 보이는지 감각을 다시 잡고 싶다면 — [tcpdump 한 줄은 어떻게 읽어야 할까요?](./tcpdump-first-look.md#one-line-anatomy){ data-preview }
