@@ -3,7 +3,7 @@ title: TCP 재전송과 신뢰성 - 사라진 패킷을 끝까지 챙기는 법
 description: 중간에 패킷이 사라지면 TCP는 어떻게 그 사실을 알고 다시 보내줄까요? Sequence 번호와 ACK를 이용한 재전송 메커니즘을 알아봐요.
 icon: lucide/refresh-ccw
 created: 2026-05-14
-updated: 2026-05-19
+updated: 2026-05-27
 tags:
   - Network
   - TCP
@@ -73,6 +73,8 @@ sequenceDiagram
 [TCP 3-way handshake](09-tcp-3-way-handshake.md#handshake-signals){ data-preview }에서 살짝 봤듯이, TCP 헤더 안에는 `Sequence Number`와 `Acknowledgment Number`가 들어 있어요.
 
 여기서는 그 숫자가 **재전송과 복구에 어떻게 쓰이는지**가 핵심이에요. 만약 *"좋아요, 근데 그 두 숫자랑 `Window`, `ACK` 플래그가 헤더에서는 어디 칸인데요?"* 가 궁금해졌다면, 심화편 [TCP 헤더는 왜 이렇게 칸이 많을까요?](../deep-dive/tcp-header-anatomy.md#header-grid){ data-preview } 에서 실제 헤더 전체 그림과 줄별 위치까지 바로 이어서 볼 수 있어요.
+
+그리고 *"그 ACK랑 Window 값이 같이 움직이면서, 왜 받는 쪽 여유 때문에 더 못 밀어 넣기도 하죠?"* 가 궁금해졌다면, 심화편 [TCP 윈도우와 흐름 제어는 왜 같이 읽어야 할까요?](../deep-dive/tcp-window-and-flow-control.md#flow-control-over-time){ data-preview } 에서 **받는 쪽 버퍼 여유를 광고하는 Window와 ACK가 실제로 어떻게 같이 읽히는지** 바로 이어서 볼 수 있어요.
 
 - **Sequence Number (순서 번호)**: "내가 보내는 이 데이터는 전체 흐름 중 **몇 번째 바이트부터** 시작하는 거야"라는 뜻이에요.
 - **Acknowledgment Number (확인 번호, ACK)**: "나는 여기까지 잘 받았으니, **다음에는 이 번호부터** 보내줘"라는 뜻이에요.

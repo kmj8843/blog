@@ -3,7 +3,7 @@ title: tcpdump에서 TCP handshake는 어떻게 보일까요?
 description: SYN, SYN-ACK, ACK가 실제 tcpdump 캡처에서는 어떤 줄로 보이는지, 어디를 먼저 읽어야 하는지, 어디서 끊기면 무엇을 의심해야 하는지 같이 정리해봐요.
 icon: lucide/activity
 created: 2026-05-21
-updated: 2026-05-21
+updated: 2026-05-27
 tags:
   - Network
   - TCP
@@ -141,6 +141,8 @@ flowchart LR
 
 > 어떤 옵션을 실제로 붙이는지는 **운영체제와 구현마다 조금씩 달라질 수 있어요.** 그러니까 옵션 목록이 완전히 같지 않다고 해서 곧장 이상하다고 읽지는 않아요.
 
+그리고 `wscale` 값은 양쪽이 **똑같아야 하는 공용 숫자**라고 생각하면 안 돼요. 클라이언트와 서버가 **각자 자기 방향 Window를 어떻게 키워 읽어달라는지** 따로 알릴 수도 있어요.
+
 ---
 
 ## 어디서 끊기면 무엇을 의심할까요? { #where-it-breaks }
@@ -237,6 +239,7 @@ flowchart LR
 
 - `SYN`, `SYN-ACK`, `ACK` 자체를 큰 그림으로 다시 보고 싶다면 — [TCP 3-way handshake는 왜 세 번이나 주고받을까요?](../basic/09-tcp-3-way-handshake.md#handshake-signals){ data-preview }
 - `Flags [S]`, `Flags [S.]`, `Flags [R]` 같은 표기를 장면별로 더 읽고 싶다면 — [TCP 플래그는 어떻게 읽어야 할까요?](./tcp-flags-cheatsheet.md#common-combinations){ data-preview }
+- 핸드셰이크에서 보였던 `wscale` 옵션이 뒤 Window 해석에 어떤 뜻이 되는지 이어서 보고 싶다면 — [TCP 윈도우와 흐름 제어는 왜 같이 읽어야 할까요?](./tcp-window-and-flow-control.md#window-scale-negotiation){ data-preview }
 - 한 줄 자체를 시간, 방향, 주소 순서로 먼저 읽는 감각을 다시 잡고 싶다면 — [tcpdump 한 줄은 어떻게 읽어야 할까요?](./tcpdump-first-look.md#one-line-anatomy){ data-preview }
 - `SYN-SENT`, `SYN-RECEIVED`, `ESTABLISHED` 같은 내부 상태 변화까지 같이 보고 싶다면 — [TCP 상태 머신: 연결의 탄생부터 소멸까지의 일대기](./tcp-state-machine.md#connection-states){ data-preview }
 

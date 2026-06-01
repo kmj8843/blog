@@ -38,10 +38,10 @@ Copyright &copy; 2026 Aha Notes
 """
 
 nav = [
-  {"Home" = "index.md"},
-  {"네트워크" = [
+  { "Home" = "index.md" },
+  { "네트워크" = [
     "Network/index.md",
-    {"기본편" = [
+    { "기본편" = [
       "Network/basic/index.md",
       "Network/basic/01-what-is-packet.md",
       "Network/basic/02-ip-and-routing.md",
@@ -68,24 +68,25 @@ nav = [
       "Network/basic/23-proxy-reverse-proxy-and-load-balancer.md",
       "Network/basic/24-cdn-cache-and-edge-delivery.md",
       "Network/basic/25-end-to-end-request-debugging.md",
-    ]},
-    {"심화편" = [
+    ] },
+    { "심화편" = [
       "Network/deep-dive/index.md",
       "Network/deep-dive/ipv4-header-anatomy.md",
       "Network/deep-dive/ipv6-header-anatomy.md",
       "Network/deep-dive/tcp-header-anatomy.md",
       "Network/deep-dive/tcp-flags-cheatsheet.md",
       "Network/deep-dive/tcp-state-machine.md",
+      "Network/deep-dive/tcp-window-and-flow-control.md",
       "Network/deep-dive/udp-header-anatomy.md",
       "Network/deep-dive/ethernet-frame-and-vlan.md",
       "Network/deep-dive/tcpdump-first-look.md",
       "Network/deep-dive/tcp-handshake-in-capture.md",
-    ]},
+    ] },
     # {"iptime 실습" = [
     #   "Network/iptime/index.md",
     #   "Network/iptime/01-iptime-admin-tour.md",
     # ]},
-  ]},
+  ] },
 ]
 
 # Zensical supports both implicit navigation and explicitly defined navigation.

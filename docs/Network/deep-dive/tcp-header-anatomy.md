@@ -3,7 +3,7 @@ title: TCP 헤더는 왜 이렇게 칸이 많을까요?
 description: 기본편에서 본 포트, sequence 번호, ACK, SYN/ACK 신호가 TCP 헤더의 몇 번째 칸에 들어가는지 32비트 격자 위에서 같이 펼쳐봐요.
 icon: lucide/waypoints
 created: 2026-05-19
-updated: 2026-05-20
+updated: 2026-05-27
 tags:
   - Network
   - TCP
@@ -173,7 +173,7 @@ RFC 9293 3.1절은 여기서 한 가지 아주 중요한 단서를 붙여요. **
 
 여기서 한 가지 표지판만 세워둘게요.
 
-> 여기서는 **Window 필드 자체가 헤더 어디에 있는지**까지만 볼게요. 실제로 이 값이 흐름 제어와 Window Scale 옵션을 만나서 어떻게 커지는지는 뒤 글에서 더 열어볼게요.
+> 여기서는 **Window 필드 자체가 헤더 어디에 있는지**까지만 볼게요. 실제로 이 값이 흐름 제어와 Window Scale 옵션을 만나서 어떻게 커지는지는 [TCP 윈도우와 흐름 제어는 왜 같이 읽어야 할까요?](./tcp-window-and-flow-control.md#window-scale-negotiation){ data-preview }에서 이어서 열어볼게요.
 
 RFC 7323은 이 16비트 한계 때문에 **Window Scale 옵션**을 도입해요. 중요한 건, **와이어 위의 Window 필드는 여전히 16비트**라는 점이에요. 다만 양쪽이 핸드셰이크 때 합의한 배율을 곱해서 *실제 의미*를 키우는 거예요.
 
