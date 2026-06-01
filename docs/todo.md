@@ -2,10 +2,8 @@
 title: TODO
 hide:
   - feedback
-tags:
-  - Network
-  - iptime
-  - Router
+search:
+  exclude: true
 ---
 
 # TODO
