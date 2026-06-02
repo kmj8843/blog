@@ -80,6 +80,11 @@ flowchart LR
 - [tcpdump에서 TCP handshake는 어떻게 보일까요?](./tcp-handshake-in-capture.md){ data-preview } — `SYN`, `SYN-ACK`, `ACK` 세 줄이 실제 캡처에서는 어떻게 찍히는지, 어디서 끊기면 무엇을 의심해야 하는지 같이 읽어봐요.
 - [ss와 netstat에서 TCP 상태는 어떻게 읽어야 할까요?](./ss-and-netstat-state-reading.md){ data-preview } — `LISTEN`, `ESTABLISHED`, `TIME-WAIT`, `CLOSE-WAIT` 같은 상태 이름이 실제 운영 화면에서는 어떤 장면으로 읽히는지 같이 정리해봐요.
 
+### 그다음 TLS 장면으로 넘어가면 좋아요
+
+- [TLS 1.3 핸드셰이크는 실제로 어떤 순서일까요?](./tls13-handshake-anatomy.md){ data-preview } — `ClientHello` 부터 `ServerHello`, `EncryptedExtensions`, `Certificate`, `Finished` 까지, HTTPS 보호 통로가 어떤 순서로 준비되는지 같이 해부해봐요.
+- [TLS 핸드셰이크는 실제로 어떻게 한 단계씩 진행될까요?](./tls-handshake-step-by-step.md){ data-preview } — TCP가 열린 뒤 TLS 장면이 어떤 순서로 지나가고, 각 단계에서 무엇을 먼저 읽어야 하는지 실제 흐름처럼 따라가봐요.
+
 ## 자, 정리해볼까요?
 
 !!! abstract "심화편은 이런 분에게 맞아요"

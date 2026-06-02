@@ -83,6 +83,8 @@ nav = [
       "Network/deep-dive/tcpdump-first-look.md",
       "Network/deep-dive/tcp-handshake-in-capture.md",
       "Network/deep-dive/ss-and-netstat-state-reading.md",
+      "Network/deep-dive/tls13-handshake-anatomy.md",
+      "Network/deep-dive/tls-handshake-step-by-step.md",
     ] },
     # {"iptime 실습" = [
     #   "Network/iptime/index.md",
