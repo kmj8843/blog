@@ -85,6 +85,9 @@ nav = [
       "Network/deep-dive/ss-and-netstat-state-reading.md",
       "Network/deep-dive/tls13-handshake-anatomy.md",
       "Network/deep-dive/tls-handshake-step-by-step.md",
+      "Network/deep-dive/tls-cert-chain-and-trust-errors.md",
+      "Network/deep-dive/sni-and-esni-ech.md",
+      "Network/deep-dive/quic-first-look.md",
     ] },
     # {"iptime 실습" = [
     #   "Network/iptime/index.md",

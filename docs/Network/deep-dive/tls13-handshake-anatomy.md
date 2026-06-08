@@ -327,6 +327,7 @@ TLS 1.3에서는 `ServerHello` 뒤의 많은 핸드셰이크 메시지가 암호
 
 - TLS가 왜 필요한지, 인증서와 보호 통로의 큰 그림부터 다시 잡고 싶다면 — [TLS, SSL, 인증서는 뭐가 다를까요?](../basic/07-tls-ssl-and-certificates.md#browser-verification-flow){ data-preview }
 - 같은 메시지들을 이번에는 **실제 장면처럼 한 단계씩** 따라가고 싶다면 — [TLS 핸드셰이크는 실제로 어떻게 한 단계씩 진행될까요?](./tls-handshake-step-by-step.md#scene-first-look){ data-preview }
+- `Certificate` 뒤에서 실제로 이름 확인, 체인 검증, 신뢰 실패가 어떻게 갈라지는지 장면으로 보고 싶다면 — [TLS 인증서 체인과 신뢰 오류는 어떻게 읽어야 할까요?](./tls-cert-chain-and-trust-errors.md#signals-to-read){ data-preview }
 - 요청 하나를 따라가다가 **TLS 단계에서 멈춘다**는 감각을 다시 붙여보고 싶다면 — [End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md#tls-checkpoint){ data-preview }
 - 평문 TCP 연결 위에 TLS가 올라가기 전, 아래 연결 자체는 어떻게 열리는지 다시 보고 싶다면 — [TCP 3-way handshake는 왜 세 번이나 주고받을까요?](../basic/09-tcp-3-way-handshake.md#handshake-signals){ data-preview }
 - 상태 목록 다음 단계로, 실제 패킷 줄과 캡처 장면을 읽는 감각을 붙이고 싶다면 — [tcpdump 한 줄은 어떻게 읽어야 할까요?](./tcpdump-first-look.md#one-line-anatomy){ data-preview }

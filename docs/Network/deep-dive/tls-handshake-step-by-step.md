@@ -277,5 +277,6 @@ TLS 1.3에서는 `ServerHello` 뒤의 후반부 감각이 확 달라져요.
 
 - TLS와 인증서의 큰 그림부터 다시 잡고 싶다면 — [TLS, SSL, 인증서는 뭐가 다를까요?](../basic/07-tls-ssl-and-certificates.md#browser-verification-flow){ data-preview }
 - 메시지 이름과 역할을 구조 쪽에서 다시 해부하고 싶다면 — [TLS 1.3 핸드셰이크는 실제로 어떤 순서일까요?](./tls13-handshake-anatomy.md#message-summary){ data-preview }
+- 실제 장면에서 인증서 경고가 뜰 때, 이름 문제인지 체인 문제인지 더 구체적으로 가르고 싶다면 — [TLS 인증서 체인과 신뢰 오류는 어떻게 읽어야 할까요?](./tls-cert-chain-and-trust-errors.md#signals-to-read){ data-preview }
 - 아래 연결이 실제로 어떻게 열리는지 캡처 감각으로 다시 보고 싶다면 — [tcpdump에서 TCP handshake는 어떻게 보일까요?](./tcp-handshake-in-capture.md#signals-to-read){ data-preview }
 - 요청 하나를 끝까지 따라가며 TLS 구간이 어디인지 다시 보고 싶다면 — [End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md#tls-checkpoint){ data-preview }
