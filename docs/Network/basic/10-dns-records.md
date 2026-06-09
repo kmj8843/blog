@@ -143,6 +143,8 @@ Address: 2606:4700:10::ac42:93f3
 
 실제 데이터를 뜯어보면 이렇게 구획이 나뉘어 있어요.
 
+여기서 한 발만 더 내려가면, *"좋아요, 근데 이 레코드 줄은 DNS 메시지 안에서 정확히 어디에 들어가고, `QUESTION`, `ANSWER`, `AUTHORITY`, `ADDITIONAL` 은 어떻게 나뉘죠?"* 라는 질문이 자연스럽게 생겨요. 그 구조는 심화편 [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](../deep-dive/dns-message-format.md#three-sections){ data-preview }에서 **메시지 전체 형식 기준으로** 바로 이어서 볼 수 있어요.
+
 <div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
   <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
     <div style="display: grid; gap: 0.7rem;">

@@ -88,6 +88,10 @@ flowchart LR
 - [SNI, ESNI, ECH는 뭐가 다를까요?](./sni-and-esni-ech.md){ data-preview } — 서버가 인증서를 고르기 전에 왜 이름이 먼저 필요했는지, 평문 SNI가 왜 문제였는지, 왜 ESNI가 ECH로 바뀌었는지 같이 해부해봐요.
 - [QUIC은 왜 UDP 위에서 돌아갈까요?](./quic-first-look.md){ data-preview } — QUIC이 왜 굳이 UDP를 바닥으로 골랐는지, TLS는 어디에 들어가는지, HTTP/3 장면은 어떻게 보이는지 같이 읽어봐요.
 
+### 그다음 DNS 메시지 안쪽으로 내려가도 좋아요
+
+- [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](./dns-message-format.md){ data-preview } — `id`, `flags`, `QUESTION`, `ANSWER`, `AUTHORITY`, `ADDITIONAL` 같은 칸이 실제로 어떤 구조로 붙어 있는지, `dig` 화면 감각과 함께 같이 읽어봐요.
+
 ## 자, 정리해볼까요?
 
 !!! abstract "심화편은 이런 분에게 맞아요"
