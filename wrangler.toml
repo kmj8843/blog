@@ -1,0 +1,8 @@
+name = "aha-notes"
+compatibility_date = "2026-06-09"
+pages_build_output_dir = "site"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-comments"
+database_id = "e643c815-29d4-4c8c-89dc-d164469fc2bd"

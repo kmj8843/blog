@@ -1,0 +1,29 @@
+{
+  "name": "aha-notes-comments",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test",
+    "build:site": "zensical build",
+    "dev:pages": "npm run build:site && wrangler pages dev site --compatibility-date=2026-06-09",
+    "d1:migrate:local": "wrangler d1 migrations apply blog-comments --local",
+    "d1:migrate:remote": "wrangler d1 migrations apply blog-comments --remote"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.5",
+    "hono": "^4.12.5",
+    "ky": "^2.0.2",
+    "zod": "^4.4.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.8",
+    "@cloudflare/workers-types": "^4.20260609.0",
+    "@playwright/test": "^1.60.0",
+    "happy-dom": "^20.0.10",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15",
+    "wrangler": "^4.54.0"
+  }
+}

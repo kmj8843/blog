@@ -41,6 +41,11 @@ ENV/
 # Tooling
 # ============================================================================
 
+# Node / Cloudflare local tooling
+node_modules/
+.wrangler/
+.mf/
+
 # mise local config (mise.toml은 커밋, 사용자별 로컬 설정만 무시)
 .mise.local.toml
 
@@ -125,6 +130,7 @@ $RECYCLE.BIN/
 .env
 .env.local
 .env.*.local
+.dev.vars*
 *.pem
 *.key
 secrets.toml

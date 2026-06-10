@@ -1,53 +1,12 @@
 {% if page.meta.comments != false %}
-<!-- <h2 id="__comments">{{ lang.t("meta.comments") }}</h2> -->
-<script
-  src="https://giscus.app/client.js"
-  data-repo="kmj8843/blog"
-  data-repo-id="R_kgDOPVI9fA"
-  data-category="Comments"
-  data-category-id="DIC_kwDOPVI9fM4Ctkjk"
-  data-mapping="title"
-  data-strict="1"
-  data-reactions-enabled="1"
-  data-emit-metadata="1"
-  data-input-position="top"
-  data-theme="preferred_color_scheme"
-  data-lang="ko"
-  data-loading="lazy"
-  crossorigin="anonymous"
-  async
-></script>
-
-<!-- Synchronize Giscus theme with palette -->
-<script>
-  var giscus = document.querySelector("script[src*=giscus]");
-
-  // Set palette on initial load
-  var palette = __md_get("__palette");
-  if (palette && typeof palette.color === "object") {
-    var theme = palette.color.scheme === "slate" ? "transparent_dark" : "light";
-
-    // Instruct Giscus to set theme
-    giscus.setAttribute("data-theme", theme);
-  }
-
-  // Register event handlers after documented loaded
-  document.addEventListener("DOMContentLoaded", function () {
-    var ref = document.querySelector("[data-md-component=palette]");
-    ref.addEventListener("change", function () {
-      var palette = __md_get("__palette");
-      if (palette && typeof palette.color === "object") {
-        var theme =
-          palette.color.scheme === "slate" ? "transparent_dark" : "light";
-
-        // Instruct Giscus to change theme
-        var frame = document.querySelector(".giscus-frame");
-        frame.contentWindow.postMessage(
-          { giscus: { setConfig: { theme } } },
-          "https://giscus.app",
-        );
-      }
-    });
-  });
-</script>
+<section
+  class="aha-comments"
+  data-comments-root
+  data-turnstile-site-key="{{ config.extra.comments.turnstile_site_key }}"
+  aria-labelledby="aha-comments-title"
+>
+  <h2 id="aha-comments-title">댓글</h2>
+  <div data-comments-app></div>
+  <noscript>댓글을 보거나 작성하려면 JavaScript를 켜야 해요.</noscript>
+</section>
 {% endif %}
