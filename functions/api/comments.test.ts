@@ -1,3 +1,4 @@
+import { createSignedAdminReplyUrl } from "./comments/admin-replies"
 import { createCommentsApp } from "./comments/app"
 import { buildDiscordMessage } from "./comments/discord"
 import { createMemoryCommentDatabase } from "./comments/memory-database"
@@ -322,6 +323,7 @@ describe("comments API", () => {
     })
     const app = createCommentsApp({
       createCommentId: () => "reply-1",
+      now: () => "2026-06-10T00:01:00.000Z",
     })
 
     const response = await app.request(
@@ -383,7 +385,9 @@ describe("comments API", () => {
   })
 
   it("rejects admin replies without a valid bearer token", async () => {
-    const app = createCommentsApp()
+    const app = createCommentsApp({
+      now: () => "2026-06-10T00:11:01.000Z",
+    })
 
     const response = await app.request(
       "/api/admin/comments/parent-1/replies",
@@ -418,15 +422,19 @@ describe("comments API", () => {
     })
     const app = createCommentsApp({
       createCommentId: () => "reply-1",
+      now: () => "2026-06-10T00:01:00.000Z",
     })
-
-    const formResponse = await app.request(
-      `/api/admin/comments/parent-1/reply?token=${TEST_ADMIN_TOKEN}`,
-      {},
+    const signedUrl = await createSignedAdminReplyUrl(
+      new Request("https://blog.nvim.me/api/comments"),
+      "parent-1",
       env,
+      () => "2026-06-10T00:00:00.000Z",
     )
+    const signedPath = new URL(signedUrl).pathname + new URL(signedUrl).search
+
+    const formResponse = await app.request(signedPath, {}, env)
     const submitResponse = await app.request(
-      `/api/admin/comments/parent-1/reply?token=${TEST_ADMIN_TOKEN}`,
+      signedPath,
       {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -444,6 +452,22 @@ describe("comments API", () => {
     expect(submitResponse.headers.get("Location")).toBe(
       "https://blog.nvim.me/Network/basic/01-what-is-packet/#comment-reply-1",
     )
+  })
+
+  it("rejects expired admin reply form links", async () => {
+    const env = createEnv()
+    const app = createCommentsApp()
+    const signedUrl = await createSignedAdminReplyUrl(
+      new Request("https://blog.nvim.me/api/comments"),
+      "parent-1",
+      env,
+      () => "2026-06-10T00:00:00.000Z",
+    )
+    const signedPath = new URL(signedUrl).pathname + new URL(signedUrl).search
+
+    const response = await app.request(signedPath, {}, env)
+
+    expect(response.status).toBe(401)
   })
 
   it("keeps manual moderation available through env configuration", async () => {
@@ -628,7 +652,7 @@ describe("comments API", () => {
     })
   })
 
-  it("shows deleted comments as public tombstones through tokenized admin links", async () => {
+  it("shows hidden comments as public tombstones through tokenized admin links", async () => {
     const env = createEnv()
     await env.DB.insertComment({
       id: "approved-1",
@@ -639,6 +663,52 @@ describe("comments API", () => {
       authorName: "독자",
       authorEmailHash: null,
       body: "숨겨주세요",
+      status: "approved",
+      ipHash: null,
+      userAgentHash: null,
+      createdAt: "2026-06-10T00:00:02.000Z",
+      updatedAt: "2026-06-10T00:00:02.000Z",
+      approvedAt: "2026-06-10T00:00:02.000Z",
+    })
+    const app = createCommentsApp()
+
+    const response = await app.request(
+      `/api/admin/comments/approved-1/hide?token=${TEST_ADMIN_TOKEN}`,
+      {},
+      env,
+    )
+
+    expect(response.status).toBe(200)
+    const publicResponse = await app.request(
+      "/api/comments?page_path=/Network/basic/01-what-is-packet/",
+      {},
+      env,
+    )
+    await expect(readJson(publicResponse)).resolves.toStrictEqual({
+      comments: [
+        {
+          id: "approved-1",
+          parentId: null,
+          authorName: "관리자 삭제",
+          body: "[관리자에 의해 삭제된 댓글입니다.]",
+          status: "deleted",
+          createdAt: "2026-06-10T00:00:02.000Z",
+        },
+      ],
+    })
+  })
+
+  it("deletes comments from public output through tokenized admin links", async () => {
+    const env = createEnv()
+    await env.DB.insertComment({
+      id: "approved-1",
+      parentId: null,
+      pagePath: "/Network/basic/01-what-is-packet/",
+      pageUrl: "https://blog.nvim.me/Network/basic/01-what-is-packet/",
+      pageTitle: "패킷이 뭐길래?",
+      authorName: "독자",
+      authorEmailHash: null,
+      body: "완전히 삭제해주세요",
       status: "approved",
       ipHash: null,
       userAgentHash: null,
@@ -660,23 +730,13 @@ describe("comments API", () => {
       {},
       env,
     )
-    await expect(readJson(publicResponse)).resolves.toStrictEqual({
-      comments: [
-        {
-          id: "approved-1",
-          parentId: null,
-          authorName: "삭제된 댓글",
-          body: "삭제된 댓글입니다.",
-          status: "deleted",
-          createdAt: "2026-06-10T00:00:02.000Z",
-        },
-      ],
-    })
+    await expect(readJson(publicResponse)).resolves.toStrictEqual({ comments: [] })
   })
 
   it("builds Discord comment notifications with moderation and reply buttons", () => {
     const message = buildDiscordMessage({
-      adminHideUrl:
+      adminHideUrl: "https://blog.nvim.me/api/admin/comments/comment-1/hide?token=test-admin-token",
+      adminDeleteUrl:
         "https://blog.nvim.me/api/admin/comments/comment-1/delete?token=test-admin-token",
       comment: {
         id: "comment-1",
@@ -713,13 +773,13 @@ describe("comments API", () => {
         type: 2,
         style: 5,
         label: "댓글 숨기기",
-        url: "https://blog.nvim.me/api/admin/comments/comment-1/delete?token=test-admin-token",
+        url: "https://blog.nvim.me/api/admin/comments/comment-1/hide?token=test-admin-token",
       },
       {
         type: 2,
         style: 5,
-        label: "확인",
-        url: "https://blog.nvim.me/Network/basic/01-what-is-packet/#comment-comment-1",
+        label: "댓글 삭제",
+        url: "https://blog.nvim.me/api/admin/comments/comment-1/delete?token=test-admin-token",
       },
       {
         type: 2,

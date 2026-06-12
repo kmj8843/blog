@@ -104,8 +104,8 @@ export function buildDiscordMessage(input: DiscordNotificationInput): DiscordMes
           {
             type: 2,
             style: 5,
-            label: "확인",
-            url: commentUrl,
+            label: "댓글 삭제",
+            url: input.adminDeleteUrl,
           },
           {
             type: 2,

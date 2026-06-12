@@ -1,4 +1,6 @@
+import { REPLY_FORM_TEMPLATE } from "./reply-form-template"
 import { AdminReplySchema } from "./schemas"
+import type { AppBindings } from "./types"
 
 export type AdminReplyParseResult =
   | { readonly ok: true; readonly value: ReturnType<typeof AdminReplySchema.parse> }
@@ -22,18 +24,95 @@ export async function parseAdminReplyForm(request: Request): Promise<AdminReplyP
   return parsed.success ? { ok: true, value: parsed.data } : { ok: false, error: "invalid_reply" }
 }
 
-export function adminReplyUrl(request: Request, commentId: string, token: string): string {
+const REPLY_URL_TTL_MS = 10 * 60 * 1000
+
+export async function createSignedAdminReplyUrl(
+  request: Request,
+  commentId: string,
+  env: AppBindings,
+  now: () => string,
+): Promise<string> {
   const url = new URL(request.url)
   url.pathname = `/api/admin/comments/${encodeURIComponent(commentId)}/reply`
   url.search = ""
-  url.searchParams.set("token", token)
+  const expires = String(Date.parse(now()) + REPLY_URL_TTL_MS)
+  const nonce = crypto.randomUUID()
+  url.searchParams.set("expires", expires)
+  url.searchParams.set("nonce", nonce)
+  url.searchParams.set("signature", await signReplyUrl(commentId, expires, nonce, env))
   return url.toString()
 }
 
-export function replyFormHtml(commentId: string, pageTitle: string): string {
-  return `<!doctype html><html lang="ko"><meta name="viewport" content="width=device-width,initial-scale=1"><title>대댓글</title><body><main><h1>대댓글</h1><p>${escapeHtml(pageTitle)}</p><form method="post"><input name="authorName" value="Zensical"><textarea name="body" maxlength="2000" required autofocus></textarea><button type="submit">대댓글 등록</button></form><p>대상 댓글: ${escapeHtml(commentId)}</p></main></body></html>`
+export async function verifyAdminReplyRequest(
+  request: Request,
+  commentId: string,
+  env: AppBindings,
+  now: () => string,
+): Promise<boolean> {
+  const url = new URL(request.url)
+  const expires = url.searchParams.get("expires")
+  const nonce = url.searchParams.get("nonce")
+  const signature = url.searchParams.get("signature")
+  if (expires === null || nonce === null || signature === null) {
+    return false
+  }
+  if (!/^\d+$/u.test(expires) || Number(expires) < Date.parse(now())) {
+    return false
+  }
+  const expected = await signReplyUrl(commentId, expires, nonce, env)
+  return timingSafeEqual(signature, expected)
+}
+
+export function renderReplyFormHtml(commentId: string, pageTitle: string): string {
+  return REPLY_FORM_TEMPLATE.replaceAll("{{PAGE_TITLE}}", escapeHtml(pageTitle)).replaceAll(
+    "{{COMMENT_ID}}",
+    escapeHtml(commentId),
+  )
+}
+
+async function signReplyUrl(
+  commentId: string,
+  expires: string,
+  nonce: string,
+  env: AppBindings,
+): Promise<string> {
+  const key = await crypto.subtle.importKey(
+    "raw",
+    utf8ArrayBuffer(`${env.ADMIN_TOKEN}:${env.COMMENT_HASH_SALT}`),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  )
+  const signature = await crypto.subtle.sign(
+    "HMAC",
+    key,
+    utf8ArrayBuffer(`${commentId}:${expires}:${nonce}`),
+  )
+  return bytesToHex(new Uint8Array(signature))
 }
 
 function escapeHtml(value: string): string {
   return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+}
+
+function timingSafeEqual(left: string, right: string): boolean {
+  if (left.length !== right.length) {
+    return false
+  }
+  let diff = 0
+  for (let index = 0; index < left.length; index += 1) {
+    diff |= left.charCodeAt(index) ^ right.charCodeAt(index)
+  }
+  return diff === 0
+}
+
+function utf8ArrayBuffer(value: string): ArrayBuffer {
+  const encoded = new TextEncoder().encode(value)
+  const buffer = new ArrayBuffer(encoded.byteLength)
+  new Uint8Array(buffer).set(encoded)
+  return buffer
+}
+
+function bytesToHex(bytes: Uint8Array): string {
+  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("")
 }

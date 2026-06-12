@@ -38,6 +38,7 @@ export type RateLimitRecord = {
 
 export interface CommentDatabase {
   listApprovedComments(pagePath: string, limit: number): Promise<readonly PublicComment[]>
+  listAllAdminComments(limit: number): Promise<readonly StoredComment[]>
   listAdminComments(status: CommentStatus, limit: number): Promise<readonly StoredComment[]>
   findComment(id: string): Promise<StoredComment | null>
   insertComment(comment: StoredComment): Promise<void>
@@ -81,6 +82,7 @@ export type AppOptions = {
 export type DiscordNotificationInput = {
   readonly comment: StoredComment
   readonly adminHideUrl: string
+  readonly adminDeleteUrl: string
 }
 
 export type DiscordNotifier = (

@@ -1,5 +1,10 @@
 import { Hono } from "hono"
-import { parseAdminReplyBody, parseAdminReplyForm, replyFormHtml } from "./admin-replies"
+import {
+  parseAdminReplyBody,
+  parseAdminReplyForm,
+  renderReplyFormHtml,
+  verifyAdminReplyRequest,
+} from "./admin-replies"
 import { hashPrivateValue } from "./crypto"
 import { createCommentDatabase } from "./database"
 import { notifyDiscordComment } from "./discord"
@@ -69,7 +74,8 @@ export function createCommentsApp(options: AppOptions = {}): Hono<HonoEnv> {
     await discordNotifier(
       {
         comment,
-        adminHideUrl: adminActionUrl(c.req.raw, comment.id, "delete", c.env.ADMIN_TOKEN),
+        adminHideUrl: adminActionUrl(c.req.raw, comment.id, "hide", c.env.ADMIN_TOKEN),
+        adminDeleteUrl: adminActionUrl(c.req.raw, comment.id, "delete", c.env.ADMIN_TOKEN),
       },
       c.env,
     )
@@ -94,14 +100,15 @@ export function createCommentsApp(options: AppOptions = {}): Hono<HonoEnv> {
   })
 
   app.get("/admin/comments/:id/reply", async (c) => {
-    if (c.req.query("token") !== c.env.ADMIN_TOKEN) {
+    const verified = await verifyAdminReplyRequest(c.req.raw, c.req.param("id"), c.env, now)
+    if (!verified) {
       return c.text("unauthorized", 401)
     }
     const parent = await database(c.env).findComment(c.req.param("id"))
     if (parent === null) {
       return c.text("not found", 404)
     }
-    return c.html(replyFormHtml(parent.id, parent.pageTitle))
+    return c.html(renderReplyFormHtml(parent.id, parent.pageTitle))
   })
 
   app.post("/admin/comments/:id/replies", async (c) => {
@@ -122,7 +129,8 @@ export function createCommentsApp(options: AppOptions = {}): Hono<HonoEnv> {
   })
 
   app.post("/admin/comments/:id/reply", async (c) => {
-    if (c.req.query("token") !== c.env.ADMIN_TOKEN) {
+    const verified = await verifyAdminReplyRequest(c.req.raw, c.req.param("id"), c.env, now)
+    if (!verified) {
       return c.text("unauthorized", 401)
     }
     const parent = await database(c.env).findComment(c.req.param("id"))
@@ -211,7 +219,7 @@ function adminActionUrl(
   return url.toString()
 }
 
-type CommentStatusAction = "approve" | "reject" | "delete"
+type CommentStatusAction = "approve" | "reject" | "hide" | "delete"
 
 function initialCommentStatus(env: AppBindings): "approved" | "pending" {
   return env.COMMENT_MODERATION_MODE === "manual" ? "pending" : "approved"
@@ -246,8 +254,10 @@ function actionToStatus(action: string): CommentStatus | null {
       return "approved"
     case "reject":
       return "rejected"
-    case "delete":
+    case "hide":
       return "deleted"
+    case "delete":
+      return "rejected"
     default:
       return null
   }

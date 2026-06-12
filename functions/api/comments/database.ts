@@ -57,6 +57,14 @@ class D1CommentDatabase implements CommentDatabase {
     return result.results.map(rowToPublicComment)
   }
 
+  async listAllAdminComments(limit: number): Promise<readonly StoredComment[]> {
+    const result = await this.db
+      .prepare("SELECT * FROM comments ORDER BY created_at DESC LIMIT ?")
+      .bind(limit)
+      .all<CommentRow>()
+    return result.results.map(rowToStoredComment)
+  }
+
   async listAdminComments(status: CommentStatus, limit: number): Promise<readonly StoredComment[]> {
     const result = await this.db
       .prepare("SELECT * FROM comments WHERE status = ? ORDER BY created_at ASC LIMIT ?")
@@ -147,8 +155,8 @@ function rowToPublicComment(
     return {
       id: row.id,
       parentId: row.parent_id,
-      authorName: "삭제된 댓글",
-      body: "삭제된 댓글입니다.",
+      authorName: "관리자 삭제",
+      body: "[관리자에 의해 삭제된 댓글입니다.]",
       status: "deleted",
       createdAt: row.created_at,
     }

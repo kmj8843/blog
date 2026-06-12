@@ -26,6 +26,12 @@ class MemoryCommentDatabase implements CommentDatabase {
       .map(commentToPublicComment)
   }
 
+  async listAllAdminComments(limit: number): Promise<readonly StoredComment[]> {
+    return Array.from(this.comments.values())
+      .sort((left, right) => right.createdAt.localeCompare(left.createdAt))
+      .slice(0, limit)
+  }
+
   async listAdminComments(status: CommentStatus, limit: number): Promise<readonly StoredComment[]> {
     return Array.from(this.comments.values())
       .filter((comment) => comment.status === status)
@@ -73,8 +79,8 @@ function commentToPublicComment(comment: StoredComment): PublicComment {
     return {
       id: comment.id,
       parentId: comment.parentId,
-      authorName: "삭제된 댓글",
-      body: "삭제된 댓글입니다.",
+      authorName: "관리자 삭제",
+      body: "[관리자에 의해 삭제된 댓글입니다.]",
       status: "deleted",
       createdAt: comment.createdAt,
     }

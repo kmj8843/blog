@@ -1,21 +1,23 @@
 import { z } from "zod"
+import { handleCommentCommand } from "./comment-command"
+import { ephemeral, json } from "./discord-responses"
 import { createAdminReply } from "./factory"
+import { verifyDiscordSignature, verifyRequest } from "./interactions-crypto"
 import { AdminReplySchema } from "./schemas"
 import type { AppBindings, CommentDatabase } from "./types"
 
 const INTERACTION_TYPES = {
   ping: 1,
+  applicationCommand: 2,
   messageComponent: 3,
   modalSubmit: 5,
 } as const
 
 const RESPONSE_TYPES = {
   pong: 1,
-  channelMessage: 4,
   modal: 9,
 } as const
 
-const EPHEMERAL_FLAG = 64
 const REPLY_BUTTON_PREFIX = "comment_reply:"
 const REPLY_MODAL_PREFIX = "comment_reply_modal:"
 
@@ -25,6 +27,8 @@ const InteractionSchema = z.object({
     .object({
       custom_id: z.string().optional(),
       components: z.unknown().optional(),
+      name: z.string().optional(),
+      options: z.unknown().optional(),
     })
     .optional(),
   member: z
@@ -79,7 +83,11 @@ export async function handleDiscordInteraction(
     return json({ type: RESPONSE_TYPES.pong })
   }
   if (!isAdminUser(interaction, env)) {
-    return ephemeral("이 버튼은 관리자만 사용할 수 있어요.")
+    return ephemeral("이 기능은 관리자만 사용할 수 있어요.")
+  }
+  if (interaction.type === INTERACTION_TYPES.applicationCommand) {
+    const response = await handleCommentCommand(interaction.data, db, ephemeral)
+    return response ?? ephemeral("지원하지 않는 Discord slash command예요.")
   }
   if (interaction.type === INTERACTION_TYPES.messageComponent) {
     return handleReplyButton(interaction.data?.custom_id)
@@ -107,45 +115,7 @@ function parseJson(body: string): unknown | null {
   }
 }
 
-async function verifyRequest(request: Request, env: AppBindings, body: string): Promise<boolean> {
-  if (env.DISCORD_PUBLIC_KEY === undefined) {
-    return false
-  }
-  const signature = request.headers.get("X-Signature-Ed25519")
-  const timestamp = request.headers.get("X-Signature-Timestamp")
-  if (signature === null || timestamp === null) {
-    return false
-  }
-  return verifyDiscordSignature(env.DISCORD_PUBLIC_KEY, signature, timestamp, body)
-}
-
-export async function verifyDiscordSignature(
-  publicKeyHex: string,
-  signatureHex: string,
-  timestamp: string,
-  body: string,
-): Promise<boolean> {
-  try {
-    const publicKey = await crypto.subtle.importKey(
-      "raw",
-      hexToArrayBuffer(publicKeyHex),
-      { name: "Ed25519" },
-      false,
-      ["verify"],
-    )
-    return crypto.subtle.verify(
-      { name: "Ed25519" },
-      publicKey,
-      hexToArrayBuffer(signatureHex),
-      utf8ArrayBuffer(`${timestamp}${body}`),
-    )
-  } catch (error) {
-    if (error instanceof Error) {
-      return false
-    }
-    throw error
-  }
-}
+export { verifyDiscordSignature }
 
 function handleReplyButton(customId: string | undefined): Response {
   const commentId = parseCustomId(customId, REPLY_BUTTON_PREFIX)
@@ -230,38 +200,4 @@ function parseCustomId(customId: string | undefined, prefix: string): string | n
   }
   const id = customId.slice(prefix.length)
   return id.length > 0 ? id : null
-}
-
-function ephemeral(content: string): Response {
-  return json({
-    type: RESPONSE_TYPES.channelMessage,
-    data: {
-      content,
-      flags: EPHEMERAL_FLAG,
-    },
-  })
-}
-
-function json(body: unknown, status = 200): Response {
-  return Response.json(body, { status })
-}
-
-function hexToArrayBuffer(value: string): ArrayBuffer {
-  if (value.length % 2 !== 0 || /[^0-9a-f]/iu.test(value)) {
-    throw new Error("invalid hex")
-  }
-  const buffer = new ArrayBuffer(value.length / 2)
-  const bytes = new Uint8Array(buffer)
-  for (let index = 0; index < bytes.length; index += 1) {
-    const offset = index * 2
-    bytes[index] = Number.parseInt(value.slice(offset, offset + 2), 16)
-  }
-  return buffer
-}
-
-function utf8ArrayBuffer(value: string): ArrayBuffer {
-  const encoded = new TextEncoder().encode(value)
-  const buffer = new ArrayBuffer(encoded.byteLength)
-  new Uint8Array(buffer).set(encoded)
-  return buffer
 }
