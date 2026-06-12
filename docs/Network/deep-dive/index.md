@@ -91,6 +91,7 @@ flowchart LR
 ### 그다음 DNS 메시지 안쪽으로 내려가도 좋아요
 
 - [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](./dns-message-format.md){ data-preview } — `id`, `flags`, `QUESTION`, `ANSWER`, `AUTHORITY`, `ADDITIONAL` 같은 칸이 실제로 어떤 구조로 붙어 있는지, `dig` 화면 감각과 함께 같이 읽어봐요.
+- [dig 출력은 어디부터 읽어야 할까요?](./dns-lookup-with-dig.md){ data-preview } — `dig` 기본 출력에서 `HEADER`, `QUESTION`, `ANSWER`, `AUTHORITY`, `ADDITIONAL`, `SERVER` 줄을 어떤 순서로 읽어야 하는지 실제 장면처럼 따라가봐요.
 
 ## 자, 정리해볼까요?
 
