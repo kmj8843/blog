@@ -3,6 +3,12 @@ const RESPONSE_TYPES = {
 } as const
 
 const EPHEMERAL_FLAG = 64
+const COMPONENTS_V2_FLAG = 1 << 15
+
+export type DiscordTextDisplay = {
+  readonly type: 10
+  readonly content: string
+}
 
 export type DiscordLinkButton = {
   readonly type: 2
@@ -25,12 +31,24 @@ export type DiscordActionRow = {
   readonly components: readonly DiscordButton[]
 }
 
+export type DiscordMessageComponent = DiscordTextDisplay | DiscordActionRow
+
 export function ephemeral(content: string, components: readonly DiscordActionRow[] = []): Response {
   return json({
     type: RESPONSE_TYPES.channelMessage,
     data: {
       content,
       flags: EPHEMERAL_FLAG,
+      components,
+    },
+  })
+}
+
+export function ephemeralComponents(components: readonly DiscordMessageComponent[]): Response {
+  return json({
+    type: RESPONSE_TYPES.channelMessage,
+    data: {
+      flags: EPHEMERAL_FLAG | COMPONENTS_V2_FLAG,
       components,
     },
   })

@@ -1,11 +1,10 @@
 import { z } from "zod"
 import { replyButtonCustomId } from "./discord"
-import type { DiscordActionRow } from "./discord-responses"
+import type { DiscordActionRow, DiscordMessageComponent } from "./discord-responses"
 import { LimitSchema } from "./schemas"
 import type { AppBindings, CommentDatabase, CommentStatus, StoredComment } from "./types"
 
-const DISCORD_MESSAGE_LIMIT = 2000
-const DISCORD_COMPONENT_ROW_LIMIT = 5
+const DISCORD_INTERACTIVE_COMMENT_LIMIT = 5
 const DEFAULT_COMMAND_LIMIT = 10
 const MAX_COMMAND_LIMIT = 20
 
@@ -24,6 +23,7 @@ type CommandOption = z.infer<typeof CommandOptionSchema>
 type CommentCommandOptions = {
   readonly status: CommentStatus | null
   readonly limit: number
+  readonly id: string | null
 }
 
 export async function handleCommentCommand(
@@ -32,23 +32,34 @@ export async function handleCommentCommand(
   request: Request,
   env: AppBindings,
   respond: (content: string, components?: readonly DiscordActionRow[]) => Response,
+  respondComponents: (components: readonly DiscordMessageComponent[]) => Response,
 ): Promise<Response | null> {
   const parsed = CommentCommandDataSchema.safeParse(data)
   if (!parsed.success || parsed.data.name !== "comments") {
     return null
   }
   const options = parseCommentCommandOptions(parsed.data.options ?? [])
+  if (options.id !== null) {
+    const comment = await db.findComment(options.id)
+    if (comment === null) {
+      return respond(`댓글 ${options.id}을 찾지 못했어요.`, [])
+    }
+    return respondComponents(buildCommentComponents("댓글 상세", [comment], request, env))
+  }
   const comments =
     options.status === null
       ? await db.listAllAdminComments(options.limit)
       : await db.listAdminComments(options.status, options.limit)
-  return respond(formatComments(options, comments), buildCommentActionRows(request, env, comments))
+  return respondComponents(
+    buildCommentComponents(commentListTitle(options, comments), comments, request, env),
+  )
 }
 
 function parseCommentCommandOptions(options: readonly CommandOption[]): CommentCommandOptions {
   const status = parseStatusOption(options.find((option) => option.name === "status"))
   const limit = parseLimitOption(options.find((option) => option.name === "limit"))
-  return { status, limit }
+  const id = parseIdOption(options.find((option) => option.name === "id"))
+  return { status, limit, id }
 }
 
 function parseStatusOption(option: CommandOption | undefined): CommentStatus | null {
@@ -68,19 +79,47 @@ function parseLimitOption(option: CommandOption | undefined): number {
   return Math.min(parsed.data, MAX_COMMAND_LIMIT)
 }
 
-function formatComments(
+function parseIdOption(option: CommandOption | undefined): string | null {
+  return typeof option?.value === "string" && option.value.trim().length > 0
+    ? option.value.trim()
+    : null
+}
+
+function commentListTitle(
   options: CommentCommandOptions,
   comments: readonly StoredComment[],
 ): string {
-  const title =
-    options.status === null
-      ? `최근 댓글 ${comments.length}개`
-      : `최근 ${statusLabel(options.status)} 댓글 ${comments.length}개`
+  return options.status === null
+    ? `최근 댓글 ${comments.length}개`
+    : `최근 ${statusLabel(options.status)} 댓글 ${comments.length}개`
+}
+
+function buildCommentComponents(
+  title: string,
+  comments: readonly StoredComment[],
+  request: Request,
+  env: AppBindings,
+): readonly DiscordMessageComponent[] {
   if (comments.length === 0) {
-    return `${title}\n조회할 댓글이 없어요.`
+    return [{ type: 10, content: `${title}\n조회할 댓글이 없어요.` }]
   }
-  const lines = comments.map(formatComment)
-  return truncateForDiscord([title, ...lines].join("\n\n"))
+  const visibleComments = comments.slice(0, DISCORD_INTERACTIVE_COMMENT_LIMIT)
+  const components: DiscordMessageComponent[] = [{ type: 10, content: title }]
+  for (const comment of visibleComments) {
+    components.push({ type: 10, content: formatComment(comment) })
+    components.push(buildCommentActionRow(request, env, comment))
+  }
+  const overflow =
+    comments.length > visibleComments.length
+      ? [
+          {
+            type: 10,
+            content: `${comments.length - visibleComments.length}개 댓글은 Discord 버튼 배치 제한 때문에 생략했어요. 더 보려면 limit을 줄이거나 id로 조회해주세요.`,
+          } satisfies DiscordMessageComponent,
+        ]
+      : []
+  components.push(...overflow)
+  return components
 }
 
 function formatComment(comment: StoredComment): string {
@@ -97,12 +136,12 @@ function formatComment(comment: StoredComment): string {
   ].join("\n")
 }
 
-function buildCommentActionRows(
+function buildCommentActionRow(
   request: Request,
   env: AppBindings,
-  comments: readonly StoredComment[],
-): readonly DiscordActionRow[] {
-  return comments.slice(0, DISCORD_COMPONENT_ROW_LIMIT).map((comment) => ({
+  comment: StoredComment,
+): DiscordActionRow {
+  return {
     type: 1,
     components: [
       {
@@ -130,7 +169,7 @@ function buildCommentActionRows(
         custom_id: replyButtonCustomId(comment.id),
       },
     ],
-  }))
+  }
 }
 
 function commentUrlFor(comment: StoredComment): string {
@@ -168,11 +207,4 @@ function truncateLine(value: string, limit: number): string {
     return value
   }
   return `${value.slice(0, limit - 3)}...`
-}
-
-function truncateForDiscord(value: string): string {
-  if (value.length <= DISCORD_MESSAGE_LIMIT) {
-    return value
-  }
-  return `${value.slice(0, DISCORD_MESSAGE_LIMIT - 30)}\n...더 줄여서 다시 조회해주세요.`
 }

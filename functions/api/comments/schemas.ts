@@ -25,7 +25,7 @@ export const CreateCommentSchema = z.strictObject({
 export type CreateCommentInput = z.infer<typeof CreateCommentSchema>
 
 export const AdminReplySchema = z.object({
-  authorName: z.string().trim().min(1).max(40).default("Zensical"),
+  authorName: z.string().trim().min(1).max(40).default("관리자"),
   body: z.string().trim().min(1).max(2000),
 })
 

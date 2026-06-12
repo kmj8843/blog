@@ -353,6 +353,55 @@ describe("comments API", () => {
     })
   })
 
+  it("uses 관리자 as the default admin reply author", async () => {
+    const env = createEnv()
+    await env.DB.insertComment({
+      id: "parent-1",
+      parentId: null,
+      pagePath: "/Network/basic/01-what-is-packet/",
+      pageUrl: "https://blog.nvim.me/Network/basic/01-what-is-packet/",
+      pageTitle: "패킷이 뭐길래?",
+      authorName: "홍길동",
+      authorEmailHash: null,
+      body: "부모 댓글",
+      status: "approved",
+      ipHash: null,
+      userAgentHash: null,
+      createdAt: "2026-06-10T00:00:00.000Z",
+      updatedAt: "2026-06-10T00:00:00.000Z",
+      approvedAt: "2026-06-10T00:00:00.000Z",
+    })
+    const app = createCommentsApp({
+      createCommentId: () => "reply-1",
+      now: () => "2026-06-10T00:01:00.000Z",
+    })
+
+    const response = await app.request(
+      "/api/admin/comments/parent-1/replies",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${TEST_ADMIN_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          body: "대댓글입니다",
+        }),
+      },
+      env,
+    )
+
+    expect(response.status).toBe(201)
+    const publicResponse = await app.request(
+      "/api/comments?page_path=/Network/basic/01-what-is-packet/",
+      {},
+      env,
+    )
+    await expect(readJson(publicResponse)).resolves.toMatchObject({
+      comments: [{ id: "parent-1" }, { id: "reply-1", authorName: "관리자" }],
+    })
+  })
+
   it("rejects public reply attempts on the public comment API", async () => {
     const env = createEnv()
     const app = createCommentsApp({
@@ -433,6 +482,7 @@ describe("comments API", () => {
     const signedPath = new URL(signedUrl).pathname + new URL(signedUrl).search
 
     const formResponse = await app.request(signedPath, {}, env)
+    const formHtml = await formResponse.text()
     const submitResponse = await app.request(
       signedPath,
       {
@@ -447,7 +497,8 @@ describe("comments API", () => {
     )
 
     expect(formResponse.status).toBe(200)
-    expect(await formResponse.text()).toContain("대댓글 등록")
+    expect(formHtml).toContain("대댓글 등록")
+    expect(formHtml).toContain('value="관리자"')
     expect(submitResponse.status).toBe(303)
     expect(submitResponse.headers.get("Location")).toBe(
       "https://blog.nvim.me/Network/basic/01-what-is-packet/#comment-reply-1",
@@ -921,7 +972,7 @@ describe("comments API", () => {
       env,
     )
     await expect(readJson(publicResponse)).resolves.toMatchObject({
-      comments: [{ id: "parent-1" }, { id: "reply-1", parentId: "parent-1" }],
+      comments: [{ id: "parent-1" }, { id: "reply-1", parentId: "parent-1", authorName: "관리자" }],
     })
   })
 })

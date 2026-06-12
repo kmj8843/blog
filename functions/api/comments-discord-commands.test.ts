@@ -138,8 +138,59 @@ describe("Discord comment slash commands", () => {
     await expect(readJson(response)).resolves.toMatchObject({
       type: 4,
       data: {
-        flags: 64,
-        content: expect.stringContaining("pending-1"),
+        flags: 32832,
+        components: [
+          {
+            type: 10,
+            content: "최근 댓글 2개",
+          },
+          {
+            type: 10,
+            content: expect.stringContaining("pending-1"),
+          },
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                style: 5,
+                label: "댓글 보기",
+                url: "https://blog.nvim.me/Network/basic/01-what-is-packet/#comment-pending-1",
+              },
+              {
+                type: 2,
+                style: 5,
+                label: "댓글 숨기기",
+                url: expect.stringContaining("/api/admin/comments/pending-1/hide"),
+              },
+              {
+                type: 2,
+                style: 5,
+                label: "댓글 삭제",
+                url: expect.stringContaining("/api/admin/comments/pending-1/delete"),
+              },
+              {
+                type: 2,
+                style: 1,
+                label: "대댓글",
+                custom_id: "comment_reply:pending-1",
+              },
+            ],
+          },
+          {
+            type: 10,
+            content: expect.stringContaining("approved-1"),
+          },
+          {
+            type: 1,
+            components: expect.arrayContaining([
+              expect.objectContaining({
+                label: "댓글 보기",
+                url: "https://blog.nvim.me/Network/basic/01-what-is-packet/#comment-approved-1",
+              }),
+            ]),
+          },
+        ],
       },
     })
   })
@@ -183,10 +234,202 @@ describe("Discord comment slash commands", () => {
     expect(body).toMatchObject({
       type: 4,
       data: {
-        flags: 64,
-        content: expect.stringContaining("approved-1"),
+        flags: 32832,
+        components: [
+          {
+            type: 10,
+            content: "최근 승인 댓글 1개",
+          },
+          {
+            type: 10,
+            content: expect.stringContaining("approved-1"),
+          },
+          {
+            type: 1,
+            components: expect.arrayContaining([
+              expect.objectContaining({
+                label: "댓글 보기",
+                url: "https://blog.nvim.me/Network/basic/01-what-is-packet/#comment-approved-1",
+              }),
+              expect.objectContaining({
+                label: "댓글 숨기기",
+                url: expect.stringContaining("/api/admin/comments/approved-1/hide"),
+              }),
+              expect.objectContaining({
+                label: "댓글 삭제",
+                url: expect.stringContaining("/api/admin/comments/approved-1/delete"),
+              }),
+              expect.objectContaining({
+                label: "대댓글",
+                custom_id: "comment_reply:approved-1",
+              }),
+            ]),
+          },
+        ],
       },
     })
     expect(JSON.stringify(body)).not.toContain("pending-1")
+    expect(JSON.stringify(body)).toContain(
+      "https://blog.nvim.me/Network/basic/01-what-is-packet/#comment-approved-1",
+    )
+  })
+
+  it("shows one comment by id with action buttons when the comments command includes an id option", async () => {
+    const keys = await createDiscordSigningKeys()
+    const env = createEnv({ DISCORD_PUBLIC_KEY: keys.publicKeyHex })
+    await env.DB.insertComment(
+      storedComment({
+        id: "approved-1",
+        status: "approved",
+        body: "승인된 댓글입니다.",
+        createdAt: "2026-06-10T00:00:01.000Z",
+      }),
+    )
+    await env.DB.insertComment(
+      storedComment({
+        id: "pending-1",
+        status: "pending",
+        body: "검토 중인 댓글입니다.",
+        createdAt: "2026-06-10T00:00:02.000Z",
+      }),
+    )
+    const request = await signedDiscordRequest(
+      {
+        type: 2,
+        member: { user: { id: "admin-user-id" } },
+        data: {
+          name: "comments",
+          options: [{ name: "id", value: "approved-1" }],
+        },
+      },
+      keys,
+    )
+    const app = createCommentsApp()
+
+    const response = await app.request(request.path, request.init, env)
+    const body = await readJson(response)
+
+    expect(response.status).toBe(200)
+    expect(body).toMatchObject({
+      type: 4,
+      data: {
+        flags: 32832,
+        components: [
+          {
+            type: 10,
+            content: "댓글 상세",
+          },
+          {
+            type: 10,
+            content: expect.stringContaining("approved-1"),
+          },
+          {
+            type: 1,
+            components: expect.arrayContaining([
+              expect.objectContaining({
+                label: "댓글 보기",
+                url: "https://blog.nvim.me/Network/basic/01-what-is-packet/#comment-approved-1",
+              }),
+              expect.objectContaining({
+                label: "댓글 숨기기",
+                url: expect.stringContaining("/api/admin/comments/approved-1/hide"),
+              }),
+              expect.objectContaining({
+                label: "댓글 삭제",
+                url: expect.stringContaining("/api/admin/comments/approved-1/delete"),
+              }),
+              expect.objectContaining({
+                label: "대댓글",
+                custom_id: "comment_reply:approved-1",
+              }),
+            ]),
+          },
+        ],
+      },
+    })
+    expect(JSON.stringify(body)).not.toContain("pending-1")
+  })
+
+  it("returns an empty result when the comments command id option does not match", async () => {
+    const keys = await createDiscordSigningKeys()
+    const env = createEnv({ DISCORD_PUBLIC_KEY: keys.publicKeyHex })
+    await env.DB.insertComment(
+      storedComment({
+        id: "approved-1",
+        status: "approved",
+        body: "승인된 댓글입니다.",
+        createdAt: "2026-06-10T00:00:01.000Z",
+      }),
+    )
+    const request = await signedDiscordRequest(
+      {
+        type: 2,
+        member: { user: { id: "admin-user-id" } },
+        data: {
+          name: "comments",
+          options: [{ name: "id", value: "missing-1" }],
+        },
+      },
+      keys,
+    )
+    const app = createCommentsApp()
+
+    const response = await app.request(request.path, request.init, env)
+    const body = await readJson(response)
+
+    expect(response.status).toBe(200)
+    expect(body).toMatchObject({
+      type: 4,
+      data: {
+        flags: 64,
+        content: "댓글 missing-1을 찾지 못했어요.",
+        components: [],
+      },
+    })
+    expect(JSON.stringify(body)).not.toContain("approved-1")
+  })
+
+  it("prefers the id option over status and limit options", async () => {
+    const keys = await createDiscordSigningKeys()
+    const env = createEnv({ DISCORD_PUBLIC_KEY: keys.publicKeyHex })
+    await env.DB.insertComment(
+      storedComment({
+        id: "approved-1",
+        status: "approved",
+        body: "승인된 댓글입니다.",
+        createdAt: "2026-06-10T00:00:01.000Z",
+      }),
+    )
+    await env.DB.insertComment(
+      storedComment({
+        id: "pending-1",
+        status: "pending",
+        body: "검토 중인 댓글입니다.",
+        createdAt: "2026-06-10T00:00:02.000Z",
+      }),
+    )
+    const request = await signedDiscordRequest(
+      {
+        type: 2,
+        member: { user: { id: "admin-user-id" } },
+        data: {
+          name: "comments",
+          options: [
+            { name: "id", value: "pending-1" },
+            { name: "status", value: "approved" },
+            { name: "limit", value: 1 },
+          ],
+        },
+      },
+      keys,
+    )
+    const app = createCommentsApp()
+
+    const response = await app.request(request.path, request.init, env)
+    const body = await readJson(response)
+
+    expect(response.status).toBe(200)
+    expect(JSON.stringify(body)).toContain("pending-1")
+    expect(JSON.stringify(body)).not.toContain("approved-1")
   })
 })

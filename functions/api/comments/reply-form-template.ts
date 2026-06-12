@@ -21,7 +21,7 @@ export const REPLY_FORM_TEMPLATE = `<!doctype html>
       <h1>대댓글</h1>
       <p>{{PAGE_TITLE}}</p>
       <form method="post">
-        <input name="authorName" value="Zensical" aria-label="작성자">
+        <input name="authorName" value="관리자" aria-label="작성자">
         <textarea name="body" maxlength="2000" required autofocus aria-label="대댓글"></textarea>
         <button type="submit">대댓글 등록</button>
       </form>
