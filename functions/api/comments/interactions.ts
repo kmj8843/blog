@@ -86,7 +86,7 @@ export async function handleDiscordInteraction(
     return ephemeral("이 기능은 관리자만 사용할 수 있어요.")
   }
   if (interaction.type === INTERACTION_TYPES.applicationCommand) {
-    const response = await handleCommentCommand(interaction.data, db, ephemeral)
+    const response = await handleCommentCommand(interaction.data, db, request, env, ephemeral)
     return response ?? ephemeral("지원하지 않는 Discord slash command예요.")
   }
   if (interaction.type === INTERACTION_TYPES.messageComponent) {

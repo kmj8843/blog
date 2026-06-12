@@ -1,8 +1,11 @@
 import { z } from "zod"
+import { replyButtonCustomId } from "./discord"
+import type { DiscordActionRow } from "./discord-responses"
 import { LimitSchema } from "./schemas"
-import type { CommentDatabase, CommentStatus, StoredComment } from "./types"
+import type { AppBindings, CommentDatabase, CommentStatus, StoredComment } from "./types"
 
 const DISCORD_MESSAGE_LIMIT = 2000
+const DISCORD_COMPONENT_ROW_LIMIT = 5
 const DEFAULT_COMMAND_LIMIT = 10
 const MAX_COMMAND_LIMIT = 20
 
@@ -26,7 +29,9 @@ type CommentCommandOptions = {
 export async function handleCommentCommand(
   data: unknown,
   db: CommentDatabase,
-  respond: (content: string) => Response,
+  request: Request,
+  env: AppBindings,
+  respond: (content: string, components?: readonly DiscordActionRow[]) => Response,
 ): Promise<Response | null> {
   const parsed = CommentCommandDataSchema.safeParse(data)
   if (!parsed.success || parsed.data.name !== "comments") {
@@ -37,7 +42,7 @@ export async function handleCommentCommand(
     options.status === null
       ? await db.listAllAdminComments(options.limit)
       : await db.listAdminComments(options.status, options.limit)
-  return respond(formatComments(options, comments))
+  return respond(formatComments(options, comments), buildCommentActionRows(request, env, comments))
 }
 
 function parseCommentCommandOptions(options: readonly CommandOption[]): CommentCommandOptions {
@@ -80,14 +85,69 @@ function formatComments(
 
 function formatComment(comment: StoredComment): string {
   const body = truncateLine(comment.body.replace(/\s+/gu, " "), 180)
+  const commentUrl = commentUrlFor(comment)
   const parent = comment.parentId === null ? "" : ` / parent: ${comment.parentId}`
   return [
     `id: ${comment.id}${parent}`,
     `상태: ${statusLabel(comment.status)} / 작성자: ${comment.authorName}`,
     `글: ${comment.pageTitle}`,
     `작성: ${comment.createdAt}`,
+    `댓글: ${commentUrl}`,
     `내용: ${body}`,
   ].join("\n")
+}
+
+function buildCommentActionRows(
+  request: Request,
+  env: AppBindings,
+  comments: readonly StoredComment[],
+): readonly DiscordActionRow[] {
+  return comments.slice(0, DISCORD_COMPONENT_ROW_LIMIT).map((comment) => ({
+    type: 1,
+    components: [
+      {
+        type: 2,
+        style: 5,
+        label: "댓글 보기",
+        url: commentUrlFor(comment),
+      },
+      {
+        type: 2,
+        style: 5,
+        label: "댓글 숨기기",
+        url: adminActionUrl(request, comment.id, "hide", env.ADMIN_TOKEN),
+      },
+      {
+        type: 2,
+        style: 5,
+        label: "댓글 삭제",
+        url: adminActionUrl(request, comment.id, "delete", env.ADMIN_TOKEN),
+      },
+      {
+        type: 2,
+        style: 1,
+        label: "대댓글",
+        custom_id: replyButtonCustomId(comment.id),
+      },
+    ],
+  }))
+}
+
+function commentUrlFor(comment: StoredComment): string {
+  return `${comment.pageUrl}#comment-${encodeURIComponent(comment.id)}`
+}
+
+function adminActionUrl(
+  request: Request,
+  commentId: string,
+  action: "hide" | "delete",
+  token: string,
+): string {
+  const url = new URL(request.url)
+  url.pathname = `/api/admin/comments/${encodeURIComponent(commentId)}/${action}`
+  url.search = ""
+  url.searchParams.set("token", token)
+  return url.toString()
 }
 
 function statusLabel(status: CommentStatus): string {
