@@ -90,6 +90,8 @@ nav = [
       "Network/deep-dive/quic-first-look.md",
       "Network/deep-dive/dns-message-format.md",
       "Network/deep-dive/dns-lookup-with-dig.md",
+      "Network/deep-dive/dns-resolver-recursion-vs-iteration.md",
+      "Network/deep-dive/dns-ttl-and-cache-staleness.md",
     ] },
     # {"iptime 실습" = [
     #   "Network/iptime/index.md",
