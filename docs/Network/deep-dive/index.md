@@ -67,6 +67,8 @@ flowchart LR
 - [IPv4 헤더 한 줄 한 줄 읽기](./ipv4-header-anatomy.md){ data-preview } — 기본편에서 카드처럼만 봤던 IP 헤더를 32비트 격자 위에서 펼쳐봐요.
 - [IPv6 헤더는 왜 딱 40바이트일까요?](./ipv6-header-anatomy.md){ data-preview } — 주소는 더 길어졌는데 왜 기본 헤더는 오히려 일정해졌는지 같이 읽어봐요.
 - [서브넷 마스크와 CIDR은 실제로 어떻게 계산할까요?](./subnet-mask-and-cidr.md){ data-preview } — `/24`와 `255.255.255.0`이 같은 뜻인 이유부터 네트워크 주소, 브로드캐스트 주소, 호스트 범위 계산까지 같이 읽어봐요.
+- [네트워크 주소, 브로드캐스트 주소, 호스트 범위는 어떻게 나뉠까요?](./network-broadcast-and-host-range.md){ data-preview } — `/24`, `/26` 같은 범위 안에서 시작 주소, 끝 주소, 실제 기기 주소가 어떻게 갈라지는지 같이 읽어봐요.
+- [A/B/C 클래스 주소 체계는 왜 CIDR로 바뀌었을까요?](./classful-addressing-and-cidr-history.md){ data-preview } — 예전 클래스 방식이 왜 낭비를 만들었고, 지금은 왜 prefix 길이로 주소 범위를 읽는지 같이 정리해봐요.
 - [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md){ data-preview } — `SYN`, `ACK`, sequence 번호, window, 옵션이 TCP 헤더의 어느 칸에 들어가는지 20바이트 격자 위에서 같이 읽어봐요.
 - [TCP 플래그는 어떻게 읽어야 할까요?](./tcp-flags-cheatsheet.md){ data-preview } — `Flags [S]`, `Flags [S.]`, `Flags [F.]`, `Flags [R]` 같은 짧은 표시를 handshake, 데이터, 종료 장면과 함께 읽어봐요.
 - [TCP 상태 머신: 연결의 탄생부터 소멸까지의 일대기](./tcp-state-machine.md){ data-preview } — TCP가 `SYN`을 보내고 `TIME-WAIT`로 사라지기까지, 엔드포인트 내부에서 어떤 상태를 거치는지 RFC 9293 표준을 바탕으로 촘촘하게 해부해봐요.
@@ -120,10 +122,10 @@ flowchart LR
 
 [기본편의 서브넷 마스크와 CIDR 글](../basic/16-subnet-mask-and-cidr.md){ data-preview }에서는
 **같은 네트워크인지, 게이트웨이에게 맡겨야 하는지**를 판단하는 큰 그림을 먼저 잡았어요.
-심화편에서는 이제 [`/24`와 `255.255.255.0`이 같은 말인 이유](./subnet-mask-and-cidr.md){ data-preview }를 비트 단위로 열어보기 시작했어요.
+심화편에서는 이제 [`/24`와 `255.255.255.0`이 같은 말인 이유](./subnet-mask-and-cidr.md){ data-preview }를 비트 단위로 열고,
+[네트워크 주소·브로드캐스트 주소·호스트 범위](./network-broadcast-and-host-range.md){ data-preview }가 실제 숫자 범위에서 어떻게 갈라지는지도 이어서 볼 수 있어요.
+또 [A/B/C 클래스 주소 체계가 왜 CIDR로 바뀌었는지](./classful-addressing-and-cidr-history.md){ data-preview }를 보면, 지금 왜 첫 숫자보다 prefix를 더 중요하게 읽는지도 정리돼요.
 
-- `192.168.0.0/24` 에서 실제로 쓸 수 있는 주소 범위는 어디부터 어디까지일까요?
-- 예전 A/B/C 클래스 주소 체계는 왜 지금 CIDR 중심 설명으로 바뀌었을까요?
 - 라우터는 여러 경로 중 왜 더 긴 prefix를 우선해서 고를까요?
 
 아직 발행되지 않은 나머지 IP 주소 글은 링크 없이 질문만 남겨둘게요.

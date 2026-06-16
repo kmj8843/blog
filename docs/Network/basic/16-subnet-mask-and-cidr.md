@@ -200,7 +200,7 @@ CIDR:   /24
 ```
 
 왜 꼭 `1 ~ 254` 라고 애매하게 말하냐면, `192.168.0.0` 과 `192.168.0.255` 는 보통 특별한 의미로 쓰이기 때문이에요.
-정확한 네트워크 주소와 브로드캐스트 주소 이야기는 [심화편에서 비트 단위로 더 자세히](../deep-dive/subnet-mask-and-cidr.md#network-address){ data-preview } 열어볼게요.
+정확한 네트워크 주소와 브로드캐스트 주소, 실제 호스트 범위 이야기는 [심화편의 주소 범위 글](../deep-dive/network-broadcast-and-host-range.md){ data-preview }에서 더 자세히 열어볼게요.
 
 기본편에서는 이렇게만 잡아도 충분해요.
 

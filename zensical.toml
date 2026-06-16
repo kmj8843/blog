@@ -75,6 +75,8 @@ nav = [
       "Network/deep-dive/ipv4-header-anatomy.md",
       "Network/deep-dive/ipv6-header-anatomy.md",
       "Network/deep-dive/subnet-mask-and-cidr.md",
+      "Network/deep-dive/network-broadcast-and-host-range.md",
+      "Network/deep-dive/classful-addressing-and-cidr-history.md",
       "Network/deep-dive/tcp-header-anatomy.md",
       "Network/deep-dive/tcp-flags-cheatsheet.md",
       "Network/deep-dive/tcp-state-machine.md",
