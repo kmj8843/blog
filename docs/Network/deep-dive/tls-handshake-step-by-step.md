@@ -3,7 +3,7 @@ title: TLS 핸드셰이크는 실제로 어떻게 한 단계씩 진행될까요?
 description: TCP가 열린 뒤 TLS 핸드셰이크가 어떤 순서로 지나가고, 각 단계에서 무엇을 먼저 읽어야 하는지 장면처럼 따라가봐요.
 icon: lucide/lock
 created: 2026-06-02
-updated: 2026-06-09
+updated: 2026-06-16
 tags:
   - Network
   - TLS
@@ -189,7 +189,7 @@ flowchart LR
 
 물론 구현과 설명 방식에 따라 *정확히 어느 순간부터 어느 키를 이미 쓸 수 있는가* 는 더 세밀하게 들어갈 수 있어요. 하지만 입문-심화 사이 글에서는, **`Finished` 단계들이 지나간 뒤 application data 가 시작된다**는 감각으로 잡아두는 편이 안전해요.
 
-그래서 [End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md#tls-checkpoint){ data-preview }에서 TLS 구간이 따로 보이는 거예요. HTTP가 느린 게 아니라, **그 전에 보호 통로 준비 시간이 따로 쓰이고 있을 수 있기 때문**이죠.
+그래서 [End-to-End Request Debugging](../basic/26-end-to-end-request-debugging.md#tls-checkpoint){ data-preview }에서 TLS 구간이 따로 보이는 거예요. HTTP가 느린 게 아니라, **그 전에 보호 통로 준비 시간이 따로 쓰이고 있을 수 있기 때문**이죠.
 
 ---
 
@@ -292,4 +292,4 @@ TLS 1.3에서는 `ServerHello` 뒤의 후반부 감각이 확 달라져요.
 - 메시지 이름과 역할을 구조 쪽에서 다시 해부하고 싶다면 — [TLS 1.3 핸드셰이크는 실제로 어떤 순서일까요?](./tls13-handshake-anatomy.md#message-summary){ data-preview }
 - 실제 장면에서 인증서 경고가 뜰 때, 이름 문제인지 체인 문제인지 더 구체적으로 가르고 싶다면 — [TLS 인증서 체인과 신뢰 오류는 어떻게 읽어야 할까요?](./tls-cert-chain-and-trust-errors.md#signals-to-read){ data-preview }
 - 아래 연결이 실제로 어떻게 열리는지 캡처 감각으로 다시 보고 싶다면 — [tcpdump에서 TCP handshake는 어떻게 보일까요?](./tcp-handshake-in-capture.md#signals-to-read){ data-preview }
-- 요청 하나를 끝까지 따라가며 TLS 구간이 어디인지 다시 보고 싶다면 — [End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md#tls-checkpoint){ data-preview }
+- 요청 하나를 끝까지 따라가며 TLS 구간이 어디인지 다시 보고 싶다면 — [End-to-End Request Debugging](../basic/26-end-to-end-request-debugging.md#tls-checkpoint){ data-preview }

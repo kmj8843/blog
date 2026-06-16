@@ -3,7 +3,7 @@ title: IPv6 헤더는 왜 딱 40바이트일까요?
 description: 기본편에서 AAAA와 IPv6를 이름 정도로만 봤다면, 이번엔 IPv6 기본 헤더를 32비트 격자 위에서 펼쳐보며 왜 더 길어졌는데 오히려 단순해졌는지 같이 읽어봐요.
 icon: lucide/scan-search
 created: 2026-05-18
-updated: 2026-06-09
+updated: 2026-06-16
 tags:
   - Network
   - IP
@@ -213,7 +213,7 @@ IPv6는 이걸 뒤집었어요.
 
 ### 3. 단편화 책임을 송신자 쪽으로 더 밀어냈어요
 
-[MTU, Fragmentation, 그리고 Path MTU](../basic/20-mtu-fragmentation-and-path-mtu.md){ data-preview }에서 봤듯이, IPv6 라우터는 중간에서 패킷을 잘게 쪼개주지 않아요. 너무 크면 **ICMPv6 Packet Too Big** 을 돌려주고, 보낸 쪽이 다시 크기를 조절해야 해요.
+[MTU, Fragmentation, 그리고 Path MTU](../basic/21-mtu-fragmentation-and-path-mtu.md){ data-preview }에서 봤듯이, IPv6 라우터는 중간에서 패킷을 잘게 쪼개주지 않아요. 너무 크면 **ICMPv6 Packet Too Big** 을 돌려주고, 보낸 쪽이 다시 크기를 조절해야 해요.
 
 그래서 IPv4 기본 헤더에 있던 `Flags`, `Fragment Offset` 같은 칸도 IPv6 기본 헤더에서는 빠졌어요. 필요하면 **Fragment 확장 헤더**가 뒤에 붙는 식이에요.
 
@@ -318,7 +318,7 @@ IP6 2001:db8:1::10 > 2606:4700:4700::1111: hlim 64 next-header TCP payload lengt
 ## 이어서 보면 좋은 글
 
 - 같은 기본 개념이 예전 양식에서는 어떻게 생겼는지 다시 보고 싶다면 — [IPv4 헤더 한 줄 한 줄 읽기](./ipv4-header-anatomy.md){ data-preview }
-- IPv6에서 왜 라우터가 중간 단편화를 안 하는지 흐름부터 다시 잡고 싶다면 — [MTU, Fragmentation, 그리고 Path MTU](../basic/20-mtu-fragmentation-and-path-mtu.md){ data-preview }
+- IPv6에서 왜 라우터가 중간 단편화를 안 하는지 흐름부터 다시 잡고 싶다면 — [MTU, Fragmentation, 그리고 Path MTU](../basic/21-mtu-fragmentation-and-path-mtu.md){ data-preview }
 - IP 헤더 바로 위에 얹히는 TCP 헤더가 어떻게 생겼는지 보고 싶다면 — [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md){ data-preview }
 
 여기까지 오면, 보통 관심사는 한 층 더 위로 올라가요.

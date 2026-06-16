@@ -54,7 +54,7 @@ flowchart LR
 - 바꾼 뒤에는 **개념과 결과가 맞는지 확인**하는 쪽에 더 가까워요.
 
 그래서 기본편과 심화편을 아직 안 읽었다면,
-가능하면 먼저 [공유기와 홈 네트워크](../basic/13-router-and-home-network.md){ data-preview }, [DHCP](../basic/16-dhcp.md){ data-preview }, [ARP와 로컬 전달](../basic/17-arp-and-local-delivery.md){ data-preview } 쪽 감각을 잡고 들어오면 훨씬 덜 헷갈려요.
+가능하면 먼저 [공유기와 홈 네트워크](../basic/13-router-and-home-network.md){ data-preview }, [DHCP](../basic/17-dhcp.md){ data-preview }, [ARP와 로컬 전달](../basic/18-arp-and-local-delivery.md){ data-preview } 쪽 감각을 잡고 들어오면 훨씬 덜 헷갈려요.
 
 ---
 

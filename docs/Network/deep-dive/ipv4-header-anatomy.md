@@ -3,7 +3,7 @@ title: IPv4 헤더 한 줄 한 줄 읽기
 description: 기본편에서 카드 4개로만 봤던 IP 헤더를, 32비트 격자 위 13개 필드로 직접 펼쳐서 비트 단위로 읽어봐요.
 icon: lucide/scan-line
 created: 2026-05-18
-updated: 2026-06-09
+updated: 2026-06-16
 tags:
   - Network
   - IP
@@ -129,9 +129,9 @@ IPv4 헤더는 **라우터와 운영체제가 이 패킷을 어떻게 다뤄야 
 
 여기서 IHL이 좀 헷갈리는 친구예요. 4비트짜리라 0~15까지밖에 못 적는데, 어떻게 헤더 길이를 표현할까요? 답은 **"4바이트 단위로 센다"** 예요. IHL이 `5` 면 헤더는 `5 × 4 = 20바이트`, IHL이 `15` 면 `15 × 4 = 60바이트`. 그래서 IPv4 헤더는 **최소 20바이트, 최대 60바이트**예요. 옵션이 들어가면 길어지는 거고, 옵션이 없으면 IHL은 항상 `5` 예요.
 
-Total Length는 16비트라서 최대 `65535`. 즉 **IP 패킷 한 개는 이론상 64KB까지** 가능해요. 실제로는 이렇게 큰 패킷을 그대로 보내지 못해요. 중간 회선이 못 받거든요. 그 이야기는 [MTU와 단편화](../basic/20-mtu-fragmentation-and-path-mtu.md){ data-preview } 에서 다뤘어요.
+Total Length는 16비트라서 최대 `65535`. 즉 **IP 패킷 한 개는 이론상 64KB까지** 가능해요. 실제로는 이렇게 큰 패킷을 그대로 보내지 못해요. 중간 회선이 못 받거든요. 그 이야기는 [MTU와 단편화](../basic/21-mtu-fragmentation-and-path-mtu.md){ data-preview } 에서 다뤘어요.
 
-ToS는 옛날 이름이고, 지금은 같은 8비트를 **DSCP(6비트) + ECN(2비트)** 으로 나눠 써요. DSCP는 *"이 패킷 좀 빨리 보내줘"* 같은 우선순위 표시고, ECN은 *"길 막혔어"* 신호예요. 기본편의 [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md){ data-preview } 이야기와 연결되는 칸인데, 이 글에서는 *"여기 있다"* 정도만 짚어둘게요.
+ToS는 옛날 이름이고, 지금은 같은 8비트를 **DSCP(6비트) + ECN(2비트)** 으로 나눠 써요. DSCP는 *"이 패킷 좀 빨리 보내줘"* 같은 우선순위 표시고, ECN은 *"길 막혔어"* 신호예요. 기본편의 [TCP 재전송과 신뢰성](../basic/22-tcp-retransmission-and-reliability.md){ data-preview } 이야기와 연결되는 칸인데, 이 글에서는 *"여기 있다"* 정도만 짚어둘게요.
 
 ---
 
@@ -152,7 +152,7 @@ Flags 의 3비트 중 의미 있는 건 두 개예요.
 - **DF (Don't Fragment)** — *"쪼개지 마. 못 보내겠으면 그냥 버려"*
 - **MF (More Fragments)** — *"내 뒤에 조각이 더 있어"*
 
-요즘 인터넷에서는 DF=1 로 보내고, 너무 크면 라우터가 **ICMP "Fragmentation Needed"** 로 알려주는 방식(Path MTU Discovery) 을 써요. 이 흐름이 어긋날 때 일어나는 사고가 **MTU 블랙홀** 이고, [MTU와 단편화](../basic/20-mtu-fragmentation-and-path-mtu.md){ data-preview } 에서 살짝 본 그 장면이에요.
+요즘 인터넷에서는 DF=1 로 보내고, 너무 크면 라우터가 **ICMP "Fragmentation Needed"** 로 알려주는 방식(Path MTU Discovery) 을 써요. 이 흐름이 어긋날 때 일어나는 사고가 **MTU 블랙홀** 이고, [MTU와 단편화](../basic/21-mtu-fragmentation-and-path-mtu.md){ data-preview } 에서 살짝 본 그 장면이에요.
 
 Fragment Offset이 13비트인 이유도 같은 줄 안에서 결정돼요. 16비트짜리 Total Length 가 최대 65535를 가리키니까, 그 안에서 위치를 가리키려면 13비트 + 8바이트 단위(2^13 × 8 = 65536) 면 딱 맞거든요. **비트 폭이 우연히 정해진 게 아니라 다른 필드와 맞물려서 정해졌다**는 게 IPv4 헤더 곳곳에 깔린 설계 감각이에요.
 

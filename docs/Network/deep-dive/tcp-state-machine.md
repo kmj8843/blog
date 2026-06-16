@@ -3,7 +3,7 @@ title: "TCP 상태 머신: 연결의 탄생부터 소멸까지의 일대기"
 description: TCP가 SYN을 보내고 TIME-WAIT로 사라지기까지, 엔드포인트 내부에서 어떤 상태를 거치는지 RFC 9293 표준을 바탕으로 촘촘하게 해부해봐요.
 icon: lucide/git-branch
 created: 2026-05-21
-updated: 2026-06-09
+updated: 2026-06-16
 tags:
   - Network
   - TCP
@@ -14,7 +14,7 @@ tags:
 
 > TCP 연결은 단순히 열려 있거나 닫혀 있는 게 아니에요. 사실은 그 사이에서 수많은 '상태'를 넘나드는 섬세한 살아있는 존재에 가까워요.
 
-[TCP 3-way handshake](../basic/09-tcp-3-way-handshake.md){ data-preview }에서 우리는 연결을 맺는 인사를 봤고, [TCP Teardown과 TIME-WAIT](../basic/22-tcp-teardown-and-time-wait.md){ data-preview }에서는 안전하게 헤어지는 법을 봤어요.
+[TCP 3-way handshake](../basic/09-tcp-3-way-handshake.md){ data-preview }에서 우리는 연결을 맺는 인사를 봤고, [TCP Teardown과 TIME-WAIT](../basic/23-tcp-teardown-and-time-wait.md){ data-preview }에서는 안전하게 헤어지는 법을 봤어요.
 
 근데 여기서 이런 궁금증이 생기지 않으세요?
 
@@ -125,13 +125,13 @@ sequenceDiagram
 
 대부분의 연결은 실제로 이 상태에서 가장 오래 머물러요. 파일을 내려받든, 웹페이지를 열든, API를 부르든 **진짜 일은 거의 다 `ESTABLISHED` 안에서** 일어나거든요.
 
-여기서는 상태 머신 자체가 주제라서 `ESTABLISHED` 안쪽의 세부 알고리즘을 길게 열지는 않을게요. 다만 이 상태가 단순한 "연결 완료" 표지판이 아니라, **ACK를 주고받고, 재전송을 판단하고, 윈도우를 광고하고, 데이터를 순서대로 맞추는 운영의 본무대** 라는 감각은 꼭 잡고 가면 좋아요. 이 안쪽 숫자들이 실제로 어떻게 일하는지는 [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md){ data-preview }과 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#header-grid){ data-preview }에서 같이 이어볼 수 있어요.
+여기서는 상태 머신 자체가 주제라서 `ESTABLISHED` 안쪽의 세부 알고리즘을 길게 열지는 않을게요. 다만 이 상태가 단순한 "연결 완료" 표지판이 아니라, **ACK를 주고받고, 재전송을 판단하고, 윈도우를 광고하고, 데이터를 순서대로 맞추는 운영의 본무대** 라는 감각은 꼭 잡고 가면 좋아요. 이 안쪽 숫자들이 실제로 어떻게 일하는지는 [TCP 재전송과 신뢰성](../basic/22-tcp-retransmission-and-reliability.md){ data-preview }과 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#header-grid){ data-preview }에서 같이 이어볼 수 있어요.
 
 ---
 
 ## 연결의 종료: ESTABLISHED에서 다시 CLOSED까지 { #termination-states }
 
-헤어지는 과정은 조금 더 복잡해요. [TCP Teardown](../basic/22-tcp-teardown-and-time-wait.md){ data-preview }에서 본 4-way teardown이 여기서 상태로 나타나요.
+헤어지는 과정은 조금 더 복잡해요. [TCP Teardown](../basic/23-tcp-teardown-and-time-wait.md){ data-preview }에서 본 4-way teardown이 여기서 상태로 나타나요.
 
 먼저 연결 종료를 요청한 쪽(**Active Close**)과 요청을 받은 쪽(**Passive Close**)의 상태가 달라요.
 
@@ -243,14 +243,14 @@ TIME-WAIT   0      0      192.168.0.10:51516  172.217.211.113:443
     - **TIME-WAIT**는 먼저 연결을 끊은 쪽이 낡은 패킷의 혼선을 막기 위해 안전 대기하는 필수 상태예요.
     - 상태는 상대방과 공유하는 게 아니라 **각자 로컬에서 관리**하며 패킷으로 서로의 기분을 맞춰가는 거예요.
 
-[TCP 3-way handshake](../basic/09-tcp-3-way-handshake.md){ data-preview }에서 봤던 인사가 이제는 `SYN-SENT`와 `SYN-RECEIVED`라는 구체적인 이름으로 보이기 시작하셨나요? 그리고 [TCP Teardown과 TIME-WAIT](../basic/22-tcp-teardown-and-time-wait.md){ data-preview }에서 봤던 마지막 작별 인사도, 이제는 `FIN-WAIT`, `CLOSE-WAIT`, `LAST-ACK`, `TIME-WAIT` 같은 이름으로 더 또렷하게 보일 거예요.
+[TCP 3-way handshake](../basic/09-tcp-3-way-handshake.md){ data-preview }에서 봤던 인사가 이제는 `SYN-SENT`와 `SYN-RECEIVED`라는 구체적인 이름으로 보이기 시작하셨나요? 그리고 [TCP Teardown과 TIME-WAIT](../basic/23-tcp-teardown-and-time-wait.md){ data-preview }에서 봤던 마지막 작별 인사도, 이제는 `FIN-WAIT`, `CLOSE-WAIT`, `LAST-ACK`, `TIME-WAIT` 같은 이름으로 더 또렷하게 보일 거예요.
 
 ---
 
 ## 이어서 보면 좋은 글
 
 - `SYN`, `SYN-ACK`, `ACK` 가 상태를 어떻게 한 칸씩 밀어 움직이는지 다시 큰 그림으로 보고 싶다면 — [TCP 3-way handshake는 왜 세 번이나 주고받을까요?](../basic/09-tcp-3-way-handshake.md#handshake-signals){ data-preview }
-- `FIN`, `CLOSE-WAIT`, `LAST-ACK`, `TIME-WAIT` 흐름을 종료 장면 중심으로 다시 보고 싶다면 — [TCP Teardown과 TIME-WAIT - 대화가 끝난 뒤의 깔끔한 마무리](../basic/22-tcp-teardown-and-time-wait.md){ data-preview }
+- `FIN`, `CLOSE-WAIT`, `LAST-ACK`, `TIME-WAIT` 흐름을 종료 장면 중심으로 다시 보고 싶다면 — [TCP Teardown과 TIME-WAIT - 대화가 끝난 뒤의 깔끔한 마무리](../basic/23-tcp-teardown-and-time-wait.md){ data-preview }
 - `LISTEN`, `ESTABLISHED`, `CLOSE-WAIT`, `TIME-WAIT` 가 실제 `ss` / `netstat` 화면에서는 어떤 줄로 보이는지 보고 싶다면 — [ss와 netstat에서 TCP 상태는 어떻게 읽어야 할까요?](./ss-and-netstat-state-reading.md#signals-to-read){ data-preview }
 - 이 상태 변화를 일으키는 `SYN`, `ACK`, `FIN`, `RST` 같은 신호를 캡처 표기 중심으로 읽고 싶다면 — [TCP 플래그는 어떻게 읽어야 할까요?](./tcp-flags-cheatsheet.md){ data-preview }
 - 상태 안쪽에서 `seq`, `ack`, `window` 같은 숫자가 실제 TCP 헤더의 어느 칸에 들어가는지 다시 보고 싶다면 — [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#header-grid){ data-preview }

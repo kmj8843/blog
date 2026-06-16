@@ -3,7 +3,7 @@ title: TLS, SSL, 인증서는 뭐가 다를까요? 브라우저는 어떻게 진
 description: HTTPS의 보호된 통로가 어떻게 준비되는지, TLS·SSL·인증서 개념을 일상 비유로 쉽게 풀어봅니다.
 icon: lucide/shield-check
 created: 2026-05-11
-updated: 2026-06-02
+updated: 2026-06-16
 tags:
   - Network
   - TLS
@@ -30,7 +30,7 @@ HTTP는 브라우저와 서버가 주고받는 **대화 규칙**이고, HTTPS는
 
 ---
 
-## 일단 비유로 시작해볼게요
+## 안전한 상담실은 어떻게 믿고 들어갈까요?
 
 은행 상담실에 들어간다고 상상해볼까요?
 

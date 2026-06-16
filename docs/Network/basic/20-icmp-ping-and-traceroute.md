@@ -3,7 +3,7 @@ title: ICMP, Ping, 그리고 Traceroute, 패킷이 어디까지 갔는지 어떻
 description: ICMP가 어떤 힌트를 주는지, ping은 무엇을 확인하는지, traceroute는 왜 중간 홉을 보여줄 수 있는지 쉽게 알아봐요.
 icon: lucide/scan-search
 created: 2026-05-14
-updated: 2026-05-14
+updated: 2026-06-16
 tags:
   - Network
   - ICMP
@@ -14,7 +14,7 @@ tags:
 
 > *"패킷은 조용히 사라지기만 할 것 같죠?"* **사실은 가끔, 네트워크가 "여기까지는 왔어요" 하고 힌트를 남겨줘요.**
 
-[기본 게이트웨이와 첫 번째 도약](18-default-gateway-and-first-hop.md){ data-preview }에서,
+[기본 게이트웨이와 첫 번째 도약](19-default-gateway-and-first-hop.md){ data-preview }에서,
 패킷이 집을 나서 첫 홉으로 넘어가는 장면과 `TTL`이 홉을 지날 때 하나씩 줄어든다는 감각까지 봤어요.
 
 근데 그러면 바로 이런 궁금증이 생기죠.
@@ -28,7 +28,7 @@ tags:
 
 ---
 
-## 일단 비유로 시작해볼게요
+## 네트워크가 보내주는 되돌림 신호를 볼게요
 
 이번에는 긴 복도를 지나 여러 문을 거쳐야 하는 택배를 떠올려볼까요?
 
@@ -228,7 +228,7 @@ sequenceDiagram
 우리가 궁금한 건 보통 이런 거잖아요.
 
 - 내 노트북 자체 문제인가?
-- [기본 게이트웨이와 첫 번째 도약](18-default-gateway-and-first-hop.md){ data-preview }까지는 되는가?
+- [기본 게이트웨이와 첫 번째 도약](19-default-gateway-and-first-hop.md){ data-preview }까지는 되는가?
 - 그다음 통신사 쪽으로는 나가는가?
 - 멀리 있는 목적지 직전까지는 갔는가?
 
@@ -331,8 +331,8 @@ sequenceDiagram
 ### 1. 첫 홉도 안 보이면 집 안쪽부터 의심해봐요
 
 예를 들어 traceroute 첫 줄부터 이상하다면,
-우선은 [ARP와 로컬 전달](17-arp-and-local-delivery.md#same-subnet-vs-gateway){ data-preview },
-[기본 게이트웨이와 첫 번째 도약](18-default-gateway-and-first-hop.md){ data-preview } 쪽을 먼저 떠올리는 게 자연스러워요.
+우선은 [ARP와 로컬 전달](18-arp-and-local-delivery.md#same-subnet-vs-gateway){ data-preview },
+[기본 게이트웨이와 첫 번째 도약](19-default-gateway-and-first-hop.md){ data-preview } 쪽을 먼저 떠올리는 게 자연스러워요.
 
 즉:
 
@@ -388,5 +388,5 @@ sequenceDiagram
 
 > *"길은 맞는데도 왜 어떤 패킷은 너무 커서 중간에서 문제를 만들까요?"*
 
-다음 글에서는 **[MTU, Fragmentation, 그리고 Path MTU](20-mtu-fragmentation-and-path-mtu.md){ data-preview }** 이야기를 통해,
+다음 글에서는 **[MTU, Fragmentation, 그리고 Path MTU](21-mtu-fragmentation-and-path-mtu.md){ data-preview }** 이야기를 통해,
 패킷 크기와 경로 사이에 숨어 있는 또 다른 현실을 같이 열어볼게요.

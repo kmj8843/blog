@@ -3,7 +3,7 @@ title: ss와 netstat에서 TCP 상태는 어떻게 읽어야 할까요?
 description: ss와 netstat 화면에 보이는 LISTEN, ESTABLISHED, TIME-WAIT, CLOSE-WAIT 같은 TCP 상태를 실제 장면과 함께 읽어봐요.
 icon: lucide/terminal
 created: 2026-06-01
-updated: 2026-06-09
+updated: 2026-06-16
 tags:
   - Network
   - TCP
@@ -15,7 +15,7 @@ tags:
 
 > 연결은 열렸나 닫혔나 둘 중 하나일 것 같죠? **사실 운영 화면에서는 그 사이에 훨씬 많은 표지판이 보여요.**
 
-[TCP Teardown과 TIME-WAIT - 대화가 끝난 뒤의 깔끔한 마무리](../basic/22-tcp-teardown-and-time-wait.md){ data-preview }에서는 `TIME-WAIT` 가 왜 남는지 큰 그림으로 먼저 봤고, [TCP 상태 머신: 연결의 탄생부터 소멸까지의 일대기](./tcp-state-machine.md#state-summary){ data-preview }에서는 `LISTEN`, `ESTABLISHED`, `CLOSE-WAIT`, `LAST-ACK` 같은 이름이 **내부 상태 지도** 위에서 어디쯤 있는지도 봤어요.
+[TCP Teardown과 TIME-WAIT - 대화가 끝난 뒤의 깔끔한 마무리](../basic/23-tcp-teardown-and-time-wait.md){ data-preview }에서는 `TIME-WAIT` 가 왜 남는지 큰 그림으로 먼저 봤고, [TCP 상태 머신: 연결의 탄생부터 소멸까지의 일대기](./tcp-state-machine.md#state-summary){ data-preview }에서는 `LISTEN`, `ESTABLISHED`, `CLOSE-WAIT`, `LAST-ACK` 같은 이름이 **내부 상태 지도** 위에서 어디쯤 있는지도 봤어요.
 
 근데 막상 터미널에서 `ss -nat` 나 `netstat -tan` 을 열면 또 이런 생각이 들죠.
 
@@ -163,7 +163,7 @@ ESTAB 0 0 192.168.0.10:51515 198.51.100.80:443
 TIME-WAIT 0 0 192.168.0.10:51516 198.51.100.80:443
 ```
 
-- [TCP Teardown과 TIME-WAIT](../basic/22-tcp-teardown-and-time-wait.md){ data-preview }에서 본 그 상태예요.
+- [TCP Teardown과 TIME-WAIT](../basic/23-tcp-teardown-and-time-wait.md){ data-preview }에서 본 그 상태예요.
 - RFC 9293은 이 상태를 **마지막 ACK가 잘 전달됐는지와, 예전 연결의 지연 세그먼트가 새 연결을 오염시키지 않게 충분히 기다리는 상태**로 설명해요.
 - `ss -o` 같은 식으로 보면 `timewait` 타이머가 붙어서 보일 수도 있어요.
 
@@ -301,6 +301,6 @@ ss -o state established '( dport = :443 or sport = :443 )'
 ## 이어서 보면 좋은 글
 
 - `LISTEN`, `SYN-SENT`, `CLOSE-WAIT`, `TIME-WAIT` 가 상태 머신 전체에서 어디쯤 있는지 다시 보고 싶다면 — [TCP 상태 머신: 연결의 탄생부터 소멸까지의 일대기](./tcp-state-machine.md#state-summary){ data-preview }
-- `TIME-WAIT` 가 왜 안전장치인지 종료 장면 중심으로 다시 보고 싶다면 — [TCP Teardown과 TIME-WAIT - 대화가 끝난 뒤의 깔끔한 마무리](../basic/22-tcp-teardown-and-time-wait.md){ data-preview }
+- `TIME-WAIT` 가 왜 안전장치인지 종료 장면 중심으로 다시 보고 싶다면 — [TCP Teardown과 TIME-WAIT - 대화가 끝난 뒤의 깔끔한 마무리](../basic/23-tcp-teardown-and-time-wait.md){ data-preview }
 - 상태 목록에서 수상한 연결을 본 뒤, 실제 패킷 줄을 어디부터 읽어야 할지 이어서 보고 싶다면 — [tcpdump 한 줄은 어떻게 읽어야 할까요?](./tcpdump-first-look.md#one-line-anatomy){ data-preview }
 - `SYN`, `SYN-ACK`, `ACK` 세 줄이 실제 캡처에서 어떻게 보이는지 바로 내려가고 싶다면 — [tcpdump에서 TCP handshake는 어떻게 보일까요?](./tcp-handshake-in-capture.md#signals-to-read){ data-preview }

@@ -98,16 +98,17 @@ flowchart LR
 - [공유기와 홈 네트워크](13-router-and-home-network.md){ data-preview } — 우리 집 안 장비들은 실제로 어떤 구조로 연결되고, 공유기는 그 안에서 어떤 역할을 할까요?
 - [포트 포워딩과 들어오는 연결](14-port-forwarding-and-incoming-connections.md){ data-preview } — 평소엔 닫혀 있는 집 안 문을, 어떤 경우에 왜 특정 장치 쪽으로 열어줘야 할까요?
 - [방화벽과 상태 기반 필터링](15-firewall-and-stateful-filtering.md){ data-preview } — 들어오는 패킷이 친구인지 도둑인지, 공유기는 어떻게 똑똑하게 판단할까요?
-- [DHCP](16-dhcp.md){ data-preview } — 우리 집 기기들은 자기 주소를 어떻게 자동으로 받을까요?
-- [ARP와 로컬 전달](17-arp-and-local-delivery.md){ data-preview } — 주소는 받았는데, 같은 집 안의 진짜 목적지는 어떻게 찾을까요?
-- [기본 게이트웨이와 첫 번째 도약](18-default-gateway-and-first-hop.md){ data-preview } — 게이트웨이에게 맡긴 패킷은 집을 나서는 순간 어떤 판단을 거칠까요?
-- [ICMP, Ping, 그리고 Traceroute](19-icmp-ping-and-traceroute.md){ data-preview } — 패킷이 어디까지 갔는지, 어디서 막혔는지 네트워크는 어떻게 힌트를 줄까요?
-- [MTU, Fragmentation, 그리고 Path MTU](20-mtu-fragmentation-and-path-mtu.md){ data-preview } — 길은 맞는데도 왜 어떤 패킷은 너무 커서 중간에서 문제를 만들까요?
-- [TCP 재전송과 신뢰성](21-tcp-retransmission-and-reliability.md){ data-preview } — 중간에 패킷 하나가 사라지면, 네트워크는 어떻게 그 사실을 알고 다시 보내줄까요?
-- [TCP Teardown과 TIME-WAIT](22-tcp-teardown-and-time-wait.md){ data-preview } — 대화가 끝난 뒤에 "이제 그만할게요"라고 인사하는 과정과, 왜 바로 주소를 재사용하지 않고 기다리는 시간이 필요한지 알아봐요.
-- [Proxy, Reverse Proxy, 그리고 Load Balancer](23-proxy-reverse-proxy-and-load-balancer.md){ data-preview } — 사용자가 보는 서버와 실제로 일을 하는 서버가 왜 다를 수 있고, 앞단은 요청을 어떻게 대신 받고 나눠 보낼까요?
-- [CDN, Cache, 그리고 Edge Delivery](24-cdn-cache-and-edge-delivery.md){ data-preview } — 같은 원본 서버만 매번 찾지 않고, 왜 사용자 가까운 곳에 복사본을 두고 더 빠르게 전달하려고 할까요?
-- [End-to-End Request Debugging](25-end-to-end-request-debugging.md){ data-preview } — 브라우저에서 시작한 요청 하나가 DNS, 연결, TLS, 프록시, 캐시, 오리진을 지나며 어디서 시간이 쓰이고 어디서 문제가 생기는지 어떻게 따라가 볼 수 있을까요?
+- [서브넷 마스크와 CIDR](16-subnet-mask-and-cidr.md){ data-preview } — 같은 집 안 네트워크인지, 아니면 게이트웨이에게 맡겨야 하는지 어디서 판단할까요?
+- [DHCP](17-dhcp.md){ data-preview } — 우리 집 기기들은 자기 주소를 어떻게 자동으로 받을까요?
+- [ARP와 로컬 전달](18-arp-and-local-delivery.md){ data-preview } — 주소는 받았는데, 같은 집 안의 진짜 목적지는 어떻게 찾을까요?
+- [기본 게이트웨이와 첫 번째 도약](19-default-gateway-and-first-hop.md){ data-preview } — 게이트웨이에게 맡긴 패킷은 집을 나서는 순간 어떤 판단을 거칠까요?
+- [ICMP, Ping, 그리고 Traceroute](20-icmp-ping-and-traceroute.md){ data-preview } — 패킷이 어디까지 갔는지, 어디서 막혔는지 네트워크는 어떻게 힌트를 줄까요?
+- [MTU, Fragmentation, 그리고 Path MTU](21-mtu-fragmentation-and-path-mtu.md){ data-preview } — 길은 맞는데도 왜 어떤 패킷은 너무 커서 중간에서 문제를 만들까요?
+- [TCP 재전송과 신뢰성](22-tcp-retransmission-and-reliability.md){ data-preview } — 중간에 패킷 하나가 사라지면, 네트워크는 어떻게 그 사실을 알고 다시 보내줄까요?
+- [TCP Teardown과 TIME-WAIT](23-tcp-teardown-and-time-wait.md){ data-preview } — 대화가 끝난 뒤에 "이제 그만할게요"라고 인사하는 과정과, 왜 바로 주소를 재사용하지 않고 기다리는 시간이 필요한지 알아봐요.
+- [Proxy, Reverse Proxy, 그리고 Load Balancer](24-proxy-reverse-proxy-and-load-balancer.md){ data-preview } — 사용자가 보는 서버와 실제로 일을 하는 서버가 왜 다를 수 있고, 앞단은 요청을 어떻게 대신 받고 나눠 보낼까요?
+- [CDN, Cache, 그리고 Edge Delivery](25-cdn-cache-and-edge-delivery.md){ data-preview } — 같은 원본 서버만 매번 찾지 않고, 왜 사용자 가까운 곳에 복사본을 두고 더 빠르게 전달하려고 할까요?
+- [End-to-End Request Debugging](26-end-to-end-request-debugging.md){ data-preview } — 브라우저에서 시작한 요청 하나가 DNS, 연결, TLS, 프록시, 캐시, 오리진을 지나며 어디서 시간이 쓰이고 어디서 문제가 생기는지 어떻게 따라가 볼 수 있을까요?
 
 ---
 
@@ -132,4 +133,4 @@ flowchart LR
 그럼, 기본편은 어디부터 읽어볼까요?
 
 <a class="md-button md-button--primary" href="01-what-is-packet/">패킷부터 읽기</a>
-<a class="md-button" href="25-end-to-end-request-debugging/">기본편 마지막 글 미리 보기</a>
+<a class="md-button" href="26-end-to-end-request-debugging/">기본편 마지막 글 미리 보기</a>

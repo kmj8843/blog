@@ -3,7 +3,7 @@ title: TCP 재전송과 신뢰성 - 사라진 패킷을 끝까지 챙기는 법
 description: 중간에 패킷이 사라지면 TCP는 어떻게 그 사실을 알고 다시 보내줄까요? Sequence 번호와 ACK를 이용한 재전송 메커니즘을 알아봐요.
 icon: lucide/refresh-ccw
 created: 2026-05-14
-updated: 2026-05-27
+updated: 2026-06-16
 tags:
   - Network
   - TCP
@@ -14,7 +14,7 @@ tags:
 
 > *"보냈다고 해서 다 간 건 아니에요. 인터넷 세상에서는 짐이 사라지는 일이 아주 흔하거든요."*
 
-[MTU, Fragmentation, 그리고 Path MTU](20-mtu-fragmentation-and-path-mtu.md){ data-preview }에서 우리는 패킷이 길의 크기에 맞춰 쪼개지거나, 너무 크면 중간에서 막힐 수도 있다는 걸 봤어요. 길 위에서 패킷이 버려지는 상황을 하나 본 셈이죠.
+[MTU, Fragmentation, 그리고 Path MTU](21-mtu-fragmentation-and-path-mtu.md){ data-preview }에서 우리는 패킷이 길의 크기에 맞춰 쪼개지거나, 너무 크면 중간에서 막힐 수도 있다는 걸 봤어요. 길 위에서 패킷이 버려지는 상황을 하나 본 셈이죠.
 
 그런데 말이죠, 패킷이 버려졌을 때 **"어? 하나가 안 왔네? 다시 보내줘!"** 라고 끈질기게 챙기는 친구가 있어요. 
 
@@ -26,7 +26,7 @@ tags:
 
 ---
 
-## 일단 비유로 시작해볼게요
+## 사라진 조각을 어떻게 다시 챙길까요?
 
 이번에는 여러분이 친구에게 **번호가 매겨진 사과 10알**을 택배로 보낸다고 상상해볼까요?
 
@@ -140,7 +140,7 @@ UDP처럼 그냥 던지고 말면 편할 텐데, 왜 굳이 번호를 매기고 
 
 ### 2. 네트워크는 생각보다 불안정해요
 
-패킷은 수많은 라우터를 거쳐가요. 중간에 라우터가 너무 바빠서 패킷을 버릴 수도 있고(Congestion), [MTU 문제](20-mtu-fragmentation-and-path-mtu.md){ data-preview }로 막힐 수도 있죠. TCP는 이런 불안정한 길 위에서 **가상으로 안정적인 통로**를 만들어주는 마법 같은 역할을 해요.
+패킷은 수많은 라우터를 거쳐가요. 중간에 라우터가 너무 바빠서 패킷을 버릴 수도 있고(Congestion), [MTU 문제](21-mtu-fragmentation-and-path-mtu.md){ data-preview }로 막힐 수도 있죠. TCP는 이런 불안정한 길 위에서 **가상으로 안정적인 통로**를 만들어주는 마법 같은 역할을 해요.
 
 ---
 
@@ -175,4 +175,4 @@ UDP처럼 그냥 던지고 말면 편할 텐데, 왜 굳이 번호를 매기고 
 
 > *"데이터를 다 보낸 뒤에 '이제 끝낼게요'라고 인사하는 과정은 시작할 때랑 어떻게 다를까요?"*
 
-다음 글에서는 TCP 연결의 마지막 단계인 **[TCP Teardown과 TIME-WAIT](22-tcp-teardown-and-time-wait.md){ data-preview }** 이야기를 해볼게요. 끝맺음을 잘해야 다음 연결도 깔끔하게 시작할 수 있거든요.
+다음 글에서는 TCP 연결의 마지막 단계인 **[TCP Teardown과 TIME-WAIT](23-tcp-teardown-and-time-wait.md){ data-preview }** 이야기를 해볼게요. 끝맺음을 잘해야 다음 연결도 깔끔하게 시작할 수 있거든요.

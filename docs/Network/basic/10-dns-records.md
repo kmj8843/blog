@@ -3,7 +3,7 @@ title: A, AAAA, CNAME... DNS 레코드는 왜 종류가 여러 갈래일까요?
 description: 도메인 이름 뒤에 숨은 A, AAAA, CNAME 레코드의 차이를 비유와 실제 예시로 친근하게 풀어봅니다.
 icon: lucide/file-text
 created: 2026-05-12
-updated: 2026-05-18
+updated: 2026-06-16
 tags:
   - Network
   - DNS
@@ -27,7 +27,7 @@ tags:
 
 ---
 
-## 일단 비유로 시작해볼게요
+## 주소록에는 답변 종류가 여러 가지예요
 
 단골 빵집 **'아하 베이커리'**를 찾는다고 상상해볼까요? 주소록에는 이렇게 적혀 있을 수 있어요.
 
@@ -84,13 +84,17 @@ flowchart TD
 
 여기서는 **"IPv6 주소가 따로 있구나"** 정도만 잡고 가도 충분해요. 근데 그 IPv6 주소가 실제 패킷 헤더 안에서 얼마나 큰 칸을 차지하고, `TTL` 대신 어떤 필드가 들어오는지까지 보고 싶다면 [IPv6 헤더는 왜 딱 40바이트일까요?](../deep-dive/ipv6-header-anatomy.md){ data-preview }에서 바로 이어서 펼쳐볼 수 있어요.
 
-### 2. 관리하기 편하려고 별명을 써요 (CNAME)
+### 2. 관리하기 편하려고 별명을 써요 (CNAME) { #cname-record }
 
 웹사이트 주소가 `www.example.com`도 있고, `blog.example.com`도 있다고 해볼까요? 근데 이 둘이 사실 **똑같은 서버**를 가리키고 있다면요?
 
 만약 두 곳 다 A 레코드로 IP를 직접 적어두면, 나중에 서버 IP가 바뀔 때 **두 군데를 다 수정**해야 해요. 귀찮고 실수하기 딱 좋죠.
 
 이럴 때 `www`는 A 레코드로 IP를 적고, `blog`는 **CNAME**으로 "얘는 `www.example.com`이랑 똑같아"라고 적어두면 어떨까요? 나중에 IP가 바뀌어도 `www` 하나만 고치면 끝이에요!
+
+다만 CNAME은 어디에나 마음대로 붙일 수 있는 별명표는 아니에요.
+특히 `example.com` 처럼 구역의 맨 위 이름에 붙이려 하면 `SOA`, `NS` 같은 필수 레코드와 부딪힐 수 있어요.
+이 장면은 심화편 [CNAME과 apex 도메인은 왜 같이 쓰기 어려울까요?](../deep-dive/cname-flattening-and-apex.md){ data-preview }에서 **apex 도메인과 CNAME flattening** 기준으로 이어서 볼 수 있어요.
 
 ---
 

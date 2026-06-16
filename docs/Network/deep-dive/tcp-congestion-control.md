@@ -3,7 +3,7 @@ title: TCP 혼잡 제어는 왜 흐름 제어와 따로 봐야 할까요?
 description: 받는 쪽 여유를 보는 Window와, 네트워크 길이 붐비는지를 보고 속도를 조절하는 congestion window가 어떻게 다른지 쉽게 풀어봐요.
 icon: lucide/activity-square
 created: 2026-06-01
-updated: 2026-06-09
+updated: 2026-06-16
 tags:
   - Network
   - TCP
@@ -14,7 +14,7 @@ tags:
 
 > 느려졌다고 해서 항상 패킷이 사라진 건 아니에요. **TCP는 가끔 스스로 "지금은 길이 붐비는 것 같으니 조금만 보낼게요" 하고 물러서요.**
 
-[TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md){ data-preview }에서는 TCP가 **빠진 조각을 다시 보내는 법**을 먼저 봤고, [TCP 윈도우와 흐름 제어는 왜 같이 읽어야 할까요?](./tcp-window-and-flow-control.md#flow-control-over-time){ data-preview }에서는 **받는 쪽이 지금 얼마나 더 받아둘 수 있는지**를 광고하는 Window도 봤어요.
+[TCP 재전송과 신뢰성](../basic/22-tcp-retransmission-and-reliability.md){ data-preview }에서는 TCP가 **빠진 조각을 다시 보내는 법**을 먼저 봤고, [TCP 윈도우와 흐름 제어는 왜 같이 읽어야 할까요?](./tcp-window-and-flow-control.md#flow-control-over-time){ data-preview }에서는 **받는 쪽이 지금 얼마나 더 받아둘 수 있는지**를 광고하는 Window도 봤어요.
 
 근데 여기서 이런 질문이 생기죠.
 
@@ -215,7 +215,7 @@ flowchart TD
 
 ### 2. duplicate ACK의 의미가 더 또렷해져요
 
-[TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }에서 duplicate ACK는 빠진 조각의 힌트였죠. 오늘 한 걸음 더 들어가면, 그건 동시에 **혼잡 제어가 몸을 사리기 시작하는 계기**가 되기도 해요.
+[TCP 재전송과 신뢰성](../basic/22-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }에서 duplicate ACK는 빠진 조각의 힌트였죠. 오늘 한 걸음 더 들어가면, 그건 동시에 **혼잡 제어가 몸을 사리기 시작하는 계기**가 되기도 해요.
 
 ### 3. 흐름 제어 글과 같이 읽어야 전체 그림이 닫혀요
 
@@ -257,7 +257,7 @@ flowchart TD
 
 ## 이어서 보면 좋은 글
 
-- 재전송과 duplicate ACK를 먼저 기본편 흐름으로 다시 보고 싶다면 — [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }
+- 재전송과 duplicate ACK를 먼저 기본편 흐름으로 다시 보고 싶다면 — [TCP 재전송과 신뢰성](../basic/22-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }
 - 받는 쪽 한도와 길 한도를 구분해서 다시 보고 싶다면 — [TCP 윈도우와 흐름 제어는 왜 같이 읽어야 할까요?](./tcp-window-and-flow-control.md#flow-control-over-time){ data-preview }
 - `Window`, `ECE`, `CWR` 같은 신호가 TCP 헤더 어디에 있는지 다시 보고 싶다면 — [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#flags){ data-preview }
 - `ECE`, `CWR` 비트를 플래그 관점에서 먼저 가볍게 읽고 싶다면 — [TCP 플래그는 어떻게 읽어야 할까요?](./tcp-flags-cheatsheet.md#flag-meanings){ data-preview }

@@ -3,7 +3,7 @@ title: TLS 인증서 체인과 신뢰 오류는 어떻게 읽어야 할까요?
 description: 인증서가 한 장이 아니라 체인으로 따라오는 이유와, 만료·이름 불일치·신뢰 실패 같은 TLS 경고를 실제 장면처럼 읽어봐요.
 icon: lucide/badge-alert
 created: 2026-06-02
-updated: 2026-06-09
+updated: 2026-06-16
 tags:
   - Network
   - TLS
@@ -271,4 +271,4 @@ Certificate chain
 - TLS와 인증서의 큰 그림부터 다시 잡고 싶다면 — [TLS, SSL, 인증서는 뭐가 다를까요?](../basic/07-tls-ssl-and-certificates.md#browser-verification-flow){ data-preview }
 - 핸드셰이크 안에서 `Certificate` 와 `CertificateVerify` 가 어떤 역할을 맡는지 다시 보고 싶다면 — [TLS 1.3 핸드셰이크는 실제로 어떤 순서일까요?](./tls13-handshake-anatomy.md#certificate-and-verify){ data-preview }
 - TLS 장면이 실제로 어떤 순서로 지나가는지 step-by-step으로 다시 보고 싶다면 — [TLS 핸드셰이크는 실제로 어떻게 한 단계씩 진행될까요?](./tls-handshake-step-by-step.md#scene-first-look){ data-preview }
-- 요청 하나를 따라가다가 TLS 구간에서 인증서 경고가 끼면 어디쯤으로 읽어야 하는지 다시 붙이고 싶다면 — [End-to-End Request Debugging](../basic/25-end-to-end-request-debugging.md#tls-checkpoint){ data-preview }
+- 요청 하나를 따라가다가 TLS 구간에서 인증서 경고가 끼면 어디쯤으로 읽어야 하는지 다시 붙이고 싶다면 — [End-to-End Request Debugging](../basic/26-end-to-end-request-debugging.md#tls-checkpoint){ data-preview }

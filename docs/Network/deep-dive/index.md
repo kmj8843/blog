@@ -13,7 +13,7 @@ tags:
 
 > 큰 그림을 다 보면 끝일 것 같죠? **사실은 그때부터가 장면을 더 깊게 읽는 시작이에요.**
 
-[기본편의 마지막 글인 요청 하나를 끝까지 따라가 보는 글](../basic/25-end-to-end-request-debugging.md){ data-preview }까지 읽고 나면,
+[기본편의 마지막 글인 요청 하나를 끝까지 따라가 보는 글](../basic/26-end-to-end-request-debugging.md){ data-preview }까지 읽고 나면,
 이제는 **인터넷이 왜 그렇게 움직이는지** 에 대한 큰 그림이 어느 정도 머릿속에 들어와 있을 거예요.
 
 근데요, 여기서부터는 질문이 조금 달라져요.
@@ -56,7 +56,7 @@ flowchart LR
 그래서 가능하면 먼저:
 
 - [기본편 읽기 가이드](../basic/index.md){ data-preview }를 한 번 보고,
-- 가능하면 [기본편 마지막 글](../basic/25-end-to-end-request-debugging.md){ data-preview }까지의 큰 흐름을 머릿속에 두고,
+- 가능하면 [기본편 마지막 글](../basic/26-end-to-end-request-debugging.md){ data-preview }까지의 큰 흐름을 머릿속에 두고,
 - 그다음 필요한 장면을 심화편에서 다시 여는 식으로 들어오면 좋아요.
 
 근데요, 심화편은 번호 시리즈가 아니다 보니 **아무 데서나 골라 읽기 쉬워 보이지만**, 막상 읽어보면 앞에서 한 번 보고 온 장면이 있을수록 훨씬 덜 헷갈려요.
@@ -94,6 +94,7 @@ flowchart LR
 - [dig 출력은 어디부터 읽어야 할까요?](./dns-lookup-with-dig.md){ data-preview } — `dig` 기본 출력에서 `HEADER`, `QUESTION`, `ANSWER`, `AUTHORITY`, `ADDITIONAL`, `SERVER` 줄을 어떤 순서로 읽어야 하는지 실제 장면처럼 따라가봐요.
 - [DNS 재귀 조회와 반복 조회는 뭐가 다를까요?](./dns-resolver-recursion-vs-iteration.md){ data-preview } — 브라우저는 한 번만 물어본 것 같은데, 재귀 리졸버가 루트·TLD·권한 서버를 대신 따라가는 흐름을 같이 읽어봐요.
 - [DNS TTL과 캐시는 왜 바뀐 주소를 바로 안 보여줄까요?](./dns-ttl-and-cache-staleness.md){ data-preview } — DNS 설정을 바꿨는데도 누군가는 예전 주소를 보는 이유를 TTL, 재귀 리졸버 캐시, 음성 캐시 관점에서 읽어봐요.
+- [CNAME과 apex 도메인은 왜 같이 쓰기 어려울까요?](./cname-flattening-and-apex.md){ data-preview } — CNAME이 편한 별명처럼 보이지만, 루트 도메인에서는 왜 `SOA`, `NS` 같은 필수 레코드와 충돌하는지 같이 읽어봐요.
 
 ## 그다음에는 어떤 장면을 더 열어볼까요?
 
@@ -114,13 +115,27 @@ flowchart LR
 이 그림은 발행 순서라기보다 **읽는 힘이 넓어지는 방향**에 가까워요.
 처음에는 패킷과 헤더를 직접 읽고, 그다음에는 그 흔적이 도구 화면과 운영 장면에서 어떻게 보이는지 따라가게 될 거예요.
 
+### IP 주소 쪽에서는 이런 질문을 더 깊게 열어볼 거예요
+
+[기본편의 서브넷 마스크와 CIDR 글](../basic/16-subnet-mask-and-cidr.md){ data-preview }에서는
+**같은 네트워크인지, 게이트웨이에게 맡겨야 하는지**를 판단하는 큰 그림을 먼저 잡았어요.
+심화편에서는 그다음 숫자 계산과 라우팅 선택 장면을 더 깊게 열어볼 거예요.
+
+- `255.255.255.0` 과 `/24` 는 같은 말을 어떻게 다르게 적은 걸까요?
+- `192.168.0.0/24` 에서 실제로 쓸 수 있는 주소 범위는 어디부터 어디까지일까요?
+- 예전 A/B/C 클래스 주소 체계는 왜 지금 CIDR 중심 설명으로 바뀌었을까요?
+- 라우터는 여러 경로 중 왜 더 긴 prefix를 우선해서 고를까요?
+
+여기서는 아직 심화 글 링크를 달지 않을게요.
+글이 실제로 발행되면, 기본편의 쉬운 설명에서 바로 이어 내려올 수 있게 심화편 입구와 사이드바 순서를 함께 조정할 거예요.
+
 ### DNS 쪽에서는 이런 질문이 이어져요
 
-이미 공개된 DNS 글에서는 **메시지 구조**와 **`dig` 출력 읽기**를 먼저 봤어요.
+이미 공개된 DNS 글에서는 **메시지 구조**, **`dig` 출력 읽기**, **TTL 캐시**, **CNAME과 apex 도메인**을 먼저 봤어요.
 그다음에는 이런 질문이 자연스럽게 남아요.
 
-- `CNAME` 은 왜 편한데, apex 도메인에서는 갑자기 조심해야 할까요?
 - DNS 메시지가 커지면 왜 EDNS0 같은 확장 메모가 필요해질까요?
+- DNSSEC은 응답을 어떻게 검증 가능한 답으로 만들까요?
 - DoH와 DoT는 DNS를 어디까지 숨기고, 어디까지는 여전히 남겨둘까요?
 
 여기서는 아직 링크를 달지 않을게요.
@@ -176,5 +191,5 @@ flowchart TD
 
 그럼, 심화편으로 들어가기 전에 기본편의 마지막 흐름부터 다시 보고 싶으세요?
 
-<a class="md-button md-button--primary" href="../basic/25-end-to-end-request-debugging/">기본편 마지막 글 다시 보기</a>
+<a class="md-button md-button--primary" href="../basic/26-end-to-end-request-debugging/">기본편 마지막 글 다시 보기</a>
 <a class="md-button" href="../basic/">기본편 읽기 가이드 보기</a>

@@ -3,7 +3,7 @@ title: TCP Teardown과 TIME-WAIT - 대화가 끝난 뒤의 깔끔한 마무리
 description: 데이터를 다 보낸 뒤에 연결을 어떻게 안전하게 닫을까요? FIN 신호와 TIME-WAIT 상태가 왜 필요한지 알아봐요.
 icon: lucide/door-closed
 created: 2026-05-14
-updated: 2026-05-14
+updated: 2026-06-16
 tags:
   - Network
   - TCP
@@ -14,7 +14,7 @@ tags:
 
 > *"시작보다 중요한 건 끝맺음이에요. 마지막 인사가 전달되지 않으면, 누군가는 계속 문앞에서 기다릴지도 모르니까요."*
 
-[TCP 재전송과 신뢰성](21-tcp-retransmission-and-reliability.md){ data-preview }에서 우리는 데이터를 보낼 때 조각 하나하나를 꼼꼼하게 챙기는 법을 봤어요. 덕분에 우리는 중간에 짐이 사라져도 걱정 없이 데이터를 주고받을 수 있게 됐죠.
+[TCP 재전송과 신뢰성](22-tcp-retransmission-and-reliability.md){ data-preview }에서 우리는 데이터를 보낼 때 조각 하나하나를 꼼꼼하게 챙기는 법을 봤어요. 덕분에 우리는 중간에 짐이 사라져도 걱정 없이 데이터를 주고받을 수 있게 됐죠.
 
 그런데 말이죠, 할 말을 다 마쳤으면 이제 **"그만할게요"** 라고 인사를 하고 헤어져야 해요. 만약 인사도 없이 툭 끊어버리면 상대방은 아직 할 말이 남았는지, 아니면 갑자기 사고가 난 건지 알 길이 없거든요.
 
@@ -22,7 +22,7 @@ tags:
 
 ---
 
-## 일단 비유로 시작해볼게요
+## 대화는 시작만큼 마무리도 절차가 있어요
 
 이번에는 여러분이 친구와 **각자의 방에서 무전기로 대화**를 하다가 마무리를 한다고 상상해볼까요? 
 
@@ -153,4 +153,4 @@ TCP    192.168.0.5:54322      172.217.161.14:443     TIME_WAIT
 
 > *"수많은 사람이 몰려오는데, 서버 한 대가 그 많은 대화를 다 감당할 수 있을까요? 누군가 중간에서 '너는 이쪽으로 가'라고 정리해주진 않을까요?"*
 
-다음 글에서는 우리 눈에는 보이지 않지만 서버 앞단에서 교통 정리를 해주는 **[Proxy, Reverse Proxy, 그리고 Load Balancer](23-proxy-reverse-proxy-and-load-balancer.md){ data-preview }** 이야기를 해볼게요. 드디어 현대 웹 서비스의 진짜 구조를 들여다볼 차례예요.
+다음 글에서는 우리 눈에는 보이지 않지만 서버 앞단에서 교통 정리를 해주는 **[Proxy, Reverse Proxy, 그리고 Load Balancer](24-proxy-reverse-proxy-and-load-balancer.md){ data-preview }** 이야기를 해볼게요. 드디어 현대 웹 서비스의 진짜 구조를 들여다볼 차례예요.

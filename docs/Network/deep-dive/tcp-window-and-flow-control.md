@@ -3,7 +3,7 @@ title: TCP 윈도우와 흐름 제어는 왜 같이 읽어야 할까요?
 description: 받는 쪽이 얼마나 더 받을 수 있는지 알려주는 Window 값이 ACK, 버퍼 여유, Window Scale과 함께 어떻게 움직이는지 쉽게 풀어봐요.
 icon: lucide/gauge
 created: 2026-05-27
-updated: 2026-06-09
+updated: 2026-06-16
 tags:
   - Network
   - TCP
@@ -14,7 +14,7 @@ tags:
 
 > TCP는 빠르게 보내기만 하면 될 것 같죠? **사실은 상대가 "지금은 여기까지만 받아요"라고 말하는 속도 제한도 계속 듣고 있어요.**
 
-[TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md){ data-preview }에서는 TCP가 **빠진 조각을 다시 챙기는 법**을 먼저 봤어요. 그리고 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#flags){ data-preview }에서는 그 과정에 쓰이는 `Window` 칸이 TCP 헤더 네 번째 줄에 들어 있다는 것도 슬쩍 봤죠.
+[TCP 재전송과 신뢰성](../basic/22-tcp-retransmission-and-reliability.md){ data-preview }에서는 TCP가 **빠진 조각을 다시 챙기는 법**을 먼저 봤어요. 그리고 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#flags){ data-preview }에서는 그 과정에 쓰이는 `Window` 칸이 TCP 헤더 네 번째 줄에 들어 있다는 것도 슬쩍 봤죠.
 
 근데 여기서 이런 궁금증이 생겨요.
 
@@ -29,7 +29,7 @@ tags:
 오늘은 **받는 쪽 버퍼 여유를 광고하는 Window 값**, 그 값이 만들어내는 **흐름 제어**, 그리고 핸드셰이크에서 같이 맞추는 **Window Scale**까지 한 장면으로 묶어볼게요.
 
 !!! note "이 글의 범위"
-    여기서는 **받는 쪽이 광고하는 Window와 흐름 제어**에 집중해요. 패킷 손실 때문에 다시 보내는 재전송은 [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }에서, `SYN` / `ACK` / `Window` 칸이 헤더 어디에 있는지는 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#flags){ data-preview }에서 이미 봤어요. 또, 네트워크가 막혀서 보내는 쪽이 스스로 속도를 줄이는 **혼잡 제어(congestion control)** 전체는 [TCP 혼잡 제어는 왜 흐름 제어와 따로 봐야 할까요?](./tcp-congestion-control.md#flow-vs-congestion){ data-preview }에서 따로 열어볼게요. 실제 송신량은 보통 **상대가 광고한 receive window** 와 **송신자가 따로 계산하는 congestion control 제한**을 함께 받아요. 여기서는 그중에서도 **"상대가 얼마나 더 받을 수 있느냐"** 에만 초점을 맞출게요.
+    여기서는 **받는 쪽이 광고하는 Window와 흐름 제어**에 집중해요. 패킷 손실 때문에 다시 보내는 재전송은 [TCP 재전송과 신뢰성](../basic/22-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }에서, `SYN` / `ACK` / `Window` 칸이 헤더 어디에 있는지는 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#flags){ data-preview }에서 이미 봤어요. 또, 네트워크가 막혀서 보내는 쪽이 스스로 속도를 줄이는 **혼잡 제어(congestion control)** 전체는 [TCP 혼잡 제어는 왜 흐름 제어와 따로 봐야 할까요?](./tcp-congestion-control.md#flow-vs-congestion){ data-preview }에서 따로 열어볼게요. 실제 송신량은 보통 **상대가 광고한 receive window** 와 **송신자가 따로 계산하는 congestion control 제한**을 함께 받아요. 여기서는 그중에서도 **"상대가 얼마나 더 받을 수 있느냐"** 에만 초점을 맞출게요.
 
 ---
 
@@ -216,7 +216,7 @@ sequenceDiagram
 
 ### 2. ACK는 확인만 하는 게 아니라 여유도 같이 실어 나르거든요
 
-[TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md){ data-preview }에서는 ACK를 **"다음에 이 번호 줘"** 로 먼저 읽었어요. 오늘 한 걸음 더 나아가면, ACK는 종종 **"그리고 지금은 이만큼까지만 더 줘"** 라는 메시지도 같이 싣고 다녀요.
+[TCP 재전송과 신뢰성](../basic/22-tcp-retransmission-and-reliability.md){ data-preview }에서는 ACK를 **"다음에 이 번호 줘"** 로 먼저 읽었어요. 오늘 한 걸음 더 나아가면, ACK는 종종 **"그리고 지금은 이만큼까지만 더 줘"** 라는 메시지도 같이 싣고 다녀요.
 
 ### 3. 핸드셰이크와 데이터 구간이 이어져 보여요
 
@@ -258,7 +258,7 @@ Window Scale은 뒤에서 보는 Window 숫자의 해석 규칙이에요.
 
 ## 이어서 보면 좋은 글
 
-- ACK와 재전송이 왜 중요한지 기본편 흐름으로 다시 보고 싶다면 — [TCP 재전송과 신뢰성](../basic/21-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }
+- ACK와 재전송이 왜 중요한지 기본편 흐름으로 다시 보고 싶다면 — [TCP 재전송과 신뢰성](../basic/22-tcp-retransmission-and-reliability.md#retransmission-symptoms){ data-preview }
 - 받는 쪽 한도와 길 한도를 나눠서 보고 싶다면 — [TCP 혼잡 제어는 왜 흐름 제어와 따로 봐야 할까요?](./tcp-congestion-control.md#flow-vs-congestion){ data-preview }
 - `Window` 가 TCP 헤더의 정확히 어느 칸에 들어가는지 다시 보고 싶다면 — [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md#flags){ data-preview }
 - `wscale` 이 핸드셰이크에서 어떻게 보이는지 먼저 읽고 싶다면 — [tcpdump에서 TCP handshake는 어떻게 보일까요?](./tcp-handshake-in-capture.md#signals-to-read){ data-preview }
