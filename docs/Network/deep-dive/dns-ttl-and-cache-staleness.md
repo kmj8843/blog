@@ -3,7 +3,7 @@ title: DNS TTL과 캐시는 왜 바뀐 주소를 바로 안 보여줄까요?
 description: DNS 설정을 바꿨는데도 누군가는 예전 주소를 보는 이유를 TTL, 재귀 리졸버 캐시, 음성 캐시, 전환 순서 관점에서 풀어봐요.
 icon: lucide/hourglass
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-16
 tags:
   - Network
   - DNS
@@ -322,3 +322,12 @@ dig @ns1.example.com example.com A
 
 DNS TTL은 작은 숫자처럼 보이지만, 운영에서는 꽤 큰 시간표예요.
 어디에 예전 답이 남아 있는지, 얼마나 기다리면 새 답을 다시 물어볼지, 그리고 지금 보는 값이 원본인지 캐시인지 구분하는 기준이 되거든요.
+
+---
+
+## 이어서 보면 좋은 글
+
+- TTL이 실제 `dig` 출력에서 어떻게 보이는지 다시 확인하고 싶다면 — [dig 출력은 어디부터 읽어야 할까요?](./dns-lookup-with-dig.md){ data-preview }
+- 재귀 리졸버가 왜 캐시된 답을 줄 수 있는지 흐름부터 보고 싶다면 — [DNS 재귀 조회와 반복 조회는 뭐가 다를까요?](./dns-resolver-recursion-vs-iteration.md){ data-preview }
+- CNAME flattening에서 TTL 기준이 왜 헷갈리는지 이어서 보고 싶다면 — [CNAME과 apex 도메인은 왜 같이 쓰기 어려울까요?](./cname-flattening-and-apex.md){ data-preview }
+- DNS 레코드 종류와 TTL의 큰 그림을 다시 잡고 싶다면 — [DNS 레코드는 왜 이렇게 종류가 많을까요?](../basic/10-dns-records.md){ data-preview }

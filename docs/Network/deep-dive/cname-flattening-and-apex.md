@@ -402,11 +402,11 @@ dig www.example.com CNAME
 CNAME은 단순한 별명처럼 보이지만, apex에 오면 DNS 구역 운영 규칙과 바로 부딪혀요.
 그래서 `www` 에서는 쉬웠던 설정이 `example.com` 에서는 갑자기 어려워지는 거예요.
 
-## 다음 글 예고
+---
 
-DNS 응답은 대부분 작게 오가지만, 항상 작기만 한 건 아니에요.
-DNSSEC, IPv6 주소 힌트, 여러 레코드가 붙으면 메시지가 생각보다 커질 수 있거든요.
+## 이어서 보면 좋은 글
 
-> *"DNS는 UDP로 짧게 묻고 답한다면서, 응답이 커지면 어디에 그 사실을 적어둘까요?"*
-
-다음 DNS 심화 글에서는 **EDNS0와 DNS 메시지 크기** 이야기를 이어서 열어볼게요.
+- CNAME, A, AAAA 같은 레코드의 큰 그림부터 다시 잡고 싶다면 — [DNS 레코드는 왜 이렇게 종류가 많을까요?](../basic/10-dns-records.md){ data-preview }
+- CNAME과 A/AAAA 응답이 실제 `dig` 출력에서 어떻게 보이는지 보고 싶다면 — [dig 출력은 어디부터 읽어야 할까요?](./dns-lookup-with-dig.md){ data-preview }
+- flattening 결과가 바로 안 바뀌는 이유를 TTL과 캐시 관점에서 보고 싶다면 — [DNS TTL과 캐시는 왜 바뀐 주소를 바로 안 보여줄까요?](./dns-ttl-and-cache-staleness.md){ data-preview }
+- DNS 메시지 안에서 Answer와 Authority가 왜 나뉘는지 더 구조적으로 보고 싶다면 — [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](./dns-message-format.md){ data-preview }

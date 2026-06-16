@@ -3,7 +3,7 @@ title: dig 출력은 어디부터 읽어야 할까요?
 description: DNS 조회 결과를 dig로 봤을 때 HEADER, QUESTION, ANSWER, AUTHORITY, ADDITIONAL 섹션을 어떤 순서로 읽으면 좋은지 실제 출력처럼 따라가요.
 icon: lucide/search-code
 created: 2026-06-12
-updated: 2026-06-12
+updated: 2026-06-16
 tags:
   - Network
   - DNS
@@ -360,3 +360,12 @@ sequenceDiagram
     - `SERVER` 는 목적지 웹 서버가 아니라, 내가 물어본 DNS 리졸버예요.
 
 이것만 잡아도 `dig` 출력은 암호문이 아니라 꽤 친절한 영수증처럼 보이기 시작해요.
+
+---
+
+## 이어서 보면 좋은 글
+
+- `dig` 출력 뒤에 있는 원래 DNS 메시지 칸을 더 자세히 보고 싶다면 — [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](./dns-message-format.md){ data-preview }
+- `SERVER`, `RD`, `RA`, `AUTHORITY` 를 재귀 조회 관점에서 다시 읽고 싶다면 — [DNS 재귀 조회와 반복 조회는 뭐가 다를까요?](./dns-resolver-recursion-vs-iteration.md){ data-preview }
+- 답은 맞는 것 같은데 예전 값이 남아 보이는 이유를 보고 싶다면 — [DNS TTL과 캐시는 왜 바뀐 주소를 바로 안 보여줄까요?](./dns-ttl-and-cache-staleness.md){ data-preview }
+- CNAME과 apex 도메인을 `dig` 로 확인하는 장면까지 이어서 보고 싶다면 — [CNAME과 apex 도메인은 왜 같이 쓰기 어려울까요?](./cname-flattening-and-apex.md){ data-preview }

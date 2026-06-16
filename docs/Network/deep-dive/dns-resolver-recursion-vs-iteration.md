@@ -3,7 +3,7 @@ title: DNS 재귀 조회와 반복 조회는 뭐가 다를까요?
 description: 브라우저가 한 번 물어봤을 뿐인데 리졸버가 루트, TLD, 권한 서버를 대신 돌아다니는 이유를 재귀 조회와 반복 조회 관점에서 풀어봐요.
 icon: lucide/route
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-16
 tags:
   - Network
   - DNS
@@ -254,7 +254,7 @@ sequenceDiagram
 그 차이는 **어느 재귀 리졸버를 쓰는지**, **그 리졸버가 언제 답을 캐시했는지**, **TTL이 얼마나 남았는지**에 따라 달라질 수 있어요.
 
 여기서는 캐시가 조회 흐름을 짧게 만들 수 있다는 점까지만 잡을게요.
-TTL 때문에 값이 오래 남는 문제는 다음 DNS 글에서 더 따로 열어볼게요.
+TTL 때문에 값이 오래 남는 문제는 [DNS TTL과 캐시](./dns-ttl-and-cache-staleness.md){ data-preview }에서 따로 더 열어볼게요.
 
 ---
 
@@ -319,3 +319,12 @@ flowchart TD
 
 재귀와 반복을 나눠서 보면, DNS가 갑자기 훨씬 덜 마법처럼 보여요.
 누가 끝까지 찾아주는지, 누가 힌트만 주는지, 그리고 캐시가 어디에 끼어드는지만 나눠도 문제 장면을 훨씬 작게 쪼갤 수 있거든요.
+
+---
+
+## 이어서 보면 좋은 글
+
+- 재귀 리졸버가 돌려주는 답을 실제 `dig` 화면에서 읽고 싶다면 — [dig 출력은 어디부터 읽어야 할까요?](./dns-lookup-with-dig.md){ data-preview }
+- DNS 메시지의 `flags`, `ANSWER`, `AUTHORITY` 칸 자체를 더 자세히 보고 싶다면 — [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](./dns-message-format.md){ data-preview }
+- 캐시 때문에 바뀐 값이 바로 안 보이는 장면을 이어서 보고 싶다면 — [DNS TTL과 캐시는 왜 바뀐 주소를 바로 안 보여줄까요?](./dns-ttl-and-cache-staleness.md){ data-preview }
+- DNS의 큰 흐름부터 다시 잡고 싶다면 — [DNS는 어떻게 이름을 주소로 바꿔줄까요?](../basic/04-dns.md){ data-preview }

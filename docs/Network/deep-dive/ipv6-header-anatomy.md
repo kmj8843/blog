@@ -325,4 +325,4 @@ IP6 2001:db8:1::10 > 2606:4700:4700::1111: hlim 64 next-header TCP payload lengt
 
 > *"IP 헤더는 알겠는데, 우리가 handshake랑 재전송에서 계속 보던 `SYN`, `ACK`, sequence 번호는 그 위에서 정확히 어디 칸에 들어 있죠?"*
 
-그 관심사는 자연스럽게 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md){ data-preview } 쪽과 이어져요. 바로 이 글과 맞물리는 다음 구조 해부 글이에요.
+그 관심사는 자연스럽게 [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md){ data-preview } 쪽과 이어져요. IP 헤더 바로 위에 얹히는 구조를 보고 싶을 때 같이 읽기 좋은 글이에요.
