@@ -100,6 +100,7 @@ nav = [
       "Network/deep-dive/cname-flattening-and-apex.md",
       "Network/deep-dive/edns0-and-dns-message-size.md",
       "Network/deep-dive/dnssec-overview.md",
+      "Network/deep-dive/doh-dot-and-resolver-paths.md",
     ] },
     # {"iptime 실습" = [
     #   "Network/iptime/index.md",
