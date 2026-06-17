@@ -3,7 +3,7 @@ title: DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?
 description: DNS 요청과 응답이 실제로는 어떤 칸들로 나뉘는지, 12바이트 헤더와 Question·Answer·Authority·Additional 구조를 함께 읽어봐요.
 icon: lucide/file-search
 created: 2026-06-09
-updated: 2026-06-16
+updated: 2026-06-17
 tags:
   - Network
   - DNS
@@ -240,7 +240,7 @@ DNS를 처음 보면 여기서 제일 놀라요.
 
 즉 셋 다 비슷한 레코드처럼 보여도, **메시지 안에서 맡는 역할이 다르기 때문에 구역을 나눠 둔 것**에 가까워요.
 
-여기서 한 가지 표지판을 더 세워둘게요. `Authority` 는 *"권한 서버가 보낸 직접 답"* 과는 달라요. 그건 헤더의 `AA` 비트가 표시해주는 거고, `Authority` 섹션은 보통 **"이 이름은 저쪽 서버가 담당해요"** 같은 위임용 `NS` 레코드나, **"이 이름은 없어요"** 라는 부정 응답을 받쳐주는 `SOA` 레코드가 들어오는 자리에 가까워요. 또 `Additional` 에는 일반 리소스 레코드 말고도 **EDNS의 `OPT` 같은 의사(pseudo) 레코드**가 끼어드는 경우가 있어요. `dig` 출력에서 `;; OPT PSEUDOSECTION` 같은 줄이 보이는 게 바로 그 자리예요.
+여기서 한 가지 표지판을 더 세워둘게요. `Authority` 는 *"권한 서버가 보낸 직접 답"* 과는 달라요. 그건 헤더의 `AA` 비트가 표시해주는 거고, `Authority` 섹션은 보통 **"이 이름은 저쪽 서버가 담당해요"** 같은 위임용 `NS` 레코드나, **"이 이름은 없어요"** 라는 부정 응답을 받쳐주는 `SOA` 레코드가 들어오는 자리에 가까워요. 또 `Additional` 에는 일반 리소스 레코드 말고도 **EDNS의 `OPT` 같은 의사(pseudo) 레코드**가 끼어드는 경우가 있어요. `dig` 출력에서 `;; OPT PSEUDOSECTION` 같은 줄이 보이는 게 바로 그 자리예요. 그 줄이 왜 DNS 메시지 크기와 연결되는지는 [EDNS0는 DNS 메시지 크기를 어떻게 넓혀줄까요?](./edns0-and-dns-message-size.md#opt-pseudo-record){ data-preview }에서 이어서 볼 수 있어요.
 
 ---
 

@@ -69,6 +69,7 @@ flowchart LR
 - [서브넷 마스크와 CIDR은 실제로 어떻게 계산할까요?](./subnet-mask-and-cidr.md){ data-preview } — `/24`와 `255.255.255.0`이 같은 뜻인 이유부터 네트워크 주소, 브로드캐스트 주소, 호스트 범위 계산까지 같이 읽어봐요.
 - [네트워크 주소, 브로드캐스트 주소, 호스트 범위는 어떻게 나뉠까요?](./network-broadcast-and-host-range.md){ data-preview } — `/24`, `/26` 같은 범위 안에서 시작 주소, 끝 주소, 실제 기기 주소가 어떻게 갈라지는지 같이 읽어봐요.
 - [A/B/C 클래스 주소 체계는 왜 CIDR로 바뀌었을까요?](./classful-addressing-and-cidr-history.md){ data-preview } — 예전 클래스 방식이 왜 낭비를 만들었고, 지금은 왜 prefix 길이로 주소 범위를 읽는지 같이 정리해봐요.
+- [Longest Prefix Match는 왜 더 구체적인 길을 고를까요?](./longest-prefix-match-and-route-selection.md){ data-preview } — 라우팅 테이블에 여러 경로가 동시에 맞을 때 왜 더 긴 prefix가 선택되는지 같이 따라가봐요.
 - [TCP 헤더는 왜 이렇게 칸이 많을까요?](./tcp-header-anatomy.md){ data-preview } — `SYN`, `ACK`, sequence 번호, window, 옵션이 TCP 헤더의 어느 칸에 들어가는지 20바이트 격자 위에서 같이 읽어봐요.
 - [TCP 플래그는 어떻게 읽어야 할까요?](./tcp-flags-cheatsheet.md){ data-preview } — `Flags [S]`, `Flags [S.]`, `Flags [F.]`, `Flags [R]` 같은 짧은 표시를 handshake, 데이터, 종료 장면과 함께 읽어봐요.
 - [TCP 상태 머신: 연결의 탄생부터 소멸까지의 일대기](./tcp-state-machine.md){ data-preview } — TCP가 `SYN`을 보내고 `TIME-WAIT`로 사라지기까지, 엔드포인트 내부에서 어떤 상태를 거치는지 RFC 9293 표준을 바탕으로 촘촘하게 해부해봐요.
@@ -98,6 +99,7 @@ flowchart LR
 - [DNS 재귀 조회와 반복 조회는 뭐가 다를까요?](./dns-resolver-recursion-vs-iteration.md){ data-preview } — 브라우저는 한 번만 물어본 것 같은데, 재귀 리졸버가 루트·TLD·권한 서버를 대신 따라가는 흐름을 같이 읽어봐요.
 - [DNS TTL과 캐시는 왜 바뀐 주소를 바로 안 보여줄까요?](./dns-ttl-and-cache-staleness.md){ data-preview } — DNS 설정을 바꿨는데도 누군가는 예전 주소를 보는 이유를 TTL, 재귀 리졸버 캐시, 음성 캐시 관점에서 읽어봐요.
 - [CNAME과 apex 도메인은 왜 같이 쓰기 어려울까요?](./cname-flattening-and-apex.md){ data-preview } — CNAME이 편한 별명처럼 보이지만, 루트 도메인에서는 왜 `SOA`, `NS` 같은 필수 레코드와 충돌하는지 같이 읽어봐요.
+- [EDNS0는 DNS 메시지 크기를 어떻게 넓혀줄까요?](./edns0-and-dns-message-size.md){ data-preview } — DNS 응답이 512바이트를 넘을 때 `OPT PSEUDOSECTION`, `udp:` 값, `TC` 비트, TCP 재시도를 어떻게 이어 읽어야 하는지 같이 볼 수 있어요.
 
 ## 그다음에는 어떤 장면을 더 열어볼까요?
 
@@ -125,18 +127,15 @@ flowchart LR
 심화편에서는 이제 [`/24`와 `255.255.255.0`이 같은 말인 이유](./subnet-mask-and-cidr.md){ data-preview }를 비트 단위로 열고,
 [네트워크 주소·브로드캐스트 주소·호스트 범위](./network-broadcast-and-host-range.md){ data-preview }가 실제 숫자 범위에서 어떻게 갈라지는지도 이어서 볼 수 있어요.
 또 [A/B/C 클래스 주소 체계가 왜 CIDR로 바뀌었는지](./classful-addressing-and-cidr-history.md){ data-preview }를 보면, 지금 왜 첫 숫자보다 prefix를 더 중요하게 읽는지도 정리돼요.
+그리고 [라우터가 여러 경로 중 왜 더 긴 prefix를 고르는지](./longest-prefix-match-and-route-selection.md){ data-preview }까지 보면, 주소 범위 계산이 실제 경로 선택으로 이어져요.
 
-- 라우터는 여러 경로 중 왜 더 긴 prefix를 우선해서 고를까요?
-
-아직 발행되지 않은 나머지 IP 주소 글은 링크 없이 질문만 남겨둘게요.
-글이 실제로 발행되면, 이 IP 주소 묶음도 지금처럼 바로 이어 읽을 수 있게 정리할 거예요.
+이제 IP 주소 묶음에서는 **주소를 숫자로 자르고, 그 범위를 경로 선택으로 읽는 힘**까지 한 번 이어볼 수 있어요.
 
 ### DNS 쪽에서는 이런 질문이 이어져요
 
-이미 공개된 DNS 글에서는 **메시지 구조**, **`dig` 출력 읽기**, **TTL 캐시**, **CNAME과 apex 도메인**을 먼저 봤어요.
+이미 공개된 DNS 글에서는 **메시지 구조**, **`dig` 출력 읽기**, **TTL 캐시**, **CNAME과 apex 도메인**, **EDNS0와 DNS 메시지 크기**를 먼저 봤어요.
 그다음에는 이런 질문이 자연스럽게 남아요.
 
-- DNS 메시지가 커지면 왜 EDNS0 같은 확장 메모가 필요해질까요?
 - DNSSEC은 응답을 어떻게 검증 가능한 답으로 만들까요?
 - DoH와 DoT는 DNS를 어디까지 숨기고, 어디까지는 여전히 남겨둘까요?
 

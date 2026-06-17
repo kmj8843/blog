@@ -130,6 +130,8 @@ flowchart TD
 정말 간단히 말하면,
 **"딱 맞는 더 가까운 길을 모르겠으면 일단 여기로 보내"** 라는 기본 출구인 거죠.
 
+여기서는 기본 경로가 “모르는 바깥 길을 맡기는 출구”라는 감각까지만 잡아도 충분해요. 실제 라우팅 테이블에서 기본 경로와 더 구체적인 경로가 동시에 있을 때 어느 쪽이 선택되는지는 [Longest Prefix Match 심화 글](../deep-dive/longest-prefix-match-and-route-selection.md){ data-preview }에서 이어서 볼 수 있어요.
+
 ---
 
 ## 왜 하필 이름이 '기본' 게이트웨이일까요?

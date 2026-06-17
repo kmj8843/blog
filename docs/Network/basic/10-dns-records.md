@@ -3,7 +3,7 @@ title: A, AAAA, CNAME... DNS 레코드는 왜 종류가 여러 갈래일까요?
 description: 도메인 이름 뒤에 숨은 A, AAAA, CNAME 레코드의 차이를 비유와 실제 예시로 친근하게 풀어봅니다.
 icon: lucide/file-text
 created: 2026-05-12
-updated: 2026-06-16
+updated: 2026-06-17
 tags:
   - Network
   - DNS
@@ -185,6 +185,8 @@ Address: 2606:4700:10::ac42:93f3
 </div>
 
 물론 실제로는 이메일 전송 위치를 정하는 `MX`, 도메인 인증·검증 정보를 담는 `TXT` 레코드도 있어요. 이것들도 분명 중요한 DNS 레코드예요.
+
+그리고 TXT가 길어지거나, DNSSEC 서명처럼 큰 데이터가 붙으면 DNS 응답 자체가 512바이트 안에 다 안 들어갈 수 있어요. 그때 DNS가 어떻게 더 큰 응답을 주고받는지는 심화편 [EDNS0는 DNS 메시지 크기를 어떻게 넓혀줄까요?](../deep-dive/edns0-and-dns-message-size.md){ data-preview }에서 이어서 볼 수 있어요.
 
 다만 이런 레코드들은 메일 시스템이나 도메인 운영 이야기까지 이어지기 시작해요. 그래서 이번 글에서는 **웹사이트 접속 흐름에 꼭 필요한 A, AAAA, CNAME 중심으로만 이해해도 충분해요.**
 

@@ -77,6 +77,7 @@ nav = [
       "Network/deep-dive/subnet-mask-and-cidr.md",
       "Network/deep-dive/network-broadcast-and-host-range.md",
       "Network/deep-dive/classful-addressing-and-cidr-history.md",
+      "Network/deep-dive/longest-prefix-match-and-route-selection.md",
       "Network/deep-dive/tcp-header-anatomy.md",
       "Network/deep-dive/tcp-flags-cheatsheet.md",
       "Network/deep-dive/tcp-state-machine.md",
@@ -97,6 +98,7 @@ nav = [
       "Network/deep-dive/dns-resolver-recursion-vs-iteration.md",
       "Network/deep-dive/dns-ttl-and-cache-staleness.md",
       "Network/deep-dive/cname-flattening-and-apex.md",
+      "Network/deep-dive/edns0-and-dns-message-size.md",
     ] },
     # {"iptime 실습" = [
     #   "Network/iptime/index.md",
