@@ -100,6 +100,7 @@ flowchart LR
 - [DNS TTL과 캐시는 왜 바뀐 주소를 바로 안 보여줄까요?](./dns-ttl-and-cache-staleness.md){ data-preview } — DNS 설정을 바꿨는데도 누군가는 예전 주소를 보는 이유를 TTL, 재귀 리졸버 캐시, 음성 캐시 관점에서 읽어봐요.
 - [CNAME과 apex 도메인은 왜 같이 쓰기 어려울까요?](./cname-flattening-and-apex.md){ data-preview } — CNAME이 편한 별명처럼 보이지만, 루트 도메인에서는 왜 `SOA`, `NS` 같은 필수 레코드와 충돌하는지 같이 읽어봐요.
 - [EDNS0는 DNS 메시지 크기를 어떻게 넓혀줄까요?](./edns0-and-dns-message-size.md){ data-preview } — DNS 응답이 512바이트를 넘을 때 `OPT PSEUDOSECTION`, `udp:` 값, `TC` 비트, TCP 재시도를 어떻게 이어 읽어야 하는지 같이 볼 수 있어요.
+- [DNSSEC은 DNS 응답을 어떻게 믿게 만들어줄까요?](./dnssec-overview.md){ data-preview } — DNS 응답에 붙는 `RRSIG`, `DNSKEY`, `DS`가 어떻게 믿음의 사슬을 만들고, 검증 리졸버가 무엇을 확인하는지 같이 읽어봐요.
 
 ## 그다음에는 어떤 장면을 더 열어볼까요?
 
@@ -133,10 +134,9 @@ flowchart LR
 
 ### DNS 쪽에서는 이런 질문이 이어져요
 
-이미 공개된 DNS 글에서는 **메시지 구조**, **`dig` 출력 읽기**, **TTL 캐시**, **CNAME과 apex 도메인**, **EDNS0와 DNS 메시지 크기**를 먼저 봤어요.
+이미 공개된 DNS 글에서는 **메시지 구조**, **`dig` 출력 읽기**, **TTL 캐시**, **CNAME과 apex 도메인**, **EDNS0와 DNS 메시지 크기**, **DNSSEC 검증 흐름**을 먼저 봤어요.
 그다음에는 이런 질문이 자연스럽게 남아요.
 
-- DNSSEC은 응답을 어떻게 검증 가능한 답으로 만들까요?
 - DoH와 DoT는 DNS를 어디까지 숨기고, 어디까지는 여전히 남겨둘까요?
 
 여기서는 아직 링크를 달지 않을게요.

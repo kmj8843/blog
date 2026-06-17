@@ -186,7 +186,7 @@ Address: 2606:4700:10::ac42:93f3
 
 물론 실제로는 이메일 전송 위치를 정하는 `MX`, 도메인 인증·검증 정보를 담는 `TXT` 레코드도 있어요. 이것들도 분명 중요한 DNS 레코드예요.
 
-그리고 TXT가 길어지거나, DNSSEC 서명처럼 큰 데이터가 붙으면 DNS 응답 자체가 512바이트 안에 다 안 들어갈 수 있어요. 그때 DNS가 어떻게 더 큰 응답을 주고받는지는 심화편 [EDNS0는 DNS 메시지 크기를 어떻게 넓혀줄까요?](../deep-dive/edns0-and-dns-message-size.md){ data-preview }에서 이어서 볼 수 있어요.
+그리고 TXT가 길어지거나, DNSSEC 서명처럼 큰 데이터가 붙으면 DNS 응답 자체가 512바이트 안에 다 안 들어갈 수 있어요. 그때 DNS가 어떻게 더 큰 응답을 주고받는지는 심화편 [EDNS0는 DNS 메시지 크기를 어떻게 넓혀줄까요?](../deep-dive/edns0-and-dns-message-size.md){ data-preview }에서 이어서 볼 수 있어요. 그중 DNSSEC이 왜 서명과 키를 붙이고, 그 답을 어떻게 검증하는지는 [DNSSEC은 DNS 응답을 어떻게 믿게 만들어줄까요?](../deep-dive/dnssec-overview.md){ data-preview }에서 큰 그림으로 이어서 볼 수 있어요.
 
 다만 이런 레코드들은 메일 시스템이나 도메인 운영 이야기까지 이어지기 시작해요. 그래서 이번 글에서는 **웹사이트 접속 흐름에 꼭 필요한 A, AAAA, CNAME 중심으로만 이해해도 충분해요.**
 
