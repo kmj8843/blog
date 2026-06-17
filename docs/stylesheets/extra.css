@@ -1,108 +1,101 @@
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-ExtraLight.ttf")
-		format("truetype");
-	font-weight: 200;
-	font-style: normal;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-ExtraLightItalic.ttf")
-		format("truetype");
-	font-weight: 200;
-	font-style: italic;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-Light.ttf") format("truetype");
-	font-weight: 300;
-	font-style: normal;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-LightItalic.ttf")
-		format("truetype");
-	font-weight: 300;
-	font-style: italic;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-SemiLight.ttf")
-		format("truetype");
-	font-weight: 350;
-	font-style: normal;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-SemiLight.ttf") format("truetype");
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-SemiLightItalic.ttf")
-		format("truetype");
-	font-weight: 350;
-	font-style: italic;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-SemiLightItalic.ttf") format("truetype");
+  font-weight: 350;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-Regular.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-Italic.ttf") format("truetype");
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-SemiBold.ttf") format("truetype");
-	font-weight: 600;
-	font-style: normal;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-SemiBoldItalic.ttf")
-		format("truetype");
-	font-weight: 600;
-	font-style: italic;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-Bold.ttf") format("truetype");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "CaskaydiaCove Nerd Font Mono";
-	src: url("../fonts/CaskaydiaCoveNerdFontMono-BoldItalic.ttf")
-		format("truetype");
-	font-weight: 700;
-	font-style: italic;
-	font-display: swap;
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("../fonts/CaskaydiaCoveNerdFontMono-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
 }
 
 :root {
-	--md-code-font: "CaskaydiaCove Nerd Font Mono";
+  --md-code-font: "CaskaydiaCove Nerd Font Mono";
 }
 
 code,
@@ -111,11 +104,13 @@ kbd,
 .md-typeset code,
 .md-typeset pre,
 .highlight {
-	font-feature-settings: "liga", "calt";
-	font-variant-ligatures: contextual;
+  font-feature-settings: "liga", "calt";
+  font-variant-ligatures: contextual;
 }
 
 .mermaid {
+  display: flex;
+  justify-content: center;
   position: relative;
   cursor: zoom-in;
 }
@@ -143,7 +138,9 @@ kbd,
   pointer-events: none;
   opacity: 0;
   transform: translateY(-2px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
   box-shadow: 0 0.1rem 0.35rem rgba(0, 0, 0, 0.12);
 }
 
@@ -212,11 +209,11 @@ kbd,
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.mermaid::after {
-		transition: none;
-	}
+  .mermaid::after {
+    transition: none;
+  }
 
-	.mermaid.is-zoomed {
-		animation: none;
-	}
+  .mermaid.is-zoomed {
+    animation: none;
+  }
 }
