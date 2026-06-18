@@ -114,6 +114,11 @@ flowchart LR
 - [curl verbose와 timing은 어디부터 읽어야 할까요?](./curl-verbose-and-timing.md){ data-preview } — `curl -v` 출력과 `--write-out` timing 값을 DNS, TCP, TLS, 첫 바이트, 전체 시간으로 나눠 읽어봐요.
 - [브라우저 waterfall은 어디부터 읽어야 할까요?](./reading-browser-waterfall.md){ data-preview } — Network 탭의 waterfall에서 Queueing, DNS, 연결, TLS, Waiting, 다운로드 구간을 나눠 읽어봐요.
 
+### 그다음 서버 앞단 오류를 읽어봐요
+
+- [502, 503, 504는 어디서 만든 응답일까요?](./reading-502-503-504.md){ data-preview } — 프록시, 로드 밸런서, CDN, 오리진 사이에서 보이는 5xx를 상태 코드, 헤더, waterfall 시간 모양으로 나눠 읽어봐요.
+- [X-Forwarded 헤더에서 진짜 클라이언트 IP는 어떻게 읽을까요?](./x-forwarded-headers-and-client-ip.md){ data-preview } — 프록시 뒤에서 앱이 보는 IP가 왜 달라지는지, `X-Forwarded-For`와 `Forwarded` 헤더를 신뢰 경계 기준으로 읽어봐요.
+
 ## 그다음에는 어떤 장면을 더 열어볼까요?
 
 여기까지가 지금 바로 읽을 수 있는 심화편의 첫 묶음이에요.
@@ -154,12 +159,13 @@ flowchart LR
 DNS 다음에는 HTTP와 서버 앞단으로 시선이 옮겨가요.
 브라우저에서 요청 하나가 느려졌을 때, 겉으로는 그냥 **"사이트가 느리다"** 로 보이지만 안쪽 장면은 꽤 다르게 갈라지거든요.
 
-먼저 [HTTP/1.1 메시지의 시작 줄, 헤더, 빈 줄, 본문 구조](./http1-message-grammar.md){ data-preview }를 보면, 브라우저와 서버가 실제로 어떤 모양의 약속문을 주고받는지부터 잡을 수 있어요. 이어서 [HTTP/2의 프레임, 스트림, 멀티플렉싱](./http2-frames-and-multiplexing.md){ data-preview }까지 보면, 현대 브라우저가 한 연결 안에서 여러 요청을 어떻게 섞어 처리하는지도 볼 수 있고요. 그다음 [HTTP/3가 QUIC 위에서 프레임을 어떻게 다시 나누는지](./http3-and-quic-frames.md){ data-preview }까지 보면, `h2`와 `h3`가 왜 단순한 버전 숫자 차이가 아닌지도 이어져요. 이제 [curl verbose와 timing 값](./curl-verbose-and-timing.md){ data-preview }으로 요청 하나를 직접 쪼개 보고, [브라우저 waterfall](./reading-browser-waterfall.md){ data-preview }로 여러 요청이 겹쳐 흐르는 장면까지 보면, 프록시, 캐시, 오리진 지연 같은 운영 장면을 더 정확히 읽기 쉬워져요.
+먼저 [HTTP/1.1 메시지의 시작 줄, 헤더, 빈 줄, 본문 구조](./http1-message-grammar.md){ data-preview }를 보면, 브라우저와 서버가 실제로 어떤 모양의 약속문을 주고받는지부터 잡을 수 있어요. 이어서 [HTTP/2의 프레임, 스트림, 멀티플렉싱](./http2-frames-and-multiplexing.md){ data-preview }까지 보면, 현대 브라우저가 한 연결 안에서 여러 요청을 어떻게 섞어 처리하는지도 볼 수 있고요. 그다음 [HTTP/3가 QUIC 위에서 프레임을 어떻게 다시 나누는지](./http3-and-quic-frames.md){ data-preview }까지 보면, `h2`와 `h3`가 왜 단순한 버전 숫자 차이가 아닌지도 이어져요. 이제 [curl verbose와 timing 값](./curl-verbose-and-timing.md){ data-preview }으로 요청 하나를 직접 쪼개 보고, [브라우저 waterfall](./reading-browser-waterfall.md){ data-preview }로 여러 요청이 겹쳐 흐르는 장면까지 보면, [502, 503, 504가 어느 계층의 목소리인지](./reading-502-503-504.md){ data-preview }와 [프록시 뒤에서 클라이언트 IP를 어떻게 믿어야 하는지](./x-forwarded-headers-and-client-ip.md){ data-preview }도 더 정확히 좁혀 읽을 수 있어요.
 
 | 겉으로 보이는 장면 | 더 깊게 보면 | 앞으로 열어볼 질문 |
 |---|---|---|
 | 브라우저 waterfall이 길게 늘어짐 | DNS, 연결, TLS, TTFB, 다운로드 시간이 따로 움직임 | 진짜 느린 구간은 어디일까요? |
 | `502`, `503`, `504` 가 뜸 | 앞단 프록시와 뒤쪽 서버 사이의 실패일 수 있음 | 이 응답은 누구의 목소리일까요? |
+| 로그의 클라이언트 IP가 이상함 | 앱이 직접 본 주소와 forwarded 헤더 값이 다를 수 있음 | 이 IP는 누가 적었고 어디까지 믿어도 될까요? |
 | 캐시가 된 것 같은데 값이 이상함 | `Cache-Control`, `Age`, `Vary`, CDN 상태 헤더가 얽힘 | 지금 보는 건 새 값일까요, 오래된 사본일까요? |
 | 인증서 오류가 갑자기 터짐 | 체인, 만료, 이름 불일치, 신뢰 저장소가 갈라짐 | 어느 검사에서 멈춘 걸까요? |
 | 간헐적으로만 느림 | 평균보다 p95, p99 같은 꼬리 지연이 중요할 수 있음 | 왜 대부분은 빠른데 일부 요청만 느릴까요? |

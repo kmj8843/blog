@@ -106,6 +106,8 @@ nav = [
       "Network/deep-dive/http3-and-quic-frames.md",
       "Network/deep-dive/curl-verbose-and-timing.md",
       "Network/deep-dive/reading-browser-waterfall.md",
+      "Network/deep-dive/reading-502-503-504.md",
+      "Network/deep-dive/x-forwarded-headers-and-client-ip.md",
     ] },
     # {"iptime 실습" = [
     #   "Network/iptime/index.md",
