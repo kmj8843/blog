@@ -37,7 +37,7 @@ render_macros: true
     패킷, IP, 라우팅처럼 매일 쓰지만 잘 모르는 것들을
     택배 비유로 풀어봅니다.
 
-    [:octicons-arrow-right-24: 네트워크 글 보기](Network/index.md)
+    [:octicons-arrow-right-24: 네트워크 글 보기](network/index.md)
 
 - :material-rocket-launch-outline:{ .lg .middle } **더 많은 주제, 곧 추가돼요**
 
