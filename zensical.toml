@@ -39,6 +39,10 @@ Copyright &copy; 2026 Aha Notes
 
 nav = [
   { "Home" = "index.md" },
+  { "Spring Boot" = [
+    "spring-boot/index.md",
+    "spring-boot/why-spring-and-boot-exist.md",
+  ] },
   { "네트워크" = [
     "network/index.md",
     { "기본편" = [

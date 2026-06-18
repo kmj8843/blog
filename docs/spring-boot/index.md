@@ -1,0 +1,72 @@
+---
+title: Spring Boot 글은 어디부터 읽으면 좋을까요?
+description: Spring과 Spring Boot를 처음 만날 때 헷갈리는 지점을, 객체 생성부터 자동 설정과 운영 흐름까지 한 줄로 이어서 읽는 입구예요.
+icon: lucide/leaf
+hide:
+  - feedback
+tags:
+  - Spring Boot
+  - Spring Framework
+  - Backend
+---
+
+# Spring Boot 글은 어디부터 읽으면 좋을까요?
+
+> Spring Boot는 편한데, 편한 만큼 **내가 안 한 일을 누가 했는지**가 잘 안 보일 때가 있어요.
+
+컨트롤러 하나 만들었을 뿐인데 서버가 뜨고, JSON이 나가고, 설정 파일이 읽히고, 데이터베이스 연결까지 준비되는 장면을 보면 이런 생각이 들죠.
+
+> "이거 편하긴 한데, 내부에서 뭐가 움직이는 거지?"
+
+이 Spring Boot 글들은 그 질문을 따라가려고 만든 길이에요. 애노테이션 이름을 먼저 외우기보다, **내가 작성한 코드**와 **Spring Boot가 대신 준비한 일**을 나눠서 보는 데 집중할게요.
+
+---
+
+## 지금은 여기서 시작하면 돼요
+
+아직 글이 많지는 않아요. 그래서 지금은 첫 글부터 읽는 흐름이 가장 자연스러워요.
+
+- [왜 Spring과 Spring Boot가 필요했을까요?](why-spring-and-boot-exist.md){ data-preview }  
+  객체를 직접 만들고 연결하던 코드가 왜 Spring 컨테이너로 옮겨갔는지, 그리고 Spring Boot가 어떤 반복 설정을 덜어주는지 큰 그림부터 잡아요.
+
+앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
+
+---
+
+## 이 길에서 계속 붙잡을 질문
+
+Spring Boot를 읽을 때는 기능 이름보다 질문을 먼저 잡는 편이 덜 헷갈려요.
+
+- 내가 만든 클래스는 누가 객체로 만들까요?
+- 필요한 객체는 누가 생성자에 넣어줄까요?
+- `main` 메서드 하나가 왜 웹 서버 시작으로 이어질까요?
+- 스타터(starter)를 넣으면 왜 여러 라이브러리가 같이 따라올까요?
+- 자동 설정(auto-configuration)은 언제 적용되고, 언제 물러날까요?
+- 테스트에서는 왜 실행할 때와 다른 컨텍스트가 뜰까요?
+
+이 질문들이 뒤 글들의 기준점이 될 거예요.
+
+```mermaid
+flowchart LR
+    A[내가 작성한 코드<br/><small>Controller, Service, Repository</small>]
+    B[Spring 컨테이너<br/><small>객체 생성과 연결</small>]
+    C[Spring Boot<br/><small>스타터와 자동 설정</small>]
+    D[실행 중 애플리케이션<br/><small>요청 처리와 운영</small>]
+
+    A --> B --> C --> D
+```
+
+이 그림의 핵심은 역할 분리예요. 개발자는 애플리케이션의 행동을 쓰고, Spring은 객체를 만들고 연결하고, Spring Boot는 반복되는 설정과 실행 기본값을 준비해요.
+
+---
+
+## 자, 정리해볼까요?
+
+!!! abstract "Spring Boot 글은 이렇게 읽으면 돼요"
+    - 처음이라면 첫 글부터 차례대로 읽는 게 가장 자연스러워요.
+    - 이 카테고리는 애노테이션 암기보다 **프레임워크가 대신 한 일**을 보이게 만드는 데 집중해요.
+    - 실제 파일명은 번호 없는 안정적인 slug를 쓰고, 읽는 순서는 `zensical.toml`의 nav에서 관리해요.
+
+그럼 첫 글부터 시작해볼까요?
+
+<a class="md-button md-button--primary" href="why-spring-and-boot-exist/">첫 글 읽기</a>
