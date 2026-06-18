@@ -20,12 +20,12 @@ render_macros: true
 
 비개발자도 끝까지 따라올 수 있도록, 개발자에겐 *"이렇게 설명할 수도 있구나"* 싶도록.
 
-[둘러보기 :material-arrow-right:](#_2){ .md-button .md-button--primary }
-[최신 글 보기 :material-newspaper:](#_3){ .md-button }
+[둘러보기 :material-arrow-right:](#categories){ .md-button .md-button--primary }
+[최신 글 보기 :material-newspaper:](#latest-posts){ .md-button }
 
 ---
 
-## 카테고리
+## 카테고리 { #categories }
 
 <div class="grid cards" markdown>
 
@@ -52,7 +52,7 @@ render_macros: true
 
 ---
 
-## 최신 글
+## 최신 글 { #latest-posts }
 
 {{ latest_posts_cards(2) }}
 
@@ -69,12 +69,12 @@ render_macros: true
     딱딱한 정의 대신 **비유부터 시작**해요.
     한 번에 다 이해 안 돼도 괜찮아요. 비유만 기억해도 절반은 성공이에요.
 
-- :material-image-multiple-outline:{ .lg .middle } **그림이 친구예요**
+- :material-image-multiple-outline:{ .lg .middle } **그림과 화면이 친구예요**
 
     ---
 
-    글마다 **2~4개의 다이어그램**이 들어있어요.
-    글이 막히면 그림부터 보세요. 머릿속에 구조가 그려질 거예요.
+    글마다 **다이어그램이나 화면 캡처**를 곁들여요.
+    글이 막히면 먼저 눈으로 흐름을 보세요. 머릿속에 구조가 그려질 거예요.
 
 - :material-lightbulb-on-outline:{ .lg .middle } **"왜?"가 핵심이에요**
 
