@@ -24,10 +24,13 @@ tags:
 
 ## 지금은 여기서 시작하면 돼요
 
-아직 글이 많지는 않아요. 그래서 지금은 첫 글부터 읽는 흐름이 가장 자연스러워요.
+아직 글이 많지는 않아요. 그래서 지금은 아래 순서대로 읽는 흐름이 가장 자연스러워요.
 
 - [왜 Spring과 Spring Boot가 필요했을까요?](why-spring-and-boot-exist.md){ data-preview }  
   객체를 직접 만들고 연결하던 코드가 왜 Spring 컨테이너로 옮겨갔는지, 그리고 Spring Boot가 어떤 반복 설정을 덜어주는지 큰 그림부터 잡아요.
+
+- [Spring Boot 프로젝트는 처음에 무엇을 만들어줄까요?](spring-boot-init-and-project-shape.md){ data-preview }
+  Spring Initializr와 `spring init`으로 만든 첫 프로젝트의 선택지, 빌드 파일, `main` 클래스, 패키지 구조, DevTools의 역할을 살펴봐요.
 
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
@@ -63,7 +66,7 @@ flowchart LR
 ## 자, 정리해볼까요?
 
 !!! abstract "Spring Boot 글은 이렇게 읽으면 돼요"
-    - 처음이라면 첫 글부터 차례대로 읽는 게 가장 자연스러워요.
+    - 처음이라면 위 목록을 차례대로 읽는 게 가장 자연스러워요.
     - 이 카테고리는 애노테이션 암기보다 **프레임워크가 대신 한 일**을 보이게 만드는 데 집중해요.
     - 실제 파일명은 번호 없는 안정적인 slug를 쓰고, 읽는 순서는 `zensical.toml`의 nav에서 관리해요.
 

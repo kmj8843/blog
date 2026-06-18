@@ -42,6 +42,7 @@ nav = [
   { "Spring Boot" = [
     "spring-boot/index.md",
     "spring-boot/why-spring-and-boot-exist.md",
+    "spring-boot/spring-boot-init-and-project-shape.md",
   ] },
   { "네트워크" = [
     "network/index.md",
