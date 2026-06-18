@@ -108,6 +108,7 @@ nav = [
       "Network/deep-dive/reading-browser-waterfall.md",
       "Network/deep-dive/reading-502-503-504.md",
       "Network/deep-dive/x-forwarded-headers-and-client-ip.md",
+      "Network/deep-dive/l4-vs-l7-load-balancer.md",
     ] },
     # {"iptime 실습" = [
     #   "Network/iptime/index.md",

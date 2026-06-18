@@ -118,6 +118,7 @@ flowchart LR
 
 - [502, 503, 504는 어디서 만든 응답일까요?](./reading-502-503-504.md){ data-preview } — 프록시, 로드 밸런서, CDN, 오리진 사이에서 보이는 5xx를 상태 코드, 헤더, waterfall 시간 모양으로 나눠 읽어봐요.
 - [X-Forwarded 헤더에서 진짜 클라이언트 IP는 어떻게 읽을까요?](./x-forwarded-headers-and-client-ip.md){ data-preview } — 프록시 뒤에서 앱이 보는 IP가 왜 달라지는지, `X-Forwarded-For`와 `Forwarded` 헤더를 신뢰 경계 기준으로 읽어봐요.
+- [L4와 L7 로드 밸런서는 무엇을 보고 나눠 보낼까요?](./l4-vs-l7-load-balancer.md){ data-preview } — 로드 밸런서가 연결의 IP·포트만 보는지, HTTP Host·path까지 읽는지에 따라 장애와 라우팅 해석이 어떻게 달라지는지 같이 읽어봐요.
 
 ## 그다음에는 어떤 장면을 더 열어볼까요?
 
@@ -159,7 +160,7 @@ flowchart LR
 DNS 다음에는 HTTP와 서버 앞단으로 시선이 옮겨가요.
 브라우저에서 요청 하나가 느려졌을 때, 겉으로는 그냥 **"사이트가 느리다"** 로 보이지만 안쪽 장면은 꽤 다르게 갈라지거든요.
 
-먼저 [HTTP/1.1 메시지의 시작 줄, 헤더, 빈 줄, 본문 구조](./http1-message-grammar.md){ data-preview }를 보면, 브라우저와 서버가 실제로 어떤 모양의 약속문을 주고받는지부터 잡을 수 있어요. 이어서 [HTTP/2의 프레임, 스트림, 멀티플렉싱](./http2-frames-and-multiplexing.md){ data-preview }까지 보면, 현대 브라우저가 한 연결 안에서 여러 요청을 어떻게 섞어 처리하는지도 볼 수 있고요. 그다음 [HTTP/3가 QUIC 위에서 프레임을 어떻게 다시 나누는지](./http3-and-quic-frames.md){ data-preview }까지 보면, `h2`와 `h3`가 왜 단순한 버전 숫자 차이가 아닌지도 이어져요. 이제 [curl verbose와 timing 값](./curl-verbose-and-timing.md){ data-preview }으로 요청 하나를 직접 쪼개 보고, [브라우저 waterfall](./reading-browser-waterfall.md){ data-preview }로 여러 요청이 겹쳐 흐르는 장면까지 보면, [502, 503, 504가 어느 계층의 목소리인지](./reading-502-503-504.md){ data-preview }와 [프록시 뒤에서 클라이언트 IP를 어떻게 믿어야 하는지](./x-forwarded-headers-and-client-ip.md){ data-preview }도 더 정확히 좁혀 읽을 수 있어요.
+먼저 [HTTP/1.1 메시지의 시작 줄, 헤더, 빈 줄, 본문 구조](./http1-message-grammar.md){ data-preview }를 보면, 브라우저와 서버가 실제로 어떤 모양의 약속문을 주고받는지부터 잡을 수 있어요. 이어서 [HTTP/2의 프레임, 스트림, 멀티플렉싱](./http2-frames-and-multiplexing.md){ data-preview }까지 보면, 현대 브라우저가 한 연결 안에서 여러 요청을 어떻게 섞어 처리하는지도 볼 수 있고요. 그다음 [HTTP/3가 QUIC 위에서 프레임을 어떻게 다시 나누는지](./http3-and-quic-frames.md){ data-preview }까지 보면, `h2`와 `h3`가 왜 단순한 버전 숫자 차이가 아닌지도 이어져요. 이제 [curl verbose와 timing 값](./curl-verbose-and-timing.md){ data-preview }으로 요청 하나를 직접 쪼개 보고, [브라우저 waterfall](./reading-browser-waterfall.md){ data-preview }로 여러 요청이 겹쳐 흐르는 장면까지 보면, [502, 503, 504가 어느 계층의 목소리인지](./reading-502-503-504.md){ data-preview }, [프록시 뒤에서 클라이언트 IP를 어떻게 믿어야 하는지](./x-forwarded-headers-and-client-ip.md){ data-preview }, [L4와 L7 로드 밸런서가 무엇을 보고 나누는지](./l4-vs-l7-load-balancer.md){ data-preview }도 더 정확히 좁혀 읽을 수 있어요.
 
 | 겉으로 보이는 장면 | 더 깊게 보면 | 앞으로 열어볼 질문 |
 |---|---|---|
