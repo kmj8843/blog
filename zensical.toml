@@ -114,6 +114,7 @@ nav = [
       "network/deep-dive/reading-502-503-504.md",
       "network/deep-dive/x-forwarded-headers-and-client-ip.md",
       "network/deep-dive/l4-vs-l7-load-balancer.md",
+      "network/deep-dive/tls-termination-vs-passthrough.md",
     ] },
     # {"iptime 실습" = [
     #   "network/iptime/index.md",
