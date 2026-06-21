@@ -3,7 +3,7 @@ title: Spring Boot 프로젝트는 처음에 무엇을 만들어줄까요?
 description: Spring Initializr와 spring init으로 만든 첫 프로젝트의 선택지, 빌드 파일, main 클래스, 패키지 구조, DevTools까지 처음 생성된 파일의 의미를 하나씩 봐요.
 icon: lucide/package-plus
 created: 2026-06-18
-updated: 2026-06-18
+updated: 2026-06-22
 tags:
   - Spring Boot
   - Spring Initializr
@@ -76,8 +76,42 @@ Spring Initializr는 그 선택지를 바탕으로 이런 것들을 만들어줘
 
 브라우저 대신 터미널에서 만들 수도 있어요. Spring Boot CLI를 설치했다면 `spring init` 명령이 Spring Initializr를 호출해 프로젝트를 만들어줘요.
 
+먼저 CLI가 없다면 설치부터 해야 해요. Spring Boot 4.1.0 공식 문서 기준으로는 이런 방법들이 안내돼요.
+
 ```bash
-spring init --dependencies=web,devtools --build=gradle --java-version=17 order
+# SDKMAN!을 쓰는 경우
+sdk install springboot
+spring --version
+
+# macOS에서 Homebrew를 쓰는 경우
+brew tap spring-io/tap
+brew install spring-boot
+
+# Windows에서 Scoop을 쓰는 경우
+scoop bucket add extras
+scoop install springboot
+```
+
+직접 설치하고 싶다면 공식 문서의 Spring Boot CLI 압축 파일을 내려받고, 압축을 푼 뒤 `bin/spring` 또는 Windows의 `bin/spring.bat`이 실행되도록 `PATH`를 잡으면 돼요.
+
+설치가 끝났다면 먼저 두 명령을 기억해두면 좋아요.
+
+```bash
+spring
+spring help init
+```
+
+`spring`만 입력하면 사용할 수 있는 명령 목록이 나오고, `spring help init`은 프로젝트 생성에 쓸 수 있는 옵션을 보여줘요.
+
+그다음 Gradle 프로젝트를 만들려면 이렇게 실행할 수 있어요.
+
+```bash
+spring init \
+  --dependencies=web,devtools \
+  --build=gradle \
+  --type=gradle-project \
+  --java-version=17 \
+  order
 ```
 
 이 명령은 대략 이렇게 읽으면 돼요.
@@ -86,10 +120,19 @@ spring init --dependencies=web,devtools --build=gradle --java-version=17 order
 |---|---|
 | `--dependencies=web,devtools` | 웹 애플리케이션과 개발 편의 기능을 넣어요 |
 | `--build=gradle` | Gradle 프로젝트로 만들어요 |
+| `--type=gradle-project` | 압축 파일이 아니라 풀린 Gradle 프로젝트 디렉터리로 만들어요 |
 | `--java-version=17` | Java 17 언어 수준을 기준으로 잡아요 |
 | `order` | 생성할 프로젝트 디렉터리 이름이에요 |
 
 공식 CLI 문서 기준으로 `spring init`은 기본 대상 서비스를 `https://start.spring.io`로 잡아요. 그래서 브라우저에서 누르는 "Generate" 버튼과 같은 생성 서비스를 명령줄에서 쓰는 셈이에요.
+
+사용할 수 있는 의존성 이름이나 프로젝트 타입이 헷갈리면 `--list`로 현재 서비스가 제공하는 선택지를 볼 수 있어요.
+
+```bash
+spring init --list
+```
+
+예를 들어 `--build=gradle`만 넣었을 때 CLI가 `gradle-project`와 `gradle-project-kotlin` 중 더 구체적인 타입을 고르라고 말할 수 있어요. 이럴 때는 위 예시처럼 `--type=gradle-project`를 함께 적으면 돼요.
 
 처음 배우는 단계라면 브라우저가 더 편할 수 있어요. 옵션을 눈으로 볼 수 있으니까요. 팀에서 반복 생성하거나 문서에 재현 가능한 명령을 남길 때는 CLI가 편해요.
 
@@ -400,4 +443,5 @@ flowchart LR
 - [Spring Boot Reference: Build Systems](https://docs.spring.io/spring-boot/reference/using/build-systems.html)
 - [Spring Boot Reference: Structuring Your Code](https://docs.spring.io/spring-boot/reference/using/structuring-your-code.html)
 - [Spring Boot Reference: Developer Tools](https://docs.spring.io/spring-boot/reference/using/devtools.html)
+- [Spring Boot Reference: Installing Spring Boot](https://docs.spring.io/spring-boot/installing.html)
 - [Spring Boot CLI: Using the CLI](https://docs.spring.io/spring-boot/cli/using-the-cli.html)
