@@ -39,11 +39,21 @@ render_macros: true
 
     [:octicons-arrow-right-24: 네트워크 글 보기](network/index.md)
 
+- :material-leaf:{ .lg .middle } **Spring Boot**
+
+    ---
+
+    컨트롤러 하나 만들었을 뿐인데 서버가 뜨고,
+    JSON이 나가고, 설정이 읽히는 흐름을
+    Spring과 Boot가 나눠 맡은 일로 풀어봅니다.
+
+    [:octicons-arrow-right-24: Spring Boot 글 보기](spring-boot/index.md)
+
 - :material-rocket-launch-outline:{ .lg .middle } **더 많은 주제, 곧 추가돼요**
 
     ---
 
-    프론트엔드, 백엔드, DevOps, 데이터베이스…
+    프론트엔드, DevOps, 데이터베이스…
     하나씩 천천히, 하지만 꾸준히 채워나갈 예정이에요.
 
     *기다려주세요!*
@@ -104,7 +114,7 @@ render_macros: true
 
 - **글의 톤**: 친근한 구어체, 일상 비유, 솔직한 추임새
 - **글의 구조**: 후킹 → 비유 → 개념 → "왜?" → 실제 사례 → 정리
-- **다루는 주제**: 네트워크부터 시작해서, 점점 넓혀갈 예정
+- **다루는 주제**: 네트워크와 Spring Boot부터 시작해서, 점점 넓혀갈 예정
 
 !!! note "한 가지 솔직한 이야기"
     가끔은 정말 어려운 주제도 마주칠 거예요. 그때는 *"무조건 쉽게 설명한다"*는
