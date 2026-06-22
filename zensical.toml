@@ -116,6 +116,8 @@ nav = [
       "network/deep-dive/l4-vs-l7-load-balancer.md",
       "network/deep-dive/tls-termination-vs-passthrough.md",
       "network/deep-dive/connection-reuse-keepalive-and-pooling.md",
+      "network/deep-dive/sticky-sessions-and-load-balancing-modes.md",
+      "network/deep-dive/reading-cache-control-and-age.md",
     ] },
     # {"iptime 실습" = [
     #   "network/iptime/index.md",

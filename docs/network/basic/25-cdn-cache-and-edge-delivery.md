@@ -336,6 +336,9 @@ CDN에 **예전 복사본을 비워달라**고 요청할 수도 있어요.
 결국 CDN은 원본 서버를 없애는 기술이 아니라,
 **원본 서버까지 가는 횟수를 줄이면서 더 똑똑하게 전달하는 기술**이라고 보면 딱 맞아요.
 
+더 깊게 보고 싶다면 심화편의 [Cache-Control과 Age 헤더는 어떻게 같이 읽어야 할까요?](../deep-dive/reading-cache-control-and-age.md){ data-preview }에서
+`max-age`, `Age`, `no-cache`, `no-store`를 실제 응답 헤더처럼 이어서 읽어볼 수 있어요.
+
 ---
 
 ## 다음 글 예고

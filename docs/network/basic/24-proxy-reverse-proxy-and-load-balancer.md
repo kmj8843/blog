@@ -216,6 +216,8 @@ sequenceDiagram
 
 또 앞단이 뒤쪽 서버와 연결을 매번 새로 여는지, 아니면 잠깐 남겨둔 연결을 다시 쓰는지도 운영에서는 중요해요. 간헐적인 502나 첫 요청 지연이 궁금하다면 심화편의 [Connection reuse, Keep-Alive, Pooling은 왜 같이 봐야 할까요?](../deep-dive/connection-reuse-keepalive-and-pooling.md){ data-preview }에서 이어서 볼 수 있어요.
 
+그리고 여러 서버 중 하나를 고를 때도 기준이 있어요. 같은 사용자를 계속 같은 서버에 붙여야 하는지, 아니면 건강한 서버 중 아무 곳으로 보내도 되는지가 궁금하다면 심화편의 [Sticky Session과 로드 밸런싱 방식은 왜 같이 봐야 할까요?](../deep-dive/sticky-sessions-and-load-balancing-modes.md){ data-preview }에서 이어서 볼 수 있어요.
+
 ---
 
 ## 자, 정리해볼까요?

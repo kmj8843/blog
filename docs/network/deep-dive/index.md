@@ -121,17 +121,22 @@ flowchart LR
 - [L4와 L7 로드 밸런서는 무엇을 보고 나눠 보낼까요?](./l4-vs-l7-load-balancer.md){ data-preview } — 로드 밸런서가 연결의 IP·포트만 보는지, HTTP Host·path까지 읽는지에 따라 장애와 라우팅 해석이 어떻게 달라지는지 같이 읽어봐요.
 - [TLS 종료와 TLS 패스스루는 어디서 갈라질까요?](./tls-termination-vs-passthrough.md){ data-preview } — HTTPS 암호를 앞단에서 풀어 읽는지, 뒤쪽 서버까지 그대로 넘기는지에 따라 라우팅과 인증서 오류 해석이 어떻게 달라지는지 같이 읽어봐요.
 - [Connection reuse, Keep-Alive, Pooling은 왜 같이 봐야 할까요?](./connection-reuse-keepalive-and-pooling.md){ data-preview } — 앞단과 오리진 사이 연결을 다시 쓰는 방식이 지연, connection pool, 간헐적인 502와 어떻게 이어지는지 같이 읽어봐요.
+- [Sticky Session과 로드 밸런싱 방식은 왜 같이 봐야 할까요?](./sticky-sessions-and-load-balancing-modes.md){ data-preview } — 같은 사용자를 계속 같은 서버로 보낼지, 건강한 서버 중 아무 곳으로 보내도 될지 세션과 배포 관점에서 읽어봐요.
+
+### 그다음 캐시 헤더를 읽어봐요
+
+- [Cache-Control과 Age 헤더는 어떻게 같이 읽어야 할까요?](./reading-cache-control-and-age.md){ data-preview } — `max-age`, `s-maxage`, `no-cache`, `no-store`, `Age`를 함께 읽으며 지금 응답이 새 원본인지 캐시 사본인지 좁혀봐요.
 
 ## 그다음에는 어떤 장면을 더 열어볼까요?
 
 여기까지가 지금 바로 읽을 수 있는 심화편의 첫 묶음이에요.
-처음에는 **프로토콜의 속살을 읽는 힘**을 먼저 만들고, 그다음에는 **도구 출력과 실제 장애 장면을 해석하는 힘**으로 넓혀갈 거예요.
+처음에는 **프로토콜의 속살을 읽는 힘**을 먼저 만들고, 그다음에는 **도구 출력, 앞단 장애, 캐시 헤더를 해석하는 힘**으로 넓혀갈 거예요.
 
 ```mermaid
 flowchart LR
     A[프로토콜 해부<br/><small>헤더, 필드, 상태</small>]
     B[관측 도구<br/><small>tcpdump, dig, waterfall, curl</small>]
-    C[서버 앞단<br/><small>프록시, 로드 밸런서, TLS 종료</small>]
+    C[서버 앞단<br/><small>프록시, 로드 밸런서, 세션</small>]
     D[캐시 / 엣지<br/><small>Cache-Control, Age, Vary</small>]
     E[오리진 / 장애<br/><small>TTFB, request id, 실제 사례</small>]
 
@@ -162,7 +167,7 @@ flowchart LR
 DNS 다음에는 HTTP와 서버 앞단으로 시선이 옮겨가요.
 브라우저에서 요청 하나가 느려졌을 때, 겉으로는 그냥 **"사이트가 느리다"** 로 보이지만 안쪽 장면은 꽤 다르게 갈라지거든요.
 
-먼저 [HTTP/1.1 메시지의 시작 줄, 헤더, 빈 줄, 본문 구조](./http1-message-grammar.md){ data-preview }를 보면, 브라우저와 서버가 실제로 어떤 모양의 약속문을 주고받는지부터 잡을 수 있어요. 이어서 [HTTP/2의 프레임, 스트림, 멀티플렉싱](./http2-frames-and-multiplexing.md){ data-preview }까지 보면, 현대 브라우저가 한 연결 안에서 여러 요청을 어떻게 섞어 처리하는지도 볼 수 있고요. 그다음 [HTTP/3가 QUIC 위에서 프레임을 어떻게 다시 나누는지](./http3-and-quic-frames.md){ data-preview }까지 보면, `h2`와 `h3`가 왜 단순한 버전 숫자 차이가 아닌지도 이어져요. 이제 [curl verbose와 timing 값](./curl-verbose-and-timing.md){ data-preview }으로 요청 하나를 직접 쪼개 보고, [브라우저 waterfall](./reading-browser-waterfall.md){ data-preview }로 여러 요청이 겹쳐 흐르는 장면까지 보면, [502, 503, 504가 어느 계층의 목소리인지](./reading-502-503-504.md){ data-preview }, [프록시 뒤에서 클라이언트 IP를 어떻게 믿어야 하는지](./x-forwarded-headers-and-client-ip.md){ data-preview }, [L4와 L7 로드 밸런서가 무엇을 보고 나누는지](./l4-vs-l7-load-balancer.md){ data-preview }, [TLS 종료와 패스스루가 어디서 갈라지는지](./tls-termination-vs-passthrough.md){ data-preview }도 더 정확히 좁혀 읽을 수 있어요. 그리고 [앞단과 오리진 사이 연결을 다시 쓰는 방식](./connection-reuse-keepalive-and-pooling.md){ data-preview }까지 보면, 간헐적인 502나 TTFB 증가가 앱 코드가 아니라 connection pool과 idle timeout에서 시작될 수도 있다는 감각이 생겨요.
+먼저 [HTTP/1.1 메시지의 시작 줄, 헤더, 빈 줄, 본문 구조](./http1-message-grammar.md){ data-preview }를 보면, 브라우저와 서버가 실제로 어떤 모양의 약속문을 주고받는지부터 잡을 수 있어요. 이어서 [HTTP/2의 프레임, 스트림, 멀티플렉싱](./http2-frames-and-multiplexing.md){ data-preview }까지 보면, 현대 브라우저가 한 연결 안에서 여러 요청을 어떻게 섞어 처리하는지도 볼 수 있고요. 그다음 [HTTP/3가 QUIC 위에서 프레임을 어떻게 다시 나누는지](./http3-and-quic-frames.md){ data-preview }까지 보면, `h2`와 `h3`가 왜 단순한 버전 숫자 차이가 아닌지도 이어져요. 이제 [curl verbose와 timing 값](./curl-verbose-and-timing.md){ data-preview }으로 요청 하나를 직접 쪼개 보고, [브라우저 waterfall](./reading-browser-waterfall.md){ data-preview }로 여러 요청이 겹쳐 흐르는 장면까지 보면, [502, 503, 504가 어느 계층의 목소리인지](./reading-502-503-504.md){ data-preview }, [프록시 뒤에서 클라이언트 IP를 어떻게 믿어야 하는지](./x-forwarded-headers-and-client-ip.md){ data-preview }, [L4와 L7 로드 밸런서가 무엇을 보고 나누는지](./l4-vs-l7-load-balancer.md){ data-preview }, [TLS 종료와 패스스루가 어디서 갈라지는지](./tls-termination-vs-passthrough.md){ data-preview }도 더 정확히 좁혀 읽을 수 있어요. 그리고 [앞단과 오리진 사이 연결을 다시 쓰는 방식](./connection-reuse-keepalive-and-pooling.md){ data-preview }과 [sticky session이 같은 사용자를 같은 서버에 붙잡는 방식](./sticky-sessions-and-load-balancing-modes.md){ data-preview }까지 보면, 간헐적인 502나 로그인 풀림이 앱 코드만의 문제가 아닐 수도 있다는 감각이 생겨요. 이어서 [Cache-Control과 Age 헤더](./reading-cache-control-and-age.md){ data-preview }를 읽으면, 캐시된 응답이 지금도 fresh인지, 이미 오래된 사본인지도 헤더에서 좁혀볼 수 있어요.
 
 | 겉으로 보이는 장면 | 더 깊게 보면 | 앞으로 열어볼 질문 |
 |---|---|---|
@@ -172,6 +177,7 @@ DNS 다음에는 HTTP와 서버 앞단으로 시선이 옮겨가요.
 | 캐시가 된 것 같은데 값이 이상함 | `Cache-Control`, `Age`, `Vary`, CDN 상태 헤더가 얽힘 | 지금 보는 건 새 값일까요, 오래된 사본일까요? |
 | 인증서 오류가 갑자기 터짐 | 체인, 만료, 이름 불일치, 신뢰 저장소가 갈라짐 | 어느 검사에서 멈춘 걸까요? |
 | 조용하다가 첫 요청만 가끔 502 | 앞단이 닫힌 upstream 연결을 다시 쓰려 했을 수 있음 | 이 연결은 새로 열렸을까요, pool에서 꺼냈을까요? |
+| 로그인이나 장바구니가 서버마다 달라짐 | 세션이 특정 백엔드에 묶였거나 sticky가 깨졌을 수 있음 | 이 사용자는 왜 같은 서버로 가야 할까요? |
 | 간헐적으로만 느림 | 평균보다 p95, p99 같은 꼬리 지연이 중요할 수 있음 | 왜 대부분은 빠른데 일부 요청만 느릴까요? |
 
 기본편에서는 이 장면들을 한 요청의 큰 흐름으로 이어서 봤고,
