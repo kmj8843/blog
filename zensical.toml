@@ -123,6 +123,7 @@ nav = [
       "network/deep-dive/etag-and-conditional-requests.md",
       "network/deep-dive/stale-while-revalidate-and-soft-purge.md",
       "network/deep-dive/cookie-and-cacheability.md",
+      "network/deep-dive/ttfb-vs-content-download.md",
     ] },
     # {"iptime 실습" = [
     #   "network/iptime/index.md",
