@@ -120,6 +120,7 @@ flowchart LR
 - [X-Forwarded 헤더에서 진짜 클라이언트 IP는 어떻게 읽을까요?](./x-forwarded-headers-and-client-ip.md){ data-preview } — 프록시 뒤에서 앱이 보는 IP가 왜 달라지는지, `X-Forwarded-For`와 `Forwarded` 헤더를 신뢰 경계 기준으로 읽어봐요.
 - [L4와 L7 로드 밸런서는 무엇을 보고 나눠 보낼까요?](./l4-vs-l7-load-balancer.md){ data-preview } — 로드 밸런서가 연결의 IP·포트만 보는지, HTTP Host·path까지 읽는지에 따라 장애와 라우팅 해석이 어떻게 달라지는지 같이 읽어봐요.
 - [TLS 종료와 TLS 패스스루는 어디서 갈라질까요?](./tls-termination-vs-passthrough.md){ data-preview } — HTTPS 암호를 앞단에서 풀어 읽는지, 뒤쪽 서버까지 그대로 넘기는지에 따라 라우팅과 인증서 오류 해석이 어떻게 달라지는지 같이 읽어봐요.
+- [Connection reuse, Keep-Alive, Pooling은 왜 같이 봐야 할까요?](./connection-reuse-keepalive-and-pooling.md){ data-preview } — 앞단과 오리진 사이 연결을 다시 쓰는 방식이 지연, connection pool, 간헐적인 502와 어떻게 이어지는지 같이 읽어봐요.
 
 ## 그다음에는 어떤 장면을 더 열어볼까요?
 
@@ -161,7 +162,7 @@ flowchart LR
 DNS 다음에는 HTTP와 서버 앞단으로 시선이 옮겨가요.
 브라우저에서 요청 하나가 느려졌을 때, 겉으로는 그냥 **"사이트가 느리다"** 로 보이지만 안쪽 장면은 꽤 다르게 갈라지거든요.
 
-먼저 [HTTP/1.1 메시지의 시작 줄, 헤더, 빈 줄, 본문 구조](./http1-message-grammar.md){ data-preview }를 보면, 브라우저와 서버가 실제로 어떤 모양의 약속문을 주고받는지부터 잡을 수 있어요. 이어서 [HTTP/2의 프레임, 스트림, 멀티플렉싱](./http2-frames-and-multiplexing.md){ data-preview }까지 보면, 현대 브라우저가 한 연결 안에서 여러 요청을 어떻게 섞어 처리하는지도 볼 수 있고요. 그다음 [HTTP/3가 QUIC 위에서 프레임을 어떻게 다시 나누는지](./http3-and-quic-frames.md){ data-preview }까지 보면, `h2`와 `h3`가 왜 단순한 버전 숫자 차이가 아닌지도 이어져요. 이제 [curl verbose와 timing 값](./curl-verbose-and-timing.md){ data-preview }으로 요청 하나를 직접 쪼개 보고, [브라우저 waterfall](./reading-browser-waterfall.md){ data-preview }로 여러 요청이 겹쳐 흐르는 장면까지 보면, [502, 503, 504가 어느 계층의 목소리인지](./reading-502-503-504.md){ data-preview }, [프록시 뒤에서 클라이언트 IP를 어떻게 믿어야 하는지](./x-forwarded-headers-and-client-ip.md){ data-preview }, [L4와 L7 로드 밸런서가 무엇을 보고 나누는지](./l4-vs-l7-load-balancer.md){ data-preview }, [TLS 종료와 패스스루가 어디서 갈라지는지](./tls-termination-vs-passthrough.md){ data-preview }도 더 정확히 좁혀 읽을 수 있어요.
+먼저 [HTTP/1.1 메시지의 시작 줄, 헤더, 빈 줄, 본문 구조](./http1-message-grammar.md){ data-preview }를 보면, 브라우저와 서버가 실제로 어떤 모양의 약속문을 주고받는지부터 잡을 수 있어요. 이어서 [HTTP/2의 프레임, 스트림, 멀티플렉싱](./http2-frames-and-multiplexing.md){ data-preview }까지 보면, 현대 브라우저가 한 연결 안에서 여러 요청을 어떻게 섞어 처리하는지도 볼 수 있고요. 그다음 [HTTP/3가 QUIC 위에서 프레임을 어떻게 다시 나누는지](./http3-and-quic-frames.md){ data-preview }까지 보면, `h2`와 `h3`가 왜 단순한 버전 숫자 차이가 아닌지도 이어져요. 이제 [curl verbose와 timing 값](./curl-verbose-and-timing.md){ data-preview }으로 요청 하나를 직접 쪼개 보고, [브라우저 waterfall](./reading-browser-waterfall.md){ data-preview }로 여러 요청이 겹쳐 흐르는 장면까지 보면, [502, 503, 504가 어느 계층의 목소리인지](./reading-502-503-504.md){ data-preview }, [프록시 뒤에서 클라이언트 IP를 어떻게 믿어야 하는지](./x-forwarded-headers-and-client-ip.md){ data-preview }, [L4와 L7 로드 밸런서가 무엇을 보고 나누는지](./l4-vs-l7-load-balancer.md){ data-preview }, [TLS 종료와 패스스루가 어디서 갈라지는지](./tls-termination-vs-passthrough.md){ data-preview }도 더 정확히 좁혀 읽을 수 있어요. 그리고 [앞단과 오리진 사이 연결을 다시 쓰는 방식](./connection-reuse-keepalive-and-pooling.md){ data-preview }까지 보면, 간헐적인 502나 TTFB 증가가 앱 코드가 아니라 connection pool과 idle timeout에서 시작될 수도 있다는 감각이 생겨요.
 
 | 겉으로 보이는 장면 | 더 깊게 보면 | 앞으로 열어볼 질문 |
 |---|---|---|
@@ -170,6 +171,7 @@ DNS 다음에는 HTTP와 서버 앞단으로 시선이 옮겨가요.
 | 로그의 클라이언트 IP가 이상함 | 앱이 직접 본 주소와 forwarded 헤더 값이 다를 수 있음 | 이 IP는 누가 적었고 어디까지 믿어도 될까요? |
 | 캐시가 된 것 같은데 값이 이상함 | `Cache-Control`, `Age`, `Vary`, CDN 상태 헤더가 얽힘 | 지금 보는 건 새 값일까요, 오래된 사본일까요? |
 | 인증서 오류가 갑자기 터짐 | 체인, 만료, 이름 불일치, 신뢰 저장소가 갈라짐 | 어느 검사에서 멈춘 걸까요? |
+| 조용하다가 첫 요청만 가끔 502 | 앞단이 닫힌 upstream 연결을 다시 쓰려 했을 수 있음 | 이 연결은 새로 열렸을까요, pool에서 꺼냈을까요? |
 | 간헐적으로만 느림 | 평균보다 p95, p99 같은 꼬리 지연이 중요할 수 있음 | 왜 대부분은 빠른데 일부 요청만 느릴까요? |
 
 기본편에서는 이 장면들을 한 요청의 큰 흐름으로 이어서 봤고,

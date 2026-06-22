@@ -172,7 +172,7 @@ sequenceDiagram
 
     C->>L: TCP SYN :443
     L->>O: TCP 연결 전달
-    C->>O: TLS ClientHello<br/><small>L은 내용을 풀지 않음</small>
+    C->>O: TLS ClientHello<br/>L은 내용을 풀지 않음
     O-->>C: Certificate / ServerHello
     C->>O: 암호화된 HTTP 요청
     O-->>C: 암호화된 HTTP 응답

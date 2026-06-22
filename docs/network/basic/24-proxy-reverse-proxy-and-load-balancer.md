@@ -214,6 +214,8 @@ sequenceDiagram
 
 그리고 앞단이 HTTPS를 어디서 풀어 읽는지도 중요해요. 앞단이 TLS를 끝내면 HTTP path를 보고 라우팅할 수 있지만, TLS 패스스루라면 암호화된 연결이 뒤쪽 서버까지 그대로 갈 수 있어요. 이 차이는 심화편의 [TLS 종료와 TLS 패스스루는 어디서 갈라질까요?](../deep-dive/tls-termination-vs-passthrough.md){ data-preview }에서 더 자세히 볼 수 있어요.
 
+또 앞단이 뒤쪽 서버와 연결을 매번 새로 여는지, 아니면 잠깐 남겨둔 연결을 다시 쓰는지도 운영에서는 중요해요. 간헐적인 502나 첫 요청 지연이 궁금하다면 심화편의 [Connection reuse, Keep-Alive, Pooling은 왜 같이 봐야 할까요?](../deep-dive/connection-reuse-keepalive-and-pooling.md){ data-preview }에서 이어서 볼 수 있어요.
+
 ---
 
 ## 자, 정리해볼까요?
