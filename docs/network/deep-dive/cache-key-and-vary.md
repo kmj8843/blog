@@ -418,12 +418,9 @@ Access-Control-Allow-Origin: https://app.example.com
 
 캐시를 볼 때 `Cache-Control`은 **얼마나 오래 쓸 수 있는지**를 말하고, cache key와 `Vary`는 **어떤 요청에 그 사본을 써도 되는지**를 말해요. 이 둘을 같이 봐야 "캐시가 됐다"와 "맞는 사본이 나왔다"를 구분할 수 있어요.
 
-## 이어서 볼 질문
-
-다음에는 캐시된 사본이 오래됐을 때 **다시 전체를 내려받지 않고 같은 버전인지 확인하는 방법**을 볼 거예요. `ETag`, `Last-Modified`, `If-None-Match`, `304 Not Modified`가 이어서 나올 질문이에요.
-
 ## 이어서 보면 좋은 글
 
 - [CDN, Cache, 그리고 Edge Delivery](../basic/25-cdn-cache-and-edge-delivery.md){ data-preview } — 캐시와 엣지 전달의 큰 그림으로 돌아가고 싶을 때 좋아요.
 - [Cache-Control과 Age 헤더는 어떻게 같이 읽어야 할까요?](./reading-cache-control-and-age.md){ data-preview } — 지금 사본이 fresh인지, 이미 얼마나 오래됐는지 같이 읽어봐요.
+- [ETag와 조건부 요청은 어떻게 304를 만들까요?](./etag-and-conditional-requests.md){ data-preview } — 캐시된 사본을 전체 다운로드 없이 다시 확인하는 흐름을 이어서 볼 수 있어요.
 - [브라우저 waterfall은 어디부터 읽어야 할까요?](./reading-browser-waterfall.md){ data-preview } — 캐시된 요청과 네트워크 요청이 브라우저 도구에서 어떻게 다르게 보이는지 이어서 볼 수 있어요.

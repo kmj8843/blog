@@ -120,6 +120,9 @@ nav = [
       "network/deep-dive/reading-cache-control-and-age.md",
       "network/deep-dive/cache-key-and-vary.md",
       "network/deep-dive/cdn-cache-status-headers.md",
+      "network/deep-dive/etag-and-conditional-requests.md",
+      "network/deep-dive/stale-while-revalidate-and-soft-purge.md",
+      "network/deep-dive/cookie-and-cacheability.md",
     ] },
     # {"iptime 실습" = [
     #   "network/iptime/index.md",

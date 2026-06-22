@@ -409,7 +409,4 @@ flowchart TD
 - [CDN, Cache, 그리고 Edge Delivery](../basic/25-cdn-cache-and-edge-delivery.md){ data-preview } — 캐시 히트와 미스, 오리진과 엣지의 큰 그림으로 돌아가고 싶을 때 좋아요.
 - [Cache-Control과 Age 헤더는 어떻게 같이 읽어야 할까요?](./reading-cache-control-and-age.md){ data-preview } — 캐시 사본의 freshness와 나이를 먼저 정리하고 싶을 때 좋아요.
 - [Cache Key와 Vary는 왜 같이 읽어야 할까요?](./cache-key-and-vary.md){ data-preview } — `HIT`인데도 사본이 이상하게 섞이는 이유를 더 깊게 볼 수 있어요.
-
-## 이어서 볼 질문
-
-다음에는 캐시된 사본이 오래됐을 때 전체 본문을 다시 받지 않고 같은 버전인지 확인하는 방법을 볼 거예요. `ETag`, `Last-Modified`, `If-None-Match`, `304 Not Modified`가 이어서 나올 질문이에요.
+- [ETag와 조건부 요청은 어떻게 304를 만들까요?](./etag-and-conditional-requests.md){ data-preview } — `REVALIDATED`나 `304 Not Modified`가 왜 보이는지 이어서 읽어볼 수 있어요.
