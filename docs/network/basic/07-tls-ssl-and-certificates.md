@@ -3,7 +3,7 @@ title: TLS, SSL, 인증서는 뭐가 다를까요? 브라우저는 어떻게 진
 description: HTTPS의 보호된 통로가 어떻게 준비되는지, TLS·SSL·인증서 개념을 일상 비유로 쉽게 풀어봅니다.
 icon: lucide/shield-check
 created: 2026-05-11
-updated: 2026-06-16
+updated: 2026-06-23
 tags:
   - Network
   - TLS
@@ -166,6 +166,8 @@ sequenceDiagram
 여기서는 이 흐름을 **큰 그림**으로만 볼게요. 만약 *"좋아요, 근데 TLS 1.3에서는 `ClientHello`, `ServerHello`, `Certificate`, `Finished` 가 정확히 어떤 순서로 오가죠?"* 가 궁금해졌다면, 심화편 [TLS 1.3 핸드셰이크는 실제로 어떤 순서일까요?](../deep-dive/tls13-handshake-anatomy.md#full-handshake){ data-preview }에서 **메시지 순서와 역할**을 먼저 보고, [TLS 핸드셰이크는 실제로 어떻게 한 단계씩 진행될까요?](../deep-dive/tls-handshake-step-by-step.md#scene-first-look){ data-preview }에서 **실제 장면처럼 step-by-step으로 읽는 감각**까지 이어서 볼 수 있어요.
 
 그리고 *"좋아요, 순서는 알겠어요. 근데 왜 어떤 날은 이름이 안 맞는다고 하고, 어떤 날은 발급자를 못 믿는다고 하죠?"* 가 궁금해졌다면, 심화편 [TLS 인증서 체인과 신뢰 오류는 어떻게 읽어야 할까요?](../deep-dive/tls-cert-chain-and-trust-errors.md#signals-to-read){ data-preview }에서 **인증서 체인이 어디서 끊기고 어떤 경고로 보이는지**를 장면 중심으로 바로 이어서 볼 수 있어요.
+
+또 *"어제까지 잘 열리던 사이트가 오늘 갑자기 인증서 만료로 막히면 어디부터 봐야 하죠?"* 가 궁금해졌다면, 심화편 [인증서 만료 장애는 어디서부터 읽어야 할까요?](../deep-dive/case-cert-expired-incident.md#signals-to-read){ data-preview }에서 **브라우저, curl, openssl, 프록시 신호로 만료 지점을 좁히는 순서**를 이어서 볼 수 있어요.
 
 그리고 *"좋아요, 근데 그 이름은 서버가 인증서를 꺼내기 전부터 어떻게 알고, 왜 그 이름이 프라이버시 이슈가 되죠?"* 가 궁금해졌다면, 심화편 [SNI, ESNI, ECH는 뭐가 다를까요?](../deep-dive/sni-and-esni-ech.md#why-name-before-certificate){ data-preview }에서 **ClientHello 안의 서버 이름과 ECH의 큰 구조**를 이어서 볼 수 있어요.
 

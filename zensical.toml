@@ -97,6 +97,7 @@ nav = [
       "network/deep-dive/tls13-handshake-anatomy.md",
       "network/deep-dive/tls-handshake-step-by-step.md",
       "network/deep-dive/tls-cert-chain-and-trust-errors.md",
+      "network/deep-dive/case-cert-expired-incident.md",
       "network/deep-dive/sni-and-esni-ech.md",
       "network/deep-dive/quic-first-look.md",
       "network/deep-dive/dns-message-format.md",

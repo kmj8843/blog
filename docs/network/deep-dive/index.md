@@ -90,6 +90,7 @@ flowchart LR
 - [TLS 1.3 핸드셰이크는 실제로 어떤 순서일까요?](./tls13-handshake-anatomy.md){ data-preview } — `ClientHello` 부터 `ServerHello`, `EncryptedExtensions`, `Certificate`, `Finished` 까지, HTTPS 보호 통로가 어떤 순서로 준비되는지 같이 해부해봐요.
 - [TLS 핸드셰이크는 실제로 어떻게 한 단계씩 진행될까요?](./tls-handshake-step-by-step.md){ data-preview } — TCP가 열린 뒤 TLS 장면이 어떤 순서로 지나가고, 각 단계에서 무엇을 먼저 읽어야 하는지 실제 흐름처럼 따라가봐요.
 - [TLS 인증서 체인과 신뢰 오류는 어떻게 읽어야 할까요?](./tls-cert-chain-and-trust-errors.md){ data-preview } — `hostname mismatch`, 만료, intermediate 누락, 신뢰 저장소 차이 같은 인증서 경고를 **어느 검사에서 멈췄는지** 기준으로 같이 읽어봐요.
+- [인증서 만료 장애는 어디서부터 읽어야 할까요?](./case-cert-expired-incident.md){ data-preview } — 어제까지 열리던 HTTPS 사이트가 갑자기 막혔을 때, 브라우저·`curl`·`openssl`·프록시 신호로 만료 지점을 좁혀봐요.
 - [SNI, ESNI, ECH는 뭐가 다를까요?](./sni-and-esni-ech.md){ data-preview } — 서버가 인증서를 고르기 전에 왜 이름이 먼저 필요했는지, 평문 SNI가 왜 문제였는지, 왜 ESNI가 ECH로 바뀌었는지 같이 해부해봐요.
 - [QUIC은 왜 UDP 위에서 돌아갈까요?](./quic-first-look.md){ data-preview } — QUIC이 왜 굳이 UDP를 바닥으로 골랐는지, TLS는 어디에 들어가는지, HTTP/3 장면은 어떻게 보이는지 같이 읽어봐요.
 
@@ -195,7 +196,7 @@ DNS 다음에는 HTTP와 서버 앞단으로 시선이 옮겨가요.
 | 쿠키가 있는데 캐시가 되거나 안 됨 | 사용자별 응답인지, 공용 응답인지, CDN 정책이 무엇인지 갈라짐 | 이 사본을 다른 사용자에게 줘도 될까요? |
 | `Waiting`은 긴데 원인 로그를 못 찾음 | Server-Timing, request id, trace id가 관측 표식이 됨 | 이 브라우저 요청은 어느 로그 줄과 같은 요청일까요? |
 | 오리진 로그도 긴데 원인이 애매함 | upstream 대기와 render 시간이 섞여 있을 수 있음 | 남을 기다린 걸까요, 직접 만든 걸까요? |
-| 인증서 오류가 갑자기 터짐 | 체인, 만료, 이름 불일치, 신뢰 저장소가 갈라짐 | 어느 검사에서 멈춘 걸까요? |
+| 인증서 오류가 갑자기 터짐 | 체인, 만료, 이름 불일치, 신뢰 저장소가 갈라짐 | 어느 검사에서 멈췄고, 만료 장애라면 어느 인증서가 나간 걸까요? |
 | 조용하다가 첫 요청만 가끔 502 | 앞단이 닫힌 upstream 연결을 다시 쓰려 했을 수 있음 | 이 연결은 새로 열렸을까요, pool에서 꺼냈을까요? |
 | 로그인이나 장바구니가 서버마다 달라짐 | 세션이 특정 백엔드에 묶였거나 sticky가 깨졌을 수 있음 | 이 사용자는 왜 같은 서버로 가야 할까요? |
 | 간헐적으로만 느림 | 평균보다 p95, p99 같은 꼬리 지연이 중요할 수 있음 | 왜 대부분은 빠른데 일부 요청만 느릴까요? |
