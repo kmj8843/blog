@@ -77,6 +77,7 @@ flowchart LR
 - [TCP 혼잡 제어는 왜 흐름 제어와 따로 봐야 할까요?](./tcp-congestion-control.md){ data-preview } — 받는 쪽 여유가 아니라 **길이 붐비는지**를 보고 송신자가 `cwnd` 를 어떻게 조절하는지, slow start와 duplicate ACK 감각까지 같이 읽어봐요.
 - [UDP 헤더는 왜 딱 8바이트일까요?](./udp-header-anatomy.md){ data-preview } — TCP보다 훨씬 짧은 UDP 헤더가 포트, 길이, 체크섬 네 칸으로 어떻게 끝나는지 같이 읽어봐요.
 - [이더넷 프레임과 VLAN 태그 해부하기](./ethernet-frame-and-vlan.md){ data-preview } — IP 패킷을 감싸서 로컬 네트워크로 실어 나르는 이더넷 프레임의 구조와, 그 사이에 끼어드는 VLAN 태그의 4바이트를 자세히 들여다봐요.
+- [ICMP와 ICMPv6 Type은 어떻게 읽어야 할까요?](./icmp-and-icmpv6-types.md){ data-preview } — `ping`, `traceroute`, MTU, IPv6 이웃 탐색에서 돌아오는 ICMP 메시지를 Type과 Code 번호로 나눠 읽어봐요.
 
 ### 지금 바로 읽을 수 있는 패킷 캡처 글
 
@@ -199,6 +200,7 @@ DNS 다음에는 HTTP와 서버 앞단으로 시선이 옮겨가요.
 | 로그인이나 장바구니가 서버마다 달라짐 | 세션이 특정 백엔드에 묶였거나 sticky가 깨졌을 수 있음 | 이 사용자는 왜 같은 서버로 가야 할까요? |
 | 간헐적으로만 느림 | 평균보다 p95, p99 같은 꼬리 지연이 중요할 수 있음 | 왜 대부분은 빠른데 일부 요청만 느릴까요? |
 | 앱 로그는 짧은데 `Waiting`이 김 | 오리진 앞 connection pool에서 줄을 섰을 수 있음 | 서버가 느린 걸까요, 서버로 가는 자리가 부족한 걸까요? |
+| `ping`이나 `traceroute` 힌트가 애매함 | ICMP Type과 Code가 실패 종류를 나눠줄 수 있음 | 이건 도달 불가일까요, 시간 초과일까요, 너무 큰 패킷일까요? |
 
 기본편에서는 이 장면들을 한 요청의 큰 흐름으로 이어서 봤고,
 심화편에서는 각각의 줄을 **실제 출력, 헤더, 상태, 장애 사례** 위에서 다시 읽어볼 거예요.

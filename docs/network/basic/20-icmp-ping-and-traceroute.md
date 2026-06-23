@@ -321,6 +321,9 @@ sequenceDiagram
     하지만 우리가 읽어야 하는 핵심은 비슷해요.
     **응답이 왔는지**, **왕복 시간이 어느 정도인지**, **어느 홉까지 목소리가 들리는지** 를 보면 돼요.
 
+!!! tip "더 깊게 보면"
+    `Echo Request`, `Time Exceeded`, `Destination Unreachable` 같은 ICMP 힌트를 Type과 Code 번호로 직접 읽고 싶다면, 심화편의 [ICMP와 ICMPv6 Type은 어떻게 읽어야 할까요?](../deep-dive/icmp-and-icmpv6-types.md){ data-preview }에서 한 단계 더 펼쳐볼 수 있어요.
+
 ---
 
 ## 그럼 어디서부터 막혔는지 어떻게 감을 잡을까요?

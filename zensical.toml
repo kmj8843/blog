@@ -90,6 +90,7 @@ nav = [
       "network/deep-dive/tcp-congestion-control.md",
       "network/deep-dive/udp-header-anatomy.md",
       "network/deep-dive/ethernet-frame-and-vlan.md",
+      "network/deep-dive/icmp-and-icmpv6-types.md",
       "network/deep-dive/tcpdump-first-look.md",
       "network/deep-dive/tcp-handshake-in-capture.md",
       "network/deep-dive/ss-and-netstat-state-reading.md",
