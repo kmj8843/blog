@@ -125,6 +125,7 @@ nav = [
       "network/deep-dive/etag-and-conditional-requests.md",
       "network/deep-dive/stale-while-revalidate-and-soft-purge.md",
       "network/deep-dive/cookie-and-cacheability.md",
+      "network/deep-dive/case-cache-poisoning-symptom.md",
       "network/deep-dive/ttfb-vs-content-download.md",
       "network/deep-dive/server-timing-and-request-id.md",
       "network/deep-dive/slow-upstream-vs-slow-render.md",
