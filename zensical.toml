@@ -124,6 +124,10 @@ nav = [
       "network/deep-dive/stale-while-revalidate-and-soft-purge.md",
       "network/deep-dive/cookie-and-cacheability.md",
       "network/deep-dive/ttfb-vs-content-download.md",
+      "network/deep-dive/server-timing-and-request-id.md",
+      "network/deep-dive/slow-upstream-vs-slow-render.md",
+      "network/deep-dive/tail-latency-and-p99.md",
+      "network/deep-dive/connection-pool-saturation.md",
     ] },
     # {"iptime 실습" = [
     #   "network/iptime/index.md",

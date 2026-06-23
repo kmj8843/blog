@@ -349,7 +349,4 @@ flowchart TD
 - [TLS 종료와 TLS 패스스루는 어디서 갈라질까요?](./tls-termination-vs-passthrough.md){ data-preview } — 앞단과 오리진 사이 연결이 왜 클라이언트 쪽 HTTPS와 별개인지 먼저 정리하고 싶을 때 좋아요.
 - [502, 503, 504는 어디서 만든 응답일까요?](./reading-502-503-504.md){ data-preview } — connection reuse 실패가 어떤 5xx 모양으로 보일 수 있는지 이어서 읽기 좋아요.
 - [브라우저 waterfall은 어디부터 읽어야 할까요?](./reading-browser-waterfall.md){ data-preview } — 새 연결 비용과 TTFB를 클라이언트 화면에서 먼저 나눠 보고 싶을 때 좋아요.
-
-## 이어서 볼 질문
-
-다음에는 요청이 오리진까지 갔을 때 **사용자를 같은 서버에 계속 붙잡아두는 sticky session**과, 로드 밸런싱 방식이 세션·장애·배포에 어떤 영향을 주는지 이어서 볼 수 있어요.
+- [Connection Pool Saturation은 왜 TTFB를 길게 만들까요?](./connection-pool-saturation.md){ data-preview } — pool이 가득 찼을 때 앱은 빨라도 사용자는 기다리는 장면을 이어서 볼 수 있어요.
