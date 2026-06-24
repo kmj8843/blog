@@ -346,6 +346,7 @@ flowchart TD
 
 ## 이어서 보면 좋은 글
 
+- [한동안 조용한 뒤 첫 요청만 502가 나는 이유는 뭘까요?](./case-keepalive-mismatch-502.md){ data-preview } — idle timeout mismatch가 실제 로그, 재시도, FIN/RST에서 어떻게 보이는지 사례로 이어서 읽어봐요.
 - [TLS 종료와 TLS 패스스루는 어디서 갈라질까요?](./tls-termination-vs-passthrough.md){ data-preview } — 앞단과 오리진 사이 연결이 왜 클라이언트 쪽 HTTPS와 별개인지 먼저 정리하고 싶을 때 좋아요.
 - [502, 503, 504는 어디서 만든 응답일까요?](./reading-502-503-504.md){ data-preview } — connection reuse 실패가 어떤 5xx 모양으로 보일 수 있는지 이어서 읽기 좋아요.
 - [브라우저 waterfall은 어디부터 읽어야 할까요?](./reading-browser-waterfall.md){ data-preview } — 새 연결 비용과 TTFB를 클라이언트 화면에서 먼저 나눠 보고 싶을 때 좋아요.
