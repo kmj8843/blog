@@ -85,6 +85,7 @@ flowchart LR
 - [tcpdump 한 줄은 어떻게 읽어야 할까요?](./tcpdump-first-look.md){ data-preview } — 터미널에 길게 찍히는 tcpdump 한 줄을 시간, 인터페이스, 방향, 주소, 플래그, 길이 순서로 차근차근 읽어봐요.
 - [tcpdump에서 TCP handshake는 어떻게 보일까요?](./tcp-handshake-in-capture.md){ data-preview } — `SYN`, `SYN-ACK`, `ACK` 세 줄이 실제 캡처에서는 어떻게 찍히는지, 어디서 끊기면 무엇을 의심해야 하는지 같이 읽어봐요.
 - [ss와 netstat에서 TCP 상태는 어떻게 읽어야 할까요?](./ss-and-netstat-state-reading.md){ data-preview } — `LISTEN`, `ESTABLISHED`, `TIME-WAIT`, `CLOSE-WAIT` 같은 상태 이름이 실제 운영 화면에서는 어떤 장면으로 읽히는지 같이 정리해봐요.
+- [TIME-WAIT가 많을 때 정말 포트가 고갈된 걸까요?](./case-time-wait-port-exhaustion.md){ data-preview } — 짧은 연결이 몰릴 때 `TIME-WAIT`, 임시 포트 범위, 4-tuple, 새 연결 오류를 함께 읽어 실제 포트 고갈인지 좁혀봐요.
 
 ### 그다음 TLS 장면으로 넘어가면 좋아요
 
@@ -208,6 +209,7 @@ DNS 다음에는 HTTP와 서버 앞단으로 시선이 옮겨가요.
 | 앱 로그는 짧은데 `Waiting`이 김 | 오리진 앞 connection pool에서 줄을 섰을 수 있음 | 서버가 느린 걸까요, 서버로 가는 자리가 부족한 걸까요? |
 | `ping`이나 `traceroute` 힌트가 애매함 | ICMP Type과 Code가 실패 종류를 나눠줄 수 있음 | 이건 도달 불가일까요, 시간 초과일까요, 너무 큰 패킷일까요? |
 | 작은 요청은 되는데 큰 응답만 멈춤 | 경로 MTU보다 큰 패킷과 사라진 ICMP 피드백이 겹칠 수 있음 | 같은 큰 구간이 반복 재전송되고 있지는 않을까요? |
+| 기존 연결은 되는데 새 outbound 연결만 실패함 | 짧은 연결 churn과 TIME-WAIT가 로컬 임시 포트에 압력을 줄 수 있음 | SYN을 보내기 전에 로컬 포트 배정부터 실패한 건 아닐까요? |
 | 어떤 사용자는 새 서버로 가고 어떤 사용자는 예전 서버로 감 | 재귀 리졸버마다 남은 TTL과 캐시 상태가 다를 수 있음 | DNS가 정말 흔들리는 걸까요, 캐시가 아직 남은 걸까요? |
 
 기본편에서는 이 장면들을 한 요청의 큰 흐름으로 이어서 봤고,

@@ -95,6 +95,7 @@ nav = [
       "network/deep-dive/tcpdump-first-look.md",
       "network/deep-dive/tcp-handshake-in-capture.md",
       "network/deep-dive/ss-and-netstat-state-reading.md",
+      "network/deep-dive/case-time-wait-port-exhaustion.md",
       "network/deep-dive/tls13-handshake-anatomy.md",
       "network/deep-dive/tls-handshake-step-by-step.md",
       "network/deep-dive/tls-cert-chain-and-trust-errors.md",
