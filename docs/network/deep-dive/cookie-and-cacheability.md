@@ -3,7 +3,7 @@ title: Cookie와 캐시 가능성은 왜 같이 봐야 할까요?
 description: Cookie, Set-Cookie, Authorization, private, no-store, Vary를 함께 읽으며 사용자별 응답이 공유 캐시에 섞이지 않게 판단하는 법을 정리해봐요.
 icon: lucide/cookie
 created: 2026-06-22
-updated: 2026-06-22
+updated: 2026-06-24
 tags:
   - Network
   - HTTP
@@ -32,7 +32,7 @@ Set-Cookie: last_seen=1719052800; Path=/; Secure; HttpOnly
 
 > *"쿠키가 있으니까 당연히 캐시 안 되겠죠?"*
 
-그런데 이 단정이 위험해요. `Cookie` 요청 헤더와 `Set-Cookie` 응답 헤더가 있다고 해서 HTTP 표준상 캐시 저장과 재사용이 자동으로 금지되는 건 아니거든요. [RFC 9111: HTTP Caching](https://www.rfc-editor.org/info/rfc9111/)은 `Set-Cookie` 응답 헤더가 캐싱을 막지 않는다고 설명하고, [RFC 6265: HTTP State Management Mechanism](https://datatracker.ietf.org/doc/html/rfc6265)도 `Cookie`나 `Set-Cookie`의 존재만으로 HTTP 캐시가 응답을 저장하거나 재사용하지 못하게 되는 것은 아니라고 설명해요.
+그런데 이 단정이 위험해요. `Cookie` 요청 헤더와 `Set-Cookie` 응답 헤더가 있다고 해서 HTTP 표준상 캐시 저장과 재사용이 자동으로 금지되는 건 아니거든요. 캐시 가능성과 재사용의 직접 기준은 [RFC 9111: HTTP Caching](https://www.rfc-editor.org/info/rfc9111/)이고, 이 문서는 `Set-Cookie` 응답 헤더가 캐싱을 막지 않는다고 설명해요. [RFC 6265: HTTP State Management Mechanism](https://www.rfc-editor.org/rfc/rfc6265.html)은 `Cookie`와 `Set-Cookie`가 사용자 상태를 어떻게 전달하고 저장하는지 설명하는 쿠키 의미의 기준 문서예요.
 
 그래서 오늘 질문은 이거예요.
 
@@ -192,27 +192,16 @@ CSS 파일 내용은 모든 사용자에게 같아요. 이때 요청에 `Cookie`
 | 실험 그룹별로 랜딩이 다름 | 쿠키 전체가 아니라 실험 그룹만 key에 반영해요 |
 | 로그인 여부에 따라 헤더만 달라짐 | 공용 부분과 사용자별 부분을 분리할 수 있는지 봐요 |
 
-쿠키를 캐시 키에 넣을 때는 특히 조심해야 해요.
+쿠키가 응답을 바꾼다면 그 차이를 캐시가 구분해야 해요. 하지만 아래처럼 쿠키 전체를 비교 대상으로 삼으면 범위가 너무 넓을 수 있어요.
 
 ```http
 Vary: Cookie
 ```
 
-이건 안전해 보이지만 너무 넓을 수 있어요. 쿠키 전체에는 세션 ID, 분석 ID, 실험 ID, 최근 본 상품 같은 값이 섞이기 때문이에요. 사용자마다 쿠키 문자열이 조금씩 다르면 캐시는 거의 사용자별 사본을 만들게 돼요.
-
-```mermaid
-flowchart TD
-    A[같은 /landing 요청] --> B{쿠키 전체를 보나요?}
-    B -->|예| C[session, analytics, recent_item까지 반영]
-    C --> D[사본이 과하게 쪼개짐<br/><small>히트율 하락</small>]
-    B -->|아니오| E[experiment=A/B 같은<br/>실제 차이만 반영]
-    E --> F[필요한 만큼만 사본 분리]
-```
-
-이 그림의 요점은 "쿠키를 절대 key에 넣지 말자"가 아니에요. **응답을 실제로 바꾸는 작은 신호만 넣자**에 가까워요.
+세션 ID나 분석 ID까지 요청마다 달라지면 사본이 지나치게 잘게 나뉘어요. 이 글에서는 **응답이 사용자별인지 먼저 판단한다**는 원칙까지만 잡고, 어떤 요청 값을 cache key에 넣고 `Vary`와 어떻게 맞추는지는 [Cache Key와 Vary는 왜 같이 읽어야 할까요?](./cache-key-and-vary.md){ data-preview }에서 이어서 볼게요.
 
 !!! tip "쿠키는 전체 문자열보다 의미 단위로 봐요"
-    `Cookie` 전체를 기준으로 나누면 히트율이 쉽게 무너져요. 정말 본문을 바꾸는 값이 `ab_group=A` 하나라면, 가능하면 그 작은 의미만 cache key에 반영하는 쪽을 검토해야 해요.
+    공용 응답을 일부 쿠키 값에 따라 나눠야 한다면, 제품이 필요한 의미만 cache key에 반영할 수 있는지 확인해요. 사용자별 응답이라면 키를 잘게 만드는 것보다 공유 캐시를 피하는 판단이 먼저예요.
 
 ## Authorization은 더 보수적으로 읽어요
 
@@ -339,7 +328,7 @@ Cache-Control: public, max-age=600
 Vary: Cookie
 ```
 
-본문이 실험 그룹별로만 달라진다면 쿠키 전체를 `Vary`로 잡는 건 너무 넓을 수 있어요. `analytics_id`까지 key에 들어가면 사실상 사용자별 사본이 되기 때문이에요. CDN이 특정 쿠키만 cache key에 넣을 수 있는지 확인하는 쪽이 좋아요.
+본문이 실험 그룹별로만 달라진다면 `Vary: Cookie`는 너무 넓을 수 있어요. 어떤 값만 구분할지는 [Cache Key와 Vary](./cache-key-and-vary.md){ data-preview }의 기준으로 확인해요.
 
 ### 4. 토큰 API 응답
 
@@ -368,7 +357,7 @@ Content-Type: application/json
 ## 더 깊이 보고 싶다면
 
 - [RFC 9111: HTTP Caching](https://www.rfc-editor.org/info/rfc9111/) — HTTP 캐시가 응답을 저장하고 재사용하는 기준 흐름을 볼 수 있어요.
-- [RFC 6265: HTTP State Management Mechanism](https://datatracker.ietf.org/doc/html/rfc6265) — `Cookie`와 `Set-Cookie`가 HTTP 상태 관리에서 어떤 역할을 하는지 볼 수 있어요.
+- [RFC 6265: HTTP State Management Mechanism](https://www.rfc-editor.org/rfc/rfc6265.html) — `Cookie`와 `Set-Cookie`가 HTTP 상태 관리에서 어떤 역할을 하는지 볼 수 있어요.
 
 ## 이어서 보면 좋은 글
 

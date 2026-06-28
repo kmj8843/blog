@@ -147,7 +147,7 @@ Address: 2606:4700:10::ac42:93f3
 
 실제 데이터를 뜯어보면 이렇게 구획이 나뉘어 있어요.
 
-여기서 한 발만 더 내려가면, *"좋아요, 근데 이 레코드 줄은 DNS 메시지 안에서 정확히 어디에 들어가고, `QUESTION`, `ANSWER`, `AUTHORITY`, `ADDITIONAL` 은 어떻게 나뉘죠?"* 라는 질문이 자연스럽게 생겨요. 그 구조는 심화편 [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](../deep-dive/dns-message-format.md#three-sections){ data-preview }에서 **메시지 전체 형식 기준으로** 바로 이어서 볼 수 있어요.
+아래에서는 레코드 한 줄의 모양만 먼저 볼게요. 이 줄이 `QUESTION`, `ANSWER`, `AUTHORITY`, `ADDITIONAL` 가운데 어디에 들어가는지 궁금하다면 [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](../deep-dive/dns-message-format.md#three-sections){ data-preview }에서 전체 구조로 이어서 볼 수 있어요.
 
 <div style="max-width: 38rem; margin: 1.5rem auto; border: 2px solid var(--md-default-fg-color--lighter); border-radius: 1rem; overflow: hidden; background: color-mix(in srgb, var(--md-default-bg-color) 95%, var(--md-default-fg-color) 5%); box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--md-default-fg-color) 10%, transparent);">
   <div style="padding: 1rem 1.25rem; background: color-mix(in srgb, var(--md-primary-fg-color) 8%, var(--md-default-bg-color)); border-bottom: 1px solid var(--md-default-fg-color--lightest);">
@@ -186,7 +186,7 @@ Address: 2606:4700:10::ac42:93f3
 
 물론 실제로는 이메일 전송 위치를 정하는 `MX`, 도메인 인증·검증 정보를 담는 `TXT` 레코드도 있어요. 이것들도 분명 중요한 DNS 레코드예요.
 
-그리고 TXT가 길어지거나, DNSSEC 서명처럼 큰 데이터가 붙으면 DNS 응답 자체가 512바이트 안에 다 안 들어갈 수 있어요. 그때 DNS가 어떻게 더 큰 응답을 주고받는지는 심화편 [EDNS0는 DNS 메시지 크기를 어떻게 넓혀줄까요?](../deep-dive/edns0-and-dns-message-size.md){ data-preview }에서 이어서 볼 수 있어요. 그중 DNSSEC이 왜 서명과 키를 붙이고, 그 답을 어떻게 검증하는지는 [DNSSEC은 DNS 응답을 어떻게 믿게 만들어줄까요?](../deep-dive/dnssec-overview.md){ data-preview }에서 큰 그림으로 이어서 볼 수 있어요.
+TXT가 길어지거나 DNSSEC 서명처럼 큰 데이터가 붙으면, DNS 응답이 기본 크기에 다 들어가지 않을 수도 있어요. 더 큰 응답을 주고받는 방식은 [EDNS0와 DNS 메시지 크기](../deep-dive/edns0-and-dns-message-size.md){ data-preview }, 서명과 키로 답을 검증하는 큰 그림은 [DNSSEC 개요](../deep-dive/dnssec-overview.md){ data-preview }에서 이어서 볼 수 있어요.
 
 다만 이런 레코드들은 메일 시스템이나 도메인 운영 이야기까지 이어지기 시작해요. 그래서 이번 글에서는 **웹사이트 접속 흐름에 꼭 필요한 A, AAAA, CNAME 중심으로만 이해해도 충분해요.**
 

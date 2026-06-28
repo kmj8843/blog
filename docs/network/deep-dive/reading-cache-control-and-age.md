@@ -3,7 +3,7 @@ title: Cache-Control과 Age 헤더는 어떻게 같이 읽어야 할까요?
 description: Cache-Control, max-age, s-maxage, no-cache, no-store, private, public, Age 헤더를 함께 읽으며 지금 응답이 새 원본인지 오래된 사본인지 좁혀봐요.
 icon: lucide/timer-reset
 created: 2026-06-22
-updated: 2026-06-22
+updated: 2026-06-24
 tags:
   - Network
   - HTTP
@@ -124,7 +124,7 @@ gantt
     재사용 가능한 시간 :1200, 3600
 ```
 
-이 예시는 계산 감각을 보여주기 위한 단순화예요. 실제 캐시는 응답의 `Date`, 로컬 시계, 전송 지연, 저장 시간 같은 값을 함께 써서 현재 나이를 계산할 수 있어요. 그래도 운영자가 처음 읽을 때의 핵심은 분명해요. **`max-age`에서 `Age`를 빼는 감각**으로 봐야 해요.
+이 예시는 계산 감각을 보여주기 위한 단순화예요. 실제 캐시는 응답의 `Date`, 로컬 시계, 전송 지연, 저장 시간 같은 값을 함께 써서 현재 나이를 계산할 수 있어요. 그래서 **`max-age`에서 `Age`를 빼는 값은 운영자가 남은 freshness를 빠르게 가늠하는 근사치이지, 캐시의 정확한 시간 회계를 그대로 재현한 값은 아니에요.**
 
 | 헤더 | 처음 읽기 |
 |---|---|

@@ -226,9 +226,7 @@ HTTPS는 본문이 바로 읽히지 않을 수 있어요.
 
 터미널에서 빠르게 **지금 무슨 패킷이 지나가는지** 보고 싶을 때 좋아요.
 
-여기서는 `tcpdump` 를 **"빠르게 잡아보는 도구"** 정도로만 소개하고 넘어갈게요. 막상 화면에 뜨는 `14:32:01.123456 eth0 Out IP ... Flags [S]` 같은 한 줄을 어디부터 읽어야 할지 궁금해졌다면, 심화편 [tcpdump 한 줄은 어떻게 읽어야 할까요?](../deep-dive/tcpdump-first-look.md#one-line-anatomy){ data-preview }에서 **시간, 방향, 주소, 플래그, 길이 순서로 읽는 감각**을 바로 이어서 볼 수 있어요.
-
-그리고 *"좋아요, 한 줄 읽는 법은 알겠어요. 근데 그중에서 `SYN → SYN-ACK → ACK` 세 줄만 딱 집어 어떻게 해석하죠?"* 가 궁금해졌다면, 심화편 [tcpdump에서 TCP handshake는 어떻게 보일까요?](../deep-dive/tcp-handshake-in-capture.md#signals-to-read){ data-preview }에서 **실제 핸드셰이크 캡처 장면만 따로 떼어** 어디서 끊기면 무엇을 의심해야 하는지까지 바로 이어서 볼 수 있어요.
+여기서는 `tcpdump`를 **"빠르게 잡아보는 도구"** 정도로만 소개할게요. 출력 한 줄은 [tcpdump 한 줄 읽기](../deep-dive/tcpdump-first-look.md#one-line-anatomy){ data-preview }, 그중 `SYN → SYN-ACK → ACK` 흐름은 [TCP handshake 캡처 읽기](../deep-dive/tcp-handshake-in-capture.md#signals-to-read){ data-preview }에서 차근차근 이어서 볼 수 있어요.
 
 ```bash
 sudo tcpdump -ni any port 53

@@ -3,7 +3,7 @@ title: TLS 핸드셰이크는 실제로 어떻게 한 단계씩 진행될까요?
 description: TCP가 열린 뒤 TLS 핸드셰이크가 어떤 순서로 지나가고, 각 단계에서 무엇을 먼저 읽어야 하는지 장면처럼 따라가봐요.
 icon: lucide/lock
 created: 2026-06-02
-updated: 2026-06-16
+updated: 2026-06-24
 tags:
   - Network
   - TLS
@@ -30,7 +30,7 @@ tags:
 
 ---
 
-## 이 장면이 정확히 뭐였더라요?
+## TLS 핸드셰이크 장면부터 다시 잡아볼까요?
 
 먼저 아주 짧게만 다시 잡고 갈게요.
 
@@ -181,13 +181,13 @@ flowchart LR
 
 ---
 
-## 6단계: 그제야 HTTP가 올라와요
+## 6단계: `Finished` 뒤에는 application data가 올라올 수 있어요
 
 핸드셰이크를 읽을 때 자주 놓치는 포인트가 하나 더 있어요.
 
-> 이 글에서 보는 **기본적인 웹 장면**에서는, 핸드셰이크 확인 절차가 닫힌 뒤에야 본격적인 HTTP 대화가 올라온다고 읽는 편이 좋아요.
+> 흔한 HTTP 요청 장면에서는 클라이언트가 자기 `Finished` 를 보낸 뒤 첫 요청을 올린다고 읽으면 돼요.
 
-물론 구현과 설명 방식에 따라 *정확히 어느 순간부터 어느 키를 이미 쓸 수 있는가* 는 더 세밀하게 들어갈 수 있어요. 하지만 입문-심화 사이 글에서는, **`Finished` 단계들이 지나간 뒤 application data 가 시작된다**는 감각으로 잡아두는 편이 안전해요.
+다만 프로토콜 경계는 방향마다 달라요. 서버는 **서버 `Finished`를 보낸 뒤** application data를 먼저 보낼 수 있고, 클라이언트는 **클라이언트 `Finished`를 보낸 뒤** application data를 보낼 수 있어요. 그래서 캡처에서 무조건 *"양쪽 `Finished`가 모두 보여야 application data가 나온다"* 라고 외우기보다, **각 송신자가 자기 `Finished`를 보냈는지**를 보는 편이 더 정확해요.
 
 그래서 [End-to-End Request Debugging](../basic/26-end-to-end-request-debugging.md#tls-checkpoint){ data-preview }에서 TLS 구간이 따로 보이는 거예요. HTTP가 느린 게 아니라, **그 전에 보호 통로 준비 시간이 따로 쓰이고 있을 수 있기 때문**이죠.
 

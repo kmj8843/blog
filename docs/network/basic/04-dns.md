@@ -206,8 +206,7 @@ TTL은 **Time To Live**의 줄임말이에요. 여기서는 쉽게 말해서 **"
 
 여기서 `A` 레코드는 **"이 이름의 IPv4 주소 알려줘"** 라는 뜻이에요. 나중에 IPv6 이야기를 하게 되면 `AAAA` 같은 것도 보게 되겠지만, 지금은 **이름 → 주소** 흐름만 잡으면 충분해요.
 
-근데 여기서 *"좋아요, 근데 저 질문과 답은 실제로 패킷 안에서 어떤 칸들로 나뉘어 있죠? `id`, `flags`, `QUESTION`, `ANSWER` 는 다 뭐예요?"* 가 궁금해졌다면, 심화편 [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](../deep-dive/dns-message-format.md#message-overview){ data-preview }에서 **12바이트 헤더와 네 개 섹션 구조**를 바로 이어서 볼 수 있어요. 터미널에서 직접 조회한 화면을 먼저 읽어보고 싶다면 [dig 출력은 어디부터 읽어야 할까요?](../deep-dive/dns-lookup-with-dig.md){ data-preview }로 이어가면 돼요.
-또 *"브라우저는 한 번만 물어본 것 같은데, 누가 루트 서버와 `.com` 서버를 대신 따라가는 거죠?"* 가 궁금하다면 [DNS 재귀 조회와 반복 조회는 뭐가 다를까요?](../deep-dive/dns-resolver-recursion-vs-iteration.md){ data-preview }에서 **재귀 리졸버와 반복 조회의 차이**를 이어서 볼 수 있어요.
+더 깊게 보고 싶다면 관심 있는 장면부터 골라가면 돼요. 패킷 안의 칸은 [DNS 메시지는 왜 질문 하나에 칸이 이렇게 많을까요?](../deep-dive/dns-message-format.md#message-overview){ data-preview }, 터미널 출력은 [dig 출력은 어디부터 읽어야 할까요?](../deep-dive/dns-lookup-with-dig.md){ data-preview }, 리졸버가 대신 여러 서버를 찾아가는 과정은 [DNS 재귀 조회와 반복 조회는 뭐가 다를까요?](../deep-dive/dns-resolver-recursion-vs-iteration.md){ data-preview }에서 이어서 볼 수 있어요.
 
 ---
 

@@ -3,7 +3,7 @@ title: 브라우저 waterfall은 어디부터 읽어야 할까요?
 description: Chrome DevTools Network waterfall에서 Queueing, DNS, Initial connection, SSL, Waiting, Content Download를 나눠 읽으며 느린 요청의 위치를 좁히는 방법을 정리해봐요.
 icon: lucide/chart-no-axes-gantt
 created: 2026-06-17
-updated: 2026-06-17
+updated: 2026-06-24
 tags:
   - Network
   - Browser
@@ -27,7 +27,7 @@ tags:
 이걸 한눈에 보려고 여는 화면이 브라우저 개발자 도구의 Network waterfall이에요. Chrome DevTools 공식 문서도 Network 패널을 요청 목록과 각 요청의 activity breakdown을 보는 도구로 설명하고, Waterfall 열이 요청별 활동을 시각적으로 쪼개 보여준다고 안내해요. 이 글에서는 [Chrome DevTools Network features reference](https://developer.chrome.com/docs/devtools/network/reference)를 기준으로, 초심자가 어디부터 보면 덜 헤매는지에 집중할게요.
 
 !!! note "이 글의 범위"
-    여기서는 Chrome DevTools의 Network waterfall 감각을 기준으로 설명해요. 브라우저마다 이름과 UI는 조금 다를 수 있어요. 오늘 목표는 *"막대가 길다"* 에서 멈추지 않고, **어느 구간이 길어서 느린지**를 나눠 읽는 거예요.
+    여기서는 Chrome DevTools의 Network waterfall 감각을 기준으로 설명해요. 브라우저뿐 아니라 DevTools 버전과 열 설정에 따라서도 열 이름, 표시 여부, Timing 구간 이름이 조금씩 달라질 수 있어요. 오늘 목표는 *"막대가 길다"* 에서 멈추지 않고, **어느 구간이 길어서 느린지**를 나눠 읽는 거예요.
 
 ---
 
@@ -202,13 +202,13 @@ Network 탭에서 `Protocol` 열을 켜면 요청이 `http/1.1`, `h2`, `h3` 중 
 
 ## Disable cache와 Preserve log는 실험 조건이에요
 
-DevTools에서 `Disable cache`를 켜면 DevTools가 열린 동안 브라우저 캐시를 끄고 첫 방문자에 가까운 조건으로 볼 수 있어요. Chrome 문서도 이 기능을 first-time visitor 경험을 흉내내는 방법으로 설명해요.
+DevTools에서 `Disable cache`를 켜면 DevTools가 열린 동안 일반적인 브라우저 HTTP 캐시를 끄고 첫 방문자에 가까운 조건으로 볼 수 있어요. Chrome 문서도 이 기능을 first-time visitor 경험을 흉내내는 방법으로 설명해요. 다만 이 설정이 등록된 Service Worker의 요청 가로채기나 자체 캐시 전략까지 모두 무력화하는 건 아니에요.
 
 반대로 로그인 이후 이동, 리다이렉트, 페이지 전환을 따라가야 한다면 `Preserve log`를 켜야 이전 요청이 사라지지 않아요.
 
 | 설정 | 언제 켜나요? | 조심할 점 |
 |---|---|---|
-| `Disable cache` | 캐시 영향 없이 네트워크를 다시 보고 싶을 때 | 실제 반복 방문자보다 느리게 보일 수 있어요 |
+| `Disable cache` | 브라우저 HTTP 캐시 영향 없이 네트워크를 다시 보고 싶을 때 | 실제 반복 방문자보다 느리며 Service Worker 동작은 별도로 확인해야 해요 |
 | `Preserve log` | 리다이렉트나 페이지 이동 전후 요청을 이어 볼 때 | 로그가 많아져서 필터링이 필요해요 |
 | Throttling | 느린 네트워크 조건을 재현할 때 | 실제 사용자 전체 조건으로 일반화하면 안 돼요 |
 
@@ -263,7 +263,7 @@ flowchart LR
 
 ### 캐시를 끈 결과와 켠 결과를 섞어 비교하기
 
-`Disable cache`를 켜면 첫 방문자 조건에 가까워져요. 반복 방문자에서 캐시가 작동하는 상황과는 결과가 달라요. 비교할 때는 캐시 조건을 맞춰야 해요.
+`Disable cache`를 켜면 첫 방문자 조건에 가까워져요. 반복 방문자에서 캐시가 작동하는 상황과는 결과가 달라요. Service Worker가 응답을 가로채는지도 별도로 확인하고, 비교할 때는 캐시 조건을 맞춰야 해요.
 
 ### Status `200`이면 문제가 없다고 보기
 

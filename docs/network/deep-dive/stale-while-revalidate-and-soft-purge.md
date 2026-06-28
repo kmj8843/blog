@@ -3,7 +3,7 @@ title: stale-while-revalidate와 soft purge는 왜 같이 볼까요?
 description: stale-while-revalidate, stale-if-error, soft purge, background revalidation을 함께 읽으며 오래된 캐시 사본을 버리지 않고 안전하게 갱신하는 흐름을 정리해봐요.
 icon: lucide/refresh-cw
 created: 2026-06-22
-updated: 2026-06-22
+updated: 2026-06-24
 tags:
   - Network
   - HTTP
@@ -33,7 +33,7 @@ Cache-Control: public, max-age=60, stale-while-revalidate=30, stale-if-error=864
 
 > *"캐시 사본이 stale이 되었을 때, 언제 기다리고, 언제 오래된 사본을 먼저 주고, 언제 아예 버려야 할까요?"*
 
-`stale-while-revalidate`와 `stale-if-error`는 [RFC 5861: HTTP Cache-Control Extensions for Stale Content](https://datatracker.ietf.org/doc/html/rfc5861)에 정리된 stale 제어 확장이에요. 기본 캐시 판단과 재검사 흐름은 [RFC 9111: HTTP Caching](https://www.rfc-editor.org/info/rfc9111/)을 바닥에 두고 읽으면 좋아요. 다만 soft purge는 HTTP 표준 directive가 아니라 CDN 제품의 purge 기능 이름으로 쓰이는 경우가 많으니, 실제 동작은 제품 문서와 설정을 같이 봐야 해요.
+`stale-while-revalidate`와 `stale-if-error`는 [RFC 5861: HTTP Cache-Control Extensions for Stale Content](https://www.rfc-editor.org/rfc/rfc5861.html)에 정리된 stale 제어 확장이에요. 기본 캐시 판단과 재검사 흐름은 [RFC 9111: HTTP Caching](https://www.rfc-editor.org/info/rfc9111/)을 바닥에 두고 읽으면 좋아요. 다만 soft purge는 HTTP 표준 directive가 아니라 CDN 제품의 purge 기능 이름으로 쓰이는 경우가 많으니, 실제 동작은 제품 문서와 설정을 같이 봐야 해요.
 
 !!! note "이 글의 범위"
     여기서는 CDN 캐시에서 자주 만나는 **stale-while-revalidate**, **stale-if-error**, **soft purge**, **background revalidation**의 읽는 순서를 잡아요. 특정 CDN의 모든 상태값이나 purge API 사용법을 외우는 글은 아니에요.
@@ -353,7 +353,7 @@ flowchart TD
 
 ## 더 깊이 보고 싶다면
 
-- [RFC 5861: HTTP Cache-Control Extensions for Stale Content](https://datatracker.ietf.org/doc/html/rfc5861) — `stale-while-revalidate`와 `stale-if-error`의 기본 의미를 확인할 수 있어요.
+- [RFC 5861: HTTP Cache-Control Extensions for Stale Content](https://www.rfc-editor.org/rfc/rfc5861.html) — `stale-while-revalidate`와 `stale-if-error`의 기본 의미를 확인할 수 있어요.
 - [RFC 9111: HTTP Caching](https://www.rfc-editor.org/info/rfc9111/) — HTTP 캐시의 freshness, validation, stale 처리의 기준 흐름을 볼 수 있어요.
 - [Fastly Soft purges](https://www.fastly.com/documentation/guides/full-site-delivery/purging/soft-purges/) — soft purge를 "stale로 표시하는 purge"로 설명하는 제품 문서예요.
 

@@ -3,7 +3,7 @@ title: CDN Cache Status 헤더는 어떻게 읽어야 할까요?
 description: CF-Cache-Status, X-Cache, Cache-Status 같은 CDN 캐시 상태 헤더를 Cache-Control, Age, Vary, 요청 조건과 함께 읽으며 HIT, MISS, BYPASS, STALE을 오해하지 않게 정리해봐요.
 icon: lucide/radar
 created: 2026-06-22
-updated: 2026-06-22
+updated: 2026-06-24
 tags:
   - Network
   - HTTP
@@ -37,79 +37,16 @@ vary: Accept-Encoding
 
 > *"이 응답은 캐시에 있었나요, 왜 없었나요, 있어도 그대로 써도 되는 사본이었나요?"*
 
-HTTP 캐시의 기본 판단은 [RFC 9111: HTTP Caching](https://www.rfc-editor.org/info/rfc9111/)을 바닥에 두고, 캐시가 자신이 한 일을 설명하는 표준 헤더로는 [RFC 9211: Cache-Status](https://www.rfc-editor.org/rfc/rfc9211.html)가 있어요. 다만 실제 운영 화면에서는 `CF-Cache-Status`, `X-Cache`, `X-Cache-Status`처럼 제품별 헤더를 더 자주 볼 수 있어요. 예를 들어 Cloudflare는 `CF-Cache-Status` 값으로 `HIT`, `MISS`, `BYPASS`, `DYNAMIC`, `STALE`, `REVALIDATED`, `UPDATING` 같은 상태를 문서화해요.
+HTTP 캐시의 기본 판단은 [RFC 9111: HTTP Caching](https://www.rfc-editor.org/info/rfc9111/)을 바닥에 두고, 캐시가 자신이 한 일을 설명하는 표준 헤더로는 [RFC 9211: Cache-Status](https://www.rfc-editor.org/rfc/rfc9211.html)가 있어요. 반면 `CF-Cache-Status`, `X-Cache`, `X-Cache-Status`는 표준 `Cache-Status`의 다른 이름이 아니라 제품별 헤더예요. 실제 운영 화면에서는 이런 벤더 헤더를 더 자주 볼 수 있으므로, 예를 들어 Cloudflare의 `HIT`, `MISS`, `BYPASS`, `DYNAMIC`, `STALE`, `REVALIDATED`, `UPDATING`은 Cloudflare 문서를 기준으로 읽어야 해요.
 
 !!! note "이 글의 범위"
     여기서는 특정 CDN 설정 화면을 외우기보다, **CDN 캐시 상태 헤더를 다른 HTTP 캐시 신호와 함께 읽는 순서**를 잡아요. 상태 이름은 제품마다 다를 수 있으니, 실제 장애 분석에서는 해당 CDN 문서를 같이 확인해야 해요.
 
 ---
 
-## 택배 상자에 찍힌 처리 도장만 보고 끝내면 부족해요
-
-택배를 조회할 때를 떠올려볼게요.
-
-- `배송 완료`라고 찍혀 있으면 일단 물건이 도착한 건 맞아요.
-- 하지만 어느 지점에서 처리됐는지, 언제 도착했는지, 반품이나 재배송이 있었는지는 따로 봐야 해요.
-- `집하`라고 찍혀 있어도 문제가 아니라, 첫 배송이라서 아직 이동 중일 수 있어요.
-- `보류`라고 찍혀 있으면 주소 문제인지, 통관 문제인지, 물량 폭주인지 추가 단서가 필요해요.
-
-CDN 캐시 상태 헤더도 비슷해요. `HIT`이나 `MISS`는 **처리 도장**에 가까워요. 도장 자체는 중요하지만, 그 도장이 찍힌 이유까지 알려면 주변 단서를 같이 봐야 해요.
-
-| 택배 조회 장면 | CDN 캐시 장면 |
-|---|---|
-| 배송 상태 도장 | `CF-Cache-Status`, `X-Cache`, `Cache-Status` |
-| 물건이 지점에 머문 시간 | `Age` |
-| 언제까지 보관해도 되는지 | `Cache-Control`, `s-maxage`, `max-age` |
-| 같은 물건인지 구분하는 송장 조건 | cache key, `Vary` |
-| 보관하면 안 되는 물건 | `private`, `no-store`, 인증/쿠키 영향 |
-| 새 물건인지 다시 확인한 기록 | `ETag`, `If-None-Match`, `304 Not Modified` |
-
-핵심은 캐시 상태 헤더가 **캐시가 방금 무엇을 했는지 말해주는 관측 신호**라는 점이에요. 캐시 정책 자체는 `Cache-Control`, `Vary`, CDN 설정, 요청 조건이 함께 결정해요.
-
-```mermaid
-flowchart LR
-    A[요청 도착<br/><small>URL, method, headers</small>] --> B[CDN 캐시가 key 계산]
-    B --> C{저장된 사본이 있나요?}
-    C -->|없음| D[MISS<br/><small>오리진으로 전달</small>]
-    C -->|있음| E{그대로 써도 되나요?}
-    E -->|fresh| F[HIT<br/><small>캐시에서 응답</small>]
-    E -->|stale| G[재검사 / 갱신 / stale 제공]
-    A --> H[정책 확인<br/><small>Cache-Control, Vary, Cookie, Authorization</small>]
-    H --> B
-    H --> E
-```
-
-이 그림에서 `HIT`과 `MISS`는 마지막 결과예요. 그 앞에는 key 계산, 저장 가능 여부, freshness, 재검사 판단이 먼저 있어요.
-
-## 상태 헤더 이름은 제품마다 달라요
-
-브라우저나 `curl`에서 볼 수 있는 캐시 상태 헤더는 한 가지가 아니에요.
-
-```http
-CF-Cache-Status: HIT
-X-Cache: HIT
-X-Cache-Status: MISS
-Cache-Status: "ExampleCache"; hit; ttl=246
-```
-
-`Cache-Status`는 RFC 9211에 정의된 표준 헤더예요. 반면 `CF-Cache-Status`나 `X-Cache` 계열은 제품이나 배포 환경에서 오래 써온 관측용 헤더에 가까워요.
-
-| 헤더 | 읽는 감각 | 조심할 점 |
-|---|---|---|
-| `Cache-Status` | 표준화된 캐시 처리 설명 | 모든 CDN이 기본으로 붙이는 건 아니에요 |
-| `CF-Cache-Status` | Cloudflare 캐시 처리 결과 | 값의 의미는 Cloudflare 문서를 기준으로 봐야 해요 |
-| `X-Cache` | 프록시/CDN이 남긴 캐시 힌트 | 제품별 값과 포맷이 다를 수 있어요 |
-| `X-Cache-Status` | 배포 환경에서 만든 상태 힌트 | 표준 의미라고 단정하면 안 돼요 |
-
-그래서 처음 보는 헤더를 만나면 이렇게 묻는 게 좋아요.
-
-> *"이 헤더는 HTTP 표준 헤더인가요, CDN 제품이 붙인 헤더인가요, 우리 프록시가 커스텀으로 붙인 헤더인가요?"*
-
-이 질문을 먼저 해야 `HIT`, `MISS`, `BYPASS` 같은 단어를 너무 넓게 일반화하지 않게 돼요.
-
 ## 먼저 여섯 가지 신호를 한 화면에서 봐요
 
-캐시 상태를 읽을 때는 응답 헤더 하나만 보지 말고, 요청과 응답을 같이 봐야 해요.
+`HIT`이나 `MISS`는 택배의 처리 도장처럼 **이번 요청의 결과**를 보여줘요. 원인을 찾으려면 요청과 응답을 한 화면에 놓고 아래 순서로 읽는 편이 빨라요.
 
 ```text
 Request URL: https://example.com/assets/app.8f31c2.css
@@ -137,10 +74,32 @@ Response Headers:
 | 5 | `Vary`와 요청 헤더 | 같은 URL이어도 사본이 나뉘는 조건이 있나요? |
 | 6 | 쿠키와 인증 조건 | 공유 캐시에 두면 안 되는 사용자별 응답인가요? |
 
-이 순서가 중요한 이유는, `MISS`가 항상 "캐시가 안 된다"는 뜻이 아니기 때문이에요. 첫 요청이라서 MISS일 수 있고, key가 달라서 MISS일 수 있고, 정책상 BYPASS로 빠졌을 수도 있고, stale 사본을 재검사하느라 오리진에 갔을 수도 있어요.
+이 순서가 중요한 이유는, `MISS`가 항상 "캐시가 안 된다"는 뜻이 아니기 때문이에요. 첫 요청이라서 MISS일 수 있고, key가 달라서 MISS일 수 있고, stale 사본을 재검사하느라 오리진에 갔을 수도 있어요. 다만 상태 이름을 붙이는 기준은 제품과 시기에 따라 다르므로, 실제 CDN 문서를 함께 봐야 해요.
 
 !!! tip "상태값은 결과, 주변 헤더는 이유예요"
     `HIT`이나 `MISS`는 캐시가 낸 결과예요. 그 이유는 `Cache-Control`, `Age`, `Vary`, 요청 헤더, 쿠키, CDN 설정 쪽에서 찾아야 해요.
+
+## 상태 헤더 이름은 제품마다 달라요
+
+브라우저나 `curl`에서 볼 수 있는 캐시 상태 헤더는 한 가지가 아니에요.
+
+```http
+CF-Cache-Status: HIT
+X-Cache: HIT
+X-Cache-Status: MISS
+Cache-Status: "ExampleCache"; hit; ttl=246
+```
+
+`Cache-Status`는 RFC 9211에 정의된 표준 헤더예요. 반면 `CF-Cache-Status`나 `X-Cache` 계열은 제품이나 배포 환경에서 오래 써온 관측용 헤더라서, 이름이나 값이 비슷해도 표준 `Cache-Status` 문법과 의미를 그대로 적용하면 안 돼요.
+
+| 헤더 | 읽는 감각 | 조심할 점 |
+|---|---|---|
+| `Cache-Status` | 표준화된 캐시 처리 설명 | 모든 CDN이 기본으로 붙이는 건 아니에요 |
+| `CF-Cache-Status` | Cloudflare 캐시 처리 결과 | 값의 의미는 Cloudflare 문서를 기준으로 봐야 해요 |
+| `X-Cache` | 프록시/CDN이 남긴 캐시 힌트 | 제품별 값과 포맷이 다를 수 있어요 |
+| `X-Cache-Status` | 배포 환경에서 만든 상태 힌트 | 표준 의미라고 단정하면 안 돼요 |
+
+처음 보는 헤더라면 표준인지, CDN 제품이 붙였는지, 중간 프록시가 만든 값인지부터 확인해요. 그래야 `HIT`, `MISS`, `BYPASS`를 다른 제품에 그대로 일반화하지 않게 돼요.
 
 ## HIT은 "저장된 사본을 썼다"에 가까워요
 
@@ -215,7 +174,7 @@ sequenceDiagram
 | CDN 규칙 | 특정 path나 status code를 캐시하지 않도록 설정됐을 수 있어요 |
 
 !!! warning "`MISS`를 곧바로 'CDN이 고장났다'로 읽지 마세요"
-    MISS는 이번 요청에서 저장된 사본을 바로 쓰지 못했다는 신호예요. 첫 요청, 새 key, 만료 후 재검사, 정책 우회가 모두 비슷하게 오리진 경유로 보일 수 있어요.
+    Cloudflare에서는 2026년 5월 26일부터 캐시할 수 없는 응답에 일관되게 `BYPASS`를 사용해요. `MISS`는 캐시할 수 있지만 요청 시점의 로컬 캐시에 없던 응답에만 사용해요. 과거 Cloudflare 배포에서는 캐시할 수 없는 응답에도 `MISS`가 섞여 나왔고, 다른 CDN은 지금도 기준이 다를 수 있어요. 자세한 변경 내용은 [Cloudflare Cache 변경 기록](https://developers.cloudflare.com/cache/changelog/#2026-05-26)에서 확인할 수 있어요.
 
 ## BYPASS와 DYNAMIC은 "캐시를 쓰지 않기로 했다"에 가까워요
 
@@ -396,9 +355,10 @@ flowchart TD
 
 !!! abstract "오늘 우리가 배운 것"
     - CDN 캐시 상태 헤더는 캐시가 **이번 요청을 어떻게 처리했는지** 보여주는 관측 신호예요.
+    - `Cache-Status`는 표준 헤더이고, `CF-Cache-Status`, `X-Cache` 같은 헤더는 제품별 의미를 문서로 확인해야 해요.
     - `HIT`은 저장된 사본을 썼다는 뜻에 가깝지만, 그 사본이 최신인지 또는 이 요청에 맞는지는 별도로 봐야 해요.
-    - `MISS`는 이번 요청에 바로 쓸 사본이 없었다는 뜻에 가깝고, 첫 요청이나 새 cache key에서는 자연스러울 수 있어요.
-    - `BYPASS`, `DYNAMIC`, `STALE`, `REVALIDATED`, `UPDATING` 같은 값은 제품별 의미가 크기 때문에 해당 CDN 문서와 함께 읽어야 해요.
+    - 현재 Cloudflare에서 `MISS`는 캐시할 수 있지만 로컬 캐시에 없던 응답, `BYPASS`는 캐시할 수 없는 응답을 뜻해요.
+    - 과거 Cloudflare 배포나 다른 CDN에서는 `MISS`, `BYPASS`, `DYNAMIC`, `STALE`, `REVALIDATED`, `UPDATING` 같은 값의 기준이 다를 수 있으므로 해당 시점과 제품의 문서를 함께 읽어야 해요.
     - 캐시 상태 헤더는 `Cache-Control`, `Age`, `Vary`, 요청 헤더, 쿠키, 인증 조건과 같이 봐야 이유가 보여요.
     - 브라우저 캐시와 CDN 캐시는 관측 위치가 다르므로 `(memory cache)` 표시와 CDN 상태 헤더를 섞어 읽으면 안 돼요.
 

@@ -3,7 +3,7 @@ title: SNI, ESNI, ECH는 뭐가 다를까요?
 description: TLS가 시작되기 전에 왜 서버 이름이 먼저 필요하고, 평문 SNI가 왜 문제였는지, ESNI에서 ECH로 왜 바뀌었는지 같이 해부해봐요.
 icon: lucide/binary
 created: 2026-06-02
-updated: 2026-06-09
+updated: 2026-06-24
 tags:
   - Network
   - TLS
@@ -27,7 +27,7 @@ tags:
 - 그 힌트가 한동안은 **평문으로 먼저 보였고**
 - 그래서 `ESNI` 같은 과도기 아이디어를 거쳐 **ECH** 까지 오게 됐어요
 
-오늘은 **SNI가 왜 필요했는지**, **평문 SNI가 무엇을 노출하는지**, 그리고 **왜 ESNI가 ECH로 바뀌었는지**를 ClientHello 구조 위에서 같이 해부해볼게요. 기본 축은 [RFC 6066의 `server_name` 확장](https://www.rfc-editor.org/rfc/rfc6066)과 [RFC 9849의 ECH](https://www.rfc-editor.org/rfc/rfc9849), 그리고 *왜 SNI만 숨겨서는 부족했는지*를 설명하는 [RFC 8744](https://www.rfc-editor.org/rfc/rfc8744) 쪽 감각을 바탕으로 볼게요.
+오늘은 **SNI가 왜 필요했는지**, **평문 SNI가 무엇을 노출하는지**, 그리고 **왜 ESNI가 ECH로 바뀌었는지**를 ClientHello 구조 위에서 같이 해부해볼게요. 기본 축은 [RFC 6066의 `server_name` 확장](https://www.rfc-editor.org/rfc/rfc6066)과 현재 ECH 규격인 [RFC 9849](https://www.rfc-editor.org/rfc/rfc9849)예요. [RFC 8744](https://www.rfc-editor.org/rfc/rfc8744)는 현재 ECH 규격이 아니라, SNI 암호화가 풀어야 했던 문제와 요구사항을 정리한 역사적 배경으로 참고할게요.
 
 !!! note "이 글의 범위"
     여기서는 **SNI, ESNI, ECH의 큰 구조와 설계 이유**에 집중할게요. 실제 브라우저 지원 상태표나 DNS HTTPS RR 배포 절차를 제품별 설정 가이드처럼 길게 열진 않을 거예요. 또 **ECH가 모든 메타데이터를 다 숨기는 만능 익명화 기술은 아니다**는 점도 같이 붙잡을 거예요.
@@ -181,6 +181,8 @@ flowchart LR
 - 서버는 ECH 구성을 알고 있으면, 바깥 껍데기만 보는 게 아니라 **안쪽 ClientHello를 복원해서** 실제 협상을 진행해요.
 
 RFC 9849를 초심자 감각으로 줄이면, ECH는 **"이름 한 칸만 따로 숨기기"** 보다 **"민감한 초기 인사 묶음을 안쪽 봉투로 한 번 더 싸기"** 에 더 가까워요.
+
+다만 클라이언트는 연결 전에 서버의 ECH 구성을 알아야 해요. [RFC 9848](https://www.rfc-editor.org/rfc/rfc9848)은 그 구성을 DNS의 `SVCB` 또는 `HTTPS` 레코드에 있는 `ech` 파라미터로 전달하는 방식을 정리해요.
 
 ---
 

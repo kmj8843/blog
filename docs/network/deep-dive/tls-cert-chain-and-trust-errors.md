@@ -71,6 +71,8 @@ curl: (60) SSL: no alternative certificate subject name matches target hostname 
 curl: (60) SSL certificate problem: unable to get local issuer certificate
 ```
 
+여기서 바로 기대는 용어 세 개만 먼저 풀어둘게요. **SAN(Subject Alternative Name)** 은 인증서가 유효하다고 밝히는 호스트 이름 목록이고, 현대적인 이름 검증은 주로 이 값을 봐요. **CN(Common Name)** 은 인증서 subject 안의 대표 이름 칸인데, 예전 호환 장면이나 도구 출력에서 자주 보이지만 SAN과 같은 뜻으로 무조건 읽으면 안 돼요. **issuer** 는 그 인증서에 서명해 발급한 주체를 가리켜요. 따라서 `unable to get local issuer certificate` 는 보통 **위 발급자 인증서를 로컬에서 찾아 체인을 잇지 못했다**는 쪽으로 읽으면 돼요.
+
 둘 다 **인증서에서 멈췄다**는 점은 비슷해 보여요. 근데 첫 번째는 **이름이 안 맞는 장면**이고, 두 번째는 **신뢰 사슬을 끝까지 못 따라간 장면**이에요. 즉 같은 “인증서 오류”처럼 보여도, **어느 검사가 실패했는지**는 꽤 달라요. 실제 문구는 `curl` 버전, TLS 라이브러리, 플랫폼에 따라 조금씩 달라질 수 있지만, **오류 갈래를 읽는 감각**은 비슷해요.
 
 ---
@@ -169,7 +171,7 @@ sequenceDiagram
 
 | 보이는 오류 감각 | 먼저 의심할 것 | 자주 연결되는 장면 |
 |---|---|---|
-| hostname mismatch | 접속 이름과 인증서 SAN/CN 불일치 | 다른 도메인 인증서 배포 |
+| hostname mismatch | 접속 이름과 인증서 SAN이 불일치하는지 우선 확인 | 다른 도메인 인증서 배포 |
 | expired / not yet valid | 인증서 날짜 | 갱신 누락, 서버 시간 문제 |
 | unknown issuer | intermediate 누락, 신뢰 안 되는 루트 | 체인 불완전, 사설 CA |
 | unable to verify first certificate | 체인 경로 완성 실패 | intermediate 전송 누락 |

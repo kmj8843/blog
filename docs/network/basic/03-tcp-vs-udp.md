@@ -235,9 +235,7 @@ TCP가 꼼꼼한 건 좋은데, 그 꼼꼼함에는 비용이 들어요.
 
 보다시피 UDP는 **"어디서 왔고, 어디로 가고, 길이가 얼마인지"** 정도만 빠르게 적고 지나가요. 훨씬 가볍죠.
 
-여기서 *"그 단순한 헤더가 진짜 몇 칸 안 되는지, `Length` 와 `Checksum` 이 정확히 어디 들어가는지"* 까지 바로 보고 싶다면, 심화편 [UDP 헤더는 왜 딱 8바이트일까요?](../deep-dive/udp-header-anatomy.md){ data-preview } 에서 **8바이트짜리 격자** 위에 그대로 펼쳐볼 수 있어요.
-
-그리고 *"좋아요, UDP는 가볍다는 건 알겠어요. 근데 왜 요즘 HTTP/3는 굳이 UDP 위에 새 전송 계층을 다시 올리죠?"* 가 궁금해졌다면, 심화편 [QUIC은 왜 UDP 위에서 돌아갈까요?](../deep-dive/quic-first-look.md#why-on-udp){ data-preview }에서 **UDP 위에 QUIC이 무엇을 다시 얹는지**를 이어서 볼 수 있어요.
+더 깊게 보고 싶다면 [UDP 헤더는 왜 딱 8바이트일까요?](../deep-dive/udp-header-anatomy.md){ data-preview }에서 `Length`와 `Checksum`의 실제 위치를 확인할 수 있어요. UDP 위에서 신뢰성과 보안을 다시 설계한 이유가 궁금할 때는 [QUIC은 왜 UDP 위에서 돌아갈까요?](../deep-dive/quic-first-look.md#why-on-udp){ data-preview }로 이어가면 돼요.
 
 !!! note "한 가지 헷갈리기 쉬운 점"
     UDP가 "대충 보내는 방식"이라는 뜻은 아니에요. **일부러 확인 절차를 줄인 방식**에 더 가까워요. 그래서 실시간 서비스에서는 오히려 아주 똑똑한 선택일 때가 많아요.
