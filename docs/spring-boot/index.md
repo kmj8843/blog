@@ -32,6 +32,9 @@ tags:
 - [Spring Boot 프로젝트는 처음에 무엇을 만들어줄까요?](spring-boot-init-and-project-shape.md){ data-preview }
   Spring Initializr와 `spring init`으로 만든 첫 프로젝트의 선택지, 빌드 파일, `main` 클래스, 패키지 구조, DevTools의 역할을 살펴봐요.
 
+- [IoC, DI, AOP는 왜 Spring을 읽는 세 가지 기준점일까요?](spring-three-principles-ioc-di-aop.md){ data-preview }
+  제어의 역전, 의존성 주입, 관점 지향 프로그래밍을 어려운 정의보다 먼저 코드 책임의 이동으로 잡아봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
