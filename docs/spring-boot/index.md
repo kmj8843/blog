@@ -46,6 +46,9 @@ tags:
 - [컴포넌트 스캔과 Bean 등록은 왜 가끔 내 클래스를 못 찾을까요?](component-scan-and-bean-registration.md){ data-preview }
   컴포넌트 스캔, `@Bean`, 조건부 등록이 각각 어떤 방식으로 빈을 등록하는지 보고, Spring Boot가 클래스를 못 찾는 흔한 이유를 정리해요.
 
+- [의존성 주입은 실제 코드에서 어떻게 읽어야 할까요?](dependency-injection-in-real-code.md){ data-preview }
+  생성자 주입, 선택적 의존성, 여러 빈 후보, 순환 의존성을 실제 서비스 코드 흐름으로 읽고 field injection이 오래 갈수록 불리해지는 이유를 살펴봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---

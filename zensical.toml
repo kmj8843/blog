@@ -47,6 +47,7 @@ nav = [
     "spring-boot/main-method-to-running-app.md",
     "spring-boot/application-context-and-beans.md",
     "spring-boot/component-scan-and-bean-registration.md",
+    "spring-boot/dependency-injection-in-real-code.md",
   ] },
   { "네트워크" = [
     "network/index.md",
