@@ -49,6 +49,9 @@ tags:
 - [의존성 주입은 실제 코드에서 어떻게 읽어야 할까요?](dependency-injection-in-real-code.md){ data-preview }
   생성자 주입, 선택적 의존성, 여러 빈 후보, 순환 의존성을 실제 서비스 코드 흐름으로 읽고 field injection이 오래 갈수록 불리해지는 이유를 살펴봐요.
 
+- [AOP 프록시와 Annotation은 왜 기대와 다르게 동작할까요?](aop-proxy-and-annotation-behavior.md){ data-preview }
+  `@Transactional` 같은 Annotation이 단순한 표시가 아니라 프록시를 통과하는 호출에서 동작하는 이유와 self-invocation 함정을 살펴봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
