@@ -44,6 +44,7 @@ nav = [
     "spring-boot/why-spring-and-boot-exist.md",
     "spring-boot/spring-boot-init-and-project-shape.md",
     "spring-boot/spring-three-principles-ioc-di-aop.md",
+    "spring-boot/main-method-to-running-app.md",
   ] },
   { "네트워크" = [
     "network/index.md",
