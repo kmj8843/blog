@@ -46,6 +46,7 @@ nav = [
     "spring-boot/spring-three-principles-ioc-di-aop.md",
     "spring-boot/main-method-to-running-app.md",
     "spring-boot/application-context-and-beans.md",
+    "spring-boot/component-scan-and-bean-registration.md",
   ] },
   { "네트워크" = [
     "network/index.md",

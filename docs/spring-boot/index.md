@@ -43,6 +43,9 @@ tags:
 - [ApplicationContext와 Bean은 왜 Spring이 소유한 객체일까요?](application-context-and-beans.md){ data-preview }
   Spring 컨테이너가 빈 정의를 모으고 실제 객체를 만들고 연결하는 흐름을, 생명주기와 scope까지 이어서 살펴봐요.
 
+- [컴포넌트 스캔과 Bean 등록은 왜 가끔 내 클래스를 못 찾을까요?](component-scan-and-bean-registration.md){ data-preview }
+  컴포넌트 스캔, `@Bean`, 조건부 등록이 각각 어떤 방식으로 빈을 등록하는지 보고, Spring Boot가 클래스를 못 찾는 흔한 이유를 정리해요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
