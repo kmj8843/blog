@@ -17,7 +17,12 @@
 /Network/Network/04-dns/ /network/basic/04-dns/ 301
 
 ## 크롤링됨 - 현재 색인이 생성되지 않음
+/Network/deep-dive/dns-lookup-with-dig/ /network/deep-dive/dns-lookup-with-dig/ 301
+/Network/deep-dive/tcp-header-anatomy/ /network/deep-dive/tcp-header-anatomy/ 301
 /Network/14-port-forwarding-and-incoming-connections/ /network/basic/14-port-forwarding-and-incoming-connections/ 301
+
+## 중복 페이지, Google에서 사용자와 다른 표준을 선택함
+/Network/basic/14-port-forwarding-and-incoming-connections/ /network/basic/14-port-forwarding-and-incoming-connections/ 301
 
 ## 리디렉션이 포함된 페이지
 /Network/01-what-is-packet/ /network/basic/01-what-is-packet/ 301
@@ -25,8 +30,26 @@
 /Network/03-tcp-vs-udp/ /network/basic/03-tcp-vs-udp/ 301
 /Network/04-dns/ /network/basic/04-dns/ 301
 /Network/05-ports-and-sockets/ /network/basic/05-ports-and-sockets/ 301
+/Network/06-http-and-https/ /network/basic/06-http-and-https/ 301
 /Network/07-tls-ssl-and-certificates/ /network/basic/07-tls-ssl-and-certificates/ 301
 /Network/08-osi-and-tcp-ip-layers/ /network/basic/08-osi-and-tcp-ip-layers/ 301
 /Network/09-tcp-3-way-handshake/ /network/basic/09-tcp-3-way-handshake/ 301
 /Network/10-dns-records/ /network/basic/10-dns-records/ 301
 /Network/11-public-private-ip-and-nat/ /network/basic/11-public-private-ip-and-nat/ 301
+/Network/12-packet-capture/ /network/basic/12-packet-capture/ 301
+/Network/13-router-and-home-network/ /network/basic/13-router-and-home-network/ 301
+# /Network/14-port-forwarding-and-incoming-connections/ /network/basic/14-port-forwarding-and-incoming-connections/ 301
+/Network/15-firewall-and-stateful-filtering/ /network/basic/15-firewall-and-stateful-filtering/ 301
+/Network/16-dhcp/ /network/basic/17-dhcp/ 301
+/Network/17-arp-and-local-delivery/ /network/basic/18-arp-and-local-delivery/ 301
+/Network/18-default-gateway-and-first-hop/ /network/basic/19-default-gateway-and-first-hop/ 301
+/Network/19-icmp-ping-and-traceroute/ /network/basic/20-icmp-ping-and-traceroute/ 301
+/Network/20-mtu-fragmentation-and-path-mtu/ /network/basic/21-mtu-fragmentation-and-path-mtu/ 301
+/Network/21-tcp-retransmission-and-reliability/ /network/basic/22-tcp-retransmission-and-reliability/ 301
+/Network/22-tcp-teardown-and-time-wait/ /network/basic/23-tcp-teardown-and-time-wait/ 301
+/Network/23-proxy-reverse-proxy-and-load-balancer/ /network/basic/24-proxy-reverse-proxy-and-load-balancer/ 301
+/Network/24-cdn-cache-and-edge-delivery/ /network/basic/25-cdn-cache-and-edge-delivery/ 301
+
+## 발견됨 - 현재 색인이 생성되지 않음
+/Network/deep-dive/ss-and-netstat-state-reading/ /network/deep-dive/ss-and-netstat-state-reading/ 301
+/Network/deep-dive/tls13-handshake-anatomy/ /network/deep-dive/tls13-handshake-anatomy/ 301
