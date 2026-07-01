@@ -52,6 +52,12 @@ tags:
 - [AOP 프록시와 Annotation은 왜 기대와 다르게 동작할까요?](aop-proxy-and-annotation-behavior.md){ data-preview }
   `@Transactional` 같은 Annotation이 단순한 표시가 아니라 프록시를 통과하는 호출에서 동작하는 이유와 self-invocation 함정을 살펴봐요.
 
+- [스타터와 자동 설정은 왜 버전과 설정을 대신 맞춰줄까요?](auto-configuration-and-starters.md){ data-preview }
+  starter, BOM, dependency management, auto-configuration, 조건 평가 리포트를 통해 의존성 하나가 어떻게 실행 설정으로 이어지는지 살펴봐요.
+
+- [application.yml과 profile은 설정을 어떻게 바꿔줄까요?](configuration-properties-profiles-and-secrets.md){ data-preview }
+  외부 설정, Config Data, profile, 환경 변수, Configuration Properties, 검증, secret 경계를 한 흐름으로 읽어봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
