@@ -11,3 +11,23 @@
 /Network /network 301
 /Network/ /network/ 301
 /Network/* /network/:splat 301
+
+# google search console
+## 찾을 수 없음(404)
+/Network/Network/01-what-is-packet/ /network/basic/01-what-is-packet/ 301
+/Network/Network/04-dns/ /network/basic/04-dns/ 301
+
+## 크롤링됨 - 현재 색인이 생성되지 않음
+/Network/14-port-forwarding-and-incoming-connections/ /network/basic/14-port-forwarding-and-incoming-connections/ 301
+
+## 리디렉션이 포함된 페이지
+/Network/01-what-is-packet/ /network/basic/01-what-is-packet/ 301
+/Network/02-ip-and-routing/ /network/basic/02-ip-and-routing/ 301
+/Network/03-tcp-vs-udp/ /network/basic/03-tcp-vs-udp/ 301
+/Network/04-dns/ /network/basic/04-dns/ 301
+/Network/05-ports-and-sockets/ /network/basic/05-ports-and-sockets/ 301
+/Network/07-tls-ssl-and-certificates/ /network/basic/07-tls-ssl-and-certificates/ 301
+/Network/08-osi-and-tcp-ip-layers/ /network/basic/08-osi-and-tcp-ip-layers/ 301
+/Network/09-tcp-3-way-handshake/ /network/basic/09-tcp-3-way-handshake/ 301
+/Network/10-dns-records/ /network/basic/10-dns-records/ 301
+/Network/11-public-private-ip-and-nat/ /network/basic/11-public-private-ip-and-nat/ 301
