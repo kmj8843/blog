@@ -49,6 +49,16 @@ render_macros: true
 
     [:octicons-arrow-right-24: Spring Boot 글 보기](spring-boot/index.md)
 
+- :material-lightbulb-on-outline:{ .lg .middle } **Tips**
+
+    ---
+
+    용어 읽는 법, 짧은 설정 힌트, 자주 마주치는 에러처럼
+    길게 쓰기 전에도 다시 찾기 쉬워야 하는 조각들을
+    한곳에 모아둡니다.
+
+    [:octicons-arrow-right-24: Tips 보기](tips/index.md)
+
 - :material-rocket-launch-outline:{ .lg .middle } **더 많은 주제, 곧 추가돼요**
 
     ---

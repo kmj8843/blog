@@ -53,6 +53,10 @@ nav = [
     "spring-boot/configuration-properties-profiles-and-secrets.md",
     "spring-boot/boot-4-and-boot-3-baseline-map.md",
   ] },
+  { "Tips" = [
+    "tips/index.md",
+    "tips/glossary.md",
+  ] },
   { "네트워크" = [
     "network/index.md",
     { "기본편" = [
