@@ -61,6 +61,9 @@ tags:
 - [Spring Boot 4와 3은 무엇이 달라졌을까요?](boot-4-and-boot-3-baseline-map.md){ data-preview }
   Spring Boot 4.x와 3.5.x의 기준선을 Java, Spring Framework, Jakarta EE, Servlet 컨테이너, starter, 테스트 의존성 관점에서 비교해요.
 
+- [웹 요청은 Spring MVC 안에서 어떤 순서로 지나갈까요?](web-request-lifecycle-mvc.md){ data-preview }
+  DispatcherServlet, HandlerMapping, argument resolution, validation, HttpMessageConverter, exception handling까지 Spring MVC 요청 흐름을 한 번에 따라가요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---

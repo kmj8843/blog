@@ -52,6 +52,7 @@ nav = [
     "spring-boot/auto-configuration-and-starters.md",
     "spring-boot/configuration-properties-profiles-and-secrets.md",
     "spring-boot/boot-4-and-boot-3-baseline-map.md",
+    "spring-boot/web-request-lifecycle-mvc.md",
   ] },
   { "Tips" = [
     "tips/index.md",
