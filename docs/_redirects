@@ -10,7 +10,6 @@
 /Network/basic/25-end-to-end-request-debugging/ /network/basic/26-end-to-end-request-debugging/ 301
 /Network /network 301
 /Network/ /network/ 301
-/Network/* /network/:splat 301
 
 # google search console
 ## 찾을 수 없음(404)
