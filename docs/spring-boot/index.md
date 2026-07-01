@@ -64,6 +64,9 @@ tags:
 - [웹 요청은 Spring MVC 안에서 어떤 순서로 지나갈까요?](web-request-lifecycle-mvc.md){ data-preview }
   DispatcherServlet, HandlerMapping, argument resolution, validation, HttpMessageConverter, exception handling까지 Spring MVC 요청 흐름을 한 번에 따라가요.
 
+- [REST API 설계와 에러 계약은 왜 컨트롤러 코드보다 먼저일까요?](rest-api-design-and-error-contracts.md){ data-preview }
+  DTO, request와 response 모양, Bean Validation, Problem Details, error code, API versioning을 클라이언트와 서버의 약속으로 읽어봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---

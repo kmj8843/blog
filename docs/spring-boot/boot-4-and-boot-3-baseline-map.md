@@ -47,7 +47,7 @@ plugins {
 오늘 목표는 세부 변경 목록을 전부 외우는 게 아니에요. **Spring Boot 버전은 단일 라이브러리 하나가 아니라 Spring Framework, Jakarta EE, Servlet 컨테이너, JSON, 테스트, starter 이름까지 묶어서 움직이는 기준선**이라는 감각을 잡는 거예요.
 
 !!! note "이 글의 기준"
-    이 글은 2026년 7월 1일 기준 Spring Boot 공식 문서에서 확인한 Spring Boot 4.1.0, 4.0 마이그레이션 가이드, 3.5.15 시스템 요구사항을 바탕으로 작성했어요. 패치 버전은 계속 바뀔 수 있으니 새 프로젝트나 마이그레이션에서는 사용 중인 버전의 공식 문서를 함께 확인하세요.
+    이 글은 Spring Boot 공식 문서에서 확인한 Spring Boot 4.1.0, 4.0 마이그레이션 가이드, 3.5.15 시스템 요구사항을 바탕으로 작성했어요. 패치 버전은 계속 바뀔 수 있으니 새 프로젝트나 마이그레이션에서는 사용 중인 버전의 공식 문서를 함께 확인하세요.
 
 ---
 
@@ -210,7 +210,7 @@ flowchart LR
 
 Spring Boot 3.5.x 문서에는 내장 servlet container로 Tomcat 10.1, Jetty 12.0, Undertow 2.3이 보여요. 그런데 Spring Boot 4.0 마이그레이션 가이드는 Undertow 지원이 빠졌다고 안내해요. 이유는 Boot 4의 Servlet 6.1 기준선과 Undertow 호환성 때문이에요.
 
-이 말은 "Undertow가 나쁘다"가 아니에요. 지금 시점의 Boot 4 기준선과 맞지 않아서 Boot가 직접 제공하던 Undertow starter와 embedded server 지원이 사라졌다는 뜻이에요.
+이 말은 "Undertow가 나쁘다"가 아니에요. Boot 4의 Servlet 6.1 기준선과 맞지 않아서 Boot가 직접 제공하던 Undertow starter와 embedded server 지원이 사라졌다는 뜻이에요.
 
 그래서 이런 의존성이 있다면 그냥 Boot 버전만 올리면 안 돼요.
 
@@ -434,7 +434,7 @@ Boot 4 쪽 문서는 기술별 test starter를 더 분명히 보여줘요. MVC, 
 | 새 토이 프로젝트를 만든다 | start.spring.io 최신 안정 버전 기준 |
 | 회사 프로젝트가 3.5.x다 | 3.5.x 문서와 현재 코드 기준으로 학습 |
 | 3.x에서 4.x로 올릴 예정이다 | 3.5.x 최신 패치, deprecated 제거, Boot 4 migration guide 순서 |
-| 검색 결과가 서로 다르다 | 글 작성 시점과 Spring Boot major 버전을 먼저 확인 |
+| 검색 결과가 서로 다르다 | 글이 기준으로 삼은 Spring Boot major 버전을 먼저 확인 |
 
 이 블로그의 앞으로 글은 Spring Boot 4.x를 기본 방향으로 두되, 3.x 프로젝트에서 자주 마주치는 차이는 필요한 곳에서 짚을 거예요. 그래서 예제의 starter 이름이나 Jackson 이야기가 검색 결과와 다르게 보이면 "어느 세대의 Boot를 기준으로 쓴 글인가?"를 먼저 물어보면 돼요.
 
