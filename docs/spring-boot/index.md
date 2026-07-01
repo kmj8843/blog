@@ -58,6 +58,9 @@ tags:
 - [application.yml과 profile은 설정을 어떻게 바꿔줄까요?](configuration-properties-profiles-and-secrets.md){ data-preview }
   외부 설정, Config Data, profile, 환경 변수, Configuration Properties, 검증, secret 경계를 한 흐름으로 읽어봐요.
 
+- [Spring Boot 4와 3은 무엇이 달라졌을까요?](boot-4-and-boot-3-baseline-map.md){ data-preview }
+  Spring Boot 4.x와 3.5.x의 기준선을 Java, Spring Framework, Jakarta EE, Servlet 컨테이너, starter, 테스트 의존성 관점에서 비교해요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---

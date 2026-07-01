@@ -75,15 +75,15 @@ spring:
 
 ```mermaid
 flowchart LR
-    A[같은 애플리케이션 코드<br/><small>Order API</small>]
-    B[로컬 설정<br/><small>localhost DB, debug log</small>]
+    A[로컬 설정<br/><small>localhost DB, debug log</small>]
+    B[같은 애플리케이션 코드<br/><small>Order API</small>]
     C[운영 설정<br/><small>prod DB, info log, secret</small>]
     D[로컬 실행]
     E[운영 실행]
 
     A --> D
-    A --> E
     B --> D
+    B --> E
     C --> E
 ```
 
