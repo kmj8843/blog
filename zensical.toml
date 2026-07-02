@@ -54,6 +54,7 @@ nav = [
     "spring-boot/boot-4-and-boot-3-baseline-map.md",
     "spring-boot/web-request-lifecycle-mvc.md",
     "spring-boot/rest-api-design-and-error-contracts.md",
+    "spring-boot/json-jackson3-and-migration-from-jackson2.md",
   ] },
   { "Tips" = [
     "tips/index.md",
