@@ -73,6 +73,9 @@ tags:
 - [Todo API 첫 커밋은 어떻게 차근차근 만들까요?](source-backed-todo-api-first-commit.md){ data-preview }
   Spring CLI로 Java 21, Gradle wrapper 기반 프로젝트를 만들고 생성된 파일 확인부터 controller, service, repository, validation, 테스트까지 첫 커밋 흐름으로 따라가요.
 
+- [Spring MVC와 WebFlux는 언제 다르게 선택해야 할까요?](spring-mvc-vs-webflux.md){ data-preview }
+  Spring MVC와 WebFlux를 구버전/신버전 관계가 아니라 blocking I/O, non-blocking I/O, thread model, 라이브러리 선택의 차이로 읽어봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
