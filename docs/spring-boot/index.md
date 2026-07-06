@@ -85,6 +85,9 @@ tags:
 - [데이터 접근은 JDBC, JPA, R2DBC 중 무엇을 골라야 할까요?](data-access-map-jdbc-jpa-r2dbc.md){ data-preview }
   JDBC와 `JdbcClient`, Spring Data JDBC, JPA, Spring Data repository, R2DBC를 최신순이 아니라 문제 모양과 실행 모델로 고르는 법을 살펴봐요.
 
+- [JPA Entity 상태와 영속성 컨텍스트는 왜 헷갈릴까요?](jpa-entity-state-and-persistence-context.md){ data-preview }
+  Entity가 새 객체, 관리되는 객체, 분리된 객체, 삭제 예정 객체로 바뀌는 흐름을 영속성 컨텍스트, dirty checking, lazy loading, N+1, auditing과 함께 읽어봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---

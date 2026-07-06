@@ -60,6 +60,7 @@ nav = [
     "spring-boot/websocket-and-stomp.md",
     "spring-boot/http-clients-restclient-webclient-http-interface.md",
     "spring-boot/data-access-map-jdbc-jpa-r2dbc.md",
+    "spring-boot/jpa-entity-state-and-persistence-context.md",
   ] },
   { "Tips" = [
     "tips/index.md",
