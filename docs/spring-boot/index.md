@@ -82,6 +82,9 @@ tags:
 - [RestClient, WebClient, HTTP Interface는 언제 다르게 써야 할까요?](http-clients-restclient-webclient-http-interface.md){ data-preview }
   서버가 다른 서버를 호출할 때 `RestClient`, `WebClient`, HTTP Interface를 어떻게 고르고, timeout과 retry를 어디에 두어야 하는지 outbound API 경계로 읽어봐요.
 
+- [데이터 접근은 JDBC, JPA, R2DBC 중 무엇을 골라야 할까요?](data-access-map-jdbc-jpa-r2dbc.md){ data-preview }
+  JDBC와 `JdbcClient`, Spring Data JDBC, JPA, Spring Data repository, R2DBC를 최신순이 아니라 문제 모양과 실행 모델로 고르는 법을 살펴봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
