@@ -58,6 +58,7 @@ nav = [
     "spring-boot/source-backed-todo-api-first-commit.md",
     "spring-boot/spring-mvc-vs-webflux.md",
     "spring-boot/websocket-and-stomp.md",
+    "spring-boot/http-clients-restclient-webclient-http-interface.md",
   ] },
   { "Tips" = [
     "tips/index.md",
