@@ -57,6 +57,7 @@ nav = [
     "spring-boot/json-jackson3-and-migration-from-jackson2.md",
     "spring-boot/source-backed-todo-api-first-commit.md",
     "spring-boot/spring-mvc-vs-webflux.md",
+    "spring-boot/websocket-and-stomp.md",
   ] },
   { "Tips" = [
     "tips/index.md",
