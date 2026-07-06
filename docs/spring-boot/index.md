@@ -70,6 +70,9 @@ tags:
 - [JSON과 Jackson 3는 왜 API 호환성의 핵심일까요?](json-jackson3-and-migration-from-jackson2.md){ data-preview }
   Spring Boot 4.x의 Jackson 3 기본 흐름, JsonMapper, Jackson 2 마이그레이션, 날짜와 enum과 unknown field가 API 계약에 주는 영향을 살펴봐요.
 
+- [Todo API 첫 커밋은 어떻게 차근차근 만들까요?](source-backed-todo-api-first-commit.md){ data-preview }
+  Spring CLI로 Java 21, Gradle wrapper 기반 프로젝트를 만들고 생성된 파일 확인부터 controller, service, repository, validation, 테스트까지 첫 커밋 흐름으로 따라가요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
