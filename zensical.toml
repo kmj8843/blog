@@ -63,6 +63,7 @@ nav = [
     "spring-boot/jpa-entity-state-and-persistence-context.md",
     "spring-boot/transaction-boundaries-and-rollback.md",
     "spring-boot/schema-migration-flyway-liquibase.md",
+    "spring-boot/querydsl-specification-and-complex-query.md",
   ] },
   { "Tips" = [
     "tips/index.md",

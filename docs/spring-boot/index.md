@@ -94,6 +94,9 @@ tags:
 - [Schema migration은 왜 Flyway와 Liquibase로 관리할까요?](schema-migration-flyway-liquibase.md){ data-preview }
   테이블과 컬럼 변경을 서버 코드처럼 버전으로 남겨야 하는 이유를 Flyway, Liquibase, migration history, 배포 순서, rollback 기대까지 이어서 살펴봐요.
 
+- [복잡한 query는 Querydsl과 Specification 중 무엇으로 풀어야 할까요?](querydsl-specification-and-complex-query.md){ data-preview }
+  Spring Data JPA에서 derived query method, `@Query`, Specification, Querydsl을 언제 나눠 쓰는지 검색 조건, join, pagination, sorting 경계로 살펴봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
