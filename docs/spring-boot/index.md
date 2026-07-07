@@ -91,6 +91,9 @@ tags:
 - [트랜잭션 경계와 롤백은 왜 Annotation 하나로 끝나지 않을까요?](transaction-boundaries-and-rollback.md){ data-preview }
   `@Transactional`이 시작되는 위치, commit과 rollback이 결정되는 시점, propagation과 self-invocation이 기대를 흔드는 이유를 service 경계와 테스트까지 이어서 살펴봐요.
 
+- [Schema migration은 왜 Flyway와 Liquibase로 관리할까요?](schema-migration-flyway-liquibase.md){ data-preview }
+  테이블과 컬럼 변경을 서버 코드처럼 버전으로 남겨야 하는 이유를 Flyway, Liquibase, migration history, 배포 순서, rollback 기대까지 이어서 살펴봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---

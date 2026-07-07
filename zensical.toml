@@ -62,6 +62,7 @@ nav = [
     "spring-boot/data-access-map-jdbc-jpa-r2dbc.md",
     "spring-boot/jpa-entity-state-and-persistence-context.md",
     "spring-boot/transaction-boundaries-and-rollback.md",
+    "spring-boot/schema-migration-flyway-liquibase.md",
   ] },
   { "Tips" = [
     "tips/index.md",
