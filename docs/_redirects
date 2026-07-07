@@ -53,3 +53,7 @@
 ## 발견됨 - 현재 색인이 생성되지 않음
 /Network/deep-dive/ss-and-netstat-state-reading/ /network/deep-dive/ss-and-netstat-state-reading/ 301
 /Network/deep-dive/tls13-handshake-anatomy/ /network/deep-dive/tls13-handshake-anatomy/ 301
+
+
+# naver searchadvisor
+/Network/deep-dive/ipv4-header-anatomy/ /network/deep-dive/ipv4-header-anatomy/ 301
