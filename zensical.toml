@@ -65,6 +65,7 @@ nav = [
     "spring-boot/schema-migration-flyway-liquibase.md",
     "spring-boot/querydsl-specification-and-complex-query.md",
     "spring-boot/redis-cache-and-session.md",
+    "spring-boot/mongodb-elasticsearch-and-nosql-boundaries.md",
   ] },
   { "Tips" = [
     "tips/index.md",

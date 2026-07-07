@@ -100,6 +100,9 @@ tags:
 - [Redis cache와 session은 왜 성능을 올리면서 버그도 만들까요?](redis-cache-and-session.md){ data-preview }
   Spring Boot에서 Redis cache와 Spring Session Redis를 같은 저장소처럼 보되, TTL, invalidation, key prefix, 분산 session 경계로 나누어 읽어봐요.
 
+- [MongoDB와 Elasticsearch는 왜 JPA보다 빠른 DB가 아닐까요?](mongodb-elasticsearch-and-nosql-boundaries.md){ data-preview }
+  MongoDB, Elasticsearch, document model, search index를 JPA 대체재가 아니라 서로 다른 데이터 문제를 푸는 도구로 나누어 읽어봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
