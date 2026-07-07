@@ -88,6 +88,9 @@ tags:
 - [JPA Entity 상태와 영속성 컨텍스트는 왜 헷갈릴까요?](jpa-entity-state-and-persistence-context.md){ data-preview }
   Entity가 새 객체, 관리되는 객체, 분리된 객체, 삭제 예정 객체로 바뀌는 흐름을 영속성 컨텍스트, dirty checking, lazy loading, N+1, auditing과 함께 읽어봐요.
 
+- [트랜잭션 경계와 롤백은 왜 Annotation 하나로 끝나지 않을까요?](transaction-boundaries-and-rollback.md){ data-preview }
+  `@Transactional`이 시작되는 위치, commit과 rollback이 결정되는 시점, propagation과 self-invocation이 기대를 흔드는 이유를 service 경계와 테스트까지 이어서 살펴봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
