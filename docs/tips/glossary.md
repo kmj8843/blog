@@ -8,7 +8,7 @@ tags:
   - Tips
   - Glossary
 created: 2026-07-01
-updated: 2026-07-06
+updated: 2026-07-07
 ---
 
 # 용어집
@@ -305,23 +305,63 @@ updated: 2026-07-06
 |---|---|---|---|
 | ACID | **A**tomicity, **C**onsistency, **I**solation, **D**urability | 애시드 | 트랜잭션이 지켜야 하는 네 가지 성질 |
 | Avro | - | 애브로 | 스키마와 함께 데이터를 저장하거나 주고받는 바이너리 데이터 형식 |
+| Backup | - | 백업 | 문제가 생겼을 때 되돌리려고 데이터를 따로 복사해두는 것 |
+| Backward compatibility | - | 백워드 컴패터빌리티 | 새 구조로 바뀌어도 예전 코드가 당분간 계속 동작하게 맞추는 성질 |
+| Baseline | - | 베이스라인 | 이미 운영 중인 데이터베이스를 "여기까지는 적용된 상태"라고 기준 잡는 것 |
+| Blue/green database | **Blue**/**green** database | 블루 그린 데이터베이스 | 두 데이터베이스 환경을 준비해두고 전환으로 배포 위험을 줄이는 방식 |
 | BSON | **B**inary **JSON** | 비슨 | MongoDB에서 쓰는 JSON 비슷한 바이너리 데이터 형식 |
 | B-tree | **B**-tree | 비트리 | 데이터베이스 인덱스에서 자주 쓰는 트리 구조 |
 | CDC | **C**hange **D**ata **C**apture | 씨디씨 | 데이터 변경 내용을 잡아 다른 곳으로 흘려보내는 방식 |
+| Changelog | **Change** **log** | 체인지로그 | 어떤 DB 변경을 어떤 순서로 적용할지 적어둔 기록 |
+| Checksum | **Check** **sum** | 체크섬 | 마이그레이션 파일이 나중에 몰래 바뀌었는지 확인하는 짧은 검사용 값 |
+| Constraint | - | 컨스트레인트 | 데이터가 지켜야 하는 규칙. 예를 들면 중복 금지나 필수값 같은 것 |
+| Data backfill | **Data** **backfill** | 데이터 백필 | 새 컬럼이나 새 테이블에 과거 데이터를 뒤늦게 채워 넣는 작업 |
+| Database refactoring | **Database** **refactoring** | 데이터베이스 리팩터링 | 데이터 의미는 지키면서 테이블, 컬럼, 인덱스 구조를 더 낫게 고치는 일 |
+| Database trigger | **Database** **trigger** | 데이터베이스 트리거 | 데이터가 바뀔 때 자동으로 실행되도록 DB 안에 걸어둔 동작 |
 | DCL | **D**ata **C**ontrol **L**anguage | 디씨엘 | 데이터베이스 권한을 다루는 SQL 명령 묶음 |
 | DDL | **D**ata **D**efinition **L**anguage | 디디엘 | 테이블이나 인덱스 같은 구조를 만들고 바꾸는 SQL 명령 묶음 |
+| DDL transaction | **DDL** **transaction** | 디디엘 트랜잭션 | 테이블 구조 변경도 트랜잭션처럼 한 번에 성공하거나 되돌릴 수 있게 처리하는 것 |
 | DML | **D**ata **M**anipulation **L**anguage | 디엠엘 | 데이터를 넣고, 고치고, 지우는 SQL 명령 묶음 |
 | DQL | **D**ata **Q**uery **L**anguage | 디큐엘 | 데이터를 조회하는 SQL 명령 묶음 |
 | Debezium | - | 데비지움 | 데이터베이스 변경 내용을 이벤트로 읽어내는 CDC 도구 |
+| Denormalization | **De**normalization | 디노멀라이제이션 | 읽기 성능이나 단순함을 위해 일부러 데이터를 중복해 저장하는 설계 |
+| Dirty state | **Dirty** state | 더티 스테이트 | 마이그레이션이 중간에 실패해 적용 상태가 애매하게 남은 상황 |
+| Down migration | **Down** migration | 다운 마이그레이션 | 이미 적용한 DB 변경을 이전 구조로 되돌리는 마이그레이션 |
+| Dry run | **Dry** **run** | 드라이 런 | 실제로 바꾸기 전에 어떤 작업이 실행될지 미리 확인하는 시험 실행 |
 | ETL | **E**xtract, **T**ransform, **L**oad | 이티엘 | 데이터를 꺼내고 변환해서 다른 저장소에 넣는 과정 |
+| Expand-contract migration | **Expand**-**contract** migration | 익스팬드 컨트랙트 마이그레이션 | 먼저 새 구조를 넓혀 추가하고, 모두 옮긴 뒤 옛 구조를 줄여 없애는 방식 |
+| Flyway | - | 플라이웨이 | SQL 파일 버전을 따라가며 DB 마이그레이션을 적용하는 도구 |
+| Foreign key | **Foreign** **key** | 포린 키 | 다른 테이블의 행을 가리켜 관계를 이어주는 키 |
+| Forward-only migration | **Forward**-**only** migration | 포워드 온리 마이그레이션 | 되돌리기보다 다음 변경으로 앞으로 고쳐 나가는 마이그레이션 방식 |
+| Idempotent | - | 아이뎀포턴트 | 같은 작업을 여러 번 실행해도 결과가 한 번 실행한 것과 같게 만드는 성질 |
+| Index | - | 인덱스 | 테이블에서 원하는 행을 빨리 찾도록 따로 만들어두는 찾아보기 구조 |
+| Liquibase | - | 리퀴베이스 | changelog로 DB 변경을 관리하고 여러 DB에 적용할 수 있게 돕는 도구 |
+| Materialized view | **Materialized** **view** | 머티리얼라이즈드 뷰 | 자주 쓰는 조회 결과를 실제 데이터처럼 저장해두는 뷰 |
+| Migration | - | 마이그레이션 | 데이터베이스 구조나 데이터를 한 상태에서 다음 상태로 옮기는 변경 작업 |
+| Migration lock | **Migration** **lock** | 마이그레이션 락 | 여러 서버가 같은 마이그레이션을 동시에 실행하지 못하게 잡는 잠금 |
 | MQ | **M**essage **Q**ueue | 엠큐 | 메시지를 줄 세워두고 서비스끼리 비동기로 주고받게 하는 방식 |
+| Normalization | **Normalization** | 노멀라이제이션 | 데이터 중복을 줄이고 관계를 깔끔하게 나누는 설계 방식 |
 | OLAP | **O**n**l**ine **A**nalytical **P**rocessing | 오랩 | 분석용으로 데이터를 모아 읽는 처리 방식 |
+| Online DDL | **Online** **DDL** | 온라인 디디엘 | 서비스 중에도 테이블 구조를 최대한 멈춤 없이 바꾸는 기능이나 방식 |
 | OLTP | **O**n**l**ine **T**ransaction **P**rocessing | 올티피 | 주문, 결제처럼 작은 거래를 빠르게 처리하는 방식 |
 | ORC | **O**ptimized **R**ow **C**olumnar | 오알씨 | 빅데이터 분석에서 쓰는 컬럼 기반 파일 형식 |
+| Outbox pattern | **Outbox** pattern | 아웃박스 패턴 | DB 변경과 이벤트 발행을 함께 안전하게 처리하려고 메시지를 테이블에 먼저 적는 방식 |
 | Parquet | - | 파케이 | 분석용 데이터를 효율적으로 저장하는 컬럼 기반 파일 형식 |
+| PITR | **P**oint-**I**n-**T**ime **R**ecovery | 피아이티알 | 백업과 로그를 이용해 특정 시각의 데이터 상태로 복구하는 방법 |
+| Primary key | **Primary** **key** | 프라이머리 키 | 테이블에서 한 행을 딱 하나로 구분하는 대표 키 |
 | Pub/Sub | **Pub**lish/**Sub**scribe | 펍섭 | 발행자가 메시지를 내고 구독자가 받아가는 메시징 방식 |
 | RDBMS | **R**elational **D**ata**b**ase **M**anagement **S**ystem | 알디비엠에스 | 관계형 데이터베이스를 관리하는 시스템 |
+| Read replica | **Read** **replica** | 리드 레플리카 | 읽기 요청을 나눠 받도록 원본 DB를 복제해둔 데이터베이스 |
+| Repeatable migration | **Repeatable** migration | 리피터블 마이그레이션 | 내용이 바뀌면 다시 적용되는 마이그레이션. 뷰나 함수 갱신에 자주 써요 |
+| Roll forward | **Roll** **forward** | 롤 포워드 | 되돌리기 대신 새 수정 마이그레이션을 더 적용해 문제를 고치는 방식 |
+| Rollback | **Roll** **back** | 롤백 | 적용한 변경을 이전 상태로 되돌리는 일 |
+| Schema drift | **Schema** **drift** | 스키마 드리프트 | 환경마다 DB 구조가 조금씩 달라져 버린 상태 |
+| Schema registry | **Schema** **registry** | 스키마 레지스트리 | 이벤트나 메시지의 데이터 모양을 버전별로 등록해두는 저장소 |
+| Seed data | **Seed** **data** | 시드 데이터 | 앱을 처음 띄우거나 테스트할 때 미리 넣어두는 기본 데이터 |
+| Shadow table | **Shadow** **table** | 섀도 테이블 | 기존 테이블을 바로 건드리지 않고 새 구조를 옆에 만들어 옮길 때 쓰는 임시 테이블 |
+| Versioned migration | **Versioned** migration | 버전드 마이그레이션 | `V1`, `V2`처럼 버전 순서대로 한 번씩 적용되는 마이그레이션 |
 | WAL | **W**rite-**A**head **L**og | 월 | 데이터를 바꾸기 전에 변경 기록을 먼저 남기는 로그 방식 |
+| Zero-downtime migration | **Zero**-**downtime** migration | 제로 다운타임 마이그레이션 | 서비스를 멈추지 않거나 거의 티 나지 않게 DB를 바꾸는 마이그레이션 |
 | Cassandra | - | 카산드라 | 분산 환경에서 큰 데이터를 저장하는 NoSQL 데이터베이스 |
 | ClickHouse | - | 클릭하우스 | 분석 쿼리에 강한 컬럼 기반 데이터베이스 |
 | Elasticsearch | - | 엘라스틱서치 | 검색과 로그 분석에 자주 쓰는 검색 엔진 |
