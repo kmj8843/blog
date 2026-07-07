@@ -64,6 +64,7 @@ nav = [
     "spring-boot/transaction-boundaries-and-rollback.md",
     "spring-boot/schema-migration-flyway-liquibase.md",
     "spring-boot/querydsl-specification-and-complex-query.md",
+    "spring-boot/redis-cache-and-session.md",
   ] },
   { "Tips" = [
     "tips/index.md",

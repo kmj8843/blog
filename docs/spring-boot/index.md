@@ -97,6 +97,9 @@ tags:
 - [복잡한 query는 Querydsl과 Specification 중 무엇으로 풀어야 할까요?](querydsl-specification-and-complex-query.md){ data-preview }
   Spring Data JPA에서 derived query method, `@Query`, Specification, Querydsl을 언제 나눠 쓰는지 검색 조건, join, pagination, sorting 경계로 살펴봐요.
 
+- [Redis cache와 session은 왜 성능을 올리면서 버그도 만들까요?](redis-cache-and-session.md){ data-preview }
+  Spring Boot에서 Redis cache와 Spring Session Redis를 같은 저장소처럼 보되, TTL, invalidation, key prefix, 분산 session 경계로 나누어 읽어봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
