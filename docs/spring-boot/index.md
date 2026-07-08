@@ -106,6 +106,9 @@ tags:
 - [Spring Security는 왜 filter chain부터 봐야 할까요?](spring-security-filter-chain-first.md){ data-preview }
   Spring Boot에 Security starter를 넣었을 때 모든 요청이 왜 갑자기 잠기고, 인증과 인가와 CSRF와 CORS가 filter chain 안에서 어떻게 나뉘는지 살펴봐요.
 
+- [JWT와 OAuth2 Resource Server는 왜 로그인 구현과 다를까요?](jwt-oauth2-and-resource-server.md){ data-preview }
+  JWT access token, OAuth2 login, resource server, issuer, JWK Set, scope, refresh token 경계를 Spring Security 요청 흐름으로 나누어 읽어봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---

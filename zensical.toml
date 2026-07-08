@@ -67,6 +67,7 @@ nav = [
     "spring-boot/redis-cache-and-session.md",
     "spring-boot/mongodb-elasticsearch-and-nosql-boundaries.md",
     "spring-boot/spring-security-filter-chain-first.md",
+    "spring-boot/jwt-oauth2-and-resource-server.md",
   ] },
   { "Tips" = [
     "tips/index.md",
