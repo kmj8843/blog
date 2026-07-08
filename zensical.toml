@@ -66,6 +66,7 @@ nav = [
     "spring-boot/querydsl-specification-and-complex-query.md",
     "spring-boot/redis-cache-and-session.md",
     "spring-boot/mongodb-elasticsearch-and-nosql-boundaries.md",
+    "spring-boot/spring-security-filter-chain-first.md",
   ] },
   { "Tips" = [
     "tips/index.md",
