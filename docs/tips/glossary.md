@@ -8,7 +8,7 @@ tags:
   - Tips
   - Glossary
 created: 2026-07-01
-updated: 2026-07-07
+updated: 2026-07-09
 ---
 
 # 용어집
@@ -154,6 +154,7 @@ updated: 2026-07-07
 | 용어 | 원래 단어 | 읽는 법 | 간단한 설명 |
 |---|---|---|---|
 | ACL | **A**ccess **C**ontrol **L**ist | 에이씨엘 | 누가 파일이나 자원에 접근할 수 있는지 적어둔 권한 목록 |
+| AppImage | **App** **Image** | 앱이미지 | 리눅스 앱을 파일 하나처럼 받아 실행할 수 있게 묶은 배포 형식 |
 | apt | **A**dvanced **P**ackage **T**ool | 앱트 | Debian, Ubuntu 계열에서 패키지를 설치하고 업데이트하는 명령 |
 | BIOS | **B**asic **I**nput/**O**utput **S**ystem | 바이오스 | 컴퓨터가 켜질 때 하드웨어를 먼저 깨우는 기본 펌웨어 |
 | Btrfs | **B**-**t**ree **f**ile **s**ystem | 비트리 에프에스 | 리눅스에서 쓰는 현대적인 파일 시스템 |
@@ -161,19 +162,25 @@ updated: 2026-07-07
 | CPU | **C**entral **P**rocessing **U**nit | 씨피유 | 프로그램 명령을 실제로 계산하고 실행하는 핵심 칩 |
 | cron | - | 크론 | 정해진 시간마다 명령을 실행하게 해주는 유닉스 계열 도구 |
 | CRLF | **C**arriage **R**eturn, **L**ine **F**eed | 씨알엘에프 | Windows에서 자주 보이는 줄바꿈 문자 조합 |
+| D-Bus | **D**esktop **Bus** | 디버스 | 리눅스 데스크톱에서 앱과 시스템 서비스가 서로 말을 주고받는 통로 |
 | daemon | - | 데몬 | 뒤에서 계속 실행되며 일을 처리하는 프로그램 |
 | dnf | **D**andified **YUM** | 디엔에프 | Fedora 계열에서 패키지를 설치하고 업데이트하는 명령 |
 | Fcitx | - | 파이틱스 | 리눅스에서 한글, 중국어, 일본어 같은 입력기를 연결해주는 입력 프레임워크 |
 | FIFO | **F**irst **I**n, **F**irst **O**ut | 파이포 | 먼저 들어온 것이 먼저 나가는 구조나 특수 파일 |
+| Flatpak | - | 플랫팩 | 여러 리눅스 배포판에서 앱을 비슷한 방식으로 설치하게 해주는 패키지 형식 |
 | FUSE | **F**ilesystem in **U**ser**s**pac**e** | 퓨즈 | 커널 밖 사용자 공간에서 파일 시스템을 만들게 해주는 방식 |
 | GID | **G**roup **ID** | 지아이디 | 리눅스에서 그룹 하나를 구분하는 번호 |
+| GNOME | **G**NU **N**etwork **O**bject **M**odel **E**nvironment | 그놈 | 리눅스에서 많이 쓰는 데스크톱 환경 |
 | GNU | **G**NU's **N**ot **U**nix | 그누 | 자유 소프트웨어 도구와 운영체제 프로젝트 이름 |
 | GPU | **G**raphics **P**rocessing **U**nit | 지피유 | 그래픽 계산과 병렬 계산에 강한 처리 장치 |
+| GTK | **G**IMP **T**ool**k**it | 지티케이 | 리눅스 데스크톱 앱 화면을 만들 때 쓰는 UI 도구 모음 |
 | GUI | **G**raphical **U**ser **I**nterface | 지유아이 | 버튼, 창, 메뉴처럼 그래픽으로 조작하는 화면 |
 | HDD | **H**ard **D**isk **D**rive | 에이치디디 | 회전하는 디스크에 데이터를 저장하는 저장장치 |
+| Hypervisor | - | 하이퍼바이저 | 한 컴퓨터 위에서 여러 가상 머신이 돌아가게 관리하는 층 |
 | I/O | **I**nput/**O**utput | 아이오 | 입력과 출력을 함께 가리키는 말 |
 | IPC | **I**nter-**P**rocess **C**ommunication | 아이피씨 | 실행 중인 프로그램끼리 데이터를 주고받는 방식 |
 | ISO | **I**nternational **O**rganization for **S**tandardization | 아이에스오 | 표준 이름이나 디스크 이미지 파일에서 자주 보는 말 |
+| KVM | **K**ernel-based **V**irtual **M**achine | 케이브이엠 | 리눅스 커널 기능을 이용해 가상 머신을 실행하게 해주는 가상화 기술 |
 | LF | **L**ine **F**eed | 엘에프 | Unix, Linux, macOS에서 자주 쓰는 줄바꿈 문자 |
 | LVM | **L**ogical **V**olume **M**anager | 엘브이엠 | 디스크 공간을 논리 볼륨으로 나눠 관리하는 리눅스 기능 |
 | NVMe | **N**on-**V**olatile **M**emory **E**xpress | 엔브이엠이 | SSD가 빠르게 통신할 때 쓰는 저장장치 인터페이스 |
@@ -181,9 +188,12 @@ updated: 2026-07-07
 | PCIe | **P**eripheral **C**omponent **I**nterconnect **E**xpress | 피씨아이 익스프레스 | 그래픽카드나 NVMe SSD가 메인보드와 빠르게 통신하는 통로 |
 | PID | **P**rocess **ID** | 피아이디 | 실행 중인 프로그램 하나를 구분하는 번호 |
 | POSIX | **P**ortable **O**perating **S**ystem **I**nterface | 포직스 | 유닉스 계열 운영체제들이 비슷하게 동작하도록 정한 표준 |
+| QEMU | **Q**uick **EMU**lator | 큐이뮤 | 다른 CPU나 컴퓨터 환경을 흉내 내거나 가상 머신을 실행하는 도구 |
+| Qt | - | 큐트 | 데스크톱 앱과 임베디드 앱 화면을 만들 때 많이 쓰는 크로스플랫폼 UI 프레임워크 |
 | RAM | **R**andom **A**ccess **M**emory | 램 | 프로그램이 실행되는 동안 잠깐 올려두는 빠른 임시 메모리 |
 | REPL | **R**ead-**E**val-**P**rint **L**oop | 레플 | 코드를 한 줄씩 입력하고 바로 결과를 보는 대화형 실행 환경 |
 | Shell | - | 셸 | 사용자가 입력한 명령어를 운영체제에 전달해주는 프로그램 |
+| Snap | - | 스냅 | Ubuntu 계열에서 자주 보이는 앱 패키지와 배포 형식 |
 | SSD | **S**olid **S**tate **D**rive | 에스에스디 | 반도체 메모리로 데이터를 저장하는 빠른 저장장치 |
 | stderr | **st**andar**d** **err**or | 스탠다드 에러 | 프로그램의 오류 메시지가 나가는 기본 통로 |
 | stdin | **st**andar**d** **in**put | 스탠다드 인풋 | 프로그램이 입력을 받는 기본 통로 |
@@ -192,11 +202,15 @@ updated: 2026-07-07
 | systemd | - | 시스템디 | 리눅스에서 서비스 시작과 관리를 맡는 시스템 관리자 |
 | TTY | **T**ele**ty**pewriter | 티티와이 | 터미널 장치나 터미널 세션을 가리킬 때 쓰는 말 |
 | UEFI | **U**nified **E**xtensible **F**irmware **I**nterface | 유이에프아이 | BIOS를 대체하는 현대적인 펌웨어 방식 |
+| UFW | **U**ncomplicated **F**ire**w**all | 유에프더블유 | Ubuntu에서 방화벽 규칙을 비교적 쉽게 다루게 해주는 도구 |
 | UID | **U**ser **ID** | 유아이디 | 리눅스에서 사용자 하나를 구분하는 번호 |
 | USB | **U**niversal **S**erial **B**us | 유에스비 | 주변기기를 연결할 때 쓰는 표준 연결 방식 |
+| Wayland | - | 웨이랜드 | 리눅스 데스크톱에서 화면 표시와 입력 처리를 맡는 현대적인 디스플레이 방식 |
 | WSL | **W**indows **S**ubsystem for **L**inux | 더블유에스엘 | Windows 안에서 Linux 환경을 돌리는 기능 |
+| X11 | **X** Window System version **11** | 엑스일레븐 | 유닉스와 리눅스에서 오래 쓰인 그래픽 화면 표시 방식 |
 | XFS | **X** **F**ile **S**ystem | 엑스에프에스 | 리눅스에서 대용량 파일 시스템으로 자주 쓰이는 형식 |
 | yum | **Y**ellowdog **U**pdater, **M**odified | 얌 | 예전 Red Hat 계열에서 많이 쓰던 패키지 관리 명령 |
+| ZFS | **Z**ettabyte **F**ile **S**ystem | 제트에프에스 | 스냅샷과 데이터 무결성 기능이 강한 파일 시스템 |
 
 ---
 
@@ -413,12 +427,17 @@ updated: 2026-07-07
 | Prettier | - | 프리티어 | 코드 모양을 정해진 규칙대로 자동 정리하는 포매터 |
 | Python | - | 파이썬 | 문법이 읽기 쉬워 자동화, 데이터, 웹 개발에 널리 쓰는 언어 |
 | React | - | 리액트 | 웹 화면을 컴포넌트로 만드는 JavaScript 라이브러리 |
+| Remix | - | 리믹스 | React 기반으로 라우팅, 데이터 로딩, 서버 렌더링을 다루는 웹 프레임워크 |
 | Rollup | - | 롤업 | JavaScript 라이브러리와 앱을 묶어주는 번들러 |
 | Ruby | - | 루비 | 읽기 쉬운 문법을 강조하는 프로그래밍 언어 |
 | Rust | - | 러스트 | 메모리 안전성과 성능을 함께 노리는 시스템 프로그래밍 언어 |
+| shadcn/ui | - | 샤드씨엔 유아이 | 컴포넌트 코드를 프로젝트 안으로 가져와 직접 고쳐 쓰는 UI 구성 방식 |
 | Spring | - | 스프링 | Java 생태계에서 많이 쓰는 애플리케이션 프레임워크 |
 | Spring Boot | - | 스프링 부트 | Spring 앱을 빠르게 시작하고 운영하기 쉽게 만든 프레임워크 |
 | Svelte | - | 스벨트 | 컴파일러 중심의 웹 UI 프레임워크 |
+| Tailwind CSS | - | 테일윈드 씨에스에스 | 미리 정해진 작은 클래스들을 조합해 화면 스타일을 만드는 CSS 프레임워크 |
+| TanStack Query | - | 탄스택 쿼리 | 서버에서 가져온 데이터를 캐시하고 다시 불러오는 흐름을 관리하는 라이브러리 |
+| Tauri | - | 타우리 | 웹 기술로 데스크톱 앱을 만들되 Rust 기반 껍데기를 쓰는 프레임워크 |
 | Turbopack | - | 터보팩 | Rust 기반으로 만든 빠른 JavaScript 번들러 |
 | TypeScript | - | 타입스크립트 | JavaScript에 타입 시스템을 더한 언어 |
 | Vite | - | 비트 | 빠른 개발 서버와 빌드를 제공하는 프론트엔드 도구 |
@@ -442,6 +461,7 @@ updated: 2026-07-07
 | Grafana | - | 그라파나 | 지표와 로그를 대시보드로 보여주는 도구 |
 | Helm | - | 헬름 | Kubernetes 앱 설치와 설정을 패키지처럼 관리하는 도구 |
 | Homebrew | - | 홈브루 | macOS와 Linux에서 개발 도구를 설치할 때 많이 쓰는 패키지 관리자 |
+| IntelliJ IDEA | - | 인텔리제이 아이디어 | Java, Kotlin, Spring 개발에서 많이 쓰는 통합 개발 환경 |
 | Jenkins | - | 젠킨스 | CI/CD 자동화 서버 |
 | Jira | - | 지라 | 이슈와 작업 흐름을 관리하는 협업 도구 |
 | Kubernetes | - | 쿠버네티스 | 컨테이너를 여러 서버에 배치하고 운영하는 플랫폼 |
@@ -453,6 +473,7 @@ updated: 2026-07-07
 | nvm | **N**ode **V**ersion **M**anager | 엔브이엠 | Node.js 버전을 바꿔가며 설치하고 쓰게 해주는 도구 |
 | Notion | - | 노션 | 문서, 위키, 작업 관리를 함께 하는 협업 도구 |
 | pnpm | **p**erformant **npm** | 피엔피엠 | 디스크 공간을 아끼는 방식으로 JavaScript 패키지를 설치하는 패키지 관리자 |
+| Postman | - | 포스트맨 | API 요청을 보내보고 문서화하거나 테스트할 때 쓰는 도구 |
 | Prometheus | - | 프로메테우스 | 지표를 수집하고 경고를 만들 때 쓰는 모니터링 도구 |
 | pyenv | **Py**thon **env**ironment | 파이엔브 | Python 버전을 프로젝트나 셸마다 바꿔 쓰게 해주는 도구 |
 | rbenv | **R**u**b**y **env**ironment | 알비엔브 | Ruby 버전을 프로젝트나 셸마다 바꿔 쓰게 해주는 도구 |
@@ -462,6 +483,7 @@ updated: 2026-07-07
 | Terraform | - | 테라폼 | 인프라를 코드로 정의하고 적용하는 도구 |
 | Traefik | - | 트래픽 | 컨테이너 환경에서 자주 쓰는 리버스 프록시와 로드 밸런서 |
 | Vercel | - | 버셀 | 프론트엔드와 서버리스 배포에 자주 쓰는 플랫폼 |
+| VS Code | **V**isual **S**tudio **Code** | 브이에스 코드 | 가볍게 시작해 확장으로 기능을 늘려 쓰는 코드 에디터 |
 | Wrangler | - | 랭글러 | Cloudflare Workers 프로젝트를 개발하고 배포하는 CLI |
 | Yarn | - | 얀 | JavaScript 패키지를 설치하고 스크립트를 실행하는 패키지 관리자 |
 
