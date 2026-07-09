@@ -109,6 +109,9 @@ tags:
 - [JWT와 OAuth2 Resource Server는 왜 로그인 구현과 다를까요?](jwt-oauth2-and-resource-server.md){ data-preview }
   JWT access token, OAuth2 login, resource server, issuer, JWK Set, scope, refresh token 경계를 Spring Security 요청 흐름으로 나누어 읽어봐요.
 
+- [Method Security와 도메인 권한은 어디에 둬야 할까요?](method-security-and-domain-permission.md){ data-preview }
+  URL 규칙만으로 부족해지는 소유권 검사, method security, `@PreAuthorize`, `@PostAuthorize`, 도메인 권한 판단을 service 경계에서 읽어봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
