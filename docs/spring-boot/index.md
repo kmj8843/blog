@@ -112,6 +112,9 @@ tags:
 - [Method Security와 도메인 권한은 어디에 둬야 할까요?](method-security-and-domain-permission.md){ data-preview }
   URL 규칙만으로 부족해지는 소유권 검사, method security, `@PreAuthorize`, `@PostAuthorize`, 도메인 권한 판단을 service 경계에서 읽어봐요.
 
+- [Auth API는 실무 프로젝트처럼 어떻게 설계할까요?](source-backed-auth-api.md){ data-preview }
+  Spring Boot 4와 Java 21로 회원가입, Basic 자격 증명 교환, JWT Bearer 보호 API, refresh token 회전, JDBC 저장소, ProblemDetail을 구현하고 공개 저장소의 실행 가능한 코드와 15개 테스트로 확인해요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---

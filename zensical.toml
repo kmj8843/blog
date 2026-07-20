@@ -69,6 +69,7 @@ nav = [
     "spring-boot/spring-security-filter-chain-first.md",
     "spring-boot/jwt-oauth2-and-resource-server.md",
     "spring-boot/method-security-and-domain-permission.md",
+    "spring-boot/source-backed-auth-api.md",
   ] },
   { "Tips" = [
     "tips/index.md",
