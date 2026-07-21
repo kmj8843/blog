@@ -72,6 +72,7 @@ nav = [
     "spring-boot/source-backed-auth-api.md",
     "spring-boot/testing-map-unit-slice-integration.md",
     "spring-boot/testcontainers-wiremock-and-contract-tests.md",
+    "spring-boot/observability-actuator-health-metrics.md",
   ] },
   { "Tips" = [
     "tips/index.md",

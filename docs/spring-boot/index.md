@@ -121,6 +121,9 @@ tags:
 - [Testcontainers와 WireMock은 무엇을 진짜로 바꿔줄까요?](testcontainers-wiremock-and-contract-tests.md){ data-preview }
   실제 PostgreSQL을 띄우는 Testcontainers, 외부 HTTP를 재현하는 WireMock, 서비스 사이 약속을 검증하는 contract test를 서로 다른 test 경계로 나누어 읽어봐요.
 
+- [Actuator의 health와 metrics는 운영에서 무엇을 알려줄까요?](observability-actuator-health-metrics.md){ data-preview }
+  Health, info, metrics, Prometheus endpoint를 서로 다른 운영 질문으로 나누고, liveness와 readiness와 안전한 공개 범위를 살펴봐요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
