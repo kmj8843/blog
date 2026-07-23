@@ -8,7 +8,7 @@ tags:
   - Tips
   - Glossary
 created: 2026-07-01
-updated: 2026-07-09
+updated: 2026-07-22
 ---
 
 # 용어집
@@ -104,7 +104,7 @@ updated: 2026-07-09
 | ALB | **A**pplication **L**oad **B**alancer | 에이엘비 | HTTP 같은 애플리케이션 계층 요청을 나눠주는 로드 밸런서 |
 | AMI | **A**mazon **M**achine **I**mage | 에이엠아이 | EC2 서버를 만들 때 쓰는 운영체제와 기본 설정 묶음 |
 | AWS | **A**mazon **W**eb **S**ervices | 에이더블유에스 | Amazon의 클라우드 서비스 묶음 |
-| Azure | - | 애저 | Microsoft의 클라우드 서비스 이름. "아주르"보다 "애저"가 흔해요 |
+| Azure | - | 애저 | Microsoft의 클라우드 서비스 이름. "아주르"보다 "애저"가 흔한 편 |
 | AZ | **A**vailability **Z**one | 에이젯 | 한 리전 안에서 장애가 따로 나도록 나뉜 데이터센터 구역 |
 | Bastion | - | 바스천 | 내부 서버에 들어갈 때 거치는 점프 서버나 관문 서버 |
 | CDN | **C**ontent **D**elivery **N**etwork | 씨디엔 | 사용자와 가까운 서버에서 이미지, 파일, 페이지를 빠르게 보내주는 분산 네트워크 |
@@ -228,6 +228,7 @@ updated: 2026-07-09
 | CRUD | **C**reate, **R**ead, **U**pdate, **D**elete | 크러드 | 데이터를 만들고, 읽고, 고치고, 지우는 기본 작업 묶음 |
 | CSV | **C**omma-**S**eparated **V**alues | 씨에스브이 | 쉼표로 칸을 나눠 데이터를 저장하는 단순한 표 형식 |
 | DB | **D**ata**b**ase | 디비 | 데이터를 모아두고 찾기 쉽게 관리하는 저장소 |
+| Distributed tracing | **Distributed** **tracing** | 디스트리뷰티드 트레이싱 | 요청 하나가 여러 서버와 서비스를 지나간 경로와 걸린 시간을 이어서 보는 분산 추적 방식 |
 | DTO | **D**ata **T**ransfer **O**bject | 디티오 | 계층 사이에서 데이터를 옮기기 위해 만든 객체 |
 | DX | **D**eveloper **E**xperience | 디엑스 | 개발자가 도구나 API를 쓰면서 느끼는 편의성과 경험 |
 | E2E | **E**nd **t**o **E**nd | 이투이 | 처음부터 끝까지 실제 흐름에 가깝게 확인하는 테스트 방식 |
@@ -239,6 +240,7 @@ updated: 2026-07-09
 | gRPC | **g**oogle **R**emote **P**rocedure **C**all | 지알피씨 | 서비스끼리 빠르게 함수 호출처럼 통신하게 해주는 방식 |
 | IDE | **I**ntegrated **D**evelopment **E**nvironment | 아이디이 | 코드 작성, 실행, 디버깅을 한곳에서 하는 개발 환경 |
 | Incident | - | 인시던트 | 서비스에 영향을 주는 장애나 보안 문제 같은 운영 사건 |
+| Jaeger | - | 예거 | 여러 서비스를 지난 요청의 trace와 span을 저장·검색·시각화하는 분산 추적 도구. OpenTelemetry가 수집한 trace를 받아 느린 서비스 호출과 오류 구간을 찾는 데 사용 |
 | JSON | **J**ava**S**cript **O**bject **N**otation | 제이슨 | 사람이 읽기 쉬운 형태로 데이터를 주고받는 형식 |
 | JWT | **J**SON **W**eb **T**oken | 제이더블유티 | 로그인 상태나 권한 정보를 담아 주고받는 토큰 형식 |
 | LSP | **L**anguage **S**erver **P**rotocol | 엘에스피 | 에디터와 언어 도구가 자동완성, 진단 정보를 주고받는 약속 |
@@ -251,7 +253,7 @@ updated: 2026-07-09
 | OAuth | **O**pen **Auth**orization | 오어스 | 비밀번호를 직접 주지 않고 다른 서비스 접근 권한을 위임하는 방식 |
 | OIDC | **O**pen**ID** **C**onnect | 오아이디씨 | OAuth 위에 로그인 사용자 확인 정보를 더한 인증 방식 |
 | On-call | - | 온콜 | 장애가 나면 바로 대응하도록 정해둔 담당 대기 순번 |
-| OpenTelemetry | **Open** **Telemetry** | 오픈텔레메트리 | 로그, 지표, 추적 데이터를 표준 방식으로 수집하게 돕는 프로젝트 |
+| OpenTelemetry | **Open** **Telemetry** | 오픈텔레메트리 | trace, metric, log를 만들고 수집해 Jaeger나 Prometheus 같은 분석 도구로 보내는 표준 도구 모음. 자체 분석 화면보다 데이터 수집과 전송 방식에 초점 |
 | ORM | **O**bject-**R**elational **M**apping | 오알엠 | 코드의 객체와 데이터베이스 테이블을 연결해주는 방식 |
 | Playbook | - | 플레이북 | 반복되는 상황에서 어떤 순서로 처리할지 적은 운영 절차 |
 | POC | **P**roof **O**f **C**oncept | 피오씨 | 아이디어가 실제로 가능한지 작게 확인해보는 실험 |
@@ -265,9 +267,11 @@ updated: 2026-07-09
 | SLA | **S**ervice **L**evel **A**greement | 에스엘에이 | 서비스 품질에 대해 고객과 공식적으로 약속한 기준 |
 | SLI | **S**ervice **L**evel **I**ndicator | 에스엘아이 | 서비스 상태를 판단하기 위해 실제로 재는 지표 |
 | SLO | **S**ervice **L**evel **O**bjective | 에스엘오 | 서비스가 어느 정도 수준을 지켜야 하는지 정한 목표 |
+| Span | - | 스팬 | 분산 추적에서 DB 조회나 다른 서비스 호출처럼 시작 시각과 소요 시간을 가진 작업 한 구간 |
 | SRE | **S**ite **R**eliability **E**ngineering | 에스알이 | 소프트웨어 방식으로 서비스 안정성과 운영을 다루는 분야 |
 | SQL | **S**tructured **Q**uery **L**anguage | 에스큐엘 | 데이터베이스에 데이터를 묻고 바꾸는 데 쓰는 언어 |
 | TOML | **T**om's **O**bvious **M**inimal **L**anguage | 톰엘 | 설정 파일에서 자주 쓰는 단순한 데이터 형식 |
+| Trace | - | 트레이스 | 사용자 요청 하나가 시스템 안에서 지나간 전체 실행 경로. 서로 이어진 여러 span으로 구성 |
 | UUID | **U**niversally **U**nique **Id**entifier | 유유아이디 | 거의 겹치지 않게 만든 긴 식별자 |
 | XML | e**X**tensible **M**arkup **L**anguage | 엑스엠엘 | 태그로 데이터를 구조화해서 표현하는 형식 |
 | YAML | **Y**AML **A**in't **M**arkup **L**anguage | 야믈 | 설정 파일에서 자주 쓰는 들여쓰기 기반 데이터 형식 |
@@ -347,10 +351,14 @@ updated: 2026-07-09
 | Flyway | - | 플라이웨이 | SQL 파일 버전을 따라가며 DB 마이그레이션을 적용하는 도구 |
 | Foreign key | **Foreign** **key** | 포린 키 | 다른 테이블의 행을 가리켜 관계를 이어주는 키 |
 | Forward-only migration | **Forward**-**only** migration | 포워드 온리 마이그레이션 | 되돌리기보다 다음 변경으로 앞으로 고쳐 나가는 마이그레이션 방식 |
+| Hadoop | - | 하둡 | 하나의 데이터베이스가 아니라 큰 데이터를 여러 서버에 나눠 저장하고 처리하기 위한 오픈소스 생태계. HDFS는 저장, YARN은 자원 관리, MapReduce는 데이터 처리를 담당 |
+| HDFS | **H**adoop **D**istributed **F**ile **S**ystem | 에이치디에프에스 | 큰 파일을 여러 서버에 조각내어 저장하고 복제해, 일부 서버가 고장 나도 데이터를 읽을 수 있게 하는 Hadoop의 분산 파일 시스템. "Hadoop에 저장"한다는 표현이 주로 가리키는 저장 계층 |
+| Hive | - | 하이브 | HDFS 같은 분산 저장소의 대규모 데이터를 SQL과 비슷한 문법으로 조회하게 돕는 데이터 웨어하우스 도구 |
 | Idempotent | - | 아이뎀포턴트 | 같은 작업을 여러 번 실행해도 결과가 한 번 실행한 것과 같게 만드는 성질 |
 | Index | - | 인덱스 | 테이블에서 원하는 행을 빨리 찾도록 따로 만들어두는 찾아보기 구조 |
 | Liquibase | - | 리퀴베이스 | changelog로 DB 변경을 관리하고 여러 DB에 적용할 수 있게 돕는 도구 |
 | Materialized view | **Materialized** **view** | 머티리얼라이즈드 뷰 | 자주 쓰는 조회 결과를 실제 데이터처럼 저장해두는 뷰 |
+| MapReduce | **Map** **Reduce** | 맵리듀스 | 큰 작업을 여러 서버가 나눠 처리한 뒤 결과를 합치는 분산 처리 모델이자 Hadoop의 처리 시스템 |
 | Migration | - | 마이그레이션 | 데이터베이스 구조나 데이터를 한 상태에서 다음 상태로 옮기는 변경 작업 |
 | Migration lock | **Migration** **lock** | 마이그레이션 락 | 여러 서버가 같은 마이그레이션을 동시에 실행하지 못하게 잡는 잠금 |
 | MQ | **M**essage **Q**ueue | 엠큐 | 메시지를 줄 세워두고 서비스끼리 비동기로 주고받게 하는 방식 |
@@ -366,7 +374,7 @@ updated: 2026-07-09
 | Pub/Sub | **Pub**lish/**Sub**scribe | 펍섭 | 발행자가 메시지를 내고 구독자가 받아가는 메시징 방식 |
 | RDBMS | **R**elational **D**ata**b**ase **M**anagement **S**ystem | 알디비엠에스 | 관계형 데이터베이스를 관리하는 시스템 |
 | Read replica | **Read** **replica** | 리드 레플리카 | 읽기 요청을 나눠 받도록 원본 DB를 복제해둔 데이터베이스 |
-| Repeatable migration | **Repeatable** migration | 리피터블 마이그레이션 | 내용이 바뀌면 다시 적용되는 마이그레이션. 뷰나 함수 갱신에 자주 써요 |
+| Repeatable migration | **Repeatable** migration | 리피터블 마이그레이션 | 내용이 바뀌면 다시 적용되는 마이그레이션. 뷰나 함수 갱신에 주로 사용 |
 | Roll forward | **Roll** **forward** | 롤 포워드 | 되돌리기 대신 새 수정 마이그레이션을 더 적용해 문제를 고치는 방식 |
 | Rollback | **Roll** **back** | 롤백 | 적용한 변경을 이전 상태로 되돌리는 일 |
 | Schema drift | **Schema** **drift** | 스키마 드리프트 | 환경마다 DB 구조가 조금씩 달라져 버린 상태 |
@@ -390,8 +398,10 @@ updated: 2026-07-09
 | Redis | **Re**mote **Di**ctionary **S**erver | 레디스 | 메모리에 데이터를 빠르게 저장하고 읽는 저장소 |
 | SNS | **S**imple **N**otification **S**ervice | 에스엔에스 | AWS에서 메시지를 여러 구독 대상으로 보내는 알림 서비스 |
 | SQS | **S**imple **Q**ueue **S**ervice | 에스큐에스 | AWS에서 메시지 큐를 관리형으로 제공하는 서비스 |
+| Spark | - | 스파크 | 대규모 데이터를 여러 서버에서 병렬로 처리하는 엔진. 반복 계산과 스트리밍 등 MapReduce보다 다양한 작업을 처리하며 Hadoop의 HDFS·YARN과 함께 사용 가능 |
 | SQLite | - | 에스큐라이트 | 파일 하나로 동작하는 가벼운 관계형 데이터베이스 |
 | TimescaleDB | - | 타임스케일디비 | 시간 순서 데이터에 특화된 PostgreSQL 확장 데이터베이스 |
+| YARN (Hadoop) | **Y**et **A**nother **R**esource **N**egotiator | 얀 | Hadoop 클러스터에서 CPU와 메모리를 작업마다 나눠주고, 어떤 작업을 어느 서버에서 실행할지 관리하는 자원 관리 계층. JavaScript 패키지 관리자 Yarn과 이름만 같으며 Hadoop·클러스터 문맥에서 구분 |
 
 ---
 
@@ -416,7 +426,12 @@ updated: 2026-07-09
 | Gradle | - | 그레이들 | Java, Kotlin 프로젝트에서 자주 쓰는 빌드 자동화 도구 |
 | Hono | - | 호노 | 웹 표준 API에 맞춰 가볍게 만든 TypeScript 웹 프레임워크 |
 | Java | - | 자바 | JVM 위에서 실행되는 대표적인 프로그래밍 언어 |
+| Jakarta EE | **Jakarta** **E**nterprise **E**dition | 자카르타 이이 | Servlet, 데이터베이스 연결, 트랜잭션, 메시징처럼 기업용 Java 서버가 함께 따를 기능을 정한 표준 묶음. Java EE의 후속 이름 |
+| Java EE | **Java** **E**nterprise **E**dition | 자바 이이 | 기업용 Java 애플리케이션 표준의 예전 이름. Eclipse 재단으로 이관된 뒤 Jakarta EE로 명칭 변경 |
 | JavaScript | - | 자바스크립트 | 웹 브라우저와 서버에서 널리 쓰는 프로그래밍 언어 |
+| JBoss | - | 제이보스 | Red Hat 계열 Java 미들웨어의 브랜드 이름. 현장의 "제이보스 서버"는 보통 JBoss EAP 또는 예전 JBoss AS를 지칭 |
+| JBoss AS | **JBoss** **A**pplication **S**erver | 제이보스 에이에스 | JBoss의 옛 오픈소스 애플리케이션 서버 이름. 커뮤니티 프로젝트의 현재 이름은 WildFly |
+| JBoss EAP | **JBoss** **E**nterprise **A**pplication **P**latform | 제이보스 이에이피 | WildFly를 바탕으로 안정화, 인증, 기술 지원을 더한 Red Hat의 상용 Jakarta EE 애플리케이션 플랫폼. Servlet 외에도 트랜잭션, 메시징, 보안, 여러 서버의 중앙 관리 기능을 제공 |
 | Jest | - | 제스트 | JavaScript 테스트 프레임워크 |
 | Kotlin | - | 코틀린 | JVM과 Android에서 많이 쓰는 현대적인 프로그래밍 언어 |
 | Maven | - | 메이븐 | Java 프로젝트의 빌드와 의존성을 관리하는 도구 |
@@ -431,19 +446,24 @@ updated: 2026-07-09
 | Rollup | - | 롤업 | JavaScript 라이브러리와 앱을 묶어주는 번들러 |
 | Ruby | - | 루비 | 읽기 쉬운 문법을 강조하는 프로그래밍 언어 |
 | Rust | - | 러스트 | 메모리 안전성과 성능을 함께 노리는 시스템 프로그래밍 언어 |
+| Servlet | - | 서블릿 | Java 웹 서버 안에서 실행되며 주로 HTTP 요청을 받고 응답을 만드는 Java 프로그램 구성 요소 |
+| Servlet container | **Servlet** **container** | 서블릿 컨테이너 | Servlet의 생성·실행·종료 생명주기와 HTTP 요청 연결을 관리하는 실행 환경. 대표 제품은 Tomcat |
 | shadcn/ui | - | 샤드씨엔 유아이 | 컴포넌트 코드를 프로젝트 안으로 가져와 직접 고쳐 쓰는 UI 구성 방식 |
 | Spring | - | 스프링 | Java 생태계에서 많이 쓰는 애플리케이션 프레임워크 |
-| Spring Boot | - | 스프링 부트 | Spring 앱을 빠르게 시작하고 운영하기 쉽게 만든 프레임워크 |
+| Spring Boot | - | 스프링 부트 | Spring 앱을 빠르게 시작하고 운영하기 쉽게 만든 프레임워크. 내장 Tomcat과 필요한 Spring 기능을 조합하므로 전체 Jakarta EE 애플리케이션 서버가 필수는 아님 |
 | Svelte | - | 스벨트 | 컴파일러 중심의 웹 UI 프레임워크 |
 | Tailwind CSS | - | 테일윈드 씨에스에스 | 미리 정해진 작은 클래스들을 조합해 화면 스타일을 만드는 CSS 프레임워크 |
 | TanStack Query | - | 탄스택 쿼리 | 서버에서 가져온 데이터를 캐시하고 다시 불러오는 흐름을 관리하는 라이브러리 |
 | Tauri | - | 타우리 | 웹 기술로 데스크톱 앱을 만들되 Rust 기반 껍데기를 쓰는 프레임워크 |
+| Tomcat | - | 톰캣 | Servlet, JSP 같은 웹 관련 Jakarta EE 기술에 집중한 오픈소스 웹 서버이자 Servlet 컨테이너. 트랜잭션·메시징·중앙 관리까지 제공하는 JBoss EAP보다 기능 범위가 작고 가벼운 편 |
 | Turbopack | - | 터보팩 | Rust 기반으로 만든 빠른 JavaScript 번들러 |
 | TypeScript | - | 타입스크립트 | JavaScript에 타입 시스템을 더한 언어 |
 | Vite | - | 비트 | 빠른 개발 서버와 빌드를 제공하는 프론트엔드 도구 |
 | Vitest | - | 바이테스트 | Vite 생태계에서 자주 쓰는 테스트 프레임워크 |
 | Vue | - | 뷰 | 웹 화면을 컴포넌트로 만드는 JavaScript 프레임워크 |
+| WAS | **W**eb **A**pplication **S**erver | 와스 | Java 웹 애플리케이션을 실행하고 요청, 세션, 트랜잭션 같은 서버 기능을 제공하는 제품군을 국내 현장에서 넓게 부르는 말. Tomcat과 JBoss를 모두 WAS라고 부르기도 하지만 Jakarta EE 지원 범위에는 차이가 있음 |
 | Webpack | - | 웹팩 | JavaScript와 CSS 같은 파일을 묶어 브라우저용 결과물로 만드는 번들러 |
+| WildFly | - | 와일드플라이 | JBoss AS의 후속 이름으로 이어진 오픈소스 Jakarta EE 애플리케이션 서버. Red Hat JBoss EAP의 기반이 되는 커뮤니티 프로젝트 |
 
 ---
 
@@ -474,7 +494,7 @@ updated: 2026-07-09
 | Notion | - | 노션 | 문서, 위키, 작업 관리를 함께 하는 협업 도구 |
 | pnpm | **p**erformant **npm** | 피엔피엠 | 디스크 공간을 아끼는 방식으로 JavaScript 패키지를 설치하는 패키지 관리자 |
 | Postman | - | 포스트맨 | API 요청을 보내보고 문서화하거나 테스트할 때 쓰는 도구 |
-| Prometheus | - | 프로메테우스 | 지표를 수집하고 경고를 만들 때 쓰는 모니터링 도구 |
+| Prometheus | - | 프로메테우스 | 시간에 따라 변하는 metric을 수집·조회하고 경고를 만드는 모니터링 도구. 서비스가 느려졌다는 변화는 확인할 수 있지만 요청의 느린 구간을 찾는 작업은 Jaeger 같은 분산 추적 도구가 담당 |
 | pyenv | **Py**thon **env**ironment | 파이엔브 | Python 버전을 프로젝트나 셸마다 바꿔 쓰게 해주는 도구 |
 | rbenv | **R**u**b**y **env**ironment | 알비엔브 | Ruby 버전을 프로젝트나 셸마다 바꿔 쓰게 해주는 도구 |
 | Scoop | - | 스쿱 | Windows에서 개발 도구를 명령어로 설치하는 패키지 관리자 |
