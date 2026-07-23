@@ -206,9 +206,9 @@ todo-api/
             └── me.nvim.blog.todo/
                 ├── TodoApiApplication.java
                 └── todo/
-                    ├── * CreateTodoRequest.java
-                    ├── * TodoItem.java
-                    └── * TodoResponse.java
+                    ├── + CreateTodoRequest.java
+                    ├── + TodoItem.java
+                    └── + TodoResponse.java
 ```
 
 `src/main/java/me/nvim/blog/todo/todo/CreateTodoRequest.java`를 만들어요. 클라이언트가 보내는 요청 모양이에요.
@@ -323,9 +323,9 @@ todo-api/
                 ├── TodoApiApplication.java
                 └── todo/
                     ├── CreateTodoRequest.java
-                    ├── * TimeConfig.java
+                    ├── + TimeConfig.java
                     ├── TodoItem.java
-                    ├── * TodoRepository.java
+                    ├── + TodoRepository.java
                     └── TodoResponse.java
 ```
 
@@ -432,7 +432,7 @@ todo-api/
                     ├── TodoItem.java
                     ├── TodoRepository.java
                     ├── TodoResponse.java
-                    └── * TodoService.java
+                    └── + TodoService.java
 ```
 
 `src/main/java/me/nvim/blog/todo/todo/TodoService.java`를 만들어요.
@@ -508,7 +508,7 @@ todo-api/
                 └── todo/
                     ├── CreateTodoRequest.java
                     ├── TimeConfig.java
-                    ├── * TodoController.java
+                    ├── + TodoController.java
                     ├── TodoItem.java
                     ├── TodoRepository.java
                     ├── TodoResponse.java
@@ -636,7 +636,7 @@ todo-api/
         │           ├── TodoResponse.java
         │           └── TodoService.java
         └── resources/
-            └── application.properties        <- 수정
+            └── ~ application.properties
 ```
 
 `src/main/resources/application.properties`에 한 줄을 추가해요.
@@ -673,7 +673,7 @@ todo-api/
         └── java/
             └── me.nvim.blog.todo/
                 ├── TodoApiApplicationTests.java
-                └── * TodoApiTests.java
+                └── + TodoApiTests.java
 ```
 
 Boot 4의 Web MVC 테스트에서는 `AutoConfigureMockMvc` import가 아래 package에 있어요.

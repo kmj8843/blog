@@ -87,43 +87,43 @@ cd auth-api
 
 ```gradle title="build.gradle" linenums="1"
 plugins {
- id 'java'
- id 'org.springframework.boot' version '4.0.7'
- id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'org.springframework.boot' version '4.0.7'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'me.nvim.blog'
 version = '0.0.1-SNAPSHOT'
 
 java {
- toolchain {
-  languageVersion = JavaLanguageVersion.of(21)
- }
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
- mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
- implementation 'org.springframework.boot:spring-boot-h2console'
- implementation 'org.springframework.boot:spring-boot-starter-actuator'
- implementation 'org.springframework.boot:spring-boot-starter-jdbc'
- implementation 'org.springframework.boot:spring-boot-starter-security'
- implementation 'org.springframework.boot:spring-boot-starter-security-oauth2-resource-server'
- implementation 'org.springframework.boot:spring-boot-starter-validation'
- implementation 'org.springframework.boot:spring-boot-starter-webmvc'
- runtimeOnly 'com.h2database:h2'
- testImplementation 'org.springframework.boot:spring-boot-starter-jdbc-test'
- testImplementation 'org.springframework.boot:spring-boot-starter-security-oauth2-resource-server-test'
- testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
- testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
- testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
- testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.springframework.boot:spring-boot-h2console'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-jdbc-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-oauth2-resource-server-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
- useJUnitPlatform()
+    useJUnitPlatform()
 }
 ```
 
@@ -240,9 +240,9 @@ HTTP 계약과 package 경계가 잡혔어요. domain object나 repository 구�
 
 ```text
 src/main/resources/
-├── * application.yml
-├── * schema.sql
-└── * data.sql
+├── + application.yml
+├── + schema.sql
+└── + data.sql
 ```
 
 ```yaml title="src/main/resources/application.yml" linenums="1"
@@ -338,13 +338,13 @@ domain에는 Spring import가 하나도 없어야 해요. 계정과 token이라�
 
 ```text
 src/main/java/me/nvim/blog/auth/identity/domain/
-├── * IssuedToken.java
-├── * PasswordHasher.java
-├── * RefreshToken.java
-├── * RefreshTokenRepository.java
-├── * TokenIssuer.java
-├── * UserAccount.java
-└── * UserAccountRepository.java
+├── + IssuedToken.java
+├── + PasswordHasher.java
+├── + RefreshToken.java
+├── + RefreshTokenRepository.java
+├── + TokenIssuer.java
+├── + UserAccount.java
+└── + UserAccountRepository.java
 ```
 
 ```java title="src/main/java/me/nvim/blog/auth/identity/domain/UserAccount.java" linenums="1"
@@ -496,9 +496,9 @@ domain의 정상 규칙을 만들었지만 인증 API는 실패하는 장면이 
 
 ```text
 src/main/java/me/nvim/blog/auth/common/exception/
-├── * BusinessException.java
-├── * ErrorCode.java
-└── * GlobalExceptionHandler.java
+├── + BusinessException.java
+├── + ErrorCode.java
+└── + GlobalExceptionHandler.java
 ```
 
 ```java title="src/main/java/me/nvim/blog/auth/common/exception/ErrorCode.java" linenums="1"
@@ -640,12 +640,12 @@ HTTP request를 domain에 바로 넘기지 않아요. presentation의 입력은 
 
 ```text
 src/main/java/me/nvim/blog/auth/identity/application/
-├── * AccountResult.java
-├── * IdentityFacade.java
-├── * IssueTokenCommand.java
-├── * RefreshTokenCommand.java
-├── * RegisterAccountCommand.java
-└── * TokenResult.java
+├── + AccountResult.java
+├── + IdentityFacade.java
+├── + IssueTokenCommand.java
+├── + RefreshTokenCommand.java
+├── + RegisterAccountCommand.java
+└── + TokenResult.java
 ```
 
 command 세 개는 유스케이스 입력만 담고, result 두 개는 공개 가능한 출력만 담는 record예요. 반복되는 field 선언과 `from(...)` 변환은 [실습 저장소의 application package](https://github.com/kmj8843/aha-spring-boot-auth-api/tree/auth-api-first-commit/src/main/java/me/nvim/blog/auth/identity/application)에서 확인할 수 있어요. 여기서는 이 객체들을 실제로 조합하는 facade 전체를 봐요.
@@ -781,8 +781,8 @@ sequenceDiagram
 
 ```text
 src/main/java/me/nvim/blog/auth/identity/infrastructure/config/
-├── * RsaKeyConfig.java
-└── * TokenProperties.java
+├── + RsaKeyConfig.java
+└── + TokenProperties.java
 ```
 
 ```java title="src/main/java/me/nvim/blog/auth/identity/infrastructure/config/TokenProperties.java" linenums="1"
@@ -929,9 +929,9 @@ public class RsaKeyConfig {
 
 ```text
 src/main/java/me/nvim/blog/auth/identity/infrastructure/jdbc/
-├── * JdbcInstantReader.java
-├── * JdbcRefreshTokenRepository.java
-└── * JdbcUserAccountRepository.java
+├── + JdbcInstantReader.java
+├── + JdbcRefreshTokenRepository.java
+└── + JdbcUserAccountRepository.java
 ```
 
 회원 adapter는 계정과 role row를 함께 저장하고, unique email 위반을 `EMAIL_ALREADY_USED` 업무 오류로 바꿔요. 조회·mapping과 H2 timestamp 차이를 처리하는 코드는 [JDBC package 전체](https://github.com/kmj8843/aha-spring-boot-auth-api/tree/auth-api-first-commit/src/main/java/me/nvim/blog/auth/identity/infrastructure/jdbc)에서 확인할 수 있어요.
@@ -980,10 +980,10 @@ domain port와 Spring Security 사이를 잇는 네 class를 만들어요.
 
 ```text
 src/main/java/me/nvim/blog/auth/identity/infrastructure/security/
-├── * DatabaseUserDetailsService.java
-├── * JwtTokenIssuer.java
-├── * SpringPasswordHasher.java
-└── * UserPrincipal.java
+├── + DatabaseUserDetailsService.java
+├── + JwtTokenIssuer.java
+├── + SpringPasswordHasher.java
+└── + UserPrincipal.java
 ```
 
 Basic 쪽 세 class는 번역 역할이 분명해요. `UserPrincipal`은 `UserAccount`를 `UserDetails`로 바꾸고 role 문자열을 `GrantedAuthority`로 옮겨요. `DatabaseUserDetailsService`는 email을 소문자로 정규화해 계정을 찾고, `SpringPasswordHasher`는 domain의 `PasswordHasher`를 `PasswordEncoder`로 구현해요. 짧지만 반복적인 위임 코드는 [security package 전체](https://github.com/kmj8843/aha-spring-boot-auth-api/tree/auth-api-first-commit/src/main/java/me/nvim/blog/auth/identity/infrastructure/security)에서 확인할 수 있어요.
@@ -1066,7 +1066,7 @@ password를 확인할 provider와 JWT를 만들 adapter는 준비됐어요. 하�
 
 ```text
 src/main/java/me/nvim/blog/auth/common/config/
-└── * SecurityConfig.java
+└── + SecurityConfig.java
 ```
 
 ```mermaid
@@ -1183,14 +1183,14 @@ public class SecurityConfig {
 
 ```text
 src/main/java/me/nvim/blog/auth/identity/presentation/
-├── * AccountController.java
-├── * AdminController.java
-├── * AdminUsersResponse.java
-├── * AuthTokenController.java
-├── * RefreshTokenRequest.java
-├── * RegisterRequest.java
-├── * TokenResponse.java
-└── * UserSummaryResponse.java
+├── + AccountController.java
+├── + AdminController.java
+├── + AdminUsersResponse.java
+├── + AuthTokenController.java
+├── + RefreshTokenRequest.java
+├── + RegisterRequest.java
+├── + TokenResponse.java
+└── + UserSummaryResponse.java
 ```
 
 ```java title="src/main/java/me/nvim/blog/auth/identity/presentation/RegisterRequest.java" linenums="1"

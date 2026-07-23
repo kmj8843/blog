@@ -124,6 +124,12 @@ tags:
 - [Actuator의 health와 metrics는 운영에서 무엇을 알려줄까요?](observability-actuator-health-metrics.md){ data-preview }
   Health, info, metrics, Prometheus endpoint를 서로 다른 운영 질문으로 나누고, liveness와 readiness와 안전한 공개 범위를 살펴봐요.
 
+- [Micrometer tracing과 correlation ID는 한 요청을 어떻게 찾을까요?](micrometer-tracing-logs-and-correlation-id.md){ data-preview }
+  Metric에서 발견한 이상 징후를 trace와 log로 좁히고, trace ID, span ID, MDC, context propagation, sampling으로 여러 service를 지난 요청 하나를 찾아가요.
+
+- [Auth API에 metrics와 tracing을 실제로 어떻게 붙일까요?](source-backed-observability-api.md){ data-preview }
+  기존 Auth API에 Actuator, Prometheus Counter, OpenTelemetry tracing, Jaeger, 작은 downstream을 붙이고, async context 단절과 장애 추적을 실제 실행 결과로 확인해요.
+
 앞으로는 이 흐름을 따라 프로젝트 생성, `main` 메서드, 애플리케이션 컨텍스트(application context), 빈(bean), 의존성 주입(dependency injection), 자동 설정(auto-configuration), 웹 요청 흐름, 데이터베이스, 보안, 테스트, 운영까지 하나씩 이어갈 예정이에요.
 
 ---
